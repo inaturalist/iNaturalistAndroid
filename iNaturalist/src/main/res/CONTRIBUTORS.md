@@ -59,7 +59,6 @@ Many people have contributed translations to the iNaturalist Android app over th
 
 ## Chinese Simplified (`zh-CN`)
 * [200woo](https://crowdin.com/profile/200woo)
-* [AlephCore (HawkChen6254)](https://crowdin.com/profile/HawkChen6254)
 * [AzureNya](https://crowdin.com/profile/AzureNya)
 * [Beini Yang (Becki)](https://crowdin.com/profile/Becki)
 * [Bing Dong (1574508993)](https://crowdin.com/profile/1574508993)
@@ -73,6 +72,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [Meng8495](https://crowdin.com/profile/Meng8495)
 * [MysticBoy (oSilas)](https://crowdin.com/profile/oSilas)
 * [NikolaiWong](https://crowdin.com/profile/NikolaiWong)
+* [Solastella](https://crowdin.com/profile/Solastella)
 * [susanli3769 (emmali73)](https://crowdin.com/profile/emmali73)
 * [weihe9416](https://crowdin.com/profile/weihe9416)
 * [wmtjiayou](https://crowdin.com/profile/wmtjiayou)
@@ -357,6 +357,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [baroen](https://crowdin.com/profile/baroen)
 * [dissgo](https://crowdin.com/profile/dissgo)
 * [Fuadie Muhammad (zahroel.fuadie)](https://crowdin.com/profile/zahroel.fuadie)
+* [Haura Nabila Rinaldi (hauranblr)](https://crowdin.com/profile/hauranblr)
 * [Hotman Nasution (htmn66)](https://crowdin.com/profile/htmn66)
 * [Kevin Matthew (kevinma28)](https://crowdin.com/profile/kevinma28)
 * [Kevin S. Zebua (kevinzeb)](https://crowdin.com/profile/kevinzeb)
@@ -412,6 +413,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [Amaël Borzée (amarzee)](https://crowdin.com/profile/amarzee)
 * [aramlee](https://crowdin.com/profile/aramlee)
 * [Ethern Khang (kanginsung)](https://crowdin.com/profile/kanginsung)
+* [HKM7531](https://crowdin.com/profile/HKM7531)
 * [Minjeong Lee (dkzpshrtm91)](https://crowdin.com/profile/dkzpshrtm91)
 * [MK (min.kim352)](https://crowdin.com/profile/min.kim352)
 * [Sungmin Ji (tyrashark)](https://crowdin.com/profile/tyrashark)
@@ -599,6 +601,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [NinaCourlee](https://crowdin.com/profile/NinaCourlee)
 * [quithands](https://crowdin.com/profile/quithands)
 * [Roman  Evseev (roman_evseev)](https://crowdin.com/profile/roman_evseev)
+* [Russbear](https://crowdin.com/profile/Russbear)
 * [Timofeika420](https://crowdin.com/profile/Timofeika420)
 * [yana12345](https://crowdin.com/profile/yana12345)
 * [Антон Чучкалов (greysky54)](https://crowdin.com/profile/greysky54)
@@ -629,6 +632,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [Tomas V. (TWatz)](https://crowdin.com/profile/TWatz)
 
 ## Slovenian (`sl`)
+* [AJakob](https://crowdin.com/profile/AJakob)
 * [Dejan Papež (TadejM)](https://crowdin.com/profile/TadejM)
 
 ## Spanish (`es`)
@@ -704,6 +708,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 
 ## Swahili
 * [Mike Musafiri (Mikemusafiri)](https://crowdin.com/profile/Mikemusafiri)
+* [nehemia mathias (nehemia93)](https://crowdin.com/profile/nehemia93)
 
 ## Swedish (`sv`)
 * [Johan Liljeblad (Cynips)](https://crowdin.com/profile/Cynips)
