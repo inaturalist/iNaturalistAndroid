@@ -1201,4 +1201,6 @@ Más información de nuestra definición de \"contenido apropiado\" en las
     <string name="close_announcement">Cerrar Notificación</string>
     <string name="import_photos_from">Importar fotos desde...</string>
     <string name="cannot_find_default_camera">No se pudo encontrar una cámara predeterminada con la que tomar fotos - por favor, contacte con su soporte técnico</string>
+    <string name="please_click_link_to_confirm_email">Pulse en el enlace de su correo electrónico para confirmar su dirección.</string>
+    <string name="click_to_resend_confirmation_email">Clique aquí para recibir un nuevo correo electrónico de confirmación.</string>
 </resources>

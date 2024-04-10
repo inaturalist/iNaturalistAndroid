@@ -1151,4 +1151,6 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Uždaryti pranešimą</string>
     <string name="import_photos_from">Importuoti nuotraukas iš...</string>
+    <string name="please_click_link_to_confirm_email">El. laiške spustelėkite nuorodą, kad patvirtintumėte savo el. paštą „iNaturalist“.</string>
+    <string name="click_to_resend_confirmation_email">Spustelėkite čia, kad pakartotinai išsiųstumėme patvirtinimo laišką.</string>
 </resources>
