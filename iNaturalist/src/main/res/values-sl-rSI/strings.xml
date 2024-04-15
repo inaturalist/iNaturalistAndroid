@@ -447,7 +447,9 @@
     <string name="suggest_species_description">Predlagajte vrsto glede na vizualno podobnost s fotografijami.</string>
     <string name="visually_similar">Vizualno podobno</string>
     <string name="visually_similar_seen_nearby">Vizualno podobno/bližnje opazovanje</string>
+    <string name="visually_similar_expected_nearby">Vizualno podobno/bližnje opazovanje</string>
     <string name="seen_nearby">Bližnje opazovanje</string>
+    <string name="expected_nearby">Pričakovano v bližini</string>
     <string name="enlarge">Povečaj</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Prikaži podrejene</string>
@@ -577,6 +579,7 @@
     <string name="change_password">Spremeni geslo</string>
     <string name="search_projects_youve_joined">Poiščite projekte, ki ste se jim pridružili ...</string>
     <string name="must_be_connected_to_load_more_obs">Za ogled več opazovanj se morate povezati v internet.</string>
+    <string name="inat_about_title_new">iNaturalist je neodvisna 501(c)(3) neprofitna organizacija iz ZDA (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -585,6 +588,7 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="inat_credits2"><![CDATA[iNaturalist obstaja zahvaljujoč vsakemu posamezniku, ki sodeluje v naši skupnosti. Osebe, ki skrbijo za programsko opremo, načrtujejo vmesnike, vzdržujejo našo infrastrukturo, podpirajo skupnost in spodbujajo sodelovanja so Yaron Budowski, Amanda Bullington, Tony Iwane, Johannes Klein, Patrick Leary, Scott Loarie, Abhas Misraraj, Sylvain Morin, Carrie Seltzer, Alex Shepard, Angie Ta in Ken-ichi Ueda.<br/><br/>CalTech in Cornell Tech so pomagali pri razvoju sistema računalniškega vida, ki pomaga pri določitvah vrst iz fotografij. Zahvaljujemo se Grant Van Horn, Serge Belongie, and Pietro Perona za napredek pri raziskovanju računalniškega vida. Več lahko najdete na <a href="https://www.visipedia.org">visipedia.org</a>. Posebna zahvala gre podjetu NVIDIA za dodatno pomoč.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Mednarodno omrežje iNaturalist Network, ki se zahvaljuje pridruženim partnerskim organizacijam, podpira lokalizirana, celostna spletna mesta na podlagi platforme iNaturalist v naslednjih državah.]]></string>
     <string name="inat_credits_post"><![CDATA[Družba iNaturalist je globoko hvaležna tudi razvijalcem odprte kode, ki so zagotovili velik del programja, ki ga vsak dan uporabljamo. Za odprtokodne prispevke glejte spletno mesto <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>.<br/> Za pomoč pri prevajanju se zahvaljujemo prostovoljcem skupnosti crowdin.com, še zlasti Eduardu Martínezu, Linu Cheng-Tau, KestrelLamu, cgalindu, vilseskogu, NCAA, ldacosti, radani, Mykoli Pukhalskyiju, danieleseglieju in katunchiku. <br/>Kraje kategorije II Mednarodne zveze za ohranjanje narave (IUCN) sta zagotovila zveza IUCN in Center Združenih narodov za svetovni program spremljanja varstva okolja (UNEP-WCMC, 2015): zbirka World Database on Protected Areas (WDPA, Svetovna zbirka zavarovanih območij) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Na voljo je na spletnem mestu: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Zasluge</string>
@@ -718,6 +722,7 @@
     <string name="community_id_at_species_level_or_lower">ID skupnosti na ravni vrste ali natančneje</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Ali je na podlagi podatkov mogoče potrditi ali še izboljšati ID skupnosti?</string>
     <string name="no_as_good_as_it_can_be">Ne, to ni mogoče</string>
+    <string name="evidence_related_to_single_subject">Dokazi povezani s posamezno temo</string>
     <string name="seasonality">SEZONSKOST</string>
     <string name="verifiable">Preverljivo</string>
     <string name="no_annotation">Ni opisa</string>
@@ -1174,10 +1179,36 @@
     <string name="project_unselected">Projekt odizbran</string>
     <string name="show_my_observations">Prikaži moja opazovanja</string>
     <string name="play_pause_sound">Predvajaj ali pavziraj zvok</string>
+    <string name="view_image">Pokaži sliko</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Potek ocenjevanja</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Strinjanje z potekom ocenjevanja</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Ni prestalo ocenjevanja</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Nestrinjanje z potekom ocenjevanja</string>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sinhroniziraj %1$d izbrano opazovanje</item>
+        <item quantity="two">Sinhroniziraj %1$d izbrani opazovanji</item>
+        <item quantity="few">Sinhroniziraj %1$d izbrana opazovanja</item>
+        <item quantity="other">Sinhroniziraj %1$d izbrana opazovanja</item>
+    </plurals>
+    <string name="add_media_evidence">Dodaj medijske dokaze</string>
+    <string name="remove_identification">Odstrani določitev</string>
+    <string name="issue_with_updating_photos">Pri posodabljanju fotografij v temu opazovanju smo imeli problem, ki je bil nedavno rešen. Rešite ga tako, da se odjavite in ponovno prijavite.</string>
+    <string name="app_version_copied_to_clipboard">Verzija aplikacije je bila shranjena na odložišče.</string>
+    <string name="authentication_failed">Preverjanje pristnosti ni uspelo</string>
+    <string name="please_try_again_soon">Prosimo poskusite znova kmalu.</string>
+    <string name="verify_your_email">Preverite svoj e-poštni naslov</string>
+    <string name="after_you_change_your_password">Ko spremenite geslo, boste odjavljeni in se boste morali znova prijaviti z novim geslom. Odjavljeni boste tudi iz mobilnih aplikacij iNaturalist in vseh drugih aplikacij ali spletnih mest, ki objavljajo v iNaturalist v vašem imenu, zato se prepričajte, da ste naložili vsa čakajoča opazovanja, preden to storite. Vsa opazovanja, ki niso naložena, bodo izgubljena.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">Datoteke ni bilo mogoče naložiti, ker je večja od 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Bili ste odjavljeni. Prijavite se znova.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Zapri obvestilo</string>
+    <string name="import_photos_from">Uvozi fotografije iz...</string>
+    <string name="cannot_find_default_camera">Ni bilo mogoče najti privzete kamere za fotografiranje - obrnite se na podporo</string>
+    <string name="please_click_link_to_confirm_email">Kliknite na povezavo v prejetem e-poštnem sporočilu, da potrdite svoj e-poštni naslov na iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Kliknite tukaj za ponovno pošiljanje potrditvenega e-poštnega sporočila.</string>
 </resources>
