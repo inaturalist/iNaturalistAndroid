@@ -85,7 +85,7 @@ jobs:
           arch: ${{ env.ARCH }}
           cores: 3
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -grpc 8554 -verbose -timezone America/New_York
+          emulator-options: -no-cache -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -grpc 8554 -verbose -timezone America/New_York
           disable-animations: true
           target: google_apis
           ndk: 26.1.10909125
