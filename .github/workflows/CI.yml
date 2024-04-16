@@ -38,17 +38,7 @@ jobs:
       - name: Set AVD Architecture Based on API Level
         run: echo "ARCH=$(if [ ${{ matrix.api-level }} -eq 27 ]; then echo 'x86'; else echo 'x86_64'; fi)" >> $GITHUB_ENV
 
-      - name: Restore AVD cache
-        uses: actions/cache@v3
-        id: avd-cache
-        with:
-          path: |
-            ~/.android/avd/*
-            ~/.android/adb*
-          key: avd-${{ matrix.api-level }}-${{ env.ARCH }}-20231227
-
       - name: Create AVD and generate snapshot for caching
-        if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
