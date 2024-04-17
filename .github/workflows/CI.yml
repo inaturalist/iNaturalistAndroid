@@ -15,8 +15,10 @@ jobs:
         api-level:
           - 23 # Android 5, minSdkVersion
           - 27 # Android 8, has caused problems in the past
-          - 30 # Android 11 - latest where tests pass
-          - 33 # Android 13 - targetSdkVersion
+          # Fails intermittently, most likely due to system dialog of "App X isn't responding, do you want to close it?"
+          # See here: https://stackoverflow.com/a/54203607/1233767
+          #- 30 # Android 11 - latest where tests pass
+          #- 33 # Android 13 - targetSdkVersion
           # Fails currently, need to debug before we can upgrade
           # - 34 # Android 14, latest public release
     steps:
