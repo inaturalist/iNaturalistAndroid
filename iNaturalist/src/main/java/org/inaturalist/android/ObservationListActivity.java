@@ -1990,15 +1990,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 "<html>" +
                 "<head>" +
                 "<style type=\"text/css\"> " +
-                "@font-face { " +
-                "font-family: Whitney;" +
-                "src: url(\"file:///android_asset/fonts/whitney_light_pro.otf\")" +
-                "}" +
                 "body {" +
                 "line-height: 22pt;" +
                 "margin: 0;" +
                 "padding: 0;" +
-                "font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif;" +
+                "font-family: \"Roboto Light\", \"HelveticaNeue-UltraLight\", \"Segoe UI\", sans-serif;" +
                 "font-size: medium;" +
                 "} " +
                 "div {max-width: 100%;} " +
