@@ -1173,4 +1173,6 @@
     <string name="close_announcement">Bejelentés bezárása</string>
     <string name="import_photos_from">Fényképek importálása...</string>
     <string name="cannot_find_default_camera">Nem találtunk elérhető fényképezőalkalmazást. Kérjük, vedd fel a kapcsolatot az ügyfélszolgálattal.</string>
+    <string name="please_click_link_to_confirm_email">Kérjük, hogy az emailcím megerősítéséhez kattints az emailben található linkre.</string>
+    <string name="click_to_resend_confirmation_email">A hitelesítő email újraküldéséhez kattints ide.</string>
 </resources>

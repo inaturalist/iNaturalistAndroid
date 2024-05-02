@@ -712,6 +712,7 @@
     <string name="community_id_at_species_level_or_lower">Tür düzeyinde ya da altında Topluluk Tanımlaması</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Kanıtlara dayanarak, Topluluk Tanımlaması hâlâ doğrulanabilir ya da geliştirilebilir mi?</string>
     <string name="no_as_good_as_it_can_be">Hayır, olabildiği kadar iyi</string>
+    <string name="evidence_related_to_single_subject">Tek bir süjeyle ilgili kanıt</string>
     <string name="seasonality">Mevsimsellik</string>
     <string name="verifiable">Doğrulanabilir</string>
     <string name="no_annotation">Açıklama Yok</string>

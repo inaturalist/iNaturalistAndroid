@@ -712,6 +712,7 @@
     <string name="community_id_at_species_level_or_lower">Identification par la communauté au niveau de l\'espèce ou inférieur</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Au vu des preuves, l\'identification de la communauté peut-elle être confirmée ou améliorée ?</string>
     <string name="no_as_good_as_it_can_be">Non, c\'est le meilleur possible</string>
+    <string name="evidence_related_to_single_subject">Observation portant sur un seul sujet</string>
     <string name="seasonality">Saisonnalité</string>
     <string name="verifiable">Vérifiable</string>
     <string name="no_annotation">Aucune annotation</string>
@@ -1207,4 +1208,7 @@ non, tant que le travail demeure inchangé et complet, et que vous êtes mention
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Fermer l\'annonce</string>
     <string name="import_photos_from">Importer des photos depuis...</string>
+    <string name="cannot_find_default_camera">Impossible de trouver un appareil photo par défaut avec lequel prendre des photos - veuillez contacter le support</string>
+    <string name="please_click_link_to_confirm_email">Veuillez cliquer sur le lien dans le courriel qui vient de vous être envoyé pour confirmer votre adresse courriel sur iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Cliquez ici pour recevoir un nouveau courriel de confirmation</string>
 </resources>
