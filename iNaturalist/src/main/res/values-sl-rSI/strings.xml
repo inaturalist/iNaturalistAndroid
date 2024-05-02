@@ -1188,6 +1188,12 @@
     <string name="does_not_pass_assessment">Ni prestalo ocenjevanja</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">Nestrinjanje z potekom ocenjevanja</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Izbriši %1$d izbrano opazovanje</item>
+        <item quantity="two">Izbriši %1$d izbrani opazovanji</item>
+        <item quantity="few">Izbriši %1$d izbrana opazovanja</item>
+        <item quantity="other">Izbriši %1$d izbranih opazovanj</item>
+    </plurals>
     <plurals name="sync_x_selected_observations">
         <item quantity="one">Sinhroniziraj %1$d izbrano opazovanje</item>
         <item quantity="two">Sinhroniziraj %1$d izbrani opazovanji</item>

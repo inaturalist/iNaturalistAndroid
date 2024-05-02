@@ -722,6 +722,7 @@
     <string name="community_id_at_species_level_or_lower">ID společenství na úrovni druhu nebo nižší</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Na základě důkazů může být ID společenství ještě potvrzeno nebo vylepšeno?</string>
     <string name="no_as_good_as_it_can_be">Ne, je to tak dobré, jak to může být</string>
+    <string name="evidence_related_to_single_subject">Důkazy týkající se jediného subjektu</string>
     <string name="seasonality">Sezónnost</string>
     <string name="verifiable">Ověřitelné</string>
     <string name="no_annotation">Bez anotace</string>
@@ -1219,4 +1220,7 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Zavřít oznámení</string>
     <string name="import_photos_from">Importovat fotky z...</string>
+    <string name="cannot_find_default_camera">Nelze najít výchozí fotoaparát který pořídil fotografii - prosím kontaktujte podporu</string>
+    <string name="please_click_link_to_confirm_email">Kliknutím na odkaz v e-mailu potvrďte svou e-mailovou adresu v iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Kliknutím zde odešlete nový ověřovací e-mail.</string>
 </resources>
