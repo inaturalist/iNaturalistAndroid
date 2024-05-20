@@ -90,7 +90,10 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private static String TAG = "TaxonActivity";
 
     // The various colors we can use for the lines
-    private static final String[] ATTRIBUTE_LINE_COLORS = { "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf" };
+    private static final String[] ATTRIBUTE_LINE_COLORS = {
+            "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
+            "#ac9870", "#d53614", "#885059", "#f5dfbe", "#9913a9", "#6fbcd8", "#4bdb2b", "#774868", "#0418a5", "#0b01ce"
+    };
 
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
 
