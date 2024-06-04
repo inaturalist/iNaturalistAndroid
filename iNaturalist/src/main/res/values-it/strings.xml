@@ -1199,4 +1199,6 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Chiudi Annuncio</string>
     <string name="import_photos_from">Importa Foto Da...</string>
+    <string name="please_click_link_to_confirm_email">Clicca sul link nella tua email per confermare il tuo indirizzo email su iNaturalist</string>
+    <string name="click_to_resend_confirmation_email">Clicca qui per richiedere nuovamente un\'email di conferma.</string>
 </resources>

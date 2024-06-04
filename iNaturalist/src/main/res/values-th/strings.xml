@@ -775,9 +775,9 @@
     <!-- Label for adjusting the brightness of an image -->
     <string name="ucrop_brightness">ความสว่าง</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">ความคมชัด</string>
+    <string name="ucrop_contrast">ความต่างสี</string>
     <!-- Label for adjusting the saturation of an image -->
-    <string name="ucrop_saturation">ความเข้มของสี</string>
+    <string name="ucrop_saturation">ความเข้ม</string>
     <!-- Label for adjusting the sharpness of an image -->
     <string name="ucrop_sharpness">ความคมชัด</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
@@ -1120,7 +1120,7 @@
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">แสดงตัวเลือก</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">ข้อมูลภาคสนาม</string>
+    <string name="field_value">ข้อมูลเสริม</string>
     <string name="open_menu_for_more_options">เปิดเมนูเพื่อดูตัวเลือกเพิ่มเติม</string>
     <string name="change_user_profile_photo">เปลี่ยนรูปโปรไฟล์ของคุณ</string>
     <string name="expand_list">ขยายรายการ</string>
