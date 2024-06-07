@@ -1187,4 +1187,7 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">关闭通知</string>
     <string name="import_photos_from">导入照片自...</string>
+    <string name="cannot_find_default_camera">找不到默认相机来拍照，请联系客服</string>
+    <string name="please_click_link_to_confirm_email">请点击你电子邮件中的链接来确认你在 iNaturallist 上的电子邮件</string>
+    <string name="click_to_resend_confirmation_email">点击这里重新发送验证邮件</string>
 </resources>

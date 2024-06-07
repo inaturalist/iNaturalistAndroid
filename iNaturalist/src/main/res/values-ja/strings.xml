@@ -553,6 +553,7 @@
     <string name="credits_title">クレジット</string>
     <string name="password_changed">Appで使用しているパスワードが動作しないようです - Webサイトでパスワードを変更しましたか? ここに新しいパスワードを入力してください</string>
     <string name="just_so_you_know">ただ、知っておいてほしいのは...</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[ %1$sに新規登録]]></string>
     <string name="see_more_observations">観察記録をさらに表示</string>
     <string name="see_more_species">さらに種を表示</string>
     <string name="see_more_identifications">同定をさらに表示</string>
@@ -822,7 +823,10 @@
     <!-- Singular -->
     <string name="rank_subspecies">亜種</string>
     <string name="rank_variety">変種</string>
+    <string name="i_consent_process_personal_info"><![CDATA[iNaturalistがアカウントを管理するために、いくつかの個人情報を保存し、処理させることに同意します。]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[<a href="https://www.inaturalist.org/terms">利用規約</a> および <a href="https://www.inaturalist.org/privacy">プライバシーポリシー</a>に同意し、 <a href="https://www.inaturalist.org/pages/community+guidelines">コミュニティガイドライン</a>を確認しました。]]></string>
     <string name="privacy_policy">プライバシーポリシー</string>
+    <string name="terms_of_service">利用規約</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">削除されたユーザ</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
