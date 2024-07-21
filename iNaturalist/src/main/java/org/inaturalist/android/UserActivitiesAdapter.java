@@ -105,7 +105,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
             obsPic.setVisibility(View.VISIBLE);
 
-            final String dateFormatted = CommentsIdsAdapter.formatIdDate(mContext, item.getTimestamp("created_at"));
+            final String dateFormatted = CommentsIdsAdapter.formatIdDate(mContext, item.getTimestamp("created_at"), null);
             String userName = null;
             String userIconUrl = null;
             JSONObject user = null;

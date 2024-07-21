@@ -158,6 +158,8 @@ public class ObservationUtils {
             if (observation.has("identifications_count") && !observation.isNull("identifications_count")) minimaldObs.put("identifications_count", observation.optInt("identifications_count"));
             if (observation.has("private_latitude") && !observation.isNull("private_latitude")) minimaldObs.put("private_latitude", observation.optString("private_latitude"));
             if (observation.has("private_longitude") && !observation.isNull("private_longitude")) minimaldObs.put("private_longitude", observation.optString("private_longitude"));
+            if (observation.has("geoprivacy") && !observation.isNull("geoprivacy")) minimaldObs.put("geoprivacy", observation.optString("geoprivacy"));
+            if (observation.has("taxon_geoprivacy") && !observation.isNull("taxon_geoprivacy")) minimaldObs.put("taxon_geoprivacy", observation.optString("taxon_geoprivacy"));
 
             if (observation.has("location") && !minimaldObs.has("latitude") && !minimaldObs.has("longitude")) {
                 String location = observation.getString("location");

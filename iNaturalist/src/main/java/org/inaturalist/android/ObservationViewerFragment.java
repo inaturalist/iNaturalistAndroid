@@ -82,6 +82,7 @@ import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -1211,7 +1212,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             mRemoveFavorite.setVisibility(View.GONE);
         }
 
-        mFavoritesAdapter = new FavoritesAdapter(getActivity(), mFavorites);
+        mFavoritesAdapter = new FavoritesAdapter(getActivity(), mFavorites, new BetterJSONObject(mObsJson));
         mFavoritesList.setAdapter(mFavoritesAdapter);
 
         mRemoveFavorite.setOnClickListener(new OnClickListener() {
@@ -2392,6 +2393,38 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
     }
 
     private String formatObservedOn(Timestamp date, Timestamp time) {
+        BetterJSONObject observation = mObsJson != null ? new BetterJSONObject(mObsJson) : null;
+        // Only show month/year for observations that you don't own + obscured/private
+        String currentUser = mApp.currentUserLogin();
+        boolean obsByUser = observation != null &&
+                currentUser != null &&
+                observation.getJSONObject("user") != null &&
+                observation.getJSONObject("user").optString("login", "").equals(currentUser);
+        boolean isPrivateOrObscured = false;
+
+        if (observation != null) {
+            if (observation.getString("geoprivacy") != null) {
+                if (observation.getString("geoprivacy").equals("private") ||
+                        observation.getString("geoprivacy").equals("obscured")) {
+                    isPrivateOrObscured = true;
+                }
+            }
+            if (observation.getString("taxon_geoprivacy") != null) {
+                if (observation.getString("taxon_geoprivacy").equals("private") ||
+                        observation.getString("taxon_geoprivacy").equals("obscured")) {
+                    isPrivateOrObscured = true;
+                }
+            }
+        }
+
+        boolean isObscured = !obsByUser && isPrivateOrObscured;
+
+        if (isObscured && date != null) {
+            // Only show month+year for obscured observations
+            FastDateFormat dateFormat = FastDateFormat.getInstance(getString(R.string.date_obscured), getResources().getConfiguration().locale);
+            return dateFormat.format(new Date(date.getTime()));
+        }
+
         StringBuilder format = new StringBuilder();
 
         if (date != null) {

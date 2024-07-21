@@ -83,7 +83,7 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
             String noHTMLDescription = newsContent.getText().toString();
             newsContent.setText(noHTMLDescription.replaceAll("[\\xa0]+", "").trim()); // Strip all HTML/Markdown formatting in the preview text
             BetterJSONObject newsItem = new BetterJSONObject(item);
-            newsDate.setText(CommentsIdsAdapter.formatIdDate(mContext, newsItem.getTimestamp("published_at")));
+            newsDate.setText(CommentsIdsAdapter.formatIdDate(mContext, newsItem.getTimestamp("published_at"), null));
 
             if (firstPhotoUrl != null) {
                 // Set the article photo

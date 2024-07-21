@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.ForkJoinPool;
 
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.joda.time.Duration;
@@ -220,7 +221,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
 
 			postedOn.setText(String.format(res.getString(item.getString("type").equals("comment") ? R.string.comment_title : R.string.id_title),
-					username, formatIdDate(mContext, postDate)));
+					username, formatIdDate(mContext, postDate, mObservation)));
 
 			OnClickListener showUser = new OnClickListener() {
 				@Override
@@ -537,11 +538,37 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		return false;
 	}
 
-    public static String formatIdDate(Context context, Timestamp postDate) {
+    public static String formatIdDate(Context context, Timestamp postDate, BetterJSONObject observation) {
+		// Only show month/year for observations that you don't own + obscured/private
+		INaturalistApp app = (INaturalistApp) context.getApplicationContext();
+		String currentUser = app.currentUserLogin();
+		boolean obsByUser = observation != null &&
+				currentUser != null &&
+				observation.getJSONObject("user") != null &&
+				observation.getJSONObject("user").optString("login", "").equals(currentUser);
+		boolean isPrivateOrObscured = false;
+
+		if (observation != null) {
+			if (observation.getString("geoprivacy") != null) {
+				if (observation.getString("geoprivacy").equals("private") ||
+								observation.getString("geoprivacy").equals("obscured")) {
+					isPrivateOrObscured = true;
+				}
+			}
+			if (observation.getString("taxon_geoprivacy") != null) {
+				if (observation.getString("taxon_geoprivacy").equals("private") ||
+						observation.getString("taxon_geoprivacy").equals("obscured")) {
+					isPrivateOrObscured = true;
+				}
+			}
+		}
+
+		boolean isObscured = !obsByUser && isPrivateOrObscured;
+
         Duration difference = new Duration(postDate.getTime(), (new Date()).getTime());
         long days = difference.getStandardDays();
 
-        if (days <= 30) {
+        if (days <= 30 && !isObscured) {
             // Less than 30 days ago - display as 3m (mins), 3h (hours), 3d (days) or 3w (weeks)
             if (days < 1) {
 				long hours = difference.getStandardHours();
@@ -563,7 +590,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
             calDate.setTimeInMillis(postDate.getTime());
 
             String dateFormatString;
-            if (today.get(Calendar.YEAR) != calDate.get(Calendar.YEAR)) {
+			if (isObscured) {
+				// Only show month+year for obscured observations
+				dateFormatString = context.getString(R.string.date_obscured);
+			} else if (today.get(Calendar.YEAR) != calDate.get(Calendar.YEAR)) {
                 // Previous year(s)
                 dateFormatString = context.getString(R.string.date_short);
             } else {

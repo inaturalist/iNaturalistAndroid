@@ -47,17 +47,19 @@ public class FavoritesAdapter extends ArrayAdapter<BetterJSONObject> {
     private List<BetterJSONObject> mItems;
 	private Context mContext;
 	private String mLogin;
+	private BetterJSONObject mObservation;
 
 	public boolean isEnabled(int position) {
 		return false;
 	}
 
-	public FavoritesAdapter(Context context, List<BetterJSONObject> objects) {
+	public FavoritesAdapter(Context context, List<BetterJSONObject> objects, BetterJSONObject observation) {
 		super(context, R.layout.favorite_item, objects);
 
 		mItems = objects;
 		mContext = context;
         mHelper = new ActivityHelper(mContext);
+		mObservation = observation;
 
 		SharedPreferences prefs = mContext.getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
 		mLogin = prefs.getString("username", null);
@@ -83,7 +85,7 @@ public class FavoritesAdapter extends ArrayAdapter<BetterJSONObject> {
 			userNameText.setText(username);
 			Timestamp postDate = item.getTimestamp("created_at");
 
-			favDate.setText(CommentsIdsAdapter.formatIdDate(mContext, postDate));
+			favDate.setText(CommentsIdsAdapter.formatIdDate(mContext, postDate, mObservation));
 
             final ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
             boolean hasUserIcon = item.getJSONObject("user").has("user_icon_url") && !item.getJSONObject("user").isNull("user_icon_url");

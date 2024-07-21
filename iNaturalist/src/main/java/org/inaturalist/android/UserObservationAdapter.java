@@ -182,7 +182,7 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
             if (dateTimestamp == null) {
                 date.setVisibility(View.INVISIBLE);
             } else {
-                date.setText(CommentsIdsAdapter.formatIdDate(mContext, dateTimestamp));
+                date.setText(CommentsIdsAdapter.formatIdDate(mContext, dateTimestamp, new BetterJSONObject(item)));
                 date.setVisibility(View.VISIBLE);
             }
 
