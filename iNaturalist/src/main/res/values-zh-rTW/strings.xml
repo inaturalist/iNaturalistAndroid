@@ -950,6 +950,7 @@
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long"> yyyy MMM d</string>
+    <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">yyyy MMMM d hh:mma</string>
     <string name="show_common_names">顯示俗名</string>
@@ -1190,6 +1191,7 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">關閉公告</string>
     <string name="import_photos_from">匯入照片從…</string>
+    <string name="cannot_find_default_camera">無法找到預設的相機來拍照，請聯絡技術支援</string>
     <string name="please_click_link_to_confirm_email">請點擊按您信件中的鏈結，以確認您的電子郵件地址。</string>
     <string name="click_to_resend_confirmation_email">點擊這裡重寄驗證信</string>
 </resources>

@@ -11,20 +11,25 @@
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">சாட்டிலைட்</string>
     <string name="couldnt_load_nearby_observations">அருகிலுள்ள கவனிப்புகளை ஏற்ற முடியவில்லை: %1$s</string>
+    <string name="signing_in">உள்நுழைவு</string>
+    <string name="please_sign_in">தயவு செய்து பதிவு செய்தல்</string>
     <string name="set_date">தேதி</string>
     <string name="set_time">நேரம்</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
     <string name="something_went_wrong">ஐயோ, ஏதோ தவறாகிவிட்டது: %1$s</string>
     <string name="edit">திருத்து</string>
     <string name="oh_no">அச்சச்சோ! %1$s</string>
+    <string name="observations">எனது கவனிப்புகள்</string>
     <string name="map">வரைபடம்</string>
     <string name="settings">அமைப்புகள்</string>
     <string name="projects">திட்டங்கள்</string>
     <string name="delete_photo">படத்தை நீக்கு</string>
     <string name="my_location">எனது இருப்பிடம்</string>
+    <string name="nearby_observations">அருகிலுள்ள கவனிப்புகள்</string>
     <string name="add">சேர்</string>
     <string name="reload">மீண்டும் ஏற்று</string>
     <string name="view_in_browser">உலாவியில் காட்டு</string>
+    <string name="add_observation">சேர் கவனிப்பு</string>
     <string name="take_picture">படம் எடு</string>
     <string name="save">சேமி</string>
     <string name="no_observations_yet">இதுவரை கவனிப்பு எதுவுமில்லை!</string>
@@ -34,12 +39,15 @@
     <string name="password">கடவுச்சொல்</string>
     <string name="unknown">அறியாதது</string>
     <string name="unknown_species">அறியாத இனம்</string>
+    <string name="edit_observation">திருத்து கவனிப்பு</string>
     <string name="yes">ஆம்</string>
     <string name="no">இல்லை</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">உறுதிப்படுத்து</string>
     <string name="no_comments">கருத்துக்களோ அடையாளங்களோ இன்னும் அளிக்கப்படவில்லை </string>
     <string name="add_comment">கருத்துகளைச் சேர்</string>
+    <string name="remarks">கருத்துக்கள்...</string>
+    <string name="nearby_projects">அருகிலுள்ள</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">வெளியேறு</string>
@@ -58,6 +66,11 @@
     <string name="geoprivacy_with_value">நில தனியுரிமை: %1$s</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="my_guides">உங்கள்</string>
+    <string name="nearby_guides">அருகிலுள்ள</string>
+    <string name="all_guides">அனைத்தும்</string>
+    <string name="search_taxa">தேடு இனங்கள்</string>
+    <string name="edit_location">இடம் திருத்து </string>
+    <string name="edit_locality_notes">இருப்பிட குறிப்புகள் திருத்து </string>
     <string-array name="geoprivacy_items">
         <item>Open</item>
         <item>தெளிவற்ற</item>
@@ -72,24 +85,36 @@
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">பயனர் பெயர் அல்லது மின்னஞ்சல்</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
+    <string name="login_signup">புகுபதிகை / பதிவு செய்தல்</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <!-- Label for a button to import an existing photo for an observation -->
+    <string name="observation">கவனிப்பு</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="about_this_species">இனம் பெயர்</string>
+    <string name="edit_profile">சுயவிவரம் திருத்து</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <!-- Prompt to log in to your account or sign up for a new account -->
     <!-- Dialog title for when you are updating the description of an identification -->
+    <string name="have_been_seen_here">முன்பு இங்கு பார்த்தது</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
+    <string name="add_edit_remark">சேர்/திருத்து கருத்து</string>
+    <string name="taxonomy">உயிரியல் வகைப்பாடு</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
+    <string name="view_suggestions">பரிந்துரைகளைப் பார்க்க</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <!-- Header for a list of suggested taxa -->
+    <string name="top_suggestions">சிறந்த பரிந்துரைகள்</string>
+    <string name="visually_similar_seen_nearby">ஒத்திருக்கும் / அருகில் பார்த்தேன்</string>
+    <string name="seen_nearby">அருகில் பார்த்தேன்</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
+    <string name="nearby">அருகிலுள்ள </string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
+    <string name="no_taxon">மன்னிக்கவும், இனங்கள் காணப்படவில்லை</string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
@@ -112,6 +137,7 @@
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
+    <string name="inactive_taxon">செயலற்ற இனங்கள்</string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <!--
         Pronunciation of people's names (as approved by the people in question):
@@ -157,7 +183,9 @@
     <!-- Evidence of Presence value when for bones -->
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
     <!-- Text for a label for a list of projects the viewer has joined -->
+    <string name="nearby_projects_all_caps">அருகிலுள்ள</string>
     <!-- Text for a button or label that allows someone to join a project -->
+    <string name="nearby_guides_all_caps">அருகிலுள்ள</string>
     <string name="species_all_caps">இனம்</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <!-- Label for a button to import an existing sound for an observation -->
@@ -174,6 +202,7 @@
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
     <!-- Verb phrase, button label to edit an observation photo -->
+    <string name="ucrop_label_edit_photo">படத்தை திருத்து</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
     <!-- Second person hint text asking the user to enter their username -->
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
@@ -185,17 +214,23 @@
     <!-- Description of a UI element for screen readers -->
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <!-- Singular -->
+    <string name="rank_species">இனம்</string>
     <!-- Singular -->
+    <string name="rank_subspecies">உபஇனம்</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="taxon">இனங்கள்:</string>
     <!-- Singular -->
+    <string name="pretty_sure_species">இது இந்த இனத்தில் உள்ளது என்பதில் நாங்கள் உறுதியாக உள்ளோம்.</string>
     <!-- Singular -->
+    <string name="pretty_sure_subspecies">இது இந்த உபஇனத்தில் உள்ளது என்பதில் நாங்கள் உறுதியாக உள்ளோம்.</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <!-- Accessibility text for the faves tab on the observation detail view -->
@@ -213,6 +248,8 @@
     <!--  iNat observation identifier  -->
     <!--  iNat observation Universally Unique Identifier  -->
     <!--  Universal Resource Locator  -->
+    <string name="edit_photo_license">பட உரிமத்தை திருத்தவும்</string>
+    <string name="edit_observation_license">பட உரிமத்தை திருத்தவும்</string>
     <!-- License Names -->
     <!-- License Descriptions -->
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->

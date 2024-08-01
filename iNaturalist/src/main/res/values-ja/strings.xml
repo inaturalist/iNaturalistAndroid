@@ -474,8 +474,11 @@
     <string name="colloquial">通称</string>
     <string name="zone">ゾーン</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_state">古い州</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_county">古い国</string>
     <string name="continent">大陸</string>
+    <string name="estate">不動産</string>
     <string name="territory">領域</string>
     <string name="district">地区</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
@@ -531,6 +534,7 @@
     <string name="discard_comment">このコメントを破棄してよろしいですか？</string>
     <string name="leave_comment">コメントする...</string>
     <string name="swipe">スワイプ</string>
+    <string name="swipe_indicator">></string>
     <string name="potential_disagreement">意見の相違が生じる可能性</string>
     <string name="do_you_think_this_could_be"><![CDATA[これが<b>%1$s</b>であると同定するのに十分な証拠が提供されていますか？]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -647,6 +651,7 @@
     <string name="my_guides_all_caps">あなたのガイド</string>
     <string name="nearby_guides_all_caps">付近のガイド</string>
     <string name="all_guides_all_caps">全ガイド</string>
+    <string name="quantity_all_caps">QTY</string>
     <string name="agree_all_caps">同意</string>
     <string name="observations_all_caps">件の観察</string>
     <string name="species_all_caps">種</string>
@@ -839,6 +844,7 @@
     <string name="time_short_12_hour">a hh:mm</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">yyyy年M月d日</string>
+    <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">yyyy年M月d日 a hh:mm</string>
     <string name="remove_project_filter">プロジェクトフィルターを削除</string>

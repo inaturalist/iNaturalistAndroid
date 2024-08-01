@@ -176,6 +176,7 @@
     <string name="registering">नोंदणी करत आहे…</string>
     <string name="recommended_next_step">सुचवलेली पुढची पाहिरी </string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
+    <string name="login_signup">लॉग इन / साईन अप करा</string>
     <string name="please_sign_in_via_settings_for_guides">आपली मार्गदर्शके पाहण्यासाठी आपण लॉग इन असणे गरजेचे आहे.</string>
     <string name="please_sign_in_for_updates">आपली अपडेट्स पाहण्यासाठी आपण लॉग इन असणे गरजेचे आहे.</string>
     <string name="activity">गतिविधी</string>
@@ -413,6 +414,7 @@
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <!-- Singular -->
