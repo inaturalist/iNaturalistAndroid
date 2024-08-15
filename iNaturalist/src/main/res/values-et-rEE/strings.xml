@@ -712,6 +712,7 @@
     <string name="community_id_at_species_level_or_lower">Kogukondlik määratlus liigina või sellest madalamal tasemel</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Kas vastavalt tõenditele saab kogukondliku määratluse kinnitada või seda parandada?</string>
     <string name="no_as_good_as_it_can_be">Sellest enam paremaks minna ei saa</string>
+    <string name="evidence_related_to_single_subject">Ühe isendiga seotud tõendusmaterjal</string>
     <string name="seasonality">Hooajalisus</string>
     <string name="verifiable">Tõendatav</string>
     <string name="no_annotation">Märkus puudub</string>
@@ -956,6 +957,7 @@
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d. MMM, yyyy</string>
+    <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d. MMMM, yyy HH:mm</string>
     <string name="show_common_names">Näita rahvapäraseid nimesid</string>
@@ -1197,6 +1199,8 @@
     <string name="you_have_been_signed_out_please_sign_in_again">Olete välja logitud. Palun logige uuesti sisse.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Sulge teade</string>
+    <string name="import_photos_from">Impordi fotod...</string>
+    <string name="cannot_find_default_camera">Vaikimisi pildistamise kaamerat ei leitud, palun võta ühendust tehnilise toega</string>
     <string name="please_click_link_to_confirm_email">Palun vajuta e-postiga saadetud lingile, et oma aadressi iNaturalisti jaoks kinnitada.</string>
     <string name="click_to_resend_confirmation_email">Vajuta siia, et kinnituskiri uuesti saata.</string>
 </resources>

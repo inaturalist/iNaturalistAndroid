@@ -621,13 +621,13 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">หลักฐานที่พบ</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">การออกดอก</string>
+    <string name="annotation_value_flowering">ออกดอก</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">การสร้างผล</string>
+    <string name="annotation_value_fruiting">ออกผล</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">การแตกหน่อ</string>
+    <string name="annotation_value_budding">แตกตา</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">การแตกหน่อของดอก</string>
+    <string name="annotation_value_flower_budding">แตกตาดอก</string>
     <!-- Observation presents no evidence of flowering phenology -->
     <string name="annotation_value_no_evidence_of_flowering">ไม่พบการออกดอก</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
@@ -941,6 +941,7 @@
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM yyyy</string>
+    <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d MMMM yyyy HH:mm</string>
     <string name="show_common_names">แสดงชื่อสามัญ</string>

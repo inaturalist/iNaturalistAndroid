@@ -712,6 +712,7 @@
     <string name="community_id_at_species_level_or_lower">ID della comunità a livello di specie o inferiore</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Sulla base delle prove, l\'ID della community può ancora essere confermato o migliorato?</string>
     <string name="no_as_good_as_it_can_be">No, è il meglio che si possa fare</string>
+    <string name="evidence_related_to_single_subject">Evidenze relative ad un soggetto singolo</string>
     <string name="seasonality">Stagionalità</string>
     <string name="verifiable">Verificabile</string>
     <string name="no_annotation">Nessuna annotazione</string>
@@ -957,6 +958,8 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM, yyyy</string>
+    <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \'\'\'yy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Mostra nomi comuni</string>
@@ -1199,6 +1202,7 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Chiudi Annuncio</string>
     <string name="import_photos_from">Importa Foto Da...</string>
+    <string name="cannot_find_default_camera">Impossibile trovare una fotocamera predefinita con cui scattare foto - si prega di contattare il supporto</string>
     <string name="please_click_link_to_confirm_email">Clicca sul link nella tua email per confermare il tuo indirizzo email su iNaturalist</string>
     <string name="click_to_resend_confirmation_email">Clicca qui per richiedere nuovamente un\'email di conferma.</string>
 </resources>

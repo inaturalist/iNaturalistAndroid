@@ -571,7 +571,7 @@
     <string name="change_password">Cambia contraseña</string>
     <string name="search_projects_youve_joined">Busca los proyectos a los que te has unido...</string>
     <string name="must_be_connected_to_load_more_obs">Debes estar conectado a internet para cargar más observaciones</string>
-    <string name="inat_about_title_new">iNaturalist es una organización independiente sin ánimo de lucro 501(c)(3) con sede en los Estados Unidos (EIN 92-1296468)</string>
+    <string name="inat_about_title_new">iNaturalist es una organización independiente fines ánimo de lucro 501(c)(3) con sede en los Estados Unidos (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -958,6 +958,8 @@ Más información de nuestra definición de \"contenido apropiado\" en las
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM aaaa</string>
+    <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \"yy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d MMM aaaa, hh:mma</string>
     <string name="show_common_names">Muestra nombres comunes</string>
