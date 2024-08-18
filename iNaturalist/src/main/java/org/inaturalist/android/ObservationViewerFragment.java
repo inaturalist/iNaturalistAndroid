@@ -1212,7 +1212,8 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             mRemoveFavorite.setVisibility(View.GONE);
         }
 
-        mFavoritesAdapter = new FavoritesAdapter(getActivity(), mFavorites, new BetterJSONObject(mObsJson));
+        mFavoritesAdapter = new FavoritesAdapter(getActivity(), mFavorites,
+                mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject()));
         mFavoritesList.setAdapter(mFavoritesAdapter);
 
         mRemoveFavorite.setOnClickListener(new OnClickListener() {

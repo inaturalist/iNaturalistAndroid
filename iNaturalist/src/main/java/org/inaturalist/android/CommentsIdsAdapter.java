@@ -542,10 +542,20 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		// Only show month/year for observations that you don't own + obscured/private
 		INaturalistApp app = (INaturalistApp) context.getApplicationContext();
 		String currentUser = app.currentUserLogin();
+		String obsUser = null;
+
+		if (observation != null) {
+			if (observation.getJSONObject("user") != null &&
+					observation.getJSONObject("user").has("login")) {
+				obsUser = observation.getJSONObject("user").optString("login");
+			} else {
+				obsUser = observation.getString("user_login");
+			}
+		}
 		boolean obsByUser = observation != null &&
 				currentUser != null &&
-				observation.getJSONObject("user") != null &&
-				observation.getJSONObject("user").optString("login", "").equals(currentUser);
+				obsUser != null &&
+				obsUser.equals(currentUser);
 		boolean isPrivateOrObscured = false;
 
 		if (observation != null) {
