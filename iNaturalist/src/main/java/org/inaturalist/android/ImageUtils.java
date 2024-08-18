@@ -327,6 +327,14 @@ public class ImageUtils {
             return degrees;
         } catch (Exception e) {
             Logger.tag(TAG).error(e);
+
+            try {
+                androidx.exifinterface.media.ExifInterface orgExif = new androidx.exifinterface.media.ExifInterface(imgFilePath);
+                return orgExif.getRotationDegrees();
+            } catch (IOException ex) {
+                Logger.tag(TAG).error(e);
+            }
+
             // No orientation
             return 0;
         }
@@ -349,6 +357,10 @@ public class ImageUtils {
     public static Bitmap rotateAccordingToOrientation(Bitmap bitmapImage, String filename) {
         int orientation = getImageOrientation(filename);
 
+        return rotateImage(bitmapImage, orientation);
+    }
+
+    public static Bitmap rotateImage(Bitmap bitmapImage, int orientation) {
         if (orientation != 0) {
             // Rotate the image
             Matrix matrix = new Matrix();
@@ -358,6 +370,7 @@ public class ImageUtils {
             return bitmapImage;
         }
     }
+
 
 
     public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions) {
@@ -400,11 +413,15 @@ public class ImageUtils {
             // BitmapFactory.decodeStream moves the reading cursor
             is.close();
 
+            androidx.exifinterface.media.ExifInterface exif = new androidx.exifinterface.media.ExifInterface(path);
+            int rotationDegrees = exif.getRotationDegrees();
+
             if (photoUri != null) {
                 is = context.getContentResolver().openInputStream(photoUri);
             } else {
                 is = new FileInputStream(new File(path));
             }
+
 
             if (Math.max(originalHeight, originalWidth) < maxDimensions) {
                 // Original file is smaller than max
@@ -450,16 +467,19 @@ public class ImageUtils {
                 return null;
             }
 
+            Bitmap rotatedBitmap = rotateImage(resizedBitmap, rotationDegrees);
+
             // Save resized image
             File imageFile = new File(context.getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
             OutputStream os = new FileOutputStream(imageFile);
-            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
             os.flush();
             os.close();
 
             Logger.tag(TAG).debug(String.format("resizeImage: %s => %s", path, imageFile.getAbsolutePath()));
 
             resizedBitmap.recycle();
+            rotatedBitmap.recycle();
 
             // BitmapFactory.decodeStream moves the reading cursor
             is.close();
