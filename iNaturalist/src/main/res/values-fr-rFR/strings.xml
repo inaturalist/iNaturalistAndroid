@@ -965,6 +965,7 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM yyyy</string>
+    <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d MMMM yyyy, H \'h\' m</string>
     <string name="show_common_names">Afficher les noms communs</string>
