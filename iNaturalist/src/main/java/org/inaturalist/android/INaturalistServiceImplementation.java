@@ -5864,6 +5864,7 @@ public class INaturalistServiceImplementation {
                 .build();
         Request.Builder requestBuilder = new Request.Builder()
                 .addHeader("User-Agent", getUserAgent(mApp))
+                .addHeader("X-Installation-ID", mApp.getInstallationID())
                 .url(url);
 
         mRetryAfterDate = null;
