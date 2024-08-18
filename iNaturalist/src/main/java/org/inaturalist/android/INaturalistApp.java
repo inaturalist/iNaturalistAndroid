@@ -127,6 +127,7 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
     private long mAppStartTime;
 
     private boolean mCalledStartForeground = false;
+    private String mInstallationID = null;
 
     public boolean hasCalledStartForeground() {
         return mCalledStartForeground;
@@ -155,6 +156,10 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
 
     public void setShownOnboarding(boolean value) {
         mOnboardingShownBefore = true;
+    }
+
+    public String getInstallationID() {
+        return mInstallationID;
     }
 
     @Override
@@ -327,6 +332,14 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
         if (username != null) {
             setShownOnboarding(true);
         }
+
+        String installationID = pref.getString("installation_id", null);
+        if (installationID == null) {
+            installationID = UUID.randomUUID().toString();
+            pref.edit().putString("installation_id", installationID).apply();
+        }
+
+        mInstallationID = installationID;
 
         // Clear out any old cached photos
         Intent serviceIntent = new Intent(INaturalistService.ACTION_CLEAR_OLD_PHOTOS_CACHE, null, this, INaturalistService.class);
