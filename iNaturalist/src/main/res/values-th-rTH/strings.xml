@@ -253,7 +253,7 @@
     <string name="casual_grade_add_date"><![CDATA[ เพิ่ม <b>วันที่</b> เพื่อเลื่อนการสังเกตนี้ไปสู่สถานะ "ต้องการ ID"]]></string>
     <string name="casual_grade_add_photo"><![CDATA[เพิ่ม <b>รูปภาพ</b> เพื่อเลื่อนการสังเกตนี้ไปสู่สถานะ "ต้องการ ID"]]></string>
     <string name="casual_grade_captive"><![CDATA[ การสังเกตไม่เป็นทางการเพราะ<b>ถูกจับมา/เพาะปลูก</b> ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[จะต้องมี<b>การจำแนกเพิ่มเติม</b>จากชุมชนเพื่อให้การสังเกตนี้เป็น "ระดับงานวิจัย"]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ต้องมีผู้อื่นมาร่วม<b>จำแนกชนิด</b>ด้วยเพื่อให้การสังเกตนี้เป็น "ระดับงานวิจัย"]]></string>
     <plurals name="included_in_projects">
         <item quantity="other">รวมอยู่ใน %1$d โครงการ</item>
     </plurals>

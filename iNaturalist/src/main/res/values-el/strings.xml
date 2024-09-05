@@ -394,6 +394,10 @@
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s νέο</item>
+        <item quantity="other">%1s νέα</item>
+    </plurals>
     <string name="no_results_found">Δέν βρέθηκαν αποτελέσματα...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="one">Συγχρονισμός%1$d της %2$d παρατήρησης...</item>
@@ -563,6 +567,7 @@
     <string name="change_password">Αλλαγή κωδικού πρόσβασης</string>
     <string name="search_projects_youve_joined">Αναζήτηση στα πρότζεκτ στα οποία έχετε εγγραφεί...</string>
     <string name="must_be_connected_to_load_more_obs">Πρέπει να είσαι συνδεδεμένος/η στο διαδίκτυο για τη φόρτωση περισσότερων παρατηρήσεων</string>
+    <string name="inat_about_title_new">Το iNaturalist είναι ένας ανεξάρτητος 501(c)(3) μη κερδοσκοπικός οργανισμός με έδρα στις Ηνωμένες Πολιτείες (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -655,6 +660,7 @@
     <!-- Evidence of Presence value when for fecal remains -->
     <!-- Evidence of Presence value for impressions in the ground or snow -->
     <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Κόκκαλο</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ΕΓΓΕΓΡΑΜΕΝΟΣ</string>
@@ -712,6 +718,15 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Εκουαδόρ: Το Instituto Nacional de Biodiversidad (INABIO) υποστηρίζει το iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Ισραήλ: Το Πανεπιστήμιο της Χάιφα υποστηρίζει το iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Φινλανδία: Το Μουσείο της Φυσικής Ιστορίας της Φινλανδίας (LUOMUS) υποστηρίζει το iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Χιλή: Ministerio del Medio Ambiente υποστηρίζουν το iNaturalist Χιλής (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>).]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Ελλάδα: Το iSea υποστηρίζει το iNaturalist Ελλάδας (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>).]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Λουξεμβούργο: Το εθνικό μουσείο φυσικής ιστορίας Λουξεμβούργου (MnhnL) υποστηρίζει το iNaturalist Λουξεμβούργου (<a href="https://inaturalist.lu">inaturalist.lu</a>).]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Ηνωμένο Βασίλειο: Εθνικό Δίκτυο Βιοποικιλότητας που υποστηρίζει το iNaturalist Ηνωμένο Βασίλειο (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Κόστα Ρίκα: Comisio’n Nacional para la Gestio’n de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) υποστηρίζει το iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Σουηδία: SLU Swedish Species Information Centre υποστηρίζει το iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata υποστηρίζει το Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Ταϊβάν: Εθνικό Πανεπιστήμιο Chiayi και Ινστιτούτο Δασικών Ερευνών Ταϊβάν που υποστηρίζουν το iNaturalist Ταϊβάν (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Σήμανση όλων ως προβεβλημένα</string>
     <string name="content_hidden">Κρυμμένο Περιεχόμενο</string>
     <string name="show_hidden_content">Eμφάνιση Kρυμμένου Περιεχομένου</string>
@@ -832,6 +847,7 @@
     <string name="messages">Μηνύματα</string>
     <string name="all_messages">Όλα τα μηνύματα</string>
     <string name="search_messages">Αναζήτηση στα μηνύματα</string>
+    <string name="no_messages">Αυτή τη στιγμή δεν έχετε κανένα μήνυμα. Μπορείτε να στείλετε νέο μήνυμα με το πράσινο κουμπί ή να στείλετε από τη σελίδα προφίλ τους.</string>
     <string name="no_messages_found">Δε βρέθηκαν μηνύματα.</string>
     <string name="send_a_message">Αποστολή μηνύματος</string>
     <string name="sending_message">Αποστολή μηνύματος...</string>
@@ -849,6 +865,7 @@
     <string name="unmute_this_user">Αποσίγαση χρήστη</string>
     <string name="flag_this_conversation">Αναφορά συζήτησης</string>
     <string name="mute_this_user_question">Σίγαση χρήστη;</string>
+    <string name="you_will_no_longer_receive_messages">Δε θα λαμβάνετε πλέον ειδοποιήσεις σχετικά με δραστηριότητα από αυτόν τον χρήστη, συμπεριλαμβανομένων μηνυμάτων, σχολίων, ταυτοποιήσεων και αναφορών.</string>
     <string name="mute">Σίγαση</string>
     <string name="muting_user">Σίγαση χρήστη...</string>
     <string name="unmuting_user">Κατάργηση σίγασης χρήστη...</string>
@@ -861,6 +878,8 @@
     <string name="other">Άλλο</string>
     <string name="some_other_reason">Κάποια άλλη αιτία που μπορείτε να εξηγήσετε.</string>
     <string name="continue_text">Συνέχεια</string>
+    <string name="why_are_you_flagging_this_item">Γιατί αναφέρετε αυτό το αντικείμενο;</string>
+    <string name="thank_you_for_submitting_the_flag">Σας ευχαριστούμε για την υποβολή της επισήμανσης!</string>
     <string name="no_subject">Χωρίς θέμα</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_kingdom">Βασίλειο</string>
