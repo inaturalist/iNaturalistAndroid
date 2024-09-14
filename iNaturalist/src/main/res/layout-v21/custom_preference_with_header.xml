@@ -26,7 +26,7 @@
         android:paddingTop="4dp"
         android:paddingBottom="4dp">
         <com.android.internal.widget.PreferenceImageView
-            android:id="@+android:id/icon"
+            android:id="@android:id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxWidth="48dp"
@@ -40,7 +40,7 @@
         android:paddingTop="16dp"
         android:paddingBottom="16dp">
 
-        <TextView android:id="@+android:id/title"
+        <TextView android:id="@android:id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"

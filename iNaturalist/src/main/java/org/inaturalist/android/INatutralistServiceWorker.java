@@ -34,6 +34,8 @@ public class INatutralistServiceWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
+        Logger.tag(TAG).info("doWork");
+
         Data data = getInputData();
 
         // Convert from Worker Data class to Intent Bundle

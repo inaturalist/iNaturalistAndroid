@@ -4,6 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -88,9 +91,16 @@ public class NewMessageSelectUserActivity extends AppCompatActivity implements U
                 mCurrentSearchString = s.toString();
                 mStartTime = System.currentTimeMillis();
 
-                mSearch.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                        mCurrentSearchString.length() > 0 ? R.drawable.bs_ic_clear_light : R.drawable.ic_fa_search,
-                        0);
+                Drawable drawable;
+
+                if (mCurrentSearchString.length() > 0) {
+                    drawable = ContextCompat.getDrawable(NewMessageSelectUserActivity.this, R.drawable.baseline_close_black_36);
+                } else {
+                    drawable = ContextCompat.getDrawable(NewMessageSelectUserActivity.this, R.drawable.ic_fa_search);
+                }
+
+                drawable.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+                mSearch.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

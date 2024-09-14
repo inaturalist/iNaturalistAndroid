@@ -203,7 +203,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                     if (loadedBitmap != null) {
-                        imageView.setImageBitmap(ImageUtils.blur(ProjectDetails.this, ImageUtils.centerCropBitmap(loadedBitmap.copy(loadedBitmap.getConfig(), true))));
+                        ImageUtils.blur(ProjectDetails.this, ImageUtils.centerCropBitmap(loadedBitmap.copy(loadedBitmap.getConfig(), true)), imageView);
                     }
                 }
 

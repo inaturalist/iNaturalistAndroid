@@ -81,7 +81,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_height="250dp" />
 
-                <org.inaturalist.android.FixedCirclePageIndicator
+                <com.kenilt.circleindicator.CirclePageIndicator
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/photos_indicator"
                     android:layout_height="wrap_content"

@@ -18,16 +18,12 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.renderscript.Allocation;
-import androidx.renderscript.Element;
-import androidx.renderscript.RSInvalidStateException;
-import androidx.renderscript.RSRuntimeException;
-import androidx.renderscript.RenderScript;
-import androidx.renderscript.ScriptIntrinsicBlur;
 
-
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.schokoladenbrown.Smooth;
 
 import org.apache.sanselan.ImageReadException;
@@ -56,11 +52,15 @@ import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
+
+import jp.wasabeef.glide.transformations.BlurTransformation;
+
 
 /**
  * Various image utility methods
@@ -69,37 +69,17 @@ public class ImageUtils {
 
 
     // Radius of the Blur. Supported range 0 < radius <= 25
-    private static final float BLUR_RADIUS = 25f;
+    private static final int BLUR_RADIUS = 25;
     private static final String TAG = "ImageUtils";
 
-    public static Bitmap blur(Context context, Bitmap image) {
-        if (null == image) return null;
+    public static void blur(Context context, Bitmap image, ImageView imageView) {
+        if (null == image) return;
 
-        Bitmap outputBitmap = Bitmap.createBitmap(image);
-        Allocation tmpIn;
-        Allocation tmpOut;
-
-        try {
-            final RenderScript renderScript = RenderScript.create(context);
-            tmpIn = Allocation.createFromBitmap(renderScript, image);
-            tmpOut = Allocation.createFromBitmap(renderScript, outputBitmap);
-
-            //Intrinsic Gausian blur filter
-            ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
-            theIntrinsic.setRadius(BLUR_RADIUS);
-            theIntrinsic.setInput(tmpIn);
-            theIntrinsic.forEach(tmpOut);
-            tmpOut.copyTo(outputBitmap);
-            return outputBitmap;
-        } catch (RSInvalidStateException exc) {
-            // This happens rarely when we there are hardware issues - just return the unblurred image
-            Logger.tag(TAG).error(exc);
-            return image;
-        } catch (RSRuntimeException exc) {
-            // This happens rarely when it's an unsupported processor - just return the unblurred image
-            Logger.tag(TAG).error(exc);
-            return image;
-        }
+        Glide.with(context)
+                .asBitmap()
+                .load(image)
+                .apply(RequestOptions.bitmapTransform(new BlurTransformation(BLUR_RADIUS))) // Apply blur transformation
+                .into(imageView);
     }
 
     /**

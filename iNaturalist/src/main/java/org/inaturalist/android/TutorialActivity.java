@@ -20,8 +20,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
-
-import com.viewpagerindicator.CirclePageIndicator;
+import com.kenilt.circleindicator.CirclePageIndicator;
 
 public class TutorialActivity extends BaseFragmentActivity {
 

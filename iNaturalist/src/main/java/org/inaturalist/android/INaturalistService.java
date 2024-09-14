@@ -686,6 +686,7 @@ public class INaturalistService extends IntentService {
             Bundle extras = intent.getExtras();
             app.setServiceParams(uuid, extras);
 
+            Logger.tag(TAG).info("callService");
             OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(INatutralistServiceWorker.class).setInputData(data.build()).build();
             WorkManager.getInstance(context).enqueue(request);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

@@ -4668,7 +4668,7 @@ public class ObservationEditor extends Fragment {
 
     
     private void openImageIntent(final Activity activity, boolean photoOnly, boolean soundOnly) {
-        mBottomSheetDialog = new ExpandedBottomSheetDialog(getActivity());
+        mBottomSheetDialog = new BottomSheetDialog(getActivity());
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);

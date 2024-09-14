@@ -25,7 +25,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_height="match_parent" />
 
-            <org.inaturalist.android.FixedCirclePageIndicator
+            <com.kenilt.circleindicator.CirclePageIndicator
                 android:id="@+id/observation_photos_indicator"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -117,7 +117,7 @@
                 android:layout_height="match_parent" />
 
 
-            <org.inaturalist.android.FixedCirclePageIndicator
+            <com.kenilt.circleindicator.CirclePageIndicator
                 android:id="@+id/taxon_photos_indicator"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"

@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:8.4.0'
         classpath 'com.google.gms:google-services:4.3.14'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.5.2'
     }
@@ -26,7 +26,7 @@ allprojects {
 // Global properties used in all build.gradle files
 ext {
     minSdkVersion = 23
-    targetSdkVersion = 33
-    compileSdkVersion = 33
+    targetSdkVersion = 34
+    compileSdkVersion = 34
 }
 

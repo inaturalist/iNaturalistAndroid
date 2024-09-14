@@ -112,8 +112,8 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
     public void setupViews(Bundle args) {
         mStatusBarColor = Color.parseColor("#FFFFFF");
         mToolbarColor = Color.parseColor("#FFFFFF");
-        mToolbarCancelDrawable = args.getInt(UCrop.Options.EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE, R.drawable.ucrop_ic_cross);
-        mToolbarCropDrawable = args.getInt(UCrop.Options.EXTRA_UCROP_WIDGET_CROP_DRAWABLE, R.drawable.ucrop_ic_done);
+        mToolbarCancelDrawable = args.getInt(UCrop.Options.EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE, com.yalantis.ucrop.R.drawable.ucrop_ic_cross);
+        mToolbarCropDrawable = args.getInt(UCrop.Options.EXTRA_UCROP_WIDGET_CROP_DRAWABLE, com.yalantis.ucrop.R.drawable.ucrop_ic_done);
         mToolbarWidgetColor = Color.parseColor("#000000");
         mToolbarTitle = args.getString(UCrop.Options.EXTRA_UCROP_TITLE_TEXT_TOOLBAR);
         mToolbarTitle = mToolbarTitle != null ? mToolbarTitle : getResources().getString(R.string.ucrop_label_edit_photo);
@@ -123,11 +123,11 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.ucrop_menu_activity, menu);
+        getMenuInflater().inflate(com.yalantis.ucrop.R.menu.ucrop_menu_activity, menu);
 
         // Change crop & loader menu icons color to match the rest of the UI colors
 
-        MenuItem menuItemLoader = menu.findItem(R.id.menu_loader);
+        MenuItem menuItemLoader = menu.findItem(com.yalantis.ucrop.R.id.menu_loader);
         Drawable menuItemLoaderIcon = menuItemLoader.getIcon();
         if (menuItemLoaderIcon != null) {
             try {
@@ -135,13 +135,13 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
                 menuItemLoaderIcon.setColorFilter(mToolbarWidgetColor, PorterDuff.Mode.SRC_ATOP);
                 menuItemLoader.setIcon(menuItemLoaderIcon);
             } catch (IllegalStateException e) {
-                Log.i(this.getClass().getName(), String.format("%s - %s", e.getMessage(), getString(R.string.ucrop_mutate_exception_hint)));
+                Log.i(this.getClass().getName(), String.format("%s - %s", e.getMessage(), getString(com.yalantis.ucrop.R.string.ucrop_mutate_exception_hint)));
             }
             ((Animatable) menuItemLoader.getIcon()).start();
         }
 
-        MenuItem menuItemCrop = menu.findItem(R.id.menu_crop);
-        Drawable menuItemCropIcon = ContextCompat.getDrawable(this, mToolbarCropDrawable == 0 ? R.drawable.ucrop_ic_done : mToolbarCropDrawable);
+        MenuItem menuItemCrop = menu.findItem(com.yalantis.ucrop.R.id.menu_crop);
+        Drawable menuItemCropIcon = ContextCompat.getDrawable(this, mToolbarCropDrawable == 0 ? com.yalantis.ucrop.R.drawable.ucrop_ic_done : mToolbarCropDrawable);
         if (menuItemCropIcon != null) {
             menuItemCropIcon.mutate();
             menuItemCropIcon.setColorFilter(mToolbarWidgetColor, PorterDuff.Mode.SRC_ATOP);
@@ -153,14 +153,14 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_crop).setVisible(!mShowLoader);
-        menu.findItem(R.id.menu_loader).setVisible(mShowLoader);
+        menu.findItem(com.yalantis.ucrop.R.id.menu_crop).setVisible(!mShowLoader);
+        menu.findItem(com.yalantis.ucrop.R.id.menu_loader).setVisible(mShowLoader);
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_crop) {
+        if (item.getItemId() == com.yalantis.ucrop.R.id.menu_crop) {
             if (mFragment != null && mFragment.isAdded())
                 mFragment.cropAndSaveImage();
         } else if (item.getItemId() == android.R.id.home) {

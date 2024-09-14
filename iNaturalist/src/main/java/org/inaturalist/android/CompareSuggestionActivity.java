@@ -24,8 +24,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
+import com.kenilt.circleindicator.CirclePageIndicator;
 import com.livefront.bridge.Bridge;
-import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONException;
 import org.json.JSONObject;

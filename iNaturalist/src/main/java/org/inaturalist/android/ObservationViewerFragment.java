@@ -77,10 +77,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.kenilt.circleindicator.CirclePageIndicator;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Picasso;
-import com.viewpagerindicator.CirclePageIndicator;
 
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.json.JSONArray;

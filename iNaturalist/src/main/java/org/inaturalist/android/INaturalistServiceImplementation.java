@@ -1600,7 +1600,7 @@ public class INaturalistServiceImplementation {
         String provider = locationManager.getBestProvider(criteria, false);
         if (provider == null) return null;
 
-        Location location = locationManager.getLastKnownLocation(provider);
+        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
         Logger.tag(TAG).error("getLocationFromGPS: " + location);
 
         mLastLocation = location;
@@ -1608,6 +1608,7 @@ public class INaturalistServiceImplementation {
         return location;
     }
 
+    @SuppressLint("MissingPermission")
     private Location getLastKnownLocationFromClient() {
         Location location = null;
 

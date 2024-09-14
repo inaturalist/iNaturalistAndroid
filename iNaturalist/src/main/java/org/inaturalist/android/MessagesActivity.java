@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -119,11 +122,18 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
                 mCurrentSearchString = s.toString();
                 mStartTime = System.currentTimeMillis();
 
-                int drawableRes = mCurrentSearchString.length() > 0 ? R.drawable.bs_ic_clear_light : R.drawable.ic_fa_search;
-                if (mApp.isLayoutRTL()) {
-                    mSearch.setCompoundDrawablesWithIntrinsicBounds(drawableRes, 0, 0, 0);
+                Drawable drawable;
+                if (mCurrentSearchString.length() > 0) {
+                    drawable = ContextCompat.getDrawable(MessagesActivity.this, R.drawable.baseline_close_black_36);
                 } else {
-                    mSearch.setCompoundDrawablesWithIntrinsicBounds(0, 0, drawableRes, 0);
+                    drawable = ContextCompat.getDrawable(MessagesActivity.this, R.drawable.ic_fa_search);
+                }
+                drawable.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+
+                if (mApp.isLayoutRTL()) {
+                    mSearch.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+                } else {
+                    mSearch.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
                 }
 
                 new Handler().postDelayed(new Runnable() {

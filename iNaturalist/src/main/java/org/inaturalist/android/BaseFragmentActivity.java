@@ -354,7 +354,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
         mSelectedBottomGrid = false;
 
-        mBottomSheetDialog = new ExpandedBottomSheetDialog(this);
+        mBottomSheetDialog = new BottomSheetDialog(this);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);

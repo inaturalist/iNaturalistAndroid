@@ -57,10 +57,10 @@ import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.gms.maps.model.UrlTileProvider;
+import com.kenilt.circleindicator.CirclePageIndicator;
 import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
