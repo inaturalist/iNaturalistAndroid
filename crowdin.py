@@ -34,7 +34,10 @@ DATE_FORMAT_KEYS = [
     "date_short_this_year",
     "date_short",
     "time_short_24_hour",
-    "time_short_12_hour"
+    "time_short_12_hour",
+    "date_obscured",
+    "date_long",
+    "date_long_with_time"
 ]
 
 # List of languages to skip date format check for - e.g. in Japanese, it's legal to have Japanese letters as part of the date format string:
@@ -288,11 +291,19 @@ def validate_translation(locale, path, key, text, en_string, errors, warnings,
             print("\t\t{}".format(errors[path][key][-1]))
 
     if text and key in DATE_FORMAT_KEYS and locale not in SKIP_DATE_FORMAT_CHECK:
+        if "\\'\\'\\'" in text:
+            if key not in warnings[path]:
+                warnings[path][key] = []
+            warnings[path][key].append(
+                f"Invalid date format characters: Has extra/unbalanced apostrophe")
+            if options.debug:
+                print("\t\t{}".format(warnings[path][key][-1]))
+
         without_escaped_text = re.sub(r"'.+?'", "", text)
         potentially_formatted = re.sub(r"[^\w]", "", without_escaped_text)
         bad_characters = set(
             re.findall(
-                r"[^GyYMLwWDdFEuaHkKhmsSzZX]",
+                r"[^GyMLwWDdFEuaHkKhmsSzZX]",
                 potentially_formatted)
             )
         # Find bad chars in DATE_FORMAT_KEYS
