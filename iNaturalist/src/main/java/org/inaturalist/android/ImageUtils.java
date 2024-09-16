@@ -379,8 +379,11 @@ public class ImageUtils {
                     Logger.tag(TAG).error(exc);
                     return null;
                 }
-            } else {
+            } else if (path != null) {
                 is = new FileInputStream(new File(path));
+            } else {
+                Logger.tag(TAG).error("Both path and URI are null");
+                return null;
             }
 
             // Just read the input image dimensions
@@ -393,8 +396,12 @@ public class ImageUtils {
             // BitmapFactory.decodeStream moves the reading cursor
             is.close();
 
-            androidx.exifinterface.media.ExifInterface exif = new androidx.exifinterface.media.ExifInterface(path);
-            int rotationDegrees = exif.getRotationDegrees();
+            int rotationDegrees = 0;
+
+            if (path != null) {
+                androidx.exifinterface.media.ExifInterface exif = new androidx.exifinterface.media.ExifInterface(path);
+                rotationDegrees = exif.getRotationDegrees();
+            }
 
             if (photoUri != null) {
                 is = context.getContentResolver().openInputStream(photoUri);
