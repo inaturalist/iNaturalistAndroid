@@ -360,6 +360,7 @@
     <string name="user">მომხ.</string>
     <string name="search_users">მომხმარებლების ძებნა...</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">დაკვირვების თარიღი</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">რაიმე</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -458,10 +459,13 @@
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
     <!-- Evidence of Presence value when for bird feathers -->
     <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">ექსკრემენტი</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">კვალი</string>
     <!-- Evidence of Presence value when for bones -->
     <string name="annotation_value_bone">ძვალი</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">განგური</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">შეერთებული</string>
     <string name="nearby_projects_all_caps">შორიახლოს</string>
@@ -473,22 +477,26 @@
     <string name="description_all_caps">აღწერა</string>
     <string name="quantity_all_caps">რაოდ.</string>
     <string name="agree_all_caps">ვეთანხმები</string>
+    <string name="observations_all_caps">დაკვირვებები</string>
     <string name="species_all_caps">სახეობა</string>
     <string name="people_all_caps">ადამიანები</string>
     <string name="news_all_caps">სიახლეები</string>
     <string name="got_it_all_caps">გასაგებია!</string>
     <string name="view_all_all_caps">ყველას ნახვა</string>
+    <string name="observations_regular">დაკვირვებები</string>
     <string name="location_specified">მდებარეობა მითითებულია</string>
     <string name="date_is_accurate">თარიღი ზუსტია</string>
     <string name="location_is_accurate">მდებარეობა ზუსტია</string>
     <string name="no_annotation">ანოტაცია არ აქვს</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
+    <string name="record_sound">ხმის ჩაწერა</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <!-- Verb, as in "Rotate this photo" -->
     <!-- Verb, as in "Scale (resize) this photo" -->
+    <string name="ucrop_scale">მასშტაბირება</string>
     <!-- Verb, as in "Crop this photo" -->
     <string name="ucrop_crop">მოჭრა</string>
     <!-- Label for adjusting the brightness of an image -->
@@ -497,8 +505,10 @@
     <!-- Label for adjusting the sharpness of an image -->
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">თავისუფალი</string>
     <!-- Verb phrase, button label to edit an observation photo -->
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="hours">საათი</string>
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">ჩაწერეთ თქვენი მომხმარებლის სახელი</string>
     <string name="verify_your_password">პაროლის დამოწმება</string>
@@ -512,16 +522,28 @@
     <!-- Description of a UI element for screen readers -->
     <!-- Description of a UI element for screen readers -->
     <!-- Description of a UI element for screen readers -->
+    <string name="messages">შეტყობინებები</string>
+    <string name="all_messages">ყველა შეტყობინება</string>
+    <string name="search_messages">შეტყობინებებში ძებნა</string>
     <string name="sorry">ბოდიში</string>
     <string name="mute">დადუმება</string>
     <string name="spam">სპამი</string>
     <string name="other">სხვა</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_class">კლასი</string>
+    <string name="rank_infraclass">ინფრაკლასი</string>
+    <string name="rank_order">რიგი</string>
+    <string name="rank_infraorder">ინფრარიგი</string>
+    <string name="rank_parvorder">პარვრიგი</string>
     <string name="rank_family">ოჯახი</string>
+    <string name="rank_tribe">ტრიბა</string>
+    <string name="rank_genus">გვარი</string>
     <!-- Singular -->
+    <string name="rank_species">სახეობა</string>
+    <string name="rank_hybrid">ჰიბრიდი</string>
     <!-- Singular -->
     <string name="rank_form">ფორმა</string>
+    <string name="rank_infrahybrid">ინფრაჰიბრიდი</string>
     <string name="rank_leaves">ფოთლები</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -533,8 +555,12 @@
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="pretty_sure_infraclass">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ინფრაკლასშია:</string>
+    <string name="pretty_sure_infraorder">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ინფრარიგშია:</string>
+    <string name="pretty_sure_parvorder">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ პარვრიგშია:</string>
     <!-- Singular -->
     <!-- Singular -->
+    <string name="pretty_sure_infrahybrid">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ინფრაჰიბრიდშია:</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="go_back">უკან</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
@@ -561,7 +587,11 @@
     <!-- Preference to control what tapping on the action button does on My Observations -->
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <!-- Placeholder text for an observation field value -->
+    <string name="share_observation">დაკვირვების გაზიარება</string>
+    <string name="unknown_location">უცნობი ადგილმდებარეობა</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">დახურვა</string>
+    <string name="view_image">სურათის ნახვა</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->

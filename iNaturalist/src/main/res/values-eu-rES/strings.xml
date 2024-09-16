@@ -114,6 +114,10 @@
     <string name="pull_to_refresh">Erakarri berritzeko...</string>
     <string name="release_to_refresh">Askatu berritzeko...</string>
     <string name="refreshing">Kargatzen...</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Behaketa %1$d sinkronizatzen</item>
+        <item quantity="other">%1$d behaketak sinkronizatzen</item>
+    </plurals>
     <string name="sync_observations">Behaketak sinkronizatzen</string>
     <string name="lets_get_started">Has gaitezen!</string>
     <string name="view_nearby_observations">Ikusi Inguruko Behaketak</string>
@@ -151,15 +155,44 @@
     <string name="photos"><![CDATA[<b>Argazkiak:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>Testua:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
+    <string name="alert_message_use_inaturalist">iNaturalist Sare nagusia. OK sakatuz gero, zure aplikazioa munduko iNaturalist sarearen parte izango da.</string>
+    <string name="alert_message_use_naturalista">NaturaLista Mexikoko iNaturalist Sareko kidea da. NaturaLista babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalis NZ Zeelanda Berriko iNaturalist Sareko kidea da. iNaturalist NZ babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalis Canada Kanadako iNaturalist Sareko kidea da. iNaturalis Canada babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_naturalistacolombia">NaturaLista Kolonbiako iNaturalist Sareko kidea da. NaturaLista babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All Portugalgo iNaturalist Sareko kidea da. Biodiversity4All babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá Panamako iNaturalist Sareko kidea da. iNaturalist Panamá babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador Ekuadorko iNaturalist Sareko kidea da. iNaturalist Ecuador babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia Australiako iNaturalist Sareko kidea da. iNaturalist Australia babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat Argentinako iNaturalist Sareko kidea da. ArgentiNat babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel Israelgo iNaturalist Sareko kidea da, eta Palestinarren lurretako behaketak ebasten dituzte besteak beste. iNaturalist Israel babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland Finlandiako iNaturalist Sareko kidea da. iNaturalist Finlandia babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile Txileko iNaturalist Sareko kidea da. iNaturalist Chile babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece Greziako iNaturalist Sareko kidea da. iNaturalist Greece babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg Luxenburgoko iNaturalist Sareko kidea da. iNaturalist Luxembourg babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom Erresuma Batuko iNaturalist Sareko kidea da. iNaturalist United Kingdom babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica Costa Ricako iNaturalist Sareko kidea da. Naturalista Costa Rica babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala Guatemalako iNaturalist Sareko kidea da. iNaturalist Guatemala babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden Suediako iNaturalist Sareko kidea da. iNaturalist Sweden babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay Uruguaiko iNaturalist Sareko kidea da. Naturalista Uruguay babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan Taiwango iNaturalist Sareko kidea da. iNaturalist Taiwan babesten duten tokiko erakundeek zure helbide elektronikora sartu ahal izango dute eta benetako koordenatuetara sartu ahal izango dira nahiz eta behaketa horiek ilunak edo pribatuak izan. Mesedez, ez aldatu zure afiliazioa 1000 behaketa baino gehiago badituzu. Zure afiliazioa aldatu nahi duzu?</string>
     <string name="editor">Editorea</string>
     <string name="license">Lizentzia</string>
+    <string name="download_for_offline_use">Deskargatu lineaz kanpo erabiltzeko</string>
     <string name="download_not_available">Ezin izan da orain jaitsi</string>
     <string name="guide_editor_must_enable_this_feature">Gida editoreak ezaugarri hau gaitu behar du.</string>
     <string name="are_you_sure">Ziur zaude?</string>
+    <string name="download_guide_alert">Honek %1$s datu deskargatuko ditu, hala, gida hau erabili ahalko duzu, baita Interneterako sarbiderik ez duzunean ere.</string>
+    <string name="failed_to_download_guide">Ez du gidaliburua deskargatu</string>
+    <string name="internet_connection_seems_to_be_offline">Interneterako konexioa deskonektatuta dagoela dirudi.</string>
     <string name="downloading">Deskargatzen...</string>
     <string name="extracting">Erauzten…</string>
     <string name="downloaded">Deskargatuta</string>
+    <string name="delete_download">Ezabatu deskarga</string>
+    <string name="re_download">Deskargatu berriro</string>
     <string name="error">Akatsa</string>
+    <string name="could_not_retrieve_guide">Ezin izan dira gidaren xehetasunak berreskuratu - ziurrenik sare-akats bat izango da.</string>
+    <string name="inat_support_email_subject">Lagundu iNaturalistekin (%1$s - %2$s bertsioa -%3$s erabiltzailearen id-a)</string>
     <string name="send_email">E-posta bidali...</string>
     <string name="login_with">Hasi Saioa honekin</string>
     <string name="gplus">Google</string>
@@ -173,12 +206,30 @@
     <string name="min_6_chars">Gutxienez 6 karaktere</string>
     <string name="use_my_license"><![CDATA[Bai, baimendu nire edukia zientzialariek datu horiek erabili ahal izatek (gomendatua). <b>Gehiago ikasi</b>]]></string>
     <string name="content_licensing">Edukiaren Lizentzia</string>
+    <string name="content_licensing_description">Sakatu lauki hau zure argazkiei Creative Commons Aitortu-EzKomertziala lizentzia bat aplikatu nahi badiezu. Beste lizentzia bat aukeratu dezakezu edo lizentzia kendu, baina hau da onena ikertzaileekin partekatzeko.</string>
     <!-- Try to keep this about the length of the English text -->
+    <string name="username_or_email">Erabiltzaile-izena edo posta elektronikoa</string>
     <string name="forgot">Ahaztuta?</string>
+    <string name="or_login_with">Edo hasi saioa honekin:</string>
+    <string name="registering">Erregistratzen...</string>
+    <string name="recommended_next_step">Gomendatutako hurrengo urratsa</string>
+    <string name="could_not_register_user">Ezin izan da erabiltzailea erregistratu</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Hasi saioa / Izena eman</string>
+    <string name="please_sign_in_via_settings_for_guides">Konektatuta egon behar duzu zure gidak ikusteko.</string>
+    <string name="please_sign_in_for_updates">Konektatuta egon behar duzu zure eguneraketak ikusteko.</string>
+    <string name="by_using_inat_terms"><![CDATA[iNaturalist erabilita honakoak onartzen dituzu <b><a href="https://www.inaturalist.org/pages/terms">: zerbitzu baldintzak</a></b> eta <b><a href="https://www.inaturalist.org/pages/privacy">pribatutasun-politikak</a></b>]]></string>
+    <string name="activity">Jarduera</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
+    <string name="camera">Argazkia atera</string>
     <!-- Label for a button to import an existing photo for an observation -->
+    <string name="upload_photo">Aukeratu irudia</string>
+    <string name="first">1.</string>
+    <string name="make_first">Egin 1.</string>
+    <string name="notes">Oharrak</string>
+    <string name="is_captive">Gatibu edo kultibatua da</string>
+    <string name="location_visibility">Kokapenaren ikusgarritasuna</string>
+    <string name="set_location">Kokapena</string>
     <string name="coordinates_lat">Lat:</string>
     <string name="coordinates_lon">Lon:</string>
     <string name="coordinates_acc">Zeh.</string>
@@ -187,45 +238,334 @@
     <string name="no_thanks">Ez, Mila esker</string>
     <string name="turn_on">Aktibatu</string>
     <string name="introducing_auto_sync">Sinkronizazio automatikoa aurezten!</string>
+    <string name="turn_on_auto_sync">Piztu Auto-Sync ezarpenetan eta zure behaketak automatikoki igoko dira iNaturalistera.</string>
+    <string name="automatic_upload">Igoera automatikoa (Auto-Sync)</string>
+    <string name="waiting_to_upload">Igotzeko zain...</string>
+    <string name="uploading">Igotzen...</string>
+    <string name="failed_to_add_to_project">Huts egin du proiektura gehitzerakoan \'%1$s\': %2$s</string>
+    <string name="needs_your_attention">Zure arreta behar du...</string>
+    <string name="observation">Behaketa</string>
+    <string name="share">Partekatu</string>
+    <string name="unable_to_acquire_location">Kokapena eskuratu ezinik</string>
+    <string name="casual_grade">Behin-behineko sailkapena</string>
+    <string name="needs_id">ID behar du</string>
     <string name="research_grade">Ikerketa Maila</string>
+    <string name="data_quality">Datuen kalitatea</string>
+    <string name="casual_grade_add_location"><![CDATA[ Gehitu <b>kokapena</b> behaketa "IDa behar du" mailara iritsi dadin. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Gehitu <b>data</b> behaketa "IDa behar du" mailara iritsi dadin. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[Gehitu <b>argazkia</b> behaketa "IDa behar du" mailara iritsi dadin. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[Behin-behineko sailkapena du <b>gatibu/kultibatua</b> delako.]]></string>
+    <string name="needs_id_more_ids"><![CDATA[Behaketak komunitatearen <b>identifikazio gehiago</b> behar ditu "Ikerketa maila" izan dezan. ]]></string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Proiektu %1$dean sartua</item>
+        <item quantity="other">%1$d proiektutan sartua</item>
+    </plurals>
+    <string name="id_title">%1$s(e)k ID • %2$s</string>
+    <string name="comment_title">%1$s • %2$s</string>
+    <string name="delete">Ezabatu</string>
+    <string name="delete_id">Identifikazioa baztertu</string>
     <string name="delete_comment">Ezabatu iruzkina</string>
+    <string name="delete_id_message">Ziur zaude identifikazio hori baztertu nahi duzula?</string>
+    <string name="delete_comment_message">Ziur zaude iruzkin hau ezabatu nahi duzula?</string>
+    <string name="suggest_id">Iradoki IDa</string>
+    <string name="update_comment">Iruzkina eguneratu</string>
+    <string name="fave_this_observation">Egin behaketa gogoko</string>
+    <string name="faved">Gogokoa</string>
+    <string name="be_the_first_to_fave_this_obs">Izan zaitez lehena behaketa hau gogoko egiten...</string>
+    <string name="leave_a_comment">Utzi iruzkin bat edo iradoki identifikazioa...</string>
+    <string name="location_coords">Lat: %1$s Lon: %2$s Zeh. %3$s</string>
+    <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
+    <string name="location">Kokapena</string>
+    <string name="login_in_to_add_comments_ids">Hasi saioa iruzkin bat uzteko edo identifikazio bat iradokitzeko...</string>
+    <string name="login_in_to_fav">Saioa hasi edo izena eman gogokoak ikusteko edo behaketa hau gogoko egiteko...</string>
+    <string name="sync_obs_to_see_favs">Sinkronizatu behaketa hau gogokoak ikusteko...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
+    <string name="sync_obs_to_add_comments_ids">Sinkronizatu behaketa hau iruzkin bat uzteko edo identifikazio bat iradokitzeko...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
+    <string name="no_photo">Fitxategirik ez</string>
+    <string name="about_this_species">Espezie honi buruz</string>
+    <string name="view_on_wikipedia">Wikipediako artikulua</string>
+    <string name="photo"><![CDATA[Argazkia: <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo_attr"><![CDATA[Argazkia: <b>%1$s</b>]]></string>
+    <string name="finding_current_location">Uneko kokapena aurkitzen...</string>
+    <string name="flag_as_captive">Adierazi gatibu/kultibatu gisa</string>
+    <string name="observation_flagged_as_captive">Behaketa gatibu/kultibatu gisa adierazi da</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ziur zaude behaketa hau gatibu/kultibatu gisa adierazi nahi duzula?</string>
+    <string name="do_you_agree_to_the_following">Ados zaude honekin?</string>
+    <string name="terms">Baldintzak</string>
+    <string name="observation_rules">Behaketa-arauak</string>
+    <string name="couldnt_load_project_details">Ezin da proiektuaren xehetasunik kargatu: %1$s</string>
+    <string name="no_people_found">Ez da inor aurkitu</string>
+    <string name="rank">Sailkapena</string>
+    <string name="identifications">Identifikazioak</string>
+    <string name="no_news_found">Ez da elementu berririk aurkitu.</string>
+    <string name="news">Berriak</string>
+    <string name="article">Artikulua</string>
+    <string name="couldnt_load_project_news">Ezin da proiektuaren berririk kargatu: %1$s</string>
+    <string name="couldnt_load_user_details">Ezin dira erabiltzailearen xehetasunak kargatu: %1$s</string>
+    <string name="more_bio"><![CDATA[<b><font color="#ffffff">Gehiago »</font></b>]]></string>
+    <string name="no_location">Kokapenik ez</string>
+    <string name="add_to_projects">Proiektura gehitu</string>
+    <string name="are_you_sure_you_want_to_save_obs_without_coords">Ziur zaude behaketa koordenaturik gabe gorde nahi duzula?</string>
+    <string name="users_identification">%1$sen ID: %2$s</string>
+    <string name="edit_profile">Profila editatu</string>
+    <string name="remove_photo">Argazkia ezabatu</string>
+    <string name="name">Izena</string>
+    <string name="tell_us_about_yourself">Kontatu zerbait zuri buruz...</string>
+    <string name="view_profile">Profila ikusi</string>
+    <string name="are_you_sure_you_want_to_remove_photo">Ziur zaude argazkia ezabatu nahi duzula?</string>
+    <string name="updating_profile">Profila eguneratzen...</string>
+    <string name="there_was_a_problem_updating_profile">Arazo bat egon da profila eguneratzean!</string>
+    <string name="there_was_a_problem_updating_profile_params">Arazo bat egon da profila eguneratzean: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Saioa hasi da <b>%1$s</b> erabiltzailearekin]]></string>
+    <string name="log_out">Saioa amaitu</string>
+    <string name="not_logged_in">Ez da saioa hasi</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Saioa hasi edo izena eman</string>
+    <string name="auto_upload_description"> Automatikoki igo behaketa berriak eta aldaketak behaketetara</string>
+    <string name="language">Hizkuntza</string>
+    <string name="version">Bertsioa</string>
+    <string name="inat_network">iNaturalisteko sarea</string>
+    <string name="inat_network_description">iNaturalista Sarea iNaturalist komunitatea kokatzeko esparrua da. Sareko guneek tokiko erakundeen babesa dute, iNaturalistarekin akordio bat sinatu baitute tokiko erabilera sustatzeko eta tokiko biodibertsitateari mesede egiteko.</string>
+    <string name="more_info">Informazio gehiago</string>
+    <string name="select_network">Hautatu sareko afiliazioa</string>
+    <string name="help">Laguntza</string>
+    <string name="stop">Gelditu</string>
+    <string name="resume">Berriz hasi</string>
+    <string name="cleaning_up">Ezabatzen...</string>
+    <string name="syncing">Sinkronizatzen...</string>
+    <string name="syncing_observation_fields">Behaketaren eremuak sinkronizatzen...</string>
+    <string name="syncing_observations">Behaketak sinkronizatzen...</string>
+    <string name="syncing_paused">Pausatuta</string>
+    <string name="upload">Igo</string>
+    <string name="search_observations">Behaketak bilatu...</string>
+    <string name="withdraw">Baztertu</string>
     <!-- Dialog title for when you are updating the description of an identification -->
+    <string name="update_id_description">Eguneratu identifikazioaren deskribapena</string>
+    <string name="your_identification">Zure  IDa: %1$s</string>
+    <string name="onboarding_species_name">Esan ahal baduzu ikusi duzuna, nahiz eta hori \"intsektua\" edo \"txoria\" izan, edo hutsik utzi. Beste batzuek lagunduko dizute identifikatzen!</string>
+    <string name="upload_complete">Igoera osatu da!</string>
+    <string name="onboarding_upload_description">Begiratu azkarra zure oharrei buruzko identifikazioak eta iruzkinak egiteko.</string>
+    <string name="importing_photos">Argazkia(k) inportatzen...</string>
+    <string name="multi_select_description">Inportatu argazki bat baino gehiago argazki bat luzaz sakatuta</string>
+    <string name="preparing_photo">Argazkia prestatzen...</string>
+    <string name="recommended_for_you">Zuretzat gomendatua</string>
+    <string name="missions">Misioak</string>
+    <string name="browse_by_category">Kategoriaren arabera bilatu</string>
+    <string name="couldnt_load_recommended_missions">Ezin dira gomendatutako misioak kargatu: %1$s</string>
+    <string name="plants">Landareak</string>
+    <string name="mammals">Ugaztunak</string>
+    <string name="insects">Intsektuak</string>
+    <string name="reptiles">Narrastiak</string>
+    <string name="animals">Animaliak</string>
+    <string name="fish">Arrainak</string>
+    <string name="mollusks">Molusku</string>
+    <string name="protozoans">Protozooak</string>
+    <string name="chromista">Alga arreak, diatomeoak eta ahaideak</string>
+    <string name="amphibians">Anfibioak</string>
+    <string name="fungi">Onddoak</string>
+    <string name="birds">Hegaztiak</string>
+    <string name="arachnids">Araknidoak</string>
+    <string name="no_connectivity">Konexio falta</string>
+    <string name="no_recommended_missions">Badirudi eremu horretan ez dagoela gomendiorik. Saiatu beste leku batera aldatzen.</string>
+    <string name="what_to_look_for">Zer bilatu</string>
+    <string name="have_been_seen_here">Hemen ikusia</string>
+    <string name="observe">Behatu</string>
+    <string name="nearby_missions">Hurbileko misioak</string>
+    <string name="searching_your_area">Zure eremuan bilatzen...</string>
+    <string name="expanding_your_search_area">Zure bilaketa-eremua zabaltzen...</string>
+    <string name="introducing_missions">Sartu Eginkizunak</string>
+    <string name="missions_onboarding_description">Misioak denbora errealeko gomendioak dira, inguruan zer bilatu jakiteko. Horrela, espezie berriak aurki ditzakezu! (Konektagarritasuna behar du)</string>
+    <string name="ok_got_it">Ados, ulertuta!</string>
+    <string name="could_not_download_observations">Ezin izan dira azken oharrak deskargatu - Konexio-arazoak. Saiatu berriro geroago.</string>
+    <string name="no_news_yet">Oraindik ez dago berririk. Adi egon!</string>
+    <string name="my_content">Nire edukia</string>
+    <string name="following">Jarraitzen</string>
+    <string name="no_updates_yet">Oraindik ez dago eguneraketarik. Adi egon!</string>
+    <string name="you_will_only_receive_updates_when_creating">(Behaketak egiterakoan baino ez dituzu eguneraketak jasoko)</string>
+    <string name="you_will_only_receive_updates_when_following">(Behaketak jarraitzerakoan baino ez dituzu eguneraketak jasoko)</string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b>-(e)k IDa proposatu du: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_comment"><![CDATA[<b>%1$s</b>-(e)k komentatu du: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b>-(e)k aipatu zaitu: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="deleted_photos_from_cache_error">Badirudi, kargatu aurretik, argazki bat ezabatu duzula aplikazioaren cache memoria ezabatzean. Argazkia berriro erantsi beharko diozu zure behaketari zure galeriatik. Etorkizunean, ziurtatu zure argazki guztiak kargatu izana aplikazioaren cache memoria ezabatu aurretik.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
+    <plurals name="new_activities">
+        <item quantity="one">Berri %1s</item>
+        <item quantity="other">%1s berri</item>
+    </plurals>
+    <string name="no_results_found">Ez da emaitzarik topatu...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">%2$d-tik behaketa %1$d sinkronizatzen</item>
+        <item quantity="other">%2$d-tik %1$d behaketa sinkronizatzen</item>
+    </plurals>
+    <string name="deleting_observations">Behaketa ezabatzen...</string>
+    <string name="preparing">Prestatzen...</string>
+    <string name="add_edit_remark">Gehitu/editatu iruzkina</string>
+    <string name="restore">Berrezarri</string>
+    <string name="compare">Konparatu</string>
+    <string name="select">Hautatu</string>
+    <string name="source_wikipedia">(Iturria: Wikipedia)</string>
+    <string name="conservation_source"><![CDATA[<b>Iturria:</b> <i>%1$s</i>]]></string>
+    <string name="conservation_status_least_concern">Kezka txikikoa</string>
+    <string name="conservation_status_near_threatened">Ia mehatxatua</string>
+    <string name="conservation_status_vulnerable">Kaltebera</string>
+    <string name="conservation_status_endangered">Mehatxatua</string>
+    <string name="conservation_status_critically_endangered">Galtzeko arriskuan</string>
+    <string name="conservation_status_extinct_in_the_wild">Egoera basatian desagertua</string>
+    <string name="conservation_status_extinct">Desagertua</string>
+    <string name="map_of_observations">Behaketen mapa</string>
+    <string name="taxonomy">Taxonomia</string>
+    <string name="about_this_section">Atal honi buruz</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
+    <string name="more_info_on_inat">Informazio gehiago iNaturalist.org</string>
+    <string name="view_suggestions">Ikusi iradokizunak</string>
+    <string name="species_search">Espezieen bilaketa</string>
+    <string name="were_not_confident_enough">Ez gaude gomendio bat egiteko behar bezain ziur, baina hona hemen gure iradokizun nagusiak:</string>
+    <string name="were_not_confident_enough_no_suggestions">Ez gaude gomendio bat egiteko behar bezain ziur.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
+    <string name="most_observed_options_matching_filters">Gehien ikusitako aukerekin bat datozen iragazkiak:</string>
     <!-- Header for a list of suggested taxa -->
+    <string name="top_suggestions">Proposamen nagusiak</string>
+    <string name="pretty_sure_rank">Nahiko ziur gaude %1$san dagoela:</string>
+    <string name="what_did_you_see">Zer ikusi duzu?</string>
+    <string name="suggest_species">Espeziea proposatu</string>
+    <string name="suggest_species_description">Iradokitako espezieak argazkietan antzekotasun bisualetan oinarrituta daude.</string>
+    <string name="visually_similar">Bisualki antzekoa</string>
+    <string name="visually_similar_seen_nearby">Antzekoa bisualki/Inguruan esperokoa da</string>
+    <string name="visually_similar_expected_nearby">Bisualki antzekoa / Hurbil esperoa</string>
+    <string name="seen_nearby">Hurbil ikusia</string>
+    <string name="expected_nearby">Hurbil esperoa</string>
+    <string name="enlarge">Zabaldu</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
+    <string name="view_children">Ikusi umeak</string>
+    <string name="taxon_has_no_photos">Taxon honek ez du argazkirik</string>
+    <string name="terrain">Lursaila</string>
+    <string name="filters">Iragazkiak</string>
+    <string name="exploring_all">Esploratu guztia</string>
+    <string name="nearby">Hurbil</string>
+    <string name="couldnt_load_results">Ezin dira emaitzak kargatu: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
+    <string name="research_grade_initials">IM</string>
+    <string name="taxon_search_hint">adb. hegaztiak, monarka</string>
+    <string name="location_search_hint">adb. hiria, estatua, parkea, herrialdea...</string>
+    <string name="no_taxon">Sentitzen dugu, taxona ez da aurkitu</string>
+    <string name="please_select_taxon">Aukeratu baliozko taxon bat zerrendatik, mesedez (edo garbitu taxonaren eremua).</string>
+    <string name="sorry_no_location">Sentitzen dugu, kokapena ez da aurkitu</string>
+    <string name="location_not_found">Bilatutako kokapena edo tokia ez dago gure datu-basean. Aukeratu toki bat kokapena bilatzeko eremuaren azpiko aukeren zerrendatik edo garbitu bilaketa eremua, mesedez.</string>
+    <string name="undefined">Zehaztugabea</string>
+    <string name="street_segment">Zabaldu</string>
+    <string name="intersection">Bidegurutzea</string>
+    <string name="town">Herria</string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
+    <string name="state">Estatua</string>
+    <string name="county">Konderria</string>
+    <string name="local_administrative_area">Tokiko administrazio-eremua</string>
+    <string name="country">Herrialdea</string>
+    <string name="island">Uharte</string>
+    <string name="airport">Aireportua</string>
+    <string name="drainage">Drainatze-gunea</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="nationality">Nazionalitatea</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
+    <string name="supername">Superizena</string>
+    <string name="point_of_interest">Interesgunea</string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
+    <string name="region">Eskualdea</string>
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
+    <string name="colloquial">Lagunarteko izena</string>
+    <string name="zone">Eremua</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_state">Estatu historikoa</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_county">Konderri historikoa</string>
+    <string name="continent">Kontinentea</string>
+    <string name="estate">Estatua</string>
+    <string name="historical_town">Herri historikoa</string>
+    <string name="aggregate">Gehitu</string>
+    <string name="open_space">Aire zabaleko eremua</string>
+    <string name="territory">Lurraldea</string>
+    <string name="district">Barrutia</string>
+    <string name="province">Probintzia</string>
+    <string name="municipality">Udalerria</string>
+    <string name="parish">Barrutia</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
+    <string name="city_building">Hiriko eraikina</string>
+    <string name="commune">Udalerria</string>
+    <string name="governorate">Gobernazio</string>
+    <string name="prefecture">Prefektura</string>
+    <string name="canton">Kantonamendu</string>
+    <string name="republic">Errepublika</string>
+    <string name="division">Esparrua</string>
+    <string name="subdivision">Azpiesparrua</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
+    <string name="village_block">Herrixka-Etxadia</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
+    <string name="sum">Sum (Mongoliarako bakarrik)</string>
+    <string name="shire">Konderria</string>
+    <string name="prefecture_city">Prefektura</string>
     <!-- Indonesian sub-sub-national place type -->
+    <string name="regency">Regency (Indonesiarako bakarrik)</string>
+    <string name="constituency">Hautesbarrutia</string>
+    <string name="local_authority">Tokiko agintaritza</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
+    <string name="poblacion">Poblacion (Filipinetako bakarrik))</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
+    <string name="delegation">Delegazioa</string>
+    <string name="apply_filters">Iragazkia aplikatu</string>
+    <string name="remove_filters">Iragazkia kendu</string>
+    <string name="reset">Berrezarri</string>
+    <string name="show_only_my_observations">Nire behaketak bistaratu</string>
+    <string name="project">Proiektua</string>
+    <string name="user">Erabiltzailea</string>
+    <string name="search_users">Erabiltzaileak bilatu...</string>
+    <string name="quality_grade">Kalitate-maila</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Behaketaren data</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
+    <string name="any">Edozein</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
+    <string name="to">-tik/-ra arte</string>
+    <string name="exact_date">Data zehatza</string>
+    <string name="start">Hasiera</string>
+    <string name="end">Amaiera</string>
+    <string name="months">Hilabeteak</string>
+    <string name="choose_months">Aukeratu hilabetea(k)</string>
+    <string name="map_area">Maparen eremua</string>
+    <string name="global">Mundu-mailakoa</string>
     <!-- As in redo search in the current map area -->
+    <string name="search_map_area">Maparen eremuan bilatu</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
+    <string name="date_minute">%dm</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
+    <string name="date_hour">%dh</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
+    <string name="date_day">%dd</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
+    <string name="date_week">%dw</string>
+    <string name="new_observation">Behaketa berria</string>
+    <string name="inactive_taxon">Taxoi inaktiboa</string>
+    <string name="no_identifications_found">Jarraitu hemen beste pertsonen behaketetan iradoki dituzun identifikazioak.</string>
+    <string name="no_species_found">Hau da gehien behatu dituzun espezieen zerrenda.\n\nPlanetan 9 milioi espezie daudela estimatzen da, beraz, atera kanpora eta behatu!</string>
+    <string name="make_an_observation">Behaketa bat egin</string>
+    <string name="no_observations_found_new">Behaketak organismo indibidualekin izandako topaketen erregistroak dira momentu eta kokapen jakin batean.</string>
+    <string name="discard_comment">Ziur zaude iruzkin hau baztertu nahi duzula?</string>
+    <string name="leave_comment">Oharra utzi</string>
+    <string name="swipe_indicator">›</string>
+    <string name="potential_disagreement">Desadostasun potentziala</string>
+    <string name="do_you_think_this_could_be"><![CDATA[Froga nahikoa da %1$s dela baieztatzeko?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
+    <string name="i_dont_know_but"><![CDATA[Ez dakit, baina ziur nago hau <b>%1$s</b> dela.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Ez, baina <b>%1$s</b>-eko kidea da.]]></string>
+    <string name="submit">Bidali</string>
+    <string name="change_password">Aldatu pasahitza</string>
+    <string name="search_projects_youve_joined">Bat egin duzun proiektuak bilatu...</string>
+    <string name="must_be_connected_to_load_more_obs">Behaketa gehiago kargatzeko internetera konektatuta egon behar duzu</string>
+    <string name="inat_about_title_new">iNaturalist Estatu Batuetan (EIN 92-1296468) egoitza duen irabazi-asmorik gabeko 501(c)(3) erakunde independentea da.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -234,108 +574,553 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="inat_credits_networks_pre"><![CDATA[Erakunde elkartuen laguntzari esker, iNaturalist nazioarteko sareak iNaturalist-en oinarritutako webgune lokalizatu eta erabat integratuak babesten ditu herrialde hauetan]]></string>
+    <string name="credits_title">Kredituak</string>
+    <string name="password_changed">Aplikazioak erabiltzen duen pasahitzak ez du funtzionatzen - webgunetik aldatu al duzu? Mesedez, sartu hemen berria.</string>
+    <string name="just_so_you_know">Beraz, badakizu...</string>
+    <string name="ask_for_g_plus_permissions">Googlek zure kontaktuetarako sarbidea eskatzen digu, zure Google kontua erabili ahal izateko, nahiz eta gu ez garen zure kontaktuetara inoiz sartuko, arrazoia edozein delarik ere. Baimen hori ukatzen baduzu, erregistratu edo saioa hasi beharko duzu erabiltzaile-izen eta pasahitz batekin.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Berria %1$s? <b>Eman izena orain!</b>]]></string>
+    <string name="see_more_observations">Behaketa gehiago ikusi</string>
+    <string name="see_more_species">Espezie gehiago ikusi</string>
+    <string name="see_more_identifications">Identifikazio gehiago ikusi</string>
+    <string name="collection_and_umbrella_projects">Bildumak eta aterki proiektuak</string>
+    <string name="description">Deskribapena</string>
+    <string name="quantity">Kantitatea</string>
+    <string name="agree2">Ados</string>
+    <string name="project_observations">Behaketak</string>
+    <string name="project_species">Espezieak</string>
+    <string name="project_people">Jendea</string>
     <!-- People who added identifications to observations in a project -->
+    <string name="project_identifiers">Identifikatzaileak</string>
+    <string name="got_it">Ulertuta!</string>
+    <string name="view_all">Denak ikusi</string>
+    <string name="observers">Behatzaileak</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
+    <string name="attribute">Atributua</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
+    <string name="value">Balioa</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
+    <string name="disagree">Desados</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
+    <string name="annotations">Oharrak</string>
     <!-- Used when filtering observations with annotations -->
+    <string name="with_annotation">Oharrekin</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
+    <string name="annotation_name">Oharren izena</string>
     <!-- Annotation value for when no annotation has been chosen -->
+    <string name="none">Bat ere ez</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
+    <string name="annotation_name_plant_phenology">Landarearen fenologia</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
+    <string name="annotation_name_life_stage">Garapen estadioa</string>
     <!-- Noun, describes sex of the organism -->
+    <string name="annotation_name_sex">Sexua</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Bizirik edo hilda</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Presentzia-ebidentzia</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowering">Loraldian</string>
     <!-- Adjective, having fruit -->
+    <string name="annotation_value_fruiting">Fruktifikazioa</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_budding">Kimuak</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Lore-begiak</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">Loratze-seinalerik ez</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
+    <string name="annotation_value_adult">Heldua</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
+    <string name="annotation_value_teneral">Tenerala</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
+    <string name="annotation_value_pupa">Pupa</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
+    <string name="annotation_value_nymph">Ninfa</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
+    <string name="annotation_value_larva">Larba</string>
+    <string name="annotation_value_egg">Arrautza</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
+    <string name="annotation_value_juvenile">Gaztea</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
+    <string name="annotation_value_subimago">Subimago</string>
+    <string name="annotation_value_female">Emea</string>
+    <string name="annotation_value_male">Arra</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Bizirik</string>
     <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Hilda</string>
     <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Ezin da zehaztu</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organismoa</string>
     <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Luma</string>
     <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Gorotza</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Arrastoa</string>
     <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Hezurra</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Muda</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
+    <string name="joined_projects_all_caps">BATUTA</string>
+    <string name="nearby_projects_all_caps">Inguruan</string>
+    <string name="featured_projects_all_caps">Nabarmenduak</string>
     <!-- Text for a button or label that allows someone to join a project -->
+    <string name="join_all_caps">BATU</string>
+    <string name="my_guides_all_caps">ZUREAK</string>
+    <string name="nearby_guides_all_caps">INGURUAN</string>
+    <string name="all_guides_all_caps">GUZTIAK</string>
+    <string name="description_all_caps">DESKRIBAPENA</string>
+    <string name="quantity_all_caps">KANTITATEA</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">BEHAKETA %1$s</item>
+        <item quantity="other">%1$s BEHAKETA</item>
+    </plurals>
+    <string name="agree_all_caps">ADOS</string>
+    <string name="observations_all_caps">BEHAKETAK</string>
+    <string name="species_all_caps">ESPEZIEAK</string>
+    <string name="people_all_caps">JENDEA</string>
+    <string name="identifiers_all_caps">IDENTIFIKATZAILEAK</string>
+    <string name="identifications_all_caps">IDENTIFIKAZIOAK</string>
+    <string name="news_all_caps">BERRIAK</string>
+    <string name="got_it_all_caps">ULERTURA!</string>
+    <string name="view_all_all_caps">IKUSI DENAK</string>
+    <string name="observers_all_caps">BEHATZAILEAK</string>
+    <string name="observations_regular">Behaketak</string>
+    <string name="data_quality_assessment">Datuen kalitatearen ebaluazioa</string>
+    <string name="research_grade_qualification">Ikerketa maila betekizuna</string>
+    <string name="date_specified">Data zehaztuta</string>
+    <string name="location_specified">Kokapena zehaztuta</string>
+    <string name="has_photos_or_sounds">Argazkiak edo soinuak ditu</string>
+    <string name="has_id_supported_by_two_or_more">IDa bi pertsonak edo gehiagok berretsi dute</string>
+    <string name="date_is_accurate">Data zehatza da</string>
+    <string name="location_is_accurate">Kokapena zehatza da</string>
+    <string name="organism_is_wild">Organismoa basatia da</string>
+    <string name="evidence_of_organism">Organismoa egotearen ebidentzia</string>
+    <string name="recent_evidence_of_an_organism">Organismo baten oraintsuko ebidentzia</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Frogetan oinarrituta, oraindik ere baieztatu edo hobetu al daiteke Komunitatearen IDa?</string>
+    <string name="no_as_good_as_it_can_be">Ez, ezin da hobetu</string>
+    <string name="evidence_related_to_single_subject">Gai bakarrari lotutako frogak</string>
+    <string name="seasonality">Urtarokotasuna</string>
+    <string name="verifiable">Egiaztagarria</string>
+    <string name="no_annotation">Oharrik ez</string>
+    <string name="donate_to_inaturalist">iNaturalisti dohaintza egin</string>
+    <string name="prefers_scientific_name_first">Erakutsi izen zientifikoa lehenengo</string>
+    <string name="prefers_scientific_name_first_description">Erakutsi izen zientifikoak izen arruntak baino lehen.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Canadian Wildlife Federationek, the Royal Ontario Museumek, NatureServe Canadak, eta Parks Canadak maneiatzen dute iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Kolonbia: Instituto Humboldtek maneiatzen du Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexiko:  Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO)k maneiatzen du NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Zeelanda Berria: New Zealand Biodiversity Recording Networkek maneiatzen du iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todosek maneiatzen du Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambientek maneiatzen du iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentinak maneiatzen du supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australiak babesten du iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>) ]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ekuador: Instituto Nacional de Biodiversidad (INABIO)k babesten du iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifak babesten du iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finlandia: Finnish Museum of Natural History (LUOMUS)k babesten du iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Txile: Ministerio del Medio Ambientek babesten du iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grezia: iSeak babesten du iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxenburgo: Luxembourg National Museum of Natural History (MnhnL)k babesten du iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Erresuma Batua: National Biodiversity Network Trustek babesten du iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO)k babresten du Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP)k babesten du iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Suedia: SLU Swedish Species Information Centrek babesten du iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguai: JULANA and Biodiversidatak babesten du Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi Universityk and Taiwan Forestry Research Institutek babesten dute iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="mark_all_as_viewed">Markatu guztiak berrikusita daudela</string>
+    <string name="content_hidden">Ezkutatutako edukia</string>
+    <string name="show_hidden_content">Erakutsi ezkutatutako edukia</string>
+    <string name="content_hidden_because">Edukia @%1$s erabiltzaileak ezkutatu du %2$s egunean, honexegatik: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Eskatu laguntza</a>]]></string>
+    <string name="content">Edukia</string>
+    <string name="has_photos">Argazkiak ditu</string>
+    <string name="has_sounds">Soinuak ditu</string>
+    <string name="could_not_play_sound">Ezin da soinua erreproduzitu - seguruenik sareko arazo bat</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
+    <string name="record_sound">Soinu-grabazioa</string>
     <!-- Label for a button to import an existing sound for an observation -->
+    <string name="upload_sound">Aukeratu soinua</string>
+    <string name="invalid_audio_extension">Errore bat gertatu da soinuak inportatzean: WAV/MP3/AMR luzapenak dituzten soinu-fitxategiak bakarrik inporta ditzakezu</string>
+    <string name="importing_sounds">Soinua(k) inportatzen ari gara...</string>
+    <string name="observation_sound">Soinu behaketa</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f segundo</string>
+    <string name="clears_up_storage_room_on_your_phone">Garbitu zure telefonoko biltegiratze-tokia</string>
+    <string name="number_of_days_to_store_logs">Erregistroak gordetzeko egun-kopurua</string>
+    <string name="choose_pinned_location">Aukeratu ainguratutako kokapena</string>
+    <string name="pin_current_location">Ainguratu uneko kokapena</string>
+    <string name="location_pinned_successfully">Uneko kokapena arrakastaz ainguratu da</string>
+    <string name="delete_this_pinned_location">Ainguratutako kokapena ezabatu?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
+    <string name="duplicate">Bikoiztu</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_photo">Ezin izan da argazkia bikoiztu!</string>
+    <string name="couldnt_edit_photo">Ezin izan da argazkia editatu</string>
     <!-- Verb, as in "Rotate this photo" -->
+    <string name="ucrop_rotate">Biratu</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
+    <string name="ucrop_scale">Eskalatu</string>
     <!-- Verb, as in "Crop this photo" -->
+    <string name="ucrop_crop">Moztu</string>
     <!-- Label for adjusting the brightness of an image -->
+    <string name="ucrop_brightness">Argitasuna</string>
     <!-- Label for adjusting the contrast of an image -->
+    <string name="ucrop_contrast">Kontrastea</string>
     <!-- Label for adjusting the saturation of an image -->
+    <string name="ucrop_saturation">Saturazioa</string>
     <!-- Label for adjusting the sharpness of an image -->
+    <string name="ucrop_sharpness">Zorroztasuna</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
+    <string name="ucrop_label_original">Jatorrizkoa</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">Dohainik</string>
     <!-- Verb phrase, button label to edit an observation photo -->
+    <string name="ucrop_label_edit_photo">Argazkia editatu</string>
+    <string name="service_temporarily_unavailable">Zerbitzua ez dago aldi baterako erabilgarri</string>
+    <string name="please_try_again_in_a_few_hours">Mesedez, saiatu berriro ordu batzuk barru.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Mesedez saiatu berriro %1$d %2$s barru.</string>
+    <string name="hours">orduak</string>
+    <string name="minutes">minutuak</string>
+    <string name="seconds_value">segunduak</string>
+    <string name="shop_the_inat_store">iNat dendan erosi</string>
+    <string name="delete_your_account">Ezabatu zure kontua</string>
+    <string name="your_account_has_been_deleted">Zure kontua ezabatu egin da</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">\'%1$s\' sartu behar duzu zure kontua ezabatzeko inprimakian</string>
     <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">Idatzi zure erabiltzaile-izena</string>
+    <string name="error_deleting_account">Errore bat gertatu da zure kontua ezabatzean - mesedez, berrikusi zure Interneteko konexioa</string>
+    <string name="verify_your_password">Egiaztatu zure pasahitza</string>
+    <string name="third_party_data_sharing">Hirugarrenen datuen partekatzea</string>
+    <string name="disable_third_party_data_sharing">Hirugarrenen datuen partekatzea desgaitu</string>
+    <string name="do_not_collect_third_party_data">Ez bildu egonkortasun- eta erabilera-datuak hirugarrenen zerbitzuak erabiliz</string>
+    <string name="enabled">Gaitua</string>
+    <string name="disabled">Desgaitua</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Egonkortasuna monitorizatzeko eta gure softwarearen akatsak eta arazoak diagnostikatzeko hirugarrenen hainbat zerbitzu erabiltzen ditugu. Hirugarren horien artean daude: <br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="common_names_place"><![CDATA[Leku-izen arruntak: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Sakatu leku-izen arruntak lehenestekeko</string>
+    <string name="search_places">Lekuak bilatu</string>
+    <string name="restart_app">Berrabiarazi</string>
+    <string name="disable_third_party_sharing_restart">Hirugarrenen datuen partekatzea berehala desgaitzeko, aplikazioa berrabiarazi behar da.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Ziur zaude behaketa %1$d ezabatu nahi duzula?</item>
+        <item quantity="other">Ziur zaude %1$d behaketa ezabatu nahi dituzula?</item>
+    </plurals>
+    <string name="future_observed_on_date_error">Zure behaketa %1$s(e)n sortu (eta bidali) izan zen, baina hori baino beranduagoko behaketa-data bat ezartzen saiatzen ari zara: %2$s</string>
+    <string name="no_more_photos_allowed">Behaketek %1$d argazki bakarrik izan ditzakete. Gehiago gehitzeko, batzuk ezabatu beharko dituzu.</string>
+    <string name="choosing_specific_language_warning">Zure konturako hizkuntza jakin bat aukeratzeko, Interneteko konexioa behar duzu</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Baimena behar da</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">Zure kokapena atzitzeko, aplikazio honi kokapenerako sarbidea emateko baimena eman behar diozu.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Debekatuta</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <!-- Description of a UI element for screen readers -->
     <!-- Description of a UI element for screen readers -->
     <!-- Description of a UI element for screen readers -->
+    <string name="messages">Mezuak</string>
+    <string name="all_messages">Mezu guztiak</string>
+    <string name="search_messages">Mezuak bilatu</string>
+    <string name="no_messages">Gaur egun ez duzu mezurik. Mezu berri bat bidal dezakezu botoi berdearekin, edo euren profil-orritik bidal ditzakezu.</string>
+    <string name="no_messages_found">Ez da mezurik aurkitu</string>
+    <string name="send_a_message">Mezua bidali</string>
+    <string name="sending_message">Mezua bidaltzen...</string>
+    <string name="could_not_send_message">Ezin izan da mezua bidali: %1$s</string>
+    <string name="subject">Gaia</string>
+    <string name="body">Testua</string>
+    <string name="type_your_message_here">Idatzi zure mezua hemen</string>
+    <string name="new_message_to">Mezu berria %1$s-ri</string>
+    <string name="who_would_you_like_to_send_a_message_to">Nori bidali nahi diozu mezua?</string>
+    <string name="new_message">Mezu berria</string>
+    <string name="please_sign_in_for_messages">Saioa hasita egon behar duzu zure mezuak ikusteko.</string>
+    <string name="sorry">Barkatu</string>
+    <string name="mute_this_user">Isildu erabiltzaile hau</string>
+    <string name="unmute_this_user">Erabiltzaile hau aktibatu</string>
+    <string name="flag_this_conversation">Elkarrizketa hau markatu</string>
+    <string name="mute_this_user_question">Erabiltzaile hau isildu?</string>
+    <string name="you_will_no_longer_receive_messages">Ez duzu jasoko erabiltzaile honen jarduerari buruzko jakinarazpenik, mezuak, iruzkinak, identifikazioak eta aipamenak barne.</string>
+    <string name="mute">Isildu</string>
+    <string name="muting_user">Erabiltzailea isilarazten...</string>
+    <string name="unmuting_user">Erabiltzailea aktibatzen...</string>
+    <string name="failed_muting_user">Ezin izan da erabiltzailea isilarazi!</string>
+    <string name="failed_unmuting_user">Ezin izan da erabiltzailea aktibatu!</string>
+    <string name="spam">Spama</string>
+    <string name="offensive_inappropriate">Iraingarria/ Desegokia</string>
+    <string name="misleading_or_illegal_content">Eduki engainagarria edo legez kanpokoa, arrazista, xenofoboa, etab. Gure \"egokia\" definizioari buruzko informazio gehiago lortzeko, ikus FAQ.</string>
+    <string name="other">Bestelakoa</string>
+    <string name="continue_text">Jarraitu</string>
+    <string name="no_subject">Gairik ez</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
+    <string name="rank_kingdom">Erreinu</string>
+    <string name="rank_subkingdom">Suberreinua</string>
+    <string name="rank_phylum">Filuma</string>
+    <string name="rank_subphylum">Azpifiluma</string>
+    <string name="rank_superclass">Superklasea</string>
+    <string name="rank_class">Klasea</string>
+    <string name="rank_subclass">Subklasea</string>
+    <string name="rank_infraclass">Infraklasea</string>
+    <string name="rank_superorder">Superordena</string>
+    <string name="rank_order">Ordena</string>
+    <string name="rank_suborder">Subordena</string>
+    <string name="rank_infraorder">Infraordena</string>
+    <string name="rank_parvorder">Parvordena</string>
+    <string name="rank_superfamily">Superfamilia</string>
+    <string name="rank_epifamily">Epifamilia</string>
+    <string name="rank_family">Familia</string>
+    <string name="rank_subfamily">Azpifamilia</string>
+    <string name="rank_supertribe">Supertribua</string>
+    <string name="rank_tribe">Tribua</string>
+    <string name="rank_subtribe">Azpitribua</string>
+    <string name="rank_genus">Generoa</string>
+    <string name="rank_genushybrid">Genero hibridoa</string>
+    <string name="rank_subgenus">Azpigeneroa</string>
+    <string name="rank_complex">Espezie-konpexua</string>
     <!-- Singular -->
+    <string name="rank_species">Espeziea</string>
+    <string name="rank_hybrid">Hibridoa</string>
     <!-- Singular -->
+    <string name="rank_subspecies">Subespeziea</string>
+    <string name="rank_variety">Barietatea</string>
+    <string name="rank_form">Forma</string>
+    <string name="rank_infrahybrid">Infrahibridoa</string>
+    <string name="location_lat_lng">Kokapena: %1$f, %2$f</string>
+    <string name="about_personal_information">Informazio pertsonalari buruz</string>
+    <string name="privacy_policy">Pribatutasun-politika</string>
+    <string name="terms_of_service">Zerbitzuaren baldintzak</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
+    <string name="deleted_user">Erabiltzailea ezabatu da</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">yy/MM/dd</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">yyyy MMM d</string>
     <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">yyyy MMMM d, hh:mma</string>
+    <string name="show_common_names">Izen arruntak erakutsi</string>
+    <string name="show_common_names_description">Izen zientifikoak bakarrik ikusi nahi badituzu, desgaitu.</string>
+    <string name="email_must_look_like_email_address">Helbide elektronikoa izan behar du.</string>
+    <string name="username_must_begin_with">Erabiltzaile-izenak letra batekin hasi behar du, ez du tarterik izan behar, eta letrak, zenbakiak, marrak eta azpimarrak bakarrik erabili behar ditu.</string>
+    <string name="password_too_short">Pasahitzak sei karaktere izan behar ditu gutxienez</string>
+    <string name="switch_to_grid_view">Sareta ikuspegira aldatu</string>
+    <string name="switch_to_list_view">Zerrenda ikuspegira aldatu</string>
+    <string name="remove_project_filter">Kendu proiektu iragazkia</string>
+    <string name="remove_observer_filter">Kendu behatzaile iragazkia</string>
+    <string name="filter_observations_by_an_exact_date">Iragazi behaketak data zehatzen arabera</string>
+    <string name="filter_observations_by_a_date_range">Iragazi behaketak data tarte baten arabera</string>
+    <string name="filter_observations_by_months">Iragazi behaketak hilabeteka</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
+    <string name="include_suggestions_not_seen_nearby">Sartu hurbil ikusi ez diren iradokizunak</string>
+    <string name="only_view_nearby_suggestions">Inguruko iradokizunak bakarrik ikusi</string>
+    <string name="suggestions_source">Iradokizunen iturria</string>
+    <string name="research_grade_observations">Ikerketa mailako behaketa</string>
+    <string name="visually_similar_description">iNaturalistak iradokizunak egingo ditu, urteko sasoi honetan toki horretatik gertu ikusitako espezieen irudiak bisualki zein antzekoak direnak kontuan hartuta.</string>
+    <string name="taxon">Taxona:</string>
+    <string name="place">Lekua:</string>
+    <string name="pretty_sure_kingdom">Nahiko ziur gaude erreinu honetan dagoela:</string>
+    <string name="pretty_sure_subkingdom">Nahiko ziur gaude azpierreinu honetan dagoela:</string>
+    <string name="pretty_sure_phylum">Nahiko ziur gaude filum honetan dagoela:</string>
+    <string name="pretty_sure_subphylum">Nahiko ziur gaude subfilum honetan dagoela:</string>
+    <string name="pretty_sure_superclass">Nahiko ziur gaude superklase honetan dagoela:</string>
+    <string name="pretty_sure_class">Nahiko ziur gaude klase honetan dagoela:</string>
+    <string name="pretty_sure_subclass">Nahiko ziur gaude subklase honetan dagoela:</string>
+    <string name="pretty_sure_infraclass">Nahiko ziur gaude infraklase honetan dagoela:</string>
+    <string name="pretty_sure_superorder">Nahiko ziur gaude superorden honetan dagoela:</string>
+    <string name="pretty_sure_order">Nahiko ziur gaude orden honetan dagoela:</string>
+    <string name="pretty_sure_suborder">Nahiko ziur gaude suborden honetan dagoela:</string>
+    <string name="pretty_sure_infraorder">Nahiko ziur gaude infraorden honetan dagoela:</string>
+    <string name="pretty_sure_parvorder">Nahiko ziur gaude parvorden honetan dagoela:</string>
+    <string name="pretty_sure_superfamily">Nahiko ziur gaude superfamilia honetan dagoela:</string>
+    <string name="pretty_sure_epifamily">Nahiko ziur gaude epifamilia honetan dagoela:</string>
+    <string name="pretty_sure_family">Nahiko ziur gaude familia honetan dagoela:</string>
+    <string name="pretty_sure_subfamily">Nahiko ziur gaude subfamilia honetan dagoela:</string>
+    <string name="pretty_sure_supertribe">Nahiko ziur gaude superleinu honetan dagoela:</string>
+    <string name="pretty_sure_tribe">Nahiko ziur gaude leinu honetan dagoela:</string>
+    <string name="pretty_sure_subtribe">Nahiko ziur gaude azpileinuan honetan dagoela:</string>
+    <string name="pretty_sure_genus">Nahiko ziur gaude genero honetan dagoela:</string>
+    <string name="pretty_sure_subgenus">Nahiko ziur gaude subgenero honetan dagoela:</string>
     <!-- Singular -->
+    <string name="pretty_sure_species">Nahiko ziur gaude espezie hau dela:</string>
+    <string name="pretty_sure_hybrid">Nahiko ziur gaude hibrido hau dela:</string>
     <!-- Singular -->
+    <string name="pretty_sure_subspecies">Nahiko ziur gaude subespezie hau dela:</string>
+    <string name="pretty_sure_variety">Nahiko ziur gaude barietate honetan dagoela:</string>
+    <string name="pretty_sure_form">Nahiko ziur gaude suespezie honetan dagoela:</string>
+    <string name="pretty_sure_infrahybrid">Nahiko ziur gaude infrahibrido hau dela:</string>
+    <string name="remove_time_observed">Kendu behatutako denbora</string>
+    <string name="remove_location">Kendu kokapena</string>
+    <string name="share_location">Kokapena partekatu</string>
+    <string name="share_hidden_location">Partekatu ezkutatutako kokapena</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="view_observations">Behaketak ikusi</string>
+    <string name="choose_this_option">Aukeratu aukera hau</string>
+    <string name="go_back">Atzera</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Oharrak eta identifikazioak</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Gogokoak</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Aurreko aukera</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Hurrengo aukera</string>
+    <string name="no_observations_yet2">Ez dago behaketarik oraindik</string>
+    <string name="no_species_yet">Ez dago espezierik oraindik</string>
+    <string name="no_identifications_yet">Identifikaziorik ez oraindik</string>
+    <string name="sort_by">Honen arabera antolatu</string>
+    <string-array name="explore_order_by_items">
+        <item>Data gehitu da</item>
+        <item>Data behatu da</item>
+        <item>Data eguneratu da</item>
+        <!--<item>Faves</item>-->
+        <item>Ausazko</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Beheranzkoa</item>
+        <item>Goranzkoa</item>
+    </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Honen arabera antolatua %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Nire behaketak ezkutatu</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Jarraitu behaketa hau</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Behaketa hau jarraitzeari utzi</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Ezin izan da beharketa hau jarraitu</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Ezin izan da behaketa hau jarraitzeari utzi</string>
     <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Koordenatuak kopiatu</string>
+    <string name="coordinates_copied_to_clipboard">Koordenatuak arbelean kopiatu dira</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadatuak</string>
     <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
+    <string name="default_licenses">Lehenetsitako lizentzia</string>
+    <string name="default_observation_license">Lehenetsitako behaketa lizentzia</string>
+    <string name="default_photo_license">Lehenetsitako argazki lizentzia</string>
+    <string name="default_sound_license">Lehenetsitako soinu lizentzia</string>
+    <string name="change_existing_licenses">Dauden lizentziak aldatu</string>
+    <string name="change_licenses_for_existing_observations">Dauden behaketen, argazkien eta soinuen lizentziak aldatu</string>
+    <string name="change_licenses_for_all_existing_observations">Dauden behaketen lizentziak aldatu</string>
+    <string name="change_licenses_for_all_existing_photos">Dauden argazkien lizentziak aldatu</string>
+    <string name="change_licenses_for_all_existing_sounds">Dauden soinuen lizentziak aldatu</string>
+    <string name="change_observation_licenses">Behaketaren lizentziak aldatu</string>
+    <string name="change_photo_licenses">Argazkiaren lizentziak aldatu</string>
+    <string name="change_sound_licenses">Soinuaren lizentziak aldatu</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Dauden <b>%1$d</b> behaketen lizentziak hona aldatu: <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Argazkien lizentziak hona aldatu: <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Soinu-lizentziak hona aldatu: <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Behaketaren lizentzia eguneratua</string>
+    <string name="photo_licenses_updated">Argazkiaren lizentzia eguneratua</string>
+    <string name="sound_licenses_updated">Soinuaren lizentzia eguneratua</string>
+    <string name="existing_observation_licenses_have_been_updated">Dauden behaketa lizentzia guztiak %1$s-ra aldatu dira.</string>
+    <string name="existing_photo_licenses_have_been_updated">Dauden argazki lizentzia guztiak %1$s-ra aldatu dira.</string>
+    <string name="existing_sound_licenses_have_been_updated">Dauden soinu lizentzia guztiak %1$s-ra aldatu dira.</string>
+    <string name="photo_license">Argazki lizentzia</string>
+    <string name="sound_license">Soinu lizentzia</string>
+    <string name="edit_photo_license">Argazki lizentzia editatu</string>
+    <string name="observation_license">Behaketa lizentzia</string>
+    <string name="edit_observation_license">Behaketa lizentzia editatu</string>
+    <string name="about_licenses">Lizentziei buruz</string>
+    <string name="view_license">Ikusi lizentzia</string>
     <!-- License Names -->
+    <string name="license_name_cc0">Domeinu publikoa</string>
+    <string name="license_name_cc_by">Aitortu</string>
+    <string name="license_name_cc_by_nc">Aitortu-EzKomertziala</string>
+    <string name="license_name_cc_by_nc_sa">Aitortu-EzKomertziala-PartekatuBerdin</string>
+    <string name="license_name_cc_by_nc_nd">Aitortu-EzKomertziala-LanEratorririkGabe</string>
+    <string name="license_name_cc_by_nd">Aitortu-LanEratorririkGabe</string>
+    <string name="license_name_cc_by_sa">Aitortu-BerdinPartekatu</string>
+    <string name="license_name_no_license">Eskubide guztiak gordeak</string>
     <!-- License Descriptions -->
+    <string name="license_description_cc_by">Lizentzia honi esker, beste batzuek zure lana banatu, nahastu, aldatu eta garatu dezakete, baita komertzialki ere, baldin eta jatorrizko sorkuntzagatik aitortza ematen badizute.</string>
+    <string name="license_description_cc_by_nd">Lizentzia honek birbanatzea ahalbidetzen du, komertziala eta ez komertziala, betiere aldaketarik gabe eta osorik birbanatzen bada, eta zuri egindako aitortzarekin.</string>
+    <string name="license_description_no_license">Zure edukiaren gaineko egile-eskubide osoaren jabe zara, iNaturalistari gure Zerbitzu Baldintzetan emandako eskubideez gain.</string>
+    <string name="invalid_photo">Argazki-formatua ez da onartzen.</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Lehenetsitako behaketa-ekintza</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Aukerak erakutsi</string>
     <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Eremu balioa</string>
+    <string name="delete_attribute_value">Atributuaren balioa ezabatu</string>
+    <string name="open_menu_for_more_options">Ireki menua aukera gehiago izateko</string>
+    <string name="change_user_profile_photo">Aldatu erabiltzailearen profileko argazkia</string>
+    <string name="expand_list">Zerrenda zabaldu</string>
+    <string name="change_map_layers">Aldatu mapako geruzak (lurra vs. satelitea)</string>
+    <string name="redo_observation_search">Berregin behaketaren bilaketa maparen eremu honetan</string>
+    <string name="view_observations_on_map">Bistaratu behaketak mapan</string>
+    <string name="view_observations_on_grid">Bistaratu behaketak saretan</string>
+    <string name="clear_text">Garbitu testua</string>
+    <string name="observation_has_sounds">Behaketak soinuak ditu</string>
+    <string name="go_to_my_location">Uneko kokapenera joan</string>
+    <string name="change_geoprivacy">Geopribatutasuna aldatu</string>
+    <string name="active_filters">Iragazki aktiboak</string>
+    <string name="message_is_flagged">Mezua markatu da</string>
+    <string name="user_is_muted">Erabiltzailea isildua dago</string>
+    <string name="cancel_multiple_obs_selection">Bertan behera utzi behaketa anitzeko hautapena</string>
+    <string name="delete_observations">Behaketak ezabatu</string>
+    <string name="comment_count">Iruzkin kopurua</string>
+    <string name="id_count">Identifikazio kopurua</string>
+    <string name="observation_selected">Aukeratutako behaketa</string>
+    <string name="share_observation">Behaketa partekatu</string>
+    <string name="unknown_location">Kokapen ezezaguna</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Itxi</string>
+    <string name="set_date2">Data zehaztu</string>
+    <string name="project_selected">Aukeratutako proiektua</string>
+    <string name="project_unselected">Aukeratu gabeko proiektua</string>
+    <string name="show_my_observations">Nire behaketak bistaratu</string>
+    <string name="play_pause_sound">Jo edo isildu soinua</string>
+    <string name="view_image">Irudia ikusi</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Ebaluazioa gainditu du</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Ebaluazioarekin ados</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Ez du ebaluazioa gainditu</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Ez nago ados ebaluazioarekin</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Ezabatu aukeratutako behaketa %1$d</item>
+        <item quantity="other">Ezabatu aukeratutako %1$d behaketa</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sinkronizatu aukeratutako behaketa %1$d</item>
+        <item quantity="other">Sinkronizatu aukeratutako %1$d behaketa</item>
+    </plurals>
+    <string name="add_media_evidence">Gehitu multimedia ebidentzia</string>
+    <string name="remove_identification">Behaketa ezabatu</string>
+    <string name="issue_with_updating_photos">Argazkiak eguneratzeko arazo bat egon zen duela gutxi konpondu den behaketa honetan. Mesedez, amaitu saioa eta hasi saioa berriro arazo hau konpontzeko.</string>
+    <string name="app_version_copied_to_clipboard">Aplikazioaren bertsioa arbelera kopiatuta</string>
+    <string name="authentication_failed">Autentifikazioak huts egin du</string>
+    <string name="please_try_again_soon">Mesedez, saiatu berriro laster</string>
+    <string name="verify_your_email">Egiaztatu zure helbide elektronikoa</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">Ezin da 20MB baino fitxategi handiagoa igo</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Saioa amaitu duzu. Hasi saioa berriro</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Iragarkia itxi</string>
+    <string name="import_photos_from">Argazkiak inportatu hemendik...</string>
+    <string name="cannot_find_default_camera">Ezin da argazkiak ateratzeko kamera lehenetsirik aurkitu - mesedez, laguntza zerbitzuarekin harremanetan jarri </string>
+    <string name="please_click_link_to_confirm_email">Mesedez, egin klik zure posta elektronikoaren estekan zure mezu elektronikoa iNaturalisten baieztatzeko.</string>
+    <string name="click_to_resend_confirmation_email">Egin klik hemen berrespen-mezu elektronikoa berriro bidaltzeko.</string>
 </resources>
