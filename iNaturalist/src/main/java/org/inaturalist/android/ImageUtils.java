@@ -398,7 +398,7 @@ public class ImageUtils {
 
             int rotationDegrees = 0;
 
-            if (path != null) {
+            if (path != null && path.toLowerCase().endsWith("heic")) {
                 androidx.exifinterface.media.ExifInterface exif = new androidx.exifinterface.media.ExifInterface(path);
                 rotationDegrees = exif.getRotationDegrees();
             }
@@ -466,7 +466,7 @@ public class ImageUtils {
             Logger.tag(TAG).debug(String.format("resizeImage: %s => %s", path, imageFile.getAbsolutePath()));
 
             resizedBitmap.recycle();
-            rotatedBitmap.recycle();
+            if (resizedBitmap != rotatedBitmap) rotatedBitmap.recycle();
 
             // BitmapFactory.decodeStream moves the reading cursor
             is.close();
