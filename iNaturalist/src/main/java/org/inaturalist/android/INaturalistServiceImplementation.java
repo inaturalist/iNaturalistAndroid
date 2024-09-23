@@ -1757,7 +1757,7 @@ public class INaturalistServiceImplementation {
 
 
     private boolean deletePinnedLocation(String id) throws AuthenticationException {
-        JSONArray result = delete(String.format(Locale.ENGLISH, "%s/saved_locations/%s.json", HOST, id), null);
+        JSONArray result = delete(String.format(Locale.ENGLISH, "%s/saved_locations/%s", API_V2_HOST, id), null);
 
         if (result != null) {
             return true;
@@ -1767,20 +1767,28 @@ public class INaturalistServiceImplementation {
     }
 
     private boolean pinLocation(Double latitude, Double longitude, Double accuracy, String geoprivacy, String title) throws AuthenticationException {
-        ArrayList<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
-        params.add(new Pair("saved_location[latitude]", latitude.toString()));
-        params.add(new Pair("saved_location[longitude]", longitude.toString()));
-        params.add(new Pair("saved_location[positional_accuracy]", accuracy.toString()));
-        params.add(new Pair("saved_location[geoprivacy]", geoprivacy));
-        params.add(new Pair("saved_location[title]", title));
 
-        JSONArray result = post(HOST + "/saved_locations.json", params);
+        try {
+            JSONObject jsonBody = new JSONObject();
+            JSONObject savedLocation = new JSONObject();
+            savedLocation.put("latitude", latitude);
+            savedLocation.put("longitude", longitude);
+            savedLocation.put("positional_accuracy", accuracy.intValue());
+            savedLocation.put("geoprivacy", geoprivacy);
+            savedLocation.put("title", title);
+            jsonBody.put("saved_location", savedLocation);
+            JSONArray result = post(API_V2_HOST + "/saved_locations", jsonBody);
 
-        if (result != null) {
-            return true;
-        } else {
+            if (result != null) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (JSONException e) {
             return false;
         }
+
     }
 
     private void syncObservations(long[] idsToSync) throws AuthenticationException, CancelSyncException, SyncFailedException {
