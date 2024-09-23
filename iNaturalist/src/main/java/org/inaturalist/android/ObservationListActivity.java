@@ -1244,6 +1244,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                     OnItemClickListener onIdentificationsClick = (adapterView, view, i, l) -> {
                         JSONObject item = (JSONObject) view.getTag();
+                        if (item == null) {
+                            return;
+                        }
+
                         Intent intent = new Intent(ObservationListActivity.this, ObservationViewerSlider.class);
                         intent.putExtra("observation", item.optJSONObject("observation").toString());
                         intent.putExtra("read_only", true);
