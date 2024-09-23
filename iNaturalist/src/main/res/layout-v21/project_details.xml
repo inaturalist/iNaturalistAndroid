@@ -16,7 +16,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="260dp"
             android:background="#003fb921"
             android:fitsSystemWindows="false"
             app:expandedTitleMarginBottom="0dp"
@@ -30,7 +30,7 @@
                 android:fitsSystemWindows="false"
                 android:id="@+id/project_bg"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="260dp"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
                 android:importantForAccessibility="no"
@@ -40,7 +40,7 @@
                 android:fitsSystemWindows="false"
                 app:layout_collapseMode="parallax"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="260dp"
                 android:background="#4c000000"
                 />
 
@@ -58,7 +58,7 @@
                 android:fitsSystemWindows="false"
                 app:layout_collapseMode="parallax"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="260dp">
 
                 <RelativeLayout
                     android:id="@+id/project_pic_container"
@@ -91,16 +91,17 @@
 
                 <LinearLayout
                     android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="37dp"
+                    android:layout_below="@id/project_pic_container"
+                    android:layout_alignParentBottom="true"
+                    android:paddingBottom="70dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <Button
                         android:id="@+id/join_leave_project"
                         android:background="@drawable/circular_button_semi_transparent"
                         android:layout_width="76dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_gravity="bottom"
                         android:text="@string/join_all_caps"
                         android:textColor="@drawable/circular_button_text"
                         android:textSize="12sp"
@@ -111,7 +112,7 @@
                         android:id="@+id/project_news"
                         android:background="@drawable/circular_button_semi_transparent"
                         android:layout_width="92dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_gravity="bottom"
                         android:text="@string/news_all_caps"
                         android:textColor="@drawable/circular_button_text"
                         android:layout_marginStart="10dp"
@@ -123,7 +124,7 @@
                         android:id="@+id/about_project"
                         android:background="@drawable/circular_button_semi_transparent"
                         android:layout_width="76dp"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_gravity="bottom"
                         android:text="@string/about_project_all_caps"
                         android:textColor="@drawable/circular_button_text"
                         android:layout_marginStart="10dp"
