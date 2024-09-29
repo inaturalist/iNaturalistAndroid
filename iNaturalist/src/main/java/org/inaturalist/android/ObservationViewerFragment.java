@@ -97,6 +97,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -2064,7 +2065,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             mUserPic.setOnClickListener(showUser);
         }
 
-        mObservedOn.setText(formatObservedOn(mObservation.observed_on, mObservation.time_observed_at));
+        mObservedOn.setText(formatObservedOn(mObservation.observed_on, mObservation.time_observed_at, mObservation.observed_on_string));
 
         if (mPhotosAdapter.getCount() <= 1) {
             mIndicator.setVisibility(View.GONE);
@@ -2393,7 +2394,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
     }
 
-    private String formatObservedOn(Timestamp date, Timestamp time) {
+    private String formatObservedOn(Timestamp date, Timestamp time, String observedOnString) {
         BetterJSONObject observation = mObsJson != null ? new BetterJSONObject(mObsJson) : null;
         // Only show month/year for observations that you don't own + obscured/private
         String currentUser = mApp.currentUserLogin();
@@ -2402,6 +2403,17 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 observation.getJSONObject("user") != null &&
                 observation.getJSONObject("user").optString("login", "").equals(currentUser);
         boolean isPrivateOrObscured = false;
+
+
+        // Prefer the time string, if available, since it's in local time zone.
+        Date parsedTime = null;
+        if (observedOnString != null && observedOnString.length() > 0) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd h:mm a");
+            try {
+                parsedTime = sdf.parse(observedOnString);
+            } catch (ParseException e) {
+            }
+        }
 
         if (observation != null) {
             if (observation.getString("geoprivacy") != null) {
@@ -2434,7 +2446,12 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             Calendar today = Calendar.getInstance();
             today.setTime(new Date());
             Calendar calDate = Calendar.getInstance();
-            calDate.setTimeInMillis(date.getTime());
+
+            if (parsedTime != null) {
+                calDate.setTime(parsedTime);
+            } else {
+                calDate.setTimeInMillis(date.getTime());
+            }
 
             String dateFormatString;
             if (today.get(Calendar.YEAR) > calDate.get(Calendar.YEAR)) {
@@ -2448,6 +2465,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString);
             format.append(dateFormat.format(date));
         }
+
         if (time != null) {
             // Format the time part
             if (date != null) {
@@ -2462,7 +2480,11 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             }
             SimpleDateFormat timeFormat = new SimpleDateFormat(timeFormatString);
 
-            format.append(timeFormat.format(time));
+            if (parsedTime != null) {
+                format.append(timeFormat.format(parsedTime));
+            } else {
+                format.append(timeFormat.format(time));
+            }
         }
 
         return format.toString();
