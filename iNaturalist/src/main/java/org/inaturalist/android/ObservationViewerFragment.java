@@ -3795,7 +3795,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         }
 
         // Resize photo to 2048x2048 max
-        String resizedPhoto = ImageUtils.resizeImage(getActivity(), path, photoUri, 2048);
+        String resizedPhoto = ImageUtils.resizeImage(getActivity(), path, photoUri, 2048, false);
 
         if (resizedPhoto == null) {
             return null;

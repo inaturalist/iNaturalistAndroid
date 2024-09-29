@@ -184,6 +184,7 @@ public class ObservationEditor extends Fragment {
     @State public boolean mIsCaptive = false;
     @State public boolean mChoseNewPhoto = false;
     @State public boolean mChoseNewSound = false;
+    @State public boolean mCameraPhotoTaken = false;
     private List<Uri> mSharePhotos = null;
 
     @State public HashMap<Integer, Integer> mOriginalPhotoPositions = null;
@@ -1456,6 +1457,7 @@ public class ObservationEditor extends Fragment {
 
         // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
         mPictureTaken = true;
+        mCameraPhotoTaken = true;
     }
 
     private void chooseSound() {
@@ -1504,6 +1506,7 @@ public class ObservationEditor extends Fragment {
 
     private void choosePhoto() {
         Logger.tag(TAG).debug("choosePhoto");
+        mCameraPhotoTaken = false;
 
         if (!mApp.isExternalStoragePermissionGranted()) {
             Logger.tag(TAG).debug("choosePhoto - no storage permissions");
@@ -3581,7 +3584,7 @@ public class ObservationEditor extends Fragment {
     }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri, int position, boolean isDuplicated) {
-        Logger.tag(TAG).debug("createObservationPhotoForPhoto: " + photoUri + ":" + position + ":" + isDuplicated);
+        Logger.tag(TAG).debug("createObservationPhotoForPhoto: " + photoUri + ":" + position + ":" + isDuplicated + ":" + mCameraPhotoTaken);
 
         mPhotosChanged = true;
 
@@ -3613,7 +3616,7 @@ public class ObservationEditor extends Fragment {
         }
 
         // Resize photo to 2048x2048 max
-        String resizedPhoto = ImageUtils.resizeImage(getActivity(), path, isDuplicated ? null : photoUri, 2048);
+        String resizedPhoto = ImageUtils.resizeImage(getActivity(), path, isDuplicated ? null : photoUri, 2048, mCameraPhotoTaken);
 
         if (resizedPhoto == null) {
             return null;
@@ -3623,7 +3626,7 @@ public class ObservationEditor extends Fragment {
         }
 
         // Save original-sized copy of the photo (so when cropping, we'll crop from the original sized photo)
-        String originalSizePhoto = ImageUtils.resizeImage(getActivity(), path, isDuplicated ? null : photoUri, Integer.MAX_VALUE);
+        String originalSizePhoto = ImageUtils.resizeImage(getActivity(), path, isDuplicated ? null : photoUri, Integer.MAX_VALUE, mCameraPhotoTaken);
 
         ObservationPhoto op = new ObservationPhoto();
 

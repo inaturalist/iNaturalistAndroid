@@ -353,19 +353,21 @@ public class ImageUtils {
 
 
 
-    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions) {
-        return resizeImage(context, path, photoUri, maxDimensions, false);
+    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions, boolean isCameraPhoto) {
+        return resizeImage(context, path, photoUri, maxDimensions, false, isCameraPhoto);
     }
     /**
      * Resizes an image to max size
      * @param path the path to the image filename (optional)
      * @param photoUri the original Uri of the image
      * @param noLanczos if True, will not use Lanczos to resize image (but rather bilinear resampling)
+     * @param isCameraPhoto if True, will not rotate photo orientation according to EXIF (photo taken by iNat camera itself)
      * @return the resized image - or original image if smaller than 2048x2048
      */
-    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions, boolean noLanczos) {
+    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions, boolean noLanczos, boolean isCameraPhoto) {
         InputStream is = null;
         BitmapFactory.Options options = new BitmapFactory.Options();
+        Logger.tag(TAG).info("resizeImage: " + path + "/" + photoUri + ":" + isCameraPhoto);
 
         try {
             if (photoUri != null) {
@@ -398,9 +400,11 @@ public class ImageUtils {
 
             int rotationDegrees = 0;
 
-            if (path != null && path.toLowerCase().endsWith("heic")) {
+
+            if (path != null) {
                 androidx.exifinterface.media.ExifInterface exif = new androidx.exifinterface.media.ExifInterface(path);
                 rotationDegrees = exif.getRotationDegrees();
+                Logger.tag(TAG).error("resizeImage: degrees: " + rotationDegrees);
             }
 
             if (photoUri != null) {
@@ -469,17 +473,6 @@ public class ImageUtils {
             if (resizedBitmap != rotatedBitmap) rotatedBitmap.recycle();
 
             // BitmapFactory.decodeStream moves the reading cursor
-            is.close();
-
-            if (photoUri != null) {
-                is = context.getContentResolver().openInputStream(photoUri);
-            } else {
-                is = new FileInputStream(new File(path));
-            }
-
-            // Copy all EXIF data from original image into resized image
-            copyExifData(is, new File(imageFile.getAbsolutePath()), null);
-
             is.close();
 
             return imageFile.getAbsolutePath();

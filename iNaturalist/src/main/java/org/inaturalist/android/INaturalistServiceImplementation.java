@@ -639,7 +639,7 @@ public class INaturalistServiceImplementation {
                     taxonSuggestions = getTaxonSuggestions(obsUrl, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
                 } else {
                     // Local photo  - Resize photo to 640x640 max, not using Lanczos
-                    String resizedPhotoFilename = ImageUtils.resizeImage(mContext, obsFilename, null, 640, true);
+                    String resizedPhotoFilename = ImageUtils.resizeImage(mContext, obsFilename, null, 640, true, false);
 
                     if (resizedPhotoFilename != null) {
                         taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
