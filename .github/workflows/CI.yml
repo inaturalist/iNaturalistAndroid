@@ -56,9 +56,9 @@ jobs:
             cat ~/.android/avd/test.avd/hardware-qemu.ini || true
           script: echo "Generated AVD snapshot for caching."
 
-      - name: Set Java 11
+      - name: Set Java 17
         run: |
-          echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
+          echo "JAVA_HOME=$JAVA_HOME_17_X64" >> $GITHUB_ENV
 
       - name: Copy iNat config files
         run: |
