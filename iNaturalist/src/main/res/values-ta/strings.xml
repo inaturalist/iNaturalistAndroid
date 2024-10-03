@@ -71,14 +71,22 @@
     <string name="search_taxa">தேடு இனங்கள்</string>
     <string name="edit_location">இடம் திருத்து </string>
     <string name="edit_locality_notes">இருப்பிட குறிப்புகள் திருத்து </string>
+    <string-array name="tutorial_titles">
+        <item></item>
+        <item>Observe</item>
+        <item>ஷேர்</item>
+        <item>Learn</item>
+        <item>Contribute</item>
+    </string-array>
     <string-array name="geoprivacy_items">
-        <item>Open</item>
+        <item>திற</item>
         <item>தெளிவற்ற</item>
         <item>தனியார்</item>
     </string-array>
     <string name="alert_unsupported_media_type">மன்னிக்கவும், இந்த மூலத்திலிருந்து படத்தை ஏற்றுவதில் சிக்கல்.</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <!-- The dialog content asking the user to switch to another iNat network -->
+    <string name="editor">ஆசிரியர்</string>
     <string name="email">மின்னஞ்சல்</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <!-- Title of the view used to sign up for a new account -->

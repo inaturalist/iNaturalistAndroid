@@ -967,7 +967,7 @@
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh.mm</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">dd. MM. yyyy</string>
+    <string name="date_long">dd. MM. YYYY</string>
     <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">dd. MMMM LLLL, hh.mma</string>
