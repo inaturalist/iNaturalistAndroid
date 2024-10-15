@@ -707,6 +707,7 @@
     <string name="community_id_at_species_level_or_lower">物种级或较低的社区 ID</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">根据证据, 社区身份证还能确认或改进吗？</string>
     <string name="no_as_good_as_it_can_be">不, 它是尽可能好的</string>
+    <string name="evidence_related_to_single_subject">与单一主体有关的证据</string>
     <string name="seasonality">季节性</string>
     <string name="verifiable">可验证</string>
     <string name="no_annotation">无批注</string>
@@ -817,6 +818,7 @@
     <string name="disabled">已禁用</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[我们使用各种第三方服务来监测稳定性并诊断我们软件中的缺陷和问题。 这些第三方包括：<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a> <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a></li><li><a href="https://newrelic.com/">New Relic</a></li></ul><a href="https://newrelic.com/">]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[我们与这些第三方共享的信息包括：<br/><ul><li>IP地址（可用于推测您所在的城市，并在不同网站或服务中追踪您； <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>这些第三方服务为我们</b>以相对较少的员工维持 iNaturalist 的稳定性和可用性提供了巨大的价值。 在移动设备上，我们几乎没有其他方法可以深入了解正在发生的问题，因为软件运行在我们无法控制的设备上。 有时，我们甚至没有意识到此类问题的发生，直到我们在这些服务提供的数据中看到它们。<b>通过分享此信息，您将帮助我们为您和整个 iNaturalist 社区提供服务。</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[请注意，这个选项仅适用于我们向这些公司明确发送的分析和崩溃数据。 所有iNaturalist 服务器都由Microsoft提供和托管，所有iNaturalist 图像都由Amazon 托管，几乎所有iNaturalist 地图都由Google提供服务。 这意味着每次您都会在 iNaturalist 上看到观察结果， 您正在连接到这些公司提供的服务，并且暴露您的IP地址。 至少在 iPhone 应用程序中，我们使用 Apple 的地图)。 如果没有这些公司提供的服务，可能就不会有iNaturalist 。 并且，我们可以限制您在使用 iNat 时与他们共享的数据的数量和类型。 我们不能完全停止数据流动。]]></string>
     <string name="common_names_place"><![CDATA[常用名称的使用位置： <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">点击以指定从特定地点来显示优先的常用名</string>
@@ -833,6 +835,7 @@
     <string name="running_in_background_notfication">在后台运行，以便我们可以不间断地运行程序</string>
     <string name="opt_out_of_community_taxon">取消加入至社群鉴定出来的分类群</string>
     <string name="opt_in_to_community_taxon">选择加入至社群鉴定出来的分类群</string>
+    <string name="opt_out_message">选择退出社区分类单元，会使得此观察记录被关联到您当前鉴定的分类单元，而非被添加到此观察的鉴定所得出的分类单元。 如果有足够的鉴定与您的鉴定不一致，您的观察就将会变成非正式的。 只有在您确定您的鉴定是正确的且他人的鉴定不正确的情况下，您才应该选择退出。</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">需要权限</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->

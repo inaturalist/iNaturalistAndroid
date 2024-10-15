@@ -423,7 +423,7 @@
     <string name="more_info_on_inat">Info Lainnya di iNaturalist.org</string>
     <string name="view_suggestions">Lihat Saran</string>
     <string name="species_search">Cari Spesies</string>
-    <string name="were_not_confident_enough">Kami tidak cukup percaya diri untuk membuat rekomendasi, namun berikut adalah usulan-usalan terbaik dari kami:</string>
+    <string name="were_not_confident_enough">Kami tidak cukup percaya diri untuk membuat rekomendasi, namun berikut adalah usulan-usulan terbaik dari kami:</string>
     <string name="were_not_confident_enough_no_suggestions">Kami tidak sepenuhnya yakin untuk membuat rekomendasi.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Pilihan yang paling banyak diamati yang sesuai dengan saringan:</string>
@@ -531,9 +531,9 @@
     <string name="any">Apa saja</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">hingga</string>
-    <string name="exact_date">Tanggal Pasti</string>
-    <string name="start">Mulai</string>
-    <string name="end">Selesai</string>
+    <string name="exact_date">Tanggal Tertentu</string>
+    <string name="start">Awal</string>
+    <string name="end">Akhir</string>
     <string name="months">Bulan</string>
     <string name="choose_months">Pilih bulan</string>
     <string name="map_area">Area Peta</string>
@@ -1051,8 +1051,8 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
         <item>Acak</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>Turun</item>
-        <item>Naik</item>
+        <item>Menurun</item>
+        <item>Meningkat</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
