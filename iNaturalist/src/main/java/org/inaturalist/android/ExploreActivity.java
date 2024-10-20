@@ -14,6 +14,8 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.google.android.gms.maps.model.Tile;
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.core.view.ViewCompat;
@@ -61,7 +63,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -1197,7 +1202,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         if (mObservationsMap != null) {
             // Set the tile overlay (for the taxon's observations map)
-            TileProvider gridTileProvider = new UrlTileProvider(256, 256) {
+            TileProvider gridTileProvider = new INatTileProvider(mApp, 256, 256) {
                 @Override
                 public URL getTileUrl(int x, int y, int zoom) {
                     if ( zoom > 10 ) {
@@ -1213,7 +1218,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     }
                 }
             };
-            TileProvider pointTileProvider = new UrlTileProvider(256, 256) {
+            TileProvider pointTileProvider = new INatTileProvider(mApp, 256, 256) {
                 @Override
                 public URL getTileUrl(int x, int y, int zoom) {
                     if ( zoom <= 10 ) {

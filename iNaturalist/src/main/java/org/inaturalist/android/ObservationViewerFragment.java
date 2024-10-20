@@ -2366,6 +2366,8 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             conn = (HttpURLConnection) url.openConnection();
             String jwtToken = mApp.getJWTToken();
             if (mApp.loggedIn() && (jwtToken != null)) conn.setRequestProperty ("Authorization", jwtToken);
+            conn.setRequestProperty("User-Agent", INaturalistServiceImplementation.getUserAgent(mApp));
+            conn.setRequestProperty("X-Installation-ID", mApp.getInstallationID());
 
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
 

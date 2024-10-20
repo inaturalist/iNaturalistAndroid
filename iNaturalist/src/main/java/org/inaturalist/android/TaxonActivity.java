@@ -702,7 +702,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 mMap.getUiSettings().setZoomControlsEnabled(false);
 
                 // Set the tile overlay (for the taxon's observations map)
-                TileProvider tileProvider = new UrlTileProvider(512, 512) {
+                TileProvider tileProvider = new INatTileProvider(mApp, 512, 512) {
                     @Override
                     public URL getTileUrl(int x, int y, int zoom) {
 

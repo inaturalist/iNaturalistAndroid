@@ -20,12 +20,19 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Tile;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.gms.maps.model.UrlTileProvider;
 import com.livefront.bridge.Bridge;
 
+import org.apache.commons.io.IOUtils;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
@@ -108,7 +115,7 @@ public class TaxonMapActivity extends AppCompatActivity {
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
                 // Set the tile overlay (for the taxon's observations map)
-                TileProvider tileProvider = new UrlTileProvider(256, 256) {
+                TileProvider tileProvider = new INatTileProvider(mApp, 256, 256) {
                     @Override
                     public URL getTileUrl(int x, int y, int zoom) {
 
