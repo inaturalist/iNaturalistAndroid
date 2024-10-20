@@ -155,6 +155,9 @@
     <string name="text"><![CDATA[<b>ಪಠ್ಯ:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">iNaturalist ನ ಮುಖ್ಯ ಜಾಲ. ಓಕೆ ಕ್ಲಿಕ್ ನಿಮ್ಮ ಆಪ್ ಅನ್ನು ಜಾಗತಿಕ iNaturalist ಜಾಲದ ಭಾಗವನ್ನಾಗಿ ಮಾಡಲಿದೆ.</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá iNaturalist Network ನ Panamá ರ ಸದಸ್ಯನಾಗಿದೆ. iNaturalist Panamá ಅನ್ನು ಬೆಂಬಲಿಸುವ ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳು ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸಕ್ಕೆ ಮತ್ತು ಸಾರ್ವಜನಿಕವಾಗಿ ಅಸ್ಪಷ್ಟವಾಗಿರುವ ಅಥವಾ ಖಾಸಗಿ ಎಂದು ಹೊಂದಿರುವ ನಿಖರ ಕೋಆರ್ಡಿನೇಟುಗಳಿಗೆ ಪ್ರವೇಶವನ್ನು ಹೊಂದುತ್ತವೆ. ನೀವು 1000 ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಿದ್ದರೆ, ನಿಮ್ಮ ಸಂಬಂಧವನ್ನು ಪ್ರಯೋಗಾತ್ಮಕವಾಗಿ ಬದಲಾಯಿಸಲು ದಯವಿಟ್ಟು ಮಾಡಬೇಡಿ. ನೀವು ನಿಮ್ಮ ಸಂಬಂಧವನ್ನು ಬದಲಾಯಿಸಲು ಇಚ್ಛಿಸುತ್ತೀರಾ?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador iNaturalist Network ನ Ecuador ರ ಸದಸ್ಯನಾಗಿದೆ. iNaturalist Ecuador ಅನ್ನು ಬೆಂಬಲಿಸುವ ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳು ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸಕ್ಕೆ ಮತ್ತು ಸಾರ್ವಜನಿಕವಾಗಿ ಅಸ್ಪಷ್ಟವಾಗಿರುವ ಅಥವಾ ಖಾಸಗಿ ಎಂದು ಹೊಂದಿರುವ ನಿಖರ ಕೋಆರ್ಡಿನೇಟುಗಳಿಗೆ ಪ್ರವೇಶವನ್ನು ಹೊಂದುತ್ತವೆ. ನೀವು 1000 ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಿದ್ದರೆ, ನಿಮ್ಮ ಸಂಬಂಧವನ್ನು ಪ್ರಯೋಗಾತ್ಮಕವಾಗಿ ಬದಲಾಯಿಸಲು ದಯವಿಟ್ಟು ಮಾಡಬೇಡಿ. ನೀವು ನಿಮ್ಮ ಸಂಬಂಧವನ್ನು ಬದಲಾಯಿಸಲು ಇಚ್ಛಿಸುತ್ತೀರಾ?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia iNaturalist Network ನ Australia ರ ಸದಸ್ಯನಾಗಿದೆ. iNaturalist Australia ಅನ್ನು ಬೆಂಬಲಿಸುವ ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳು ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸಕ್ಕೆ ಮತ್ತು ಸಾರ್ವಜನಿಕವಾಗಿ ಅಸ್ಪಷ್ಟವಾಗಿರುವ ಅಥವಾ ಖಾಸಗಿ ಎಂದು ಹೊಂದಿರುವ ನಿಖರ ಕೋಆರ್ಡಿನೇಟುಗಳಿಗೆ ಪ್ರವೇಶವನ್ನು ಹೊಂದುತ್ತವೆ. ನೀವು 1000 ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಿದ್ದರೆ, ನಿಮ್ಮ ಸಂಬಂಧವನ್ನು ಪ್ರಯೋಗಾತ್ಮಕವಾಗಿ ಬದಲಾಯಿಸಲು ದಯವಿಟ್ಟು ಮಾಡಬೇಡಿ. ನೀವು ನಿಮ್ಮ ಸಂಬಂಧವನ್ನು ಬದಲಾಯಿಸಲು ಇಚ್ಛಿಸುತ್ತೀರಾ?</string>
     <string name="editor">ಸಂಪಾದಕ</string>
     <string name="license">ಪರವಾನಗಿ</string>
     <string name="download_for_offline_use">ಆಫ್‍ಲೈನ್ ಬಳಕೆಗಾಗಿ ಡೌನ್‍ಲೋಡ್ ಮಾಡಿ</string>
@@ -304,6 +307,7 @@
     <string name="language">ಭಾಷೆ</string>
     <string name="version">ಆವೃತ್ತಿ</string>
     <string name="inat_network">iNaturalist ಜಾಲ</string>
+    <string name="inat_network_description">iNaturalist Network ಒಂದು iNaturalist ಸಮುದಾಯವನ್ನು ಸ್ಥಳೀಯಗೊಳಿಸಲು ಬಳಸುವ ಸೂತ್ರವಾಗಿಯಾಗಿದೆ. Network ಸೈಟ್‌ಗಳನ್ನು ಸ್ಥಳೀಯ ಬಳಕೆಯನ್ನು ಉತ್ತೇಜಿಸಲು ಮತ್ತು ಸ್ಥಳೀಯ ವೈವಿಧ್ಯಮಟ್ಟವನ್ನು ಲಾಭಿಸುವುದಕ್ಕಾಗಿ iNaturalist ನೊಂದಿಗೆ ಒಪ್ಪಂದ ಮಾಡಿರುವ ಸ್ಥಳೀಯ ಸಂಸ್ಥೆಗಳು ಬೆಂಬಲಿಸುತ್ತವೆ.</string>
     <string name="more_info">ಹೆಚ್ಚಿನ ಮಾಹಿತಿ</string>
     <string name="select_network">ಜಾಲದ ಸಹಭಾಗಿತ್ವವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="help">ಸಹಾಯ</string>
@@ -535,6 +539,7 @@
     <string name="change_password">ಗುಪ್ತಪದ ಬದಲಿಸಿ</string>
     <string name="search_projects_youve_joined">ನೀವು ಸೇರಿರುವ ಪ್ರಾಯೋಜನೆಯನ್ನು ಹುಡುಕಿ...</string>
     <string name="must_be_connected_to_load_more_obs">ಇನ್ನೂ ಹೆಚ್ಚು ವೀಕ್ಷಣೆಗಳನ್ನು ತುಂಬಲು ನೀವು ಅಂತರ್ಜಾಲ ಸಂಪರ್ಕದಲ್ಲಿರಲೇಬೇಕು.</string>
+    <string name="inat_about_title_new">iNaturalist ಒಂದು ಸ್ವಾಯತ್ತ 501(c)(3) nonprofit, United States ನಲ್ಲಿ ಆಧಾರಿತವಾಗಿದೆ (EIN 92-1296468).</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -543,6 +548,7 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="inat_credits2"><![CDATA[iNaturalist ನಮ್ಮ ಸಮುದಾಯದಲ್ಲಿ ಭಾಗವಹಿಸುವ ಪ್ರತಿಯೊಂದು ವ್ಯಕ್ತಿಯ ಕಾರಣಕ್ಕಾಗಿ अस्तित्वದಲ್ಲಿದೆ. ಸಾಫ್ಟ್‌ವೇರ್ ನಿರ್ಮಿಸುವವರು, ಇಂಟರ್ಫೇಸ್ಗಳನ್ನು ವಿನ್ಯಾಸಗೊಳಿಸುವವರು, ನಮ್ಮ ಮೂಲಭೂತ ಸೌಕರ್ಯಗಳನ್ನು ನಿರ್ವಹಿಸುವವರು, ಸಮುದಾಯವನ್ನು ಬೆಂಬಲಿಸುವವರು ಮತ್ತು ಸಹಕಾರಗಳನ್ನು ಉತ್ತೇಜಿಸುವವರು ಯಾರೋನ್ ಬುಡೋವ್‌ಸ್ಕಿ, ಅಮಂಡಾ ಬುಲಿಂಗ್ಟನ್, ಟೋನಿ ಇವೇನ್, ಯೋಹಾನ್ನೆಸ್ ಕ್ಲೈನ್, ಪ್ಯಾಟ್ರಿಕ್ ಲಿಯರಿ,ಸ್ಕಾಟ್ ಲೋರಿ, ಅಭಾಸ್ ಮಿಸ್ರರಾಜ್, ಸಿಲ್ವೈನ್ ಮೋರಿನ್, ಕ್ಯಾರಿ ಸೆಲ್ಟ್ಜರ್, ಅಲೆಕ್ಸ್ ಶೆಪರ್ಡ್, ಅಂಜಿ ಟಾ, ಮತ್ತು ಕೆನ್-ಇಚಿ ಉಯೇಡಾ.<br/><br/>ಕಾಲ್‌ಟೆಕ್ ಮತ್ತು ಕಾರ್ನೆಲ್ ಟೆಕ್ ಚಿತ್ರಗಳ ಮೂಲಕ ಗುರುತಿಸುವಿಕೆ ಸೂಚಿಸುವ ಕಂಪ್ಯೂಟರ್ ವಿಕ್ಷನ್ ಸಿಸ್ಟಮ್ ಅನ್ನು ಅಭಿವೃದ್ಧಿಪಡಿಸಲು ಸಹಾಯಮಾಡಿದರು. ಕಂಪ್ಯೂಟರ್ ವಿಕ್ಷನ್ ಸಂಶೋಧನೆಯನ್ನು ಮುಂದುವರಿಸಲು ಗ್ರಾಂಟ್ ವಾನ್ ಹಾರ್ನ್, ಸರ್ಜ್ ಬೆಲಾಂಗೀ ಮತ್ತು ಪಿಯೆಟ್ರೋ ಪೆರೋನಾಗೆ ಧನ್ಯವಾದಗಳು. ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ <a href="https://www.visipedia.org">visipedia.org</a> ಗೆ ಹೋಗಿ. ಹೆಚ್ಚುವರಿಯಾಗಿ ಸಹಾಯ ಮಾಡುವ NVIDIA ಗೆ ವಿಶೇಷ ಧನ್ಯವಾದಗಳು.]]></string>
     <string name="credits_title">ಕೃತಜ್ಞತೆಗಳು</string>
     <string name="password_changed">ಆಪ್ ಬಳಸುತ್ತಿರುವ ಗುಪ್ತಪದ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ - ನೀವೇನಾದರೂ ಜಾಲತಾಣದಲ್ಲಿ ಗುಪ್ತಪದ ಬದಲಿಸಿರುವಿರಾ? ದಯವಿಟ್ಟು ಹೊಸದೊಂದನ್ನು ಇಲ್ಲಿ ನಮೂದಿಸಿ.</string>
     <string name="just_so_you_know">ಸುಮ್ನೆ ಹಾಗೆ ನಿಮಗೆ ಗೊತ್ತಲ್ವಾ...</string>
@@ -833,6 +839,7 @@
     <string name="flagging_conversation">ಮಾತುಕತೆಯನ್ನು ಫ್ಲ್ಯಾಗ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
     <string name="no_subject">ವಿಷಯ ಇಲ್ಲ</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
+    <string name="rank_state_of_matter">ದ್ರವ್ಯ ಸ್ಥಿತಿ</string>
     <string name="rank_kingdom">ಸಾಮ್ರಾಜ್ಯ</string>
     <string name="rank_subkingdom">ಉಪಸಾಮ್ರಾಜ್ಯ</string>
     <string name="rank_phylum">ವಂಶ</string>
@@ -867,6 +874,8 @@
     <string name="rank_hybrid">ಮಿಶ್ರತಳಿ</string>
     <!-- Singular -->
     <string name="rank_subspecies">ಉಪಪ್ರಭೇಧ</string>
+    <string name="rank_variety">ವಿಧ</string>
+    <string name="rank_form">ರೂಪ</string>
     <string name="rank_infrahybrid">ನಿಮ್ನಸಂಕರ</string>
     <string name="rank_leaves">ಎಲೆಗಳು</string>
     <string name="location_lat_lng">ಸ್ಥಳ: %1$f, %2$f</string>
@@ -889,6 +898,7 @@
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">MMM d, yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \'\'yy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">ಸಾಮಾನ್ಯ ಹೆಸರುಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</string>

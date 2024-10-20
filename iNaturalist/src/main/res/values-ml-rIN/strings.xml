@@ -103,6 +103,13 @@
     <string name="done">ചെയ്‌തു</string>
     <string name="please_sign_in_via_settings">നിങ്ങൾ ചേർന്ന പ്രോജക്റ്റുകൾ കാണുന്നതിന് നിങ്ങൾ ലോഗിൻ ചെയ്തിരിക്കണം.</string>
     <string name="contact_support">കോൺ‌ടാക്റ്റ് പിന്തുണ</string>
+    <string-array name="tutorial_titles">
+        <item></item>
+        <item>നിരീക്ഷിക്കുക</item>
+        <item>Share</item>
+        <item>Learn</item>
+        <item>Contribute</item>
+    </string-array>
     <string-array name="geoprivacy_items">
         <item>Open</item>
         <item>അവക്തമായ</item>
@@ -121,6 +128,7 @@
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <!-- Prompt to log in to your account or sign up for a new account -->
     <!-- Dialog title for when you are updating the description of an identification -->
+    <string name="observe">നിരീക്ഷിക്കുക</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
@@ -146,7 +154,9 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
+    <string name="any">ഏതെങ്കിലും</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
+    <string name="exact_date">സത്യമായ തീയതി</string>
     <!-- As in redo search in the current map area -->
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
@@ -162,6 +172,7 @@
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
     <!-- People who added identifications to observations in a project -->
+    <string name="observers">നിരീക്ഷകർ</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
@@ -197,6 +208,7 @@
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <!-- Text for a button or label that allows someone to join a project -->
+    <string name="observers_all_caps">നിരീക്ഷകർ</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <!-- Label for a button to import an existing sound for an observation -->
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
@@ -227,10 +239,12 @@
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">MM/dd/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \'\'yy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <!-- Singular -->
@@ -240,8 +254,16 @@
     <!-- Accessibility text for the faves tab on the observation detail view -->
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string-array name="explore_order_by_items">
+        <item>കൂട്ടിച്ചേർത്തു തീയതി</item>
+        <item>Date Observed</item>
+        <item>Date Updated</item>
+        <!--<item>Faves</item>-->
+        <item>Random</item>
+    </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">%1$s (%2$s) അനുസരിച്ച് ക്രമീകരിതം</string>
     <!-- Label for an observation search filter to exclude your own observations -->
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
