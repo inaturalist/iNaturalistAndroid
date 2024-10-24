@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -74,6 +75,13 @@ public class ImageUtils {
 
     public static void blur(Context context, Bitmap image, ImageView imageView) {
         if (null == image) return;
+        if (context == null) return;
+        if (context instanceof Activity) {
+            Activity activity = (Activity) context;
+            if (activity.isDestroyed() || activity.isFinishing()) {
+                return; // Avoid loading if activity is destroyed or finishing
+            }
+        }
 
         Glide.with(context)
                 .asBitmap()
@@ -402,9 +410,14 @@ public class ImageUtils {
 
 
             if (path != null) {
-                androidx.exifinterface.media.ExifInterface exif = new androidx.exifinterface.media.ExifInterface(path);
-                rotationDegrees = exif.getRotationDegrees();
-                Logger.tag(TAG).error("resizeImage: degrees: " + rotationDegrees);
+                try {
+                    androidx.exifinterface.media.ExifInterface exif = new androidx.exifinterface.media.ExifInterface(path);
+                    rotationDegrees = exif.getRotationDegrees();
+                    Logger.tag(TAG).info("resizeImage: degrees: " + rotationDegrees);
+                } catch (Exception exc) {
+                    Logger.tag(TAG).error("resizeImage: exception while reading rotation");
+                    Logger.tag(TAG).error(exc);
+                }
             }
 
             if (photoUri != null) {
