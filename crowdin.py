@@ -292,18 +292,18 @@ def validate_translation(locale, path, key, text, en_string, errors, warnings,
 
     if text and key in DATE_FORMAT_KEYS and locale not in SKIP_DATE_FORMAT_CHECK:
         if "\\'\\'\\'" in text:
-            if key not in warnings[path]:
-                warnings[path][key] = []
-            warnings[path][key].append(
+            if key not in errors[path]:
+                errors[path][key] = []
+            errors[path][key].append(
                 f"Invalid date format characters: Has extra/unbalanced apostrophe")
             if options.debug:
-                print("\t\t{}".format(warnings[path][key][-1]))
+                print("\t\t{}".format(errors[path][key][-1]))
 
         without_escaped_text = re.sub(r"'.+?'", "", text)
         potentially_formatted = re.sub(r"[^\w]", "", without_escaped_text)
         bad_characters = set(
             re.findall(
-                r"[^GyMLwWDdFEuaHkKhmsSzZX]",
+                r"[^GyYMLwWDdFEuaHkKhmsSzZX]",
                 potentially_formatted)
             )
         # Find bad chars in DATE_FORMAT_KEYS
@@ -497,8 +497,8 @@ def find_unused_keys(options):
         else:
             print("\rChecking {0:{1}}".format(key, 100), end="\r", flush=True)
         patterns = "|".join((
-            f"R\.(string|array|plurals)\.{key}($|[^A-z0-9_])",
-            f"@(string|array|plurals)[\.\/]{key}($|[^A-z0-9_])",
+            f"R\\.(string|array|plurals)\\.{key}($|[^A-z0-9_])",
+            f"@(string|array|plurals)[\\.\\/]{key}($|[^A-z0-9_])",
             f"setStringResourceForView.*\"{key}\"",
             f"getStringResourceByName.*\"{key}\"",
             f"createTabContent.*\"{key}\""
@@ -584,8 +584,20 @@ def main():
         print("\n\n")
         find_unused_keys(options)
 
-    # Return error code from the script if we have any errors
-    sys.exit(any(errors.values()))
+    # Print errors
+    actual_errors = {path: errs for path, errs in errors.items() if any(errs)}
+    if any(actual_errors):
+        print(f"\n\n{bcolors.FAIL}FAILED with {len(actual_errors)} errors:{bcolors.ENDC}")
+        for path in actual_errors:
+            errors_by_key = actual_errors[path]
+            print(f"\t{path}")
+            for key in errors_by_key:
+                print(f"\t\t{key}")
+                error_messages = errors_by_key[key]
+                for error in error_messages:
+                    print(f"\t\t\t{bcolors.FAIL}{error}{bcolors.ENDC}")
+        # Return error code from the script if we have any errors
+        sys.exit(any(actual_errors))
 
 
 if __name__ == "__main__":
