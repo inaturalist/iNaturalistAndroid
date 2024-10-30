@@ -469,6 +469,7 @@
     <string name="island">Uharte</string>
     <string name="airport">Aireportua</string>
     <string name="drainage">Drainatze-gunea</string>
+    <string name="land_feature">Lurraren ezaugarriak</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="nationality">Nazionalitatea</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
