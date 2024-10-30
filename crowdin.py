@@ -201,6 +201,7 @@ def import_crowdin_for_android(zip_path, options):
 
 def copy_crowdin_cli_translations(options):
     """Copy Crowdin CLI translations to custom locations, e.g. regionless locales"""
+    print(f"Copying Crowdin locales to iNat locales")
     for path in sorted(glob(os.path.join("iNaturalist", "src", "main", "res", "values-*"))):
         strings_xml_path = os.path.join(path, "strings.xml")
         if not os.path.isfile(strings_xml_path):
@@ -577,9 +578,9 @@ def main():
     # Check if valid filepath for zip
     if options.zip_path:
         import_crowdin_for_android(options.zip_path, options)
-    errors, warnings = validate_android_translations(options)
     if options.crowdin_cli:
         copy_crowdin_cli_translations(options)
+    errors, warnings = validate_android_translations(options)
     if options.find_unused:
         print("\n\n")
         find_unused_keys(options)
