@@ -139,7 +139,7 @@
         <item><![CDATA[<b>Raziskovalna</b> opazovanja se delijo z znanstveniki, ki poskušajo bolje razumeti in zavarovati naravo.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Odpri</item>
+        <item>javno</item>
         <item>Prikrito</item>
         <item>Zasebno</item>
     </string-array>
@@ -251,20 +251,20 @@
     <string name="unable_to_acquire_location">Lokacije ni bilo mogoče pridobiti</string>
     <string name="casual_grade">priložnostna stopnja</string>
     <string name="needs_id">potrebuje ID</string>
-    <string name="research_grade">Raziskovalna stopnja</string>
+    <string name="research_grade">raziskovalna stopnja</string>
     <string name="data_quality">Kakovost podatkov</string>
     <string name="casual_grade_add_location"><![CDATA[ Dodajte <b>lokacijo</b> za prehod tega opazovanja v stanje »Potrebuje ID«.]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Dodajte <b>datum</b> za prehod tega opazovanja v stanje »Potrebuje ID«.]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Dodajte <b>fotografijo</b> za prehod tega opazovanja v stanje »Potrebuje ID«.]]></string>
     <string name="casual_grade_captive"><![CDATA[ Opazovanje je priložnostno, ker gre za organizem <b>v ujetništvu/gojeni</b> organizem.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ Opazovanje potrebuje <b>več določitev</b> skupnosti, da bo prešlo stanje »Raziskovalno«.]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Opazovanje potrebuje <b>več določitev</b> skupnosti, da bo prešlo v stanje »Raziskovalno«.]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">Vključeno v %1$d projekt</item>
         <item quantity="two">Vključeno v %1$d projekta</item>
         <item quantity="few">Vključeno v %1$d projekte</item>
         <item quantity="other">Vključeno v %1$d projektov</item>
     </plurals>
-    <string name="geoprivacy_explanation"><![CDATA[ Geozasebost je nastavitev, s katero lahko pri opazovanjih upravljate prikaz prostorskih koordinat (geografske širine in geografske dolžine). Možnosti pri tem so:<br/><b>Javno</b> – Koordinate lahko vidi vsak, razen če je takson ogrožen. <br/><b>Prikrito</b> – Javne koordinate so prikazane z naključno točko v območju 0,2 × 0,2 stopinje, ki vsebuje prave koordinate, kar na ekvatorju približno ustreza kvadratu velikosti 22 × 22 km, zoži pa se proti poloma. Prave koordinate so vidne samo vam in skrbnikom projektov, v katere ste opazovanje vključili. <br/><b>Zasebno</b> – Koordinate so na javnih zemljevidih popolnoma skrite, prave koordinate so vidne samo vam in skrbnikom projektov, v katere ste opazovanje vključili. <br/><br/>Upoštevajte, da lahko skrbniki posameznih projektov koordinate vidijo vedno, ne glede na vašo nastavitev geozasebnosti. Če vas skrbi, kdo ima dostop do koordinat, sodelujte samo v projektih, katerih skrbnikom zaupate.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geozasebost je nastavitev, s katero lahko pri opazovanjih upravljate prikaz prostorskih koordinat (geografske širine in geografske dolžine). Možnosti pri tem so:<br/><b>javno</b> – Koordinate lahko vidi vsak, razen če je takson ogrožen. <br/><b>prikrito</b> – Javne koordinate so prikazane z naključno točko v območju 0,2 × 0,2 stopinje, ki vsebuje prave koordinate, kar na ekvatorju približno ustreza kvadratu velikosti 22 × 22 km, zoži pa se proti poloma. Prave koordinate so vidne samo vam in skrbnikom projektov, v katere ste opazovanje vključili. <br/><b>zasebno</b> – Koordinate so na javnih zemljevidih popolnoma skrite, prave koordinate so vidne samo vam in skrbnikom projektov, v katere ste opazovanje vključili. <br/><br/>Upoštevajte, da lahko skrbniki posameznih projektov koordinate vidijo vedno, ne glede na vašo nastavitev geozasebnosti. Če vas skrbi, kdo ima dostop do koordinat, sodelujte samo v projektih, katerih skrbnikom zaupate.]]></string>
     <string name="id_title">ID uporabnika/-ce %1$s\' • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Izbriši</string>

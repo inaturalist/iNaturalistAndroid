@@ -981,10 +981,10 @@
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">МММ д, рррр</string>
+    <string name="date_long">MMM d, yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">ММММ д, рррр гг:хх</string>
+    <string name="date_long_with_time">MMMM d, yyyy HH:mm</string>
     <string name="show_common_names"> Показати звичайні назви</string>
     <string name="show_common_names_description">Вимкніть, якщо ви бажаєте бачити тільки наукові назви</string>
     <string name="email_must_look_like_email_address">Email має виглядати як адреса електронної пошти</string>

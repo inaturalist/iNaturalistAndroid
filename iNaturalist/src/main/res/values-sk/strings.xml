@@ -447,7 +447,9 @@
     <string name="suggest_species_description">Zobrazí návrhy druhov podľa vizuálnej podobnosti s fotografiami.</string>
     <string name="visually_similar">Vizuálne podobné</string>
     <string name="visually_similar_seen_nearby">Vizuálne podobné / videné blízko</string>
+    <string name="visually_similar_expected_nearby">Vizuálne podobné/očakávané v okolí</string>
     <string name="seen_nearby">Videné blízko</string>
+    <string name="expected_nearby">Očakávané v okolí</string>
     <string name="enlarge">Zväčšiť</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Pozri nižšiu úroveň</string>
@@ -577,6 +579,7 @@
     <string name="change_password">Zmena hesla</string>
     <string name="search_projects_youve_joined">Prehľadajte projekty, na ktorých participujete...</string>
     <string name="must_be_connected_to_load_more_obs">Musíte byť pripojený na internet aby ste načítali viac pozorovaní</string>
+    <string name="inat_about_title_new">iNaturalist je nezávislá nezisková organizácia podľa 26 U.S.C. § 501(c)(3) sídliaca v Spojených štátoch (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -719,6 +722,7 @@ www.protectedplanet.net</a>]]></string>
     <string name="community_id_at_species_level_or_lower">Komunitné ID na úrovni druhu alebo nižšie</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Môže byť komunitné ID, na základe dôkazov, potvrdené alebo vylepšené?</string>
     <string name="no_as_good_as_it_can_be">Nie, lepšie to už nebude</string>
+    <string name="evidence_related_to_single_subject">Dôkazy sa vzťahujú na jeden subjekt</string>
     <string name="seasonality">Sezónnosť</string>
     <string name="verifiable">Overiteľné</string>
     <string name="no_annotation">Žiadne poznámky</string>
@@ -965,6 +969,7 @@ www.protectedplanet.net</a>]]></string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d. MMM yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \'yy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d. MMMM yyyy HH:mm</string>
     <string name="show_common_names">Zobraziť bežné mená</string>
@@ -1203,6 +1208,14 @@ www.protectedplanet.net</a>]]></string>
     <string name="app_version_copied_to_clipboard">Verzia aplikácie sa skopírovala do schránky</string>
     <string name="authentication_failed">Overenie zlyhalo</string>
     <string name="please_try_again_soon">Skúste to znova neskôr.</string>
+    <string name="verify_your_email">Overte svoju e-mailovú adresu</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">Nemožno nahrať súbor, pretože presahuje 20 MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Boli ste odhlásení. Prosím, prihláste sa znovu.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Zavrieť oznam</string>
+    <string name="import_photos_from">Importovať fotky z…</string>
+    <string name="cannot_find_default_camera">Nepodarilo sa nájsť predvolený fotoaparát — prosím, kontaktujte podporu</string>
+    <string name="please_click_link_to_confirm_email">Kliknutím na odkaz v e-maile potvrďte svoju e-mailovú adresu pre iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Kliknutím odošlete nový overovací e-mail.</string>
 </resources>

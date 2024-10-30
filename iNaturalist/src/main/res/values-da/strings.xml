@@ -841,7 +841,7 @@
     <string name="running_in_background_notfication">Kører i baggrunden, så afbrydelse undgås</string>
     <string name="opt_out_of_community_taxon">Fravælg Fællesskabstakson</string>
     <string name="opt_in_to_community_taxon">Tilvælg Fællesskabstakson</string>
-    <string name="opt_out_message">Fravalg af Fællesskabetstakson tvinger denne observation til at være forbundet med den pågældende takson fra din nuværende identifikation, ikke en takson, der stammer fra alle de identifikationer, som er føjet til denne observation. Hvis nok identifikatorer er uenige med dig, bliver din observation Uformel. Du bør kun fravælge, hvis du er sikker på, at din identifikation er korrekt, og andre identifikationer er forkerte.</string>
+    <string name="opt_out_message">Fravalg af Fællesskabetstakson tvinger denne observation til at være forbundet med den pågældende takson fra den nuværende identifikation, ikke en takson, der stammer fra alle de identifikationer, som er føjet til denne observation. Hvis nok identifikatorer er uenige, bliver observationen Uformel. Man bør derfor kun fravælge, hvis man er sikker på, at ens identifikation er korrekt, og andre identifikationer er forkerte.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Tilladelse kræves</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
