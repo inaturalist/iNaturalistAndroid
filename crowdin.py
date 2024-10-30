@@ -302,19 +302,27 @@ def validate_translation(locale, path, key, text, en_string, errors, warnings,
 
         without_escaped_text = re.sub(r"'.+?'", "", text)
         potentially_formatted = re.sub(r"[^\w]", "", without_escaped_text)
-        bad_characters = set(
-            re.findall(
-                r"[^GyYMLwWDdFEuaHkKhmsSzZX]",
-                potentially_formatted)
-            )
+        formatting_chars = "GyYMLwWDdFEuaHkKhmsSzZX"
+        formatting_translation_chars = set(
+            re.findall(rf"[{formatting_chars}]", potentially_formatted) )
+        non_formatting_translation_chars = set(
+            re.findall(rf"[^{formatting_chars}]", potentially_formatted))
         # Find bad chars in DATE_FORMAT_KEYS
-        if bad_characters and len(bad_characters) > 0:
+        if non_formatting_translation_chars and len(non_formatting_translation_chars) > 0:
             if key not in warnings[path]:
                 warnings[path][key] = []
             warnings[path][key].append(
-                f"Invalid date format characters: {bad_characters} (maybe ok for non-Latin chars)")
+                f"Invalid date format characters: {non_formatting_translation_chars} (maybe ok for non-Latin chars)")
             if options.debug:
                 print("\t\t{}".format(warnings[path][key][-1]))
+        # Ensure translation has *some* formatting chars
+        if len(formatting_translation_chars) == 0:
+            if key not in errors[path]:
+                errors[path][key] = []
+            errors[path][key].append(
+                f"Contains no formatting characters (watch out for Unicode lookalikes)")
+            if options.debug:
+                print("\t\t{}".format(errors[path][key][-1]))
 
 
 def en_translations():
