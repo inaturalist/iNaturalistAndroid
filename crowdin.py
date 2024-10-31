@@ -292,11 +292,14 @@ def validate_translation(locale, path, key, text, en_string, errors, warnings,
             print("\t\t{}".format(errors[path][key][-1]))
 
     if text and key in DATE_FORMAT_KEYS and locale not in SKIP_DATE_FORMAT_CHECK:
-        if "\\'\\'\\'" in text:
+        single_quotes = [l for l in text if l == "'"]
+        # If there is an odd number of single quotes, that means some are
+        # unescaped
+        if len(single_quotes) % 2 == 1:
             if key not in errors[path]:
                 errors[path][key] = []
             errors[path][key].append(
-                f"Invalid date format characters: Has extra/unbalanced apostrophe")
+                f"Invalid date format characters: unescaped / unclosed single quotes")
             if options.debug:
                 print("\t\t{}".format(errors[path][key][-1]))
 
