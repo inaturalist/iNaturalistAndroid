@@ -13,8 +13,8 @@
     <string name="couldnt_load_nearby_observations">Nemožno načítať lokálne pozorovania: %1$s</string>
     <string name="username_invalid">Meno používateľa alebo heslo je neplatné, prosím prihláste sa znova.</string>
     <string name="signing_in">Prihlasovanie...</string>
-    <string name="signed_in">Prihlásený!</string>
-    <string name="please_sign_in">Prosím prihláste sa</string>
+    <string name="signed_in">Ste prihlásení!</string>
+    <string name="please_sign_in">Prosím, prihláste sa</string>
     <string name="please_sign_in_description">Prihláste sa k iNaturalist účtu alebo si vytvorte nový účet.</string>
     <string name="please_enable_location_services">Prosím, povoľte služby zisťovania polohy s cieľom nájsť vašu aktuálnu polohu...</string>
     <string name="go_to_settings">Prejsť do nastavení</string>
@@ -51,7 +51,7 @@
     <string name="yes">Áno</string>
     <string name="no">Nie</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">Súhlas?</string>
+    <string name="agree">Súhlasíte?</string>
     <string name="no_comments">Zatiaľ žiadny komentár a identifikácia</string>
     <string name="add_comment">Pridať komentár</string>
     <string name="add_id">Pridať identifikáciu</string>
@@ -72,7 +72,7 @@
     <string name="invalid_project_field">Zadajte platnú hodnotu pre pole \"%1s\"</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <string name="select_projects">Vyberte z projektov na ktorých participujete</string>
-    <string name="not_connected">Na tento úkon musíte byť pripojený na internet!</string>
+    <string name="not_connected">Na tento úkon musíte byť pripojení na internet!</string>
     <string name="search_projects">Vyhľadávanie projektov...</string>
     <string name="search_guides">Hľadať sprievodcov...</string>
     <string name="save_observation">Uložiť pozorovanie</string>
@@ -103,7 +103,7 @@
     <string name="use_device_language_settings">Použiť nastavenie jazyka zariadenia</string>
     <string name="choose_location">Vybrať miesto</string>
     <string name="done">Hotovo</string>
-    <string name="please_sign_in_via_settings">Pre zobrazenie projektov, do ktorých prispievate musíte byť prihlásený.</string>
+    <string name="please_sign_in_via_settings">Pre zobrazenie projektov, do ktorých prispievate, musíte byť prihlásení.</string>
     <string name="contact_support">Kontaktovať podporu</string>
     <string name="leave_project">Opustiť projekt</string>
     <string name="leave_project_confirmation">Naozaj chcete opustiť tento projekt?</string>
@@ -323,7 +323,7 @@
     <string name="there_was_a_problem_updating_profile">Vyskytol sa problém pri aktualizácii profilu!</string>
     <string name="there_was_a_problem_updating_profile_params">Vyskytol sa problém pri aktualizácii profilu: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Aktuálne prihlásený ako <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[Ste prihlásení ako <b>%1$s</b>]]></string>
     <string name="log_out">Odhlásiť sa</string>
     <string name="not_logged_in">Nie ste prihlásený</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
@@ -390,7 +390,7 @@
     <string name="no_updates_yet">Zatiaľ žiadne aktualizácie. Zostaňte v kontakte!</string>
     <string name="you_will_only_receive_updates_when_creating">(Budete získavať aktualizácie až potom ako vytvoríte pozorovania)</string>
     <string name="you_will_only_receive_updates_when_following">(Budete získavať aktualizácie až potom ako budete sledovať pozorovania)</string>
-    <string name="user_activity_id"><![CDATA[<b>%1$s</b> navrhol ID:%2$s<font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> navrhol ID: %2$s<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> komentoval: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_mention"><![CDATA[<b>%1$s</b> Vás spomenul: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Zdá sa, že ste odstránili fotografiu vymazaním vyrovnávacej pamäte aplikácií pred jej nahranim.  Budete musieť pridať fotografiu späť do svojho pozorovania z vašej galérie. Nabudúce sa uistite, že ste nahrali všetky fotografie pred vymazaním vyrovnávacej pamäte aplikácie.</string>
@@ -625,8 +625,7 @@ www.protectedplanet.net</a>]]></string>
     <string name="annotation_name">Názov poznámky</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Žiadne</string>
-    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Fenológia rastliny</string>
+    <!-- Phenological state of flowers on a plant -->
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Životné štádium</string>
     <!-- Noun, describes sex of the organism -->
@@ -635,16 +634,12 @@ www.protectedplanet.net</a>]]></string>
     <string name="annotation_name_alive_or_dead">Živý alebo mŕtvy</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Dôkaz prítomnosti</string>
+    <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Kvitnutie</string>
-    <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Zrelosť plodov</string>
+    <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Pučanie</string>
-    <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Pučanie kvetov</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">Žiadny dôkaz o kvitnutí</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Dospelý</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -668,18 +663,23 @@ www.protectedplanet.net</a>]]></string>
     <string name="annotation_value_dead">Mŕtvy</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Nedá sa určiť</string>
-    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
     <string name="annotation_value_organism">Organizmus</string>
-    <!-- Evidence of Presence value when for bird feathers -->
+    <!-- "Evidence of Presence" value when for bird feathers -->
     <string name="annotation_value_feather">Perie</string>
-    <!-- Evidence of Presence value when for fecal remains -->
+    <!-- "Evidence of Presence" value when for fecal remains -->
     <string name="annotation_value_scat">Výkal</string>
-    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <!-- "Evidence of Presence" value for impressions in the ground or snow -->
     <string name="annotation_value_track">Stopa</string>
-    <!-- Evidence of Presence value when for bones -->
+    <!-- "Evidence of Presence" value when for bones -->
     <string name="annotation_value_bone">Kosť</string>
-    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Zvlečka</string>
+    <!-- "Leaves" value when for leaf buds that are opening -->
+    <!-- "Leaves" value when for green leaves -->
+    <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <!-- "Leaves" value when there are no living leaves -->
+    <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ČLENSKÉ</string>
     <string name="nearby_projects_all_caps">V OKOLÍ</string>

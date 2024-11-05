@@ -617,8 +617,7 @@
     <string name="annotation_name">Açıklama Adı</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Hiçbiri</string>
-    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Bitki Fenolojisi</string>
+    <!-- Phenological state of flowers on a plant -->
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Yaşam Evresi</string>
     <!-- Noun, describes sex of the organism -->
@@ -627,16 +626,12 @@
     <string name="annotation_name_alive_or_dead">Canlı ya da Ölü</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Varlık Kanıtı</string>
+    <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Çiçekli</string>
-    <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Meyveli</string>
+    <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Tomurcuklu</string>
-    <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Çiçek Tomurcuklanması</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">Çiçeklenme Belirtisi Yok</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Yetişkin</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -660,18 +655,23 @@
     <string name="annotation_value_dead">Ölü</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Belirlenemiyor</string>
-    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
     <string name="annotation_value_organism">Organizma</string>
-    <!-- Evidence of Presence value when for bird feathers -->
+    <!-- "Evidence of Presence" value when for bird feathers -->
     <string name="annotation_value_feather">Tüy</string>
-    <!-- Evidence of Presence value when for fecal remains -->
+    <!-- "Evidence of Presence" value when for fecal remains -->
     <string name="annotation_value_scat">Dışkı</string>
-    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <!-- "Evidence of Presence" value for impressions in the ground or snow -->
     <string name="annotation_value_track">İz</string>
-    <!-- Evidence of Presence value when for bones -->
+    <!-- "Evidence of Presence" value when for bones -->
     <string name="annotation_value_bone">Kemik</string>
-    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Deri değiştirme/Tüy dökme</string>
+    <!-- "Leaves" value when for leaf buds that are opening -->
+    <!-- "Leaves" value when for green leaves -->
+    <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <!-- "Leaves" value when there are no living leaves -->
+    <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">KATILDIĞIN</string>
     <string name="nearby_projects_all_caps">YAKINDAKİ</string>

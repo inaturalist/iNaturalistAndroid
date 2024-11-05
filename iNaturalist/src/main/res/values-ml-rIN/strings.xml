@@ -61,6 +61,7 @@
     <string name="no_guides">ഗൈഡുകളൊന്നും കണ്ടെത്തിയില്ല!</string>
     <string name="loading_projects">പ്രോജക്റ്റുകൾ ലോഡുചെയ്യുന്നു</string>
     <string name="joined_projects">ചേർന്നു</string>
+    <string name="nearby_projects">സമീപത്ത്</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
     <string name="featured_projects">തിരഞ്ഞെടുത്തത്</string>
     <!-- Verb, used as a label for actions like leaving a project -->
@@ -91,6 +92,7 @@
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">ഗൈഡുകൾ</string>
     <string name="my_guides">താങ്കളുടെ</string>
+    <string name="nearby_guides">സമീപത്ത്</string>
     <string name="all_guides">എല്ലാം</string>
     <string name="no_taxa">ഈ ഗൈഡുകൾക്കായി ടാക്‌സകളൊന്നും കണ്ടെത്തിയില്ല!</string>
     <string name="search_taxa">തിരയുക ടാക്സ</string>
@@ -137,7 +139,10 @@
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <!-- Header for a list of suggested taxa -->
+    <string name="seen_nearby">സമീപത്ത് കണ്ടു</string>
+    <string name="expected_nearby">സമീപത്ത് പ്രതീക്ഷിക്കുന്നു</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
+    <string name="nearby">സമീപത്ത്</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
@@ -180,14 +185,15 @@
     <!-- Used when filtering observations with annotations -->
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
     <!-- Annotation value for when no annotation has been chosen -->
-    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
+    <!-- Phenological state of flowers on a plant -->
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <!-- Noun, describes sex of the organism -->
     <!-- Attribute that describes whether the organism is alive or dead -->
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
-    <!-- Adjective, having fruit -->
-    <!-- Adjective, having unopened flowers -->
+    <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
     <!-- Observation presents no evidence of flowering phenology -->
     <!-- Adjective describing the life stage where an individual can reproduce -->
@@ -200,14 +206,21 @@
     <!-- Adjective, alive and shows no signs of imminent death -->
     <!-- Adjective, dead or shows signs of imminent death -->
     <!-- Value for when the value of the attribute cannot be determined -->
-    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <!-- Evidence of Presence value when for bird feathers -->
-    <!-- Evidence of Presence value when for fecal remains -->
-    <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <!-- Evidence of Presence value when for bones -->
-    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <!-- "Evidence of Presence" value when for bird feathers -->
+    <!-- "Evidence of Presence" value when for fecal remains -->
+    <!-- "Evidence of Presence" value for impressions in the ground or snow -->
+    <!-- "Evidence of Presence" value when for bones -->
+    <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Leaves" value when for leaf buds that are opening -->
+    <!-- "Leaves" value when for green leaves -->
+    <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <!-- "Leaves" value when there are no living leaves -->
+    <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
+    <string name="nearby_projects_all_caps">സമീപത്ത്</string>
     <!-- Text for a button or label that allows someone to join a project -->
+    <string name="nearby_guides_all_caps">സമീപത്ത്</string>
     <string name="observers_all_caps">നിരീക്ഷകർ</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <!-- Label for a button to import an existing sound for an observation -->

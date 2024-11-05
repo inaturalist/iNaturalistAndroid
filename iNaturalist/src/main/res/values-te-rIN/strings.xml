@@ -196,8 +196,7 @@
     <!-- Used when filtering observations with annotations -->
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
     <!-- Annotation value for when no annotation has been chosen -->
-    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">మొక్కల దృగ్విషయాలు</string>
+    <!-- Phenological state of flowers on a plant -->
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">జీవ దశ</string>
     <!-- Noun, describes sex of the organism -->
@@ -205,9 +204,10 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">ఉనికిని రుజువు</string>
+    <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
-    <!-- Adjective, having fruit -->
-    <!-- Adjective, having unopened flowers -->
+    <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
     <!-- Observation presents no evidence of flowering phenology -->
     <!-- Adjective describing the life stage where an individual can reproduce -->
@@ -222,18 +222,23 @@
     <!-- Adjective, alive and shows no signs of imminent death -->
     <!-- Adjective, dead or shows signs of imminent death -->
     <!-- Value for when the value of the attribute cannot be determined -->
-    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
     <string name="annotation_value_organism">జీవి</string>
-    <!-- Evidence of Presence value when for bird feathers -->
+    <!-- "Evidence of Presence" value when for bird feathers -->
     <string name="annotation_value_feather">ఈక</string>
-    <!-- Evidence of Presence value when for fecal remains -->
+    <!-- "Evidence of Presence" value when for fecal remains -->
     <string name="annotation_value_scat">మలం</string>
-    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <!-- "Evidence of Presence" value for impressions in the ground or snow -->
     <string name="annotation_value_track">పాదముద్ర</string>
-    <!-- Evidence of Presence value when for bones -->
+    <!-- "Evidence of Presence" value when for bones -->
     <string name="annotation_value_bone">ఎముక</string>
-    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">వదిలించుకొను</string>
+    <!-- "Leaves" value when for leaf buds that are opening -->
+    <!-- "Leaves" value when for green leaves -->
+    <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <!-- "Leaves" value when there are no living leaves -->
+    <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">చెందిన</string>
     <string name="featured_projects_all_caps">ప్రత్యేకంగాఉంటాయి</string>

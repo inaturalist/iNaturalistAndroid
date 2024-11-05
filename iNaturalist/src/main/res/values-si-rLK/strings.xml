@@ -592,8 +592,7 @@
     <string name="annotation_name">අනුසටහන් නාමය</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">කිසිවක් නැත</string>
-    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">ශාක සෘතුඵල විද්‍යාව</string>
+    <!-- Phenological state of flowers on a plant -->
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">ජීවන අවධිය</string>
     <!-- Noun, describes sex of the organism -->
@@ -601,16 +600,12 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">පණ ඇති හෝ මියගිය</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">මල් පිපී ඇති</string>
-    <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">ඵල ඇති</string>
+    <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">පොහොට්ටු ඇති</string>
-    <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">මල් පොහොට්ටු ඇති</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">මල් පිපෙන බවට සාක්ෂි නැත</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">සුහුඹුලා</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -634,12 +629,17 @@
     <string name="annotation_value_dead">මියගිය</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">නිර්ණය කළ නොහැක</string>
-    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <!-- Evidence of Presence value when for bird feathers -->
-    <!-- Evidence of Presence value when for fecal remains -->
-    <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <!-- Evidence of Presence value when for bones -->
-    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <!-- "Evidence of Presence" value when for bird feathers -->
+    <!-- "Evidence of Presence" value when for fecal remains -->
+    <!-- "Evidence of Presence" value for impressions in the ground or snow -->
+    <!-- "Evidence of Presence" value when for bones -->
+    <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Leaves" value when for leaf buds that are opening -->
+    <!-- "Leaves" value when for green leaves -->
+    <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <!-- "Leaves" value when there are no living leaves -->
+    <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">සම්බන්ධ වූ</string>
     <string name="nearby_projects_all_caps">අසල ඇති</string>

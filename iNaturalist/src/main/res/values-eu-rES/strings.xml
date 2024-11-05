@@ -422,6 +422,7 @@
     <string name="taxonomy">Taxonomia</string>
     <string name="about_this_section">Atal honi buruz</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
+    <string name="taxonomy_info">Hauek, zehazki, taxon honen arbasoen loturak dira. Orokorretik zehatzera ordenatuta daude. Erabili esteka hauek Bizitzaren Zuhaitzean gora eta behera ibiltzeko. Adibidez, ez badakizu zer den organismo bat, baina baldin badakizu zer multzotan dagoen, sakatu zerrendako taxon batean horri buruzko informazio gehiago ikusteko.</string>
     <string name="more_info_on_inat">Informazio gehiago iNaturalist.org</string>
     <string name="view_suggestions">Ikusi iradokizunak</string>
     <string name="species_search">Espezieen bilaketa</string>
@@ -471,6 +472,7 @@
     <string name="drainage">Drainatze-gunea</string>
     <string name="land_feature">Lurraren ezaugarriak</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="miscellaneous">Beste batzuk</string>
     <string name="nationality">Nazionalitatea</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Superizena</string>
@@ -495,6 +497,7 @@
     <string name="municipality">Udalerria</string>
     <string name="parish">Barrutia</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
+    <string name="department_segment">Departamendu-zatia</string>
     <string name="city_building">Hiriko eraikina</string>
     <string name="commune">Udalerria</string>
     <string name="governorate">Gobernazio</string>
@@ -556,6 +559,7 @@
     <string name="no_observations_found_new">Behaketak organismo indibidualekin izandako topaketen erregistroak dira momentu eta kokapen jakin batean.</string>
     <string name="discard_comment">Ziur zaude iruzkin hau baztertu nahi duzula?</string>
     <string name="leave_comment">Oharra utzi</string>
+    <string name="swipe">Pasatu</string>
     <string name="swipe_indicator">›</string>
     <string name="potential_disagreement">Desadostasun potentziala</string>
     <string name="do_you_think_this_could_be"><![CDATA[Froga nahikoa da %1$s dela baieztatzeko?]]></string>
@@ -610,8 +614,7 @@
     <string name="annotation_name">Oharren izena</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Bat ere ez</string>
-    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Landarearen fenologia</string>
+    <!-- Phenological state of flowers on a plant -->
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Garapen estadioa</string>
     <!-- Noun, describes sex of the organism -->
@@ -620,16 +623,12 @@
     <string name="annotation_name_alive_or_dead">Bizirik edo hilda</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Presentzia-ebidentzia</string>
+    <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Loraldian</string>
-    <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruktifikazioa</string>
+    <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Kimuak</string>
-    <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Lore-begiak</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">Loratze-seinalerik ez</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Heldua</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -653,18 +652,23 @@
     <string name="annotation_value_dead">Hilda</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Ezin da zehaztu</string>
-    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
     <string name="annotation_value_organism">Organismoa</string>
-    <!-- Evidence of Presence value when for bird feathers -->
+    <!-- "Evidence of Presence" value when for bird feathers -->
     <string name="annotation_value_feather">Luma</string>
-    <!-- Evidence of Presence value when for fecal remains -->
+    <!-- "Evidence of Presence" value when for fecal remains -->
     <string name="annotation_value_scat">Gorotza</string>
-    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <!-- "Evidence of Presence" value for impressions in the ground or snow -->
     <string name="annotation_value_track">Arrastoa</string>
-    <!-- Evidence of Presence value when for bones -->
+    <!-- "Evidence of Presence" value when for bones -->
     <string name="annotation_value_bone">Hezurra</string>
-    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Muda</string>
+    <!-- "Leaves" value when for leaf buds that are opening -->
+    <!-- "Leaves" value when for green leaves -->
+    <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <!-- "Leaves" value when there are no living leaves -->
+    <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">BATUTA</string>
     <string name="nearby_projects_all_caps">Inguruan</string>
@@ -926,6 +930,7 @@
     <string name="suggestions_source">Iradokizunen iturria</string>
     <string name="research_grade_observations">Ikerketa mailako behaketa</string>
     <string name="visually_similar_description">iNaturalistak iradokizunak egingo ditu, urteko sasoi honetan toki horretatik gertu ikusitako espezieen irudiak bisualki zein antzekoak direnak kontuan hartuta.</string>
+    <string name="research_grade_observations_description">Bisualki antzekoak diren iradokizunen ordez, iNaturalist-ek leku jakin batean eta talde taxonomiko espezifiko baten barruan behatutako espezieak iradokiko ditu.</string>
     <string name="taxon">Taxona:</string>
     <string name="place">Lekua:</string>
     <string name="pretty_sure_kingdom">Nahiko ziur gaude erreinu honetan dagoela:</string>
@@ -950,6 +955,7 @@
     <string name="pretty_sure_subtribe">Nahiko ziur gaude azpileinuan honetan dagoela:</string>
     <string name="pretty_sure_genus">Nahiko ziur gaude genero honetan dagoela:</string>
     <string name="pretty_sure_subgenus">Nahiko ziur gaude subgenero honetan dagoela:</string>
+    <string name="pretty_sure_complex">Nahiko ziur gaude konplexu honetan dagoela:</string>
     <!-- Singular -->
     <string name="pretty_sure_species">Nahiko ziur gaude espezie hau dela:</string>
     <string name="pretty_sure_hybrid">Nahiko ziur gaude hibrido hau dela:</string>
@@ -958,13 +964,20 @@
     <string name="pretty_sure_variety">Nahiko ziur gaude barietate honetan dagoela:</string>
     <string name="pretty_sure_form">Nahiko ziur gaude suespezie honetan dagoela:</string>
     <string name="pretty_sure_infrahybrid">Nahiko ziur gaude infrahibrido hau dela:</string>
+    <string name="remove_date_observed">Ezabatu behatutako data &amp; ordua</string>
     <string name="remove_time_observed">Kendu behatutako denbora</string>
     <string name="remove_location">Kendu kokapena</string>
+    <string name="are_you_sure_you_want_to_remove_date">Ziur zaude behatutako data &amp; ordua ezabatu nahi dituzula?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Ziur zaude behatutako ordua ezabatu nahi duzula?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Ziur zaude kokapena ezabatu nahi duzula?</string>
     <string name="share_location">Kokapena partekatu</string>
     <string name="share_hidden_location">Partekatu ezkutatutako kokapena</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_sound">Ezin izan da soinua bikoiztu</string>
+    <string name="sound_format_not_supported">Audio kodifikazio hori ez da bateragarria Androidekin.</string>
     <string name="view_observations">Behaketak ikusi</string>
     <string name="choose_this_option">Aukeratu aukera hau</string>
+    <string name="compare_observation_with_this_option">Konparatu behaketa aukera honekin</string>
     <string name="go_back">Atzera</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <string name="comments_ids_title">Oharrak eta identifikazioak</string>
