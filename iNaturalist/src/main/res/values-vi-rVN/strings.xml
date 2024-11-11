@@ -562,7 +562,7 @@
     <string name="annotation_name">Tựa đề chú thích</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Không có</string>
-    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
+    <!-- Phenological state of flowers on a plant -->
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Chặn đường đời</string>
     <!-- Noun, describes sex of the organism -->
@@ -570,16 +570,12 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Còn sống hay đã chết</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Ra hoa</string>
-    <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Ra trái</string>
+    <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Nảy chồi</string>
-    <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Hoa nảy chồi</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">Không có bằng chứng của hoa nở</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Trưởng thành</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -603,12 +599,17 @@
     <string name="annotation_value_dead">Đã chết</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Không thể xác định</string>
-    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <!-- Evidence of Presence value when for bird feathers -->
-    <!-- Evidence of Presence value when for fecal remains -->
-    <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <!-- Evidence of Presence value when for bones -->
-    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <!-- "Evidence of Presence" value when for bird feathers -->
+    <!-- "Evidence of Presence" value when for fecal remains -->
+    <!-- "Evidence of Presence" value for impressions in the ground or snow -->
+    <!-- "Evidence of Presence" value when for bones -->
+    <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Leaves" value when for leaf buds that are opening -->
+    <!-- "Leaves" value when for green leaves -->
+    <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <!-- "Leaves" value when there are no living leaves -->
+    <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ĐÃ THAM GIA</string>
     <string name="nearby_projects_all_caps">Ở GẦN ĐÂY</string>

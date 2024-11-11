@@ -607,8 +607,7 @@
     <string name="annotation_name">Merknadsnavn</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Ingen</string>
-    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plantefenologi</string>
+    <!-- Phenological state of flowers on a plant -->
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Livsstadie</string>
     <!-- Noun, describes sex of the organism -->
@@ -617,16 +616,12 @@
     <string name="annotation_name_alive_or_dead">Levende eller død</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Bevis for tilstedeværelse</string>
+    <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Blomstring</string>
-    <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruktbærende</string>
+    <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Spirende</string>
-    <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Blomsterknopper</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">Ingen bevis for blomstring</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Voksen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -650,18 +645,23 @@
     <string name="annotation_value_dead">Død</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Kan ikke bestemmes</string>
-    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
     <string name="annotation_value_organism">Organisme</string>
-    <!-- Evidence of Presence value when for bird feathers -->
+    <!-- "Evidence of Presence" value when for bird feathers -->
     <string name="annotation_value_feather">Fjær</string>
-    <!-- Evidence of Presence value when for fecal remains -->
+    <!-- "Evidence of Presence" value when for fecal remains -->
     <string name="annotation_value_scat">Avføring</string>
-    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <!-- "Evidence of Presence" value for impressions in the ground or snow -->
     <string name="annotation_value_track">Spor</string>
-    <!-- Evidence of Presence value when for bones -->
+    <!-- "Evidence of Presence" value when for bones -->
     <string name="annotation_value_bone">Bein</string>
-    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Myte</string>
+    <!-- "Leaves" value when for leaf buds that are opening -->
+    <!-- "Leaves" value when for green leaves -->
+    <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <!-- "Leaves" value when there are no living leaves -->
+    <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">DELTAR</string>
     <string name="nearby_projects_all_caps">I NÆRHETEN</string>
