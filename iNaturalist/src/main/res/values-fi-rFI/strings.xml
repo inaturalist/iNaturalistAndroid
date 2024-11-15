@@ -628,6 +628,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Ei mitään</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Kukat ja hedelmät</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Elämänvaihe</string>
     <!-- Noun, describes sex of the organism -->
@@ -637,11 +638,17 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Todiste läsnäolosta</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Lehdet</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Vakiintunut</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Kukkia</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruit_or_seeds">Hedelmiä tai siemeniä</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Kukan nuppuja</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Ei kukkia tai hedelmiä</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Aikuinen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -678,10 +685,15 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Nahka</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Aukeavat lehden silmut</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Vihreät lehdet</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Värilliset lehdet</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Ei eläviä lehtiä</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">Ei vakiintunut</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">LIITYTTY</string>
     <string name="nearby_projects_all_caps">LÄHELLÄ</string>

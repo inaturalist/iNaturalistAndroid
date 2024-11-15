@@ -137,7 +137,7 @@
     </string-array>
     <string-array name="geoprivacy_items">
         <item>เปิด</item>
-        <item>คลุมเครือ</item>
+        <item>ถูกพราง</item>
         <item>ส่วนบุคคล</item>
     </string-array>
     <string name="alert_sign_out">คุณแน่ใจว่าคุณต้องการที่จะออกจากระบบ? การดำเนินการนี้จะลบการสังเกตทั้งหมดของคุณบนอุปกรณ์นี้ จะไม่มีผลต่อการสังเกตใด ๆ ที่คุณอัปโหลดไปยัง iNaturalist</string>
