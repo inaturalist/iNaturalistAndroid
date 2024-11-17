@@ -364,6 +364,27 @@ public class ImageUtils {
     public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions, boolean isCameraPhoto) {
         return resizeImage(context, path, photoUri, maxDimensions, false, isCameraPhoto);
     }
+
+    private static InputStream readInputStream(Context context, String path, Uri photoUri) throws FileNotFoundException {
+        if (photoUri != null) {
+            try {
+                return context.getContentResolver().openInputStream(photoUri);
+            } catch (SecurityException exc) {
+                // This could happen when if the app that exposes this URI is still active (not in background).
+                // Could happen if it's been a while between importing the photo and actually triggering the import itself (e.g.
+                // share from Google Photos app to iNat -> first time asking for media permissions -> taking some time to approve this permission ->
+                // Google Photos is in the background for a while during this time)
+                Logger.tag(TAG).error(exc);
+                return null;
+            }
+        } else if (path != null) {
+            return new FileInputStream(new File(path));
+        } else {
+            Logger.tag(TAG).error("Both path and URI are null");
+            return null;
+        }
+    }
+
     /**
      * Resizes an image to max size
      * @param path the path to the image filename (optional)
@@ -375,24 +396,12 @@ public class ImageUtils {
     public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions, boolean noLanczos, boolean isCameraPhoto) {
         InputStream is = null;
         BitmapFactory.Options options = new BitmapFactory.Options();
-        Logger.tag(TAG).info("resizeImage: " + path + "/" + photoUri + ":" + isCameraPhoto);
+        Logger.tag(TAG).info("resizeImage: " + path + " / " + photoUri + " : " + isCameraPhoto);
 
         try {
-            if (photoUri != null) {
-                try {
-                    is = context.getContentResolver().openInputStream(photoUri);
-                } catch (SecurityException exc) {
-                    // This could happen when if the app that exposes this URI is still active (not in background).
-                    // Could happen if it's been a while between importing the photo and actually triggering the import itself (e.g.
-                    // share from Google Photos app to iNat -> first time asking for media permissions -> taking some time to approve this permission ->
-                    // Google Photos is in the background for a while during this time)
-                    Logger.tag(TAG).error(exc);
-                    return null;
-                }
-            } else if (path != null) {
-                is = new FileInputStream(new File(path));
-            } else {
-                Logger.tag(TAG).error("Both path and URI are null");
+            is = readInputStream(context, path, photoUri);
+
+            if (is == null) {
                 return null;
             }
 
@@ -411,21 +420,22 @@ public class ImageUtils {
 
             if (path != null) {
                 try {
-                    androidx.exifinterface.media.ExifInterface exif = new androidx.exifinterface.media.ExifInterface(path);
-                    rotationDegrees = exif.getRotationDegrees();
-                    Logger.tag(TAG).info("resizeImage: degrees: " + rotationDegrees);
+                    is = readInputStream(context, path, photoUri);
+                    if (is != null) {
+                        androidx.exifinterface.media.ExifInterface exif = new androidx.exifinterface.media.ExifInterface(is);
+                        rotationDegrees = exif.getRotationDegrees();
+                        Logger.tag(TAG).info("resizeImage: degrees: " + rotationDegrees);
+                        is.close();
+                    } else {
+                        Logger.tag(TAG).error("resizeImage: Couldn't read input stream while reading rotation");
+                    }
                 } catch (Exception exc) {
                     Logger.tag(TAG).error("resizeImage: exception while reading rotation");
                     Logger.tag(TAG).error(exc);
                 }
             }
 
-            if (photoUri != null) {
-                is = context.getContentResolver().openInputStream(photoUri);
-            } else {
-                is = new FileInputStream(new File(path));
-            }
-
+            is = readInputStream(context, path, photoUri);
 
             if (Math.max(originalHeight, originalWidth) < maxDimensions) {
                 // Original file is smaller than max
@@ -486,6 +496,14 @@ public class ImageUtils {
             if (resizedBitmap != rotatedBitmap) rotatedBitmap.recycle();
 
             // BitmapFactory.decodeStream moves the reading cursor
+            is.close();
+
+
+            is = readInputStream(context, path, photoUri);
+
+            // Copy all EXIF data from original image into resized image
+            copyExifData(is, new File(imageFile.getAbsolutePath()), null);
+
             is.close();
 
             return imageFile.getAbsolutePath();
