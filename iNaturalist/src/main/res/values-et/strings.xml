@@ -248,7 +248,6 @@
     <string name="share">Jaga</string>
     <string name="unable_to_acquire_location">Asukoha andmete saamine ebaõnnestus</string>
     <string name="casual_grade">Juhuvaatlus</string>
-    <string name="needs_id">Vajab ID\'d</string>
     <string name="research_grade">Teaduskõlbulik</string>
     <string name="data_quality">Andmete kvaliteet</string>
     <string name="casual_grade_add_location"><![CDATA[Vaatluse "Vajab määratlemist" kategooriasse paigutamiseks lisa selle <b>asukoht</b>.]]></string>
@@ -552,7 +551,6 @@
     <string name="date_day">%d p</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%d näd</string>
-    <string name="new_observation">Uued vaatlused</string>
     <string name="inactive_taxon">Mitteaktiivne takson</string>
     <string name="no_identifications_found">Siin saad hoida silma peale enda poolt tehtud määratlustel teiste kasutajate vaatlustele.</string>
     <string name="no_species_found">Nimekiri liikidest, mida oled kõige rohkem vaadelnud.\n\nNB: Maailmas on eeldatavasti 9 miljonit liiki, nii et lihtsalt hakka neid vaatlema!</string>
