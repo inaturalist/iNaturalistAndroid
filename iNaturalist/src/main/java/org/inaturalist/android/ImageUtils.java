@@ -481,19 +481,16 @@ public class ImageUtils {
                 return null;
             }
 
-            Bitmap rotatedBitmap = rotateImage(resizedBitmap, rotationDegrees);
-
             // Save resized image
             File imageFile = new File(context.getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
             OutputStream os = new FileOutputStream(imageFile);
-            rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
             os.flush();
             os.close();
 
             Logger.tag(TAG).debug(String.format("resizeImage: %s => %s", path, imageFile.getAbsolutePath()));
 
             resizedBitmap.recycle();
-            if (resizedBitmap != rotatedBitmap) rotatedBitmap.recycle();
 
             // BitmapFactory.decodeStream moves the reading cursor
             is.close();
