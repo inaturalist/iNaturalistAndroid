@@ -8,7 +8,7 @@ on:
 jobs:
   test:
     name: Instrumented Tests, SDK ${{ matrix.api-level }}
-    runs-on: macos-12
+    runs-on: macos-14
     strategy:
       fail-fast: false
       matrix:
@@ -118,7 +118,7 @@ jobs:
     name: Notify Slack
     needs: test
     if: ${{ success() || failure() }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: iRoachie/slack-github-actions@v2.3.2
         if: env.SLACK_WEBHOOK_URL != null
