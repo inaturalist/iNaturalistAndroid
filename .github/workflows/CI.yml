@@ -118,7 +118,7 @@ jobs:
     name: Notify Slack
     needs: test
     if: ${{ success() || failure() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: iRoachie/slack-github-actions@v2.3.2
         if: env.SLACK_WEBHOOK_URL != null
