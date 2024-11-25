@@ -120,7 +120,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'org.apache.commons:commons-collections4:4.0'
-    implementation 'org.apache.commons:commons-lang3:3.1'
+    implementation 'org.apache.commons:commons-lang3:3.5'
     implementation 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
     implementation 'org.apache.httpcomponents:httpmime:4.3.3'
     implementation 'com.loopj.android:android-async-http:1.4.7'
