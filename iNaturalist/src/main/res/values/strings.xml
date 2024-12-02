@@ -650,7 +650,7 @@
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">Flowers</string>
     <!-- Adjective, having fruit or seeds -->
-    <string name="annotation_value_fruit_or_seeds">Fruit or Seeds</string>
+    <string name="annotation_value_fruits_or_seeds">Fruits or Seeds</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_buds">Flower Buds</string>
     <!-- Observation presents no evidence of flowering phenology -->
