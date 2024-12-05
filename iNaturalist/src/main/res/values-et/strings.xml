@@ -248,6 +248,7 @@
     <string name="share">Jaga</string>
     <string name="unable_to_acquire_location">Asukoha andmete saamine ebaõnnestus</string>
     <string name="casual_grade">Juhuvaatlus</string>
+    <string name="needs_id">Vajab määramist</string>
     <string name="research_grade">Teaduskõlbulik</string>
     <string name="data_quality">Andmete kvaliteet</string>
     <string name="casual_grade_add_location"><![CDATA[Vaatluse "Vajab määratlemist" kategooriasse paigutamiseks lisa selle <b>asukoht</b>.]]></string>
@@ -551,6 +552,7 @@
     <string name="date_day">%d p</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%d näd</string>
+    <string name="new_observation">Uus vaatlus</string>
     <string name="inactive_taxon">Mitteaktiivne takson</string>
     <string name="no_identifications_found">Siin saad hoida silma peale enda poolt tehtud määratlustel teiste kasutajate vaatlustele.</string>
     <string name="no_species_found">Nimekiri liikidest, mida oled kõige rohkem vaadelnud.\n\nNB: Maailmas on eeldatavasti 9 miljonit liiki, nii et lihtsalt hakka neid vaatlema!</string>
@@ -616,6 +618,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Puudub</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Õied ja viljad</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Elujärk</string>
     <!-- Noun, describes sex of the organism -->
@@ -625,11 +628,17 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Kohalolu tõend</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Lehed</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Kohalik</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Õied</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Viljad või semned</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Õiepungad</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Õisi ja vilju pole</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Täiskasvanu</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -666,10 +675,15 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Kest</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Avanevad õiepungad</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Rohelised lehed</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Värvunud lehed</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Elusaid lehti pole</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">Mittekohalik</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">LIIGE</string>
     <string name="nearby_projects_all_caps">LÄHEDAL</string>
@@ -956,6 +970,7 @@
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d. MMM, yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM yy</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d. MMMM, yyy HH:mm</string>
     <string name="show_common_names">Näita rahvapäraseid nimesid</string>
