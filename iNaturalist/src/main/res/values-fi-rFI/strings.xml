@@ -644,7 +644,6 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">Kukkia</string>
     <!-- Adjective, having fruit or seeds -->
-    <string name="annotation_value_fruit_or_seeds">Hedelmiä tai siemeniä</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_buds">Kukan nuppuja</string>
     <!-- Observation presents no evidence of flowering phenology -->

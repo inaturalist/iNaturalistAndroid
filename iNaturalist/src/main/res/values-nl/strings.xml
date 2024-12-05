@@ -634,7 +634,6 @@
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">Bloemen</string>
     <!-- Adjective, having fruit or seeds -->
-    <string name="annotation_value_fruit_or_seeds">Vruchten of zaden</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_buds">Bloemknoppen</string>
     <!-- Observation presents no evidence of flowering phenology -->

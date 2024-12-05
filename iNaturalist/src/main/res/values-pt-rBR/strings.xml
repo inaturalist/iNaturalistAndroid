@@ -377,7 +377,7 @@
     <string name="searching_your_area">Procurando em sua área...</string>
     <string name="expanding_your_search_area">Expandindo sua área de pesquisa...</string>
     <string name="introducing_missions">Introdução à Missões!</string>
-    <string name="missions_onboarding_description">Missões são recomendações, super legais, em tempo real, do que, procurar ao seu redor. Desta forma você pode descobrir espécies que são novidade para você! (Requer conexão)</string>
+    <string name="missions_onboarding_description">Missões são recomendações do que procurar ao seu redor. Desta forma, você pode descobrir espécies que são novidade para você! (Requer conexão)</string>
     <string name="ok_got_it">Certo, entendi!</string>
     <string name="could_not_download_observations">Não foi possível baixar as observações mais recentes - Problemas de Conexão. Tente novamente mais tarde.</string>
     <string name="no_news_yet">Nenhuma notícia ainda. Fique atento!</string>
@@ -618,6 +618,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Nenhuma</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Flores e Frutas</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Estágio de vida</string>
     <!-- Noun, describes sex of the organism -->
@@ -627,11 +628,17 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Evidência de Presença</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Folhas</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Estabelecida</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Flores</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Frutos ou Sementes</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Botões Florais</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Sem Flores ou Frutos</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -668,10 +675,15 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Molt</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Botões Foliares Abrindo</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Folhas Verdes</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Folhas Coloridas</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Sem Folhas Vivas</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">Não Estabelecida</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">A QUE ADERIU</string>
     <string name="nearby_projects_all_caps">NAS PROXIMIDADES</string>

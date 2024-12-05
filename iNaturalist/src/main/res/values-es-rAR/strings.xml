@@ -618,6 +618,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Ninguna</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Flores y frutos</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Etapa biológica</string>
     <!-- Noun, describes sex of the organism -->
@@ -627,11 +628,16 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Evidencia de presencia</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Hojas</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Establecido</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Flores</string>
     <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Botones florales</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Sin flores ni frutos</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -668,10 +674,15 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Muda</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Brotación de yemas foliares</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Hojas verdes</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Hojas de colores</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Sin hojas vivas</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">No establecido</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">UNIDO</string>
     <string name="nearby_projects_all_caps">CERCANOS</string>

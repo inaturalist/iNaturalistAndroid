@@ -634,7 +634,7 @@
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">Blomster</string>
     <!-- Adjective, having fruit or seeds -->
-    <string name="annotation_value_fruit_or_seeds">Frugter eller Frø</string>
+    <string name="annotation_value_fruits_or_seeds">Frugter eller Frø</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_buds">Blomstknopper</string>
     <!-- Observation presents no evidence of flowering phenology -->
