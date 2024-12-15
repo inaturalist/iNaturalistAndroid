@@ -631,7 +631,7 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">Bunga</string>
     <!-- Adjective, having fruit or seeds -->
-    <string name="annotation_value_fruit_or_seeds">Buah atau Biji</string>
+    <string name="annotation_value_fruits_or_seeds">Buah atau Biji</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_buds">Kuncup Bunga</string>
     <!-- Observation presents no evidence of flowering phenology -->
@@ -671,6 +671,10 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <string name="annotation_value_bone">Tulang</string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Kulit</string>
+    <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
     <!-- "Leaves" value when for leaf buds that are opening -->
     <string name="annotation_value_breaking_leaf_buds">Kuncup Daun Merekah</string>
     <!-- "Leaves" value when for green leaves -->
