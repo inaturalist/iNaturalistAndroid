@@ -1972,6 +1972,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private void refreshAnnouncements() {
         Logger.tag(TAG).info("refreshAnnouncements: " + mAnnouncements);
 
+        if (mAnnouncementContainer == null) {
+            return;
+        }
+
         if ((mAnnouncements == null) || (mAnnouncements.size() == 0) ||
                 (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0))) {
                 mAnnouncementContainer.setVisibility(View.GONE);
