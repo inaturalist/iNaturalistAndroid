@@ -634,7 +634,7 @@
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">Bloemen</string>
     <!-- Adjective, having fruit or seeds -->
-    <string name="annotation_value_fruit_or_seeds">Vruchten of zaden</string>
+    <string name="annotation_value_fruits_or_seeds">Vruchten of zaden</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_buds">Bloemknoppen</string>
     <!-- Observation presents no evidence of flowering phenology -->
@@ -674,6 +674,14 @@
     <string name="annotation_value_bone">Bot</string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Vervellingshuid</string>
+    <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Bouwwerk</string>
+    <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Gal</string>
+    <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Haar</string>
+    <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Bladmijn</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
     <string name="annotation_value_breaking_leaf_buds">Uitlopen van bladknoppen</string>
     <!-- "Leaves" value when for green leaves -->
