@@ -639,6 +639,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Жоден</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Квіти та Фрукти</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Стадія життя</string>
     <!-- Noun, describes sex of the organism -->
@@ -648,8 +649,10 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Доказ присутності</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves"></string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Квіти</string>
     <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
     <!-- Observation presents no evidence of flowering phenology -->
@@ -688,6 +691,10 @@
     <string name="annotation_value_bone">Кістка</string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Линяння</string>
+    <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
     <!-- "Leaves" value when for leaf buds that are opening -->
     <!-- "Leaves" value when for green leaves -->
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
@@ -1229,4 +1236,7 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Закрити оголошення</string>
     <string name="import_photos_from">Завантажити фото з...</string>
+    <string name="cannot_find_default_camera">Не вдалося знайти стандартну камеру для фільмування - зверніться до служби підтримки.</string>
+    <string name="please_click_link_to_confirm_email">Будь ласка, натисніть на посилання у вашому електронному листі, щоб підтвердити свою електронну адресу на iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Натисніть тут, щоб надіслати підтверджувальний E-mail повторно.</string>
 </resources>

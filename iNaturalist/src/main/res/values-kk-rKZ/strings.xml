@@ -618,6 +618,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Ешқайсысы</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Гүлдер мен жемістер</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Өмір кезеңі</string>
     <!-- Noun, describes sex of the organism -->
@@ -627,11 +628,16 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Бар екендігінің дәлелі</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Жапырақтар</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Гүлдер</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Жемістер немесе тұқымдар</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Гүл бүршіктері</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Гүлдер немесе жемістер жоқ</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Ересек</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -667,6 +673,13 @@
     <string name="annotation_value_bone">Сүйек</string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Тасталған қабық</string>
+    <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Құрылысы</string>
+    <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Галл</string>
+    <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Шаш</string>
+    <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
     <!-- "Leaves" value when for leaf buds that are opening -->
     <!-- "Leaves" value when for green leaves -->
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
