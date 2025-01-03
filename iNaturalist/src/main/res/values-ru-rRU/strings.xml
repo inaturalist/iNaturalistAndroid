@@ -627,6 +627,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Ничего</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Цветы и Плоды</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Стадия жизни</string>
     <!-- Noun, describes sex of the organism -->
@@ -636,11 +637,17 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Свидетельство присутствия</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Листья</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Установившаяся</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Цветы</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Плоды или Семена</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Цветочные почки</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Отсутствие Цветов или Плодов</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Взрослый</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -676,10 +683,22 @@
     <string name="annotation_value_bone">Кость</string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Объект линьки</string>
+    <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Вид повреждения</string>
+    <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Галл</string>
+    <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Волоски</string>
+    <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Листовая мина</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Повреждённые листовые почки</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Зелёные листья</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Окрашенные листья</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Отсутствие живых листьев</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <string name="annotation_value_not_established">Не установившаяся</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
