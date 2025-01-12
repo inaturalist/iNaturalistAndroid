@@ -64,6 +64,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
     // Time in mins to refresh the user details (such as user obs count)
     private static final int USER_REFRESH_TIME_SECONDS = 60;
+    private static final int ANNOUNCEMENT_REFRESH_TIME_SECONDS = 60 * 60 * 2;
     private static final int USER_NOTIFICATIONS_REFRESH_TIME_SECONDS = 20;
 
     private DrawerLayout mDrawerLayout;
@@ -237,6 +238,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         Integer obsCount = prefs.getInt("observation_count", -1);
         String userIconUrl = prefs.getString("user_icon_url", null);
         Long lastRefreshTime = prefs.getLong("last_user_details_refresh_time", 0);
+        Long lastAnnouncementsTime = prefs.getLong("last_announcements_time", 0);
         Long lastNotificationCountsTime = prefs.getLong("last_user_notifications_refresh_time", 0);
 
         if (findViewById(R.id.side_menu_username) == null) {
@@ -255,7 +257,13 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 INaturalistService.callService(this, serviceIntent);
             }
 
-            getLatestAnnouncements();
+            if (System.currentTimeMillis() - lastAnnouncementsTime > 1000 * ANNOUNCEMENT_REFRESH_TIME_SECONDS) {
+                getLatestAnnouncements();
+
+                SharedPreferences.Editor prefEditor = prefs.edit();
+                prefEditor.putLong("last_announcements_time", System.currentTimeMillis());
+                prefEditor.commit();
+            }
 
             if (System.currentTimeMillis() - lastNotificationCountsTime > 1000 * USER_NOTIFICATIONS_REFRESH_TIME_SECONDS) {
                 // Get number of unread messages
@@ -787,6 +795,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         prefEditor.remove("user_email");
         prefEditor.remove("user_full_name");
         prefEditor.remove("last_user_details_refresh_time");
+        prefEditor.remove("last_announcements_time");
         prefEditor.remove("last_user_notifications_refresh_time");
         prefEditor.remove("jwt_token");
         prefEditor.remove("jwt_token_expiration");
