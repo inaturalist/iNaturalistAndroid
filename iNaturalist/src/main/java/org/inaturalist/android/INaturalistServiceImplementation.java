@@ -4270,7 +4270,7 @@ public class INaturalistServiceImplementation {
 
 
     private BetterJSONObject getUserDetails(String username) throws AuthenticationException {
-        String url = API_HOST + "/users/" + username;
+        String url = API_V2_HOST + "/users/" + username + "?fields=all";
         JSONArray json = get(url, false);
         try {
             if (json == null) return null;
