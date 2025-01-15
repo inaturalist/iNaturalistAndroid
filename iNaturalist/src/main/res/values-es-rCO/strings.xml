@@ -634,6 +634,7 @@
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">Flores</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Frutos o semillas</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_buds">Botones florales</string>
     <!-- Observation presents no evidence of flowering phenology -->
@@ -674,9 +675,13 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Muda</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Construcciones</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Agalla</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Pelo</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Rastros en hojas</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
     <string name="annotation_value_breaking_leaf_buds">Brotación de yemas foliares</string>
     <!-- "Leaves" value when for green leaves -->

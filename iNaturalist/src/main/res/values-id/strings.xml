@@ -854,9 +854,9 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <string name="warning_multiple_photos">Jika Anda menambahkan foto-foto organisme dengan jenis yang berbeda-beda untuk pengamatan ini, atau jenis yang sama pada tempat atau waktu yang berbeda, Anda sebaiknya menghapus foto tersebut dan mengunggahnya sebagai pengamatan terpisah. Satu pengamatan hanya dapat memiliki maksimal %1$d foto.</string>
     <string name="choosing_specific_language_warning">Memilih suatu bahasa untuk akun Anda membutuhkan koneksi internet</string>
     <string name="running_in_background_notfication">Sedang berjalan di latar belakang supaya kami dapat berjalan tanpa interupsi</string>
-    <string name="opt_out_of_community_taxon">Tidak turut serta Takson Komunitas</string>
+    <string name="opt_out_of_community_taxon">Jangan sertakan dalam Takson Komunitas</string>
     <string name="opt_in_to_community_taxon">Turut serta Takson Komunitas</string>
-    <string name="opt_out_message">Tidak turut serta Takson Komunitas akan memaksa pengamatan ini untuk diasosiasikan dengan takson dari identifikasi Anda sekarang, tidak berdasarkan takson dari semua identifikasi-identifikasi yang telah ditambahkan pada pengamatan ini. Jika banyak pengidentifikasi tidak setuju dengan Anda, maka pengamatan Anda akan menjadi Kasual. Anda sebaiknya hanya tidak turut apabila Anda sangat yakin identifikasi Anda benar dan identifikasi lain salah.</string>
+    <string name="opt_out_message">Dengan tidak berpartisipasi dalam Takson Komunitas, pengamatan ini akan dikaitkan dengan takson dari identifikasi Anda sekarang dan bukan berdasarkan takson dari semua identifikasi yang telah ditambahkan pada pengamatan ini. Jika banyak pengidentifikasi tidak setuju dengan Anda, maka pengamatan Anda akan menjadi Kasual. Sebaiknya Anda tidak berpartisipasi hanya apabila Anda sangat yakin bahwa identifikasi Anda benar dan identifikasi lainnya salah.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Izin Dibutuhkan</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
