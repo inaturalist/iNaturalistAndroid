@@ -57,7 +57,7 @@
     <string name="add_id">Ajouter une identification</string>
     <string name="remarks">Remarques...</string>
     <string name="enter_taxon_name">Nom de l\'espèce</string>
-    <string name="no_projects">Aucun projet trouvé!</string>
+    <string name="no_projects">Aucun projet trouvé !</string>
     <string name="no_guides">Aucun guide trouvé!</string>
     <string name="loading_projects">Chargement des projets...</string>
     <string name="joined_projects">Mes projets</string>
@@ -68,8 +68,8 @@
     <string name="leave">Quitter</string>
     <string name="join">Joindre</string>
     <string name="no_check_list">Aucun taxon dans la liste!</string>
-    <string name="failed_to_add_obs_to_project">Impossible d\'ajouter l\'observation «%1$s» au projet «%2$s» : %3$s</string>
-    <string name="invalid_project_field">Veuillez entrer une valeur valide dans le champ «%1s»</string>
+    <string name="failed_to_add_obs_to_project">Impossible d\'ajouter l\'observation « %1$s » au projet « %2$s » : %3$s</string>
+    <string name="invalid_project_field">Veuillez entrer une valeur valide dans le champ « %1s »</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <string name="select_projects">Sélectionner parmi vos projets</string>
     <string name="not_connected">Vous devez être connecté à Internet pour exécuter cette tâche.</string>
@@ -97,7 +97,7 @@
     <string name="no_taxa">Aucun taxon trouvé dans ce guide!</string>
     <string name="search_taxa">Recherche de taxons...</string>
     <string name="no_internet_guides">L\'utilisation des guides nécessite une connexion Internet</string>
-    <string name="no_internet_projects">L\'utilisation des projets nécessite une connexion Internet</string>
+    <string name="no_internet_projects">L\'utilisation des projets nécessite une connexion internet</string>
     <string name="locale_gl">Galicien</string>
     <string name="locale_eu">Basque</string>
     <string name="use_device_language_settings">Utiliser la langue du système d\'exploitation</string>
@@ -569,7 +569,7 @@
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Non, mais c\'est un membre des <b>%1$s</b>.]]></string>
     <string name="submit">Envoyer</string>
     <string name="change_password">Modifier le mot de passe</string>
-    <string name="search_projects_youve_joined">Rechercher parmi les projets auquels vous participez...</string>
+    <string name="search_projects_youve_joined">Rechercher parmi les projets que vous avez rejoint…</string>
     <string name="must_be_connected_to_load_more_obs">Vous devez être connecté à Internet pour charger plus d\'observations</string>
     <string name="inat_about_title_new">iNaturalist est un organisme indépendant sans but lucratif 501(c)(3) basé aux États-Unis (EIN 92-1296468)</string>
     <!--
@@ -591,7 +591,7 @@
     <string name="see_more_observations">Afficher plus d\'observations</string>
     <string name="see_more_species">Afficher plus d\'espèces</string>
     <string name="see_more_identifications">Afficher plus d\'identifications</string>
-    <string name="collection_and_umbrella_projects">Projets collection et méta-projets</string>
+    <string name="collection_and_umbrella_projects">Projets de Collection et de Compilation</string>
     <string name="description">Description</string>
     <string name="quantity">Qté</string>
     <string name="agree2">D\'accord</string>
@@ -599,7 +599,7 @@
     <string name="project_species">Espèces</string>
     <string name="project_people">Personnes</string>
     <!-- People who added identifications to observations in a project -->
-    <string name="project_identifiers">Identifieurs</string>
+    <string name="project_identifiers">Identificateurs</string>
     <string name="got_it">Ok!</string>
     <string name="view_all">Afficher tout</string>
     <string name="observers">Observateurs</string>
@@ -996,7 +996,7 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <string name="password_too_short">Le mot de passe doit faire six caractères minimum</string>
     <string name="switch_to_grid_view">Passer à la vue en grille</string>
     <string name="switch_to_list_view">Passer à la vue en liste</string>
-    <string name="remove_project_filter">Supprimer le filtre Projet</string>
+    <string name="remove_project_filter">Supprimer le filtre de projet</string>
     <string name="remove_observer_filter">Supprimer le filtre Observation</string>
     <string name="filter_observations_by_an_exact_date">Filtrer les observations pour une date spécifique</string>
     <string name="filter_observations_by_a_date_range">Filtrer les observations pour une durée déterminée</string>
