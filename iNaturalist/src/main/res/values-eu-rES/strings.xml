@@ -615,6 +615,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Bat ere ez</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Lore eta fruituak</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Garapen estadioa</string>
     <!-- Noun, describes sex of the organism -->
@@ -624,11 +625,15 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Presentzia-ebidentzia</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Hostoak</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Fruituak edo haziak</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Lore-begiak</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Lorerik edo fruiturik ez</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Heldua</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -665,13 +670,20 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Muda</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Eraikuntza</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Kuku-sagar</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Ilea</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Hosto-begiak ernetzen</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Hosto berdeak</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Koloredun hostoak</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Hosto bizirik ez</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">BATUTA</string>
@@ -750,11 +762,15 @@
     <string name="could_not_play_sound">Ezin da soinua erreproduzitu - seguruenik sareko arazo bat</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Soinu-grabazioa</string>
+    <string name="couldnt_retrieve_sound">Ezin izan da soinua berreskuratu grabagailu lehenetsitik - saiatu soinua inportatzen horren ordez</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Aukeratu soinua</string>
+    <string name="multi_select_sound_description">Inportatu hainbat soinu soinu bakar bat luze sakatuta</string>
+    <string name="alert_unsupported_audio_type">Barkatu, baina arazo bat izan da soinua iturri honetatik kargatzean</string>
     <string name="invalid_audio_extension">Errore bat gertatu da soinuak inportatzean: WAV/MP3/AMR luzapenak dituzten soinu-fitxategiak bakarrik inporta ditzakezu</string>
     <string name="importing_sounds">Soinua(k) inportatzen ari gara...</string>
     <string name="observation_sound">Soinu behaketa</string>
+    <string name="deleted_sounds_from_cache_error">Badirudi, kargatu aurretik, argazki bat ezabatu duzula aplikazioaren cache memoria ezabatzean. Soinua berriro erantsi beharko diozu zure behaketari zure galeriatik. Etorkizunean, ziurtatu zure soinu guztiak kargatu izana aplikazioaren cache memoria ezabatu aurretik.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f segundo</string>
     <string name="clears_up_storage_room_on_your_phone">Garbitu zure telefonoko biltegiratze-tokia</string>
@@ -861,6 +877,7 @@
     <string name="offensive_inappropriate">Iraingarria/ Desegokia</string>
     <string name="misleading_or_illegal_content">Eduki engainagarria edo legez kanpokoa, arrazista, xenofoboa, etab. Gure \"egokia\" definizioari buruzko informazio gehiago lortzeko, ikus FAQ.</string>
     <string name="other">Bestelakoa</string>
+    <string name="some_other_reason">Azaldu dezakezun beste arrazoiren bat.</string>
     <string name="continue_text">Jarraitu</string>
     <string name="no_subject">Gairik ez</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
