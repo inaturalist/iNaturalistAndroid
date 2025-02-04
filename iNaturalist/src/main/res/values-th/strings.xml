@@ -138,7 +138,7 @@
     <string-array name="geoprivacy_items">
         <item>เปิด</item>
         <item>ถูกพราง</item>
-        <item>ส่วนบุคคล</item>
+        <item>ส่วนตัว</item>
     </string-array>
     <string name="alert_sign_out">คุณแน่ใจว่าคุณต้องการที่จะออกจากระบบ? การดำเนินการนี้จะลบการสังเกตทั้งหมดของคุณบนอุปกรณ์นี้ จะไม่มีผลต่อการสังเกตใด ๆ ที่คุณอัปโหลดไปยัง iNaturalist</string>
     <string name="alert_unsupported_media_type">ขออภัยมีปัญหาในการโหลดรูปภาพจากแหล่งที่มานี้</string>
@@ -928,7 +928,7 @@
     <string name="rank_leaves">ใบไม้</string>
     <string name="location_lat_lng">ตำแหน่ง: %1$f, %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[ฉันยินยอมให้ iNaturalist จัดเก็บและประมวลผลข้อมูลส่วนบุคคลที่ จำกัด เกี่ยวกับตัวฉันเพื่อจัดการบัญชีของฉัน <b>เรียนรู้เพิ่มเติม</b>]]></string>
-    <string name="about_personal_information">เกี่ยวกับข้อมูลส่วนบุคคล</string>
+    <string name="about_personal_information">เกี่ยวกับข้อมูลส่วนตัว</string>
     <string name="personal_information_notes"><![CDATA[เราจัดเก็บข้อมูลส่วนบุคคลเช่นชื่อผู้ใช้และที่อยู่อีเมลเพื่อจัดการบัญชีในไซต์นี้และเพื่อให้สอดคล้องกับกฎหมายความเป็นส่วนตัวเราต้องการให้คุณทำเครื่องหมายในช่องนี้เพื่อระบุว่าคุณยินยอมให้ใช้ข้อมูลส่วนบุคคลนี้ หากต้องการเรียนรู้เพิ่มเติมเกี่ยวกับข้อมูลที่เรารวบรวมและวิธีการใช้งานโปรดดูของเรา <a href="https://www.inaturalist.org/privacy">นโยบายความเป็นส่วนตัว</a> และ <a href="https://www.inaturalist.org/terms">เงื่อนไขการให้บริการ</a>.]]></string>
     <string name="i_agree_to_tos_and_privacy"><![CDATA[ฉันเห็นด้วยกับ <a href="https://www.inaturalist.org/terms">เงื่อนไขการให้บริการ</a> และ <a href="https://www.inaturalist.org/privacy">นโยบายความเป็นส่วนตัว</a>และฉันได้ตรวจสอบไฟล์ <a href="https://www.inaturalist.org/pages/community+guidelines">หลักเกณฑ์ของชุมชน</a>.]]></string>
     <string name="privacy_policy">นโยบายความเป็นส่วนตัว</string>

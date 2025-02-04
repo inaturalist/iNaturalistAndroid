@@ -1,152 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">மின்னஞ்சல் முகவரி</string>
-    <string name="delete_observation">கவனிப்பு நீக்கவா?</string>
-    <string name="observation_deleted">கவனிப்பு நீக்கப்பட்டன</string>
-    <string name="species_guess_hint">இனம்</string>
-    <string name="ok">சரி</string>
-    <string name="cancel">ரத்து செய்</string>
-    <string name="loading">ஏற்றுகிறது...</string>
-    <string name="street">தெரு</string>
+    <string name="email_address">ਈ-ਮੇਲ ਦਾ ਪਤਾ</string>
+    <string name="ok">ਠੀਕ ਹੈ</string>
+    <string name="cancel">ਰੱਦ ਕਰੋ</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">சாட்டிலைட்</string>
-    <string name="couldnt_load_nearby_observations">அருகிலுள்ள கவனிப்புகளை ஏற்ற முடியவில்லை: %1$s</string>
-    <string name="signing_in">உள்நுழைவு</string>
-    <string name="signed_in">உள்நுழைந்துவிட்டது!</string>
-    <string name="please_sign_in">தயவு செய்து பதிவு செய்தல்</string>
-    <string name="set_date">தேதி</string>
-    <string name="set_time">நேரம்</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">ஐயோ, ஏதோ தவறாகிவிட்டது: %1$s</string>
-    <string name="edit">திருத்து</string>
-    <string name="oh_no">அச்சச்சோ! %1$s</string>
-    <string name="observations">எனது கவனிப்புகள்</string>
-    <string name="map">வரைபடம்</string>
-    <string name="settings">அமைப்புகள்</string>
-    <string name="projects">திட்டங்கள்</string>
-    <string name="delete_photo">படத்தை நீக்கு</string>
-    <string name="my_location">எனது இருப்பிடம்</string>
-    <string name="nearby_observations">அருகிலுள்ள கவனிப்புகள்</string>
-    <string name="add">சேர்</string>
-    <string name="reload">மீண்டும் ஏற்று</string>
-    <string name="view_in_browser">உலாவியில் காட்டு</string>
-    <string name="add_observation">சேர் கவனிப்பு</string>
-    <string name="take_picture">படம் எடு</string>
-    <string name="save">சேமி</string>
-    <string name="no_observations_yet">இதுவரை கவனிப்பு எதுவுமில்லை!</string>
-    <string name="or">அல்லது</string>
-    <string name="signed_out">வெளியேறு</string>
-    <string name="username">பயனர் பெயர்</string>
-    <string name="password">கடவுச்சொல்</string>
-    <string name="unknown">அறியாதது</string>
-    <string name="unknown_species">அறியாத இனம்</string>
-    <string name="edit_observation">திருத்து கவனிப்பு</string>
-    <string name="yes">ஆம்</string>
-    <string name="no">இல்லை</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">உறுதிப்படுத்து</string>
-    <string name="no_comments">கருத்துக்களோ அடையாளங்களோ இன்னும் அளிக்கப்படவில்லை </string>
-    <string name="add_comment">கருத்துகளைச் சேர்</string>
-    <string name="remarks">கருத்துக்கள்...</string>
-    <string name="joined_projects">சேர்ந்தார்</string>
-    <string name="nearby_projects">அருகிலுள்ள</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="leave">வெளியேறு</string>
-    <string name="join">சேர்</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">பற்றி</string>
-    <string name="about_guide_all_caps">பற்றி</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">அறிமுகம்</string>
-    <string name="about_project_all_caps">பற்றி</string>
-    <string name="about_this_app">அறிமுகம்</string>
-    <string name="about_taxon_short">பற்றி</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">நில தனியுரிமை</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">நில தனியுரிமை: %1$s</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="my_guides">உங்கள்</string>
-    <string name="nearby_guides">அருகிலுள்ள</string>
-    <string name="all_guides">அனைத்தும்</string>
-    <string name="search_taxa">தேடு இனங்கள்</string>
-    <string name="done">செய்த</string>
-    <string name="edit_location">இடம் திருத்து </string>
-    <string name="edit_locality_notes">இருப்பிட குறிப்புகள் திருத்து </string>
-    <string-array name="tutorial_titles">
-        <item></item>
-        <item>Observe</item>
-        <item>ஷேர்</item>
-        <item>Learn</item>
-        <item>Contribute</item>
-    </string-array>
-    <string-array name="geoprivacy_items">
-        <item>திற</item>
-        <item>தெளிவற்ற</item>
-        <item>தனியார்</item>
-    </string-array>
-    <string name="alert_unsupported_media_type">மன்னிக்கவும், இந்த மூலத்திலிருந்து படத்தை ஏற்றுவதில் சிக்கல்.</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">ஆராயுங்கள்</string>
-    <string name="search">தேடு</string>
-    <string name="details">விவரங்கள்</string>
-    <string name="observation_photos">கவனிப்பு படங்கள்</string>
     <!-- The dialog content asking the user to switch to another iNat network -->
-    <string name="editor">ஆசிரியர்</string>
-    <string name="are_you_sure">நீங்கள் உறுதியாக இருக்கிறீர்களா?</string>
-    <string name="error">பிழை</string>
-    <string name="login_with">மூலம் புகுபதிகை</string>
-    <string name="gplus">Google</string>
-    <string name="email">மின்னஞ்சல்</string>
-    <string name="skip">தவிர்  ›</string>
-    <string name="log_in">புகுபதிகை</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
-    <string name="sign_up">பதிவு செய்யுங்கள்</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">பதிவு செய்யுங்கள்</string>
     <!-- Try to keep this about the length of the English text -->
-    <string name="username_or_email">பயனர் பெயர் அல்லது மின்னஞ்சல்</string>
-    <string name="forgot">மறந்துவிட்டதா?</string>
-    <string name="or_login_with">அல்லது இதனுடன் புகுபதிகை:</string>
-    <string name="registering">பதிவு செய்தல்...</string>
-    <string name="recommended_next_step">பரிந்துரைக்கப்படும் அடுத்த படி</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
-    <string name="login_signup">புகுபதிகை / பதிவு செய்தல்</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <!-- Label for a button to import an existing photo for an observation -->
-    <string name="observation">கவனிப்பு</string>
-    <string name="research_grade">ஆராய்ச்சி தரம்</string>
-    <string name="data_quality">தரவுத் தரம்</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <!--  Label for a button to add an observation without a photo or a sound  -->
-    <string name="about_this_species">இனம் பெயர்</string>
-    <string name="edit_profile">சுயவிவரம் திருத்து</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="not_logged_in">புகுபதிகைல்லை</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">புகுபதிகை அல்லது பதிவு செய்தல்</string>
     <!-- Dialog title for when you are updating the description of an identification -->
-    <string name="have_been_seen_here">முன்பு இங்கு பார்த்தது</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
-    <string name="add_edit_remark">சேர்/திருத்து கருத்து</string>
-    <string name="taxonomy">உயிரியல் வகைப்பாடு</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="view_suggestions">பரிந்துரைகளைப் பார்க்க</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">சிறந்த பரிந்துரைகள்</string>
-    <string name="visually_similar_seen_nearby">ஒத்திருக்கும் / அருகில் பார்த்தேன்</string>
-    <string name="seen_nearby">அருகில் பார்த்தேன்</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
-    <string name="nearby">அருகிலுள்ள </string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="no_taxon">மன்னிக்கவும், இனங்கள் காணப்படவில்லை</string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
@@ -163,13 +53,11 @@
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">பெறுநர்</string>
     <!-- As in redo search in the current map area -->
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
-    <string name="inactive_taxon">செயலற்ற இனங்கள்</string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <!--
         Pronunciation of people's names (as approved by the people in question):
@@ -179,8 +67,6 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="new_to_inat_sign_up_now"><![CDATA[%1$s-க்கு புதிதா? <b>இப்போது பதிவு செய்யுங்கள்!</b>]]></string>
-    <string name="project_species">இனம்</string>
     <!-- People who added identifications to observations in a project -->
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
@@ -208,12 +94,9 @@
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">உயிருடன்</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">இறந்தார்</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">உயிரினம்</string>
     <!-- "Evidence of Presence" value when for bird feathers -->
     <!-- "Evidence of Presence" value when for fecal remains -->
     <!-- "Evidence of Presence" value for impressions in the ground or snow -->
@@ -229,11 +112,7 @@
     <!-- "Leaves" value when there are no living leaves -->
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">சேர்ந்தார்</string>
-    <string name="nearby_projects_all_caps">அருகிலுள்ள</string>
     <!-- Text for a button or label that allows someone to join a project -->
-    <string name="nearby_guides_all_caps">அருகிலுள்ள</string>
-    <string name="species_all_caps">இனம்</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <!-- Label for a button to import an existing sound for an observation -->
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
@@ -249,23 +128,18 @@
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">படத்தை திருத்து</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
     <!-- Second person hint text asking the user to enter their username -->
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">தடைசெய்யப்பட்ட</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <!-- Description of a UI element for screen readers -->
     <!-- Description of a UI element for screen readers -->
     <!-- Description of a UI element for screen readers -->
-    <string name="please_sign_in_for_messages">உங்கள் செய்திகள் காண உள்நுழைந்திருக்க வேண்டும்</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <!-- Singular -->
-    <string name="rank_species">இனம்</string>
     <!-- Singular -->
-    <string name="rank_subspecies">உபஇனம்</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <!-- Short date formatting template for dates in the current year. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Short date formatting template for any date. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -275,12 +149,8 @@
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
-    <string name="equals_sign">=</string>
-    <string name="taxon">இனங்கள்:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">இது இந்த இனத்தில் உள்ளது என்பதில் நாங்கள் உறுதியாக உள்ளோம்.</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">இது இந்த உபஇனத்தில் உள்ளது என்பதில் நாங்கள் உறுதியாக உள்ளோம்.</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <!-- Accessibility text for the faves tab on the observation detail view -->
@@ -295,12 +165,9 @@
     <!-- Error message shown when an attempt to unfollow an observation fails -->
     <!-- Label for a button to copy the coordinates of an observation -->
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">மீதரவு</string>
     <!--  iNat observation identifier  -->
     <!--  iNat observation Universally Unique Identifier  -->
     <!--  Universal Resource Locator  -->
-    <string name="edit_photo_license">பட உரிமத்தை திருத்தவும்</string>
-    <string name="edit_observation_license">பட உரிமத்தை திருத்தவும்</string>
     <!-- License Names -->
     <!-- License Descriptions -->
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
@@ -312,7 +179,6 @@
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
-    <string name="issue_with_updating_photos">இந்தக் கவனிப்பில் படங்களைப் புதுப்பிக்கச் சிக்கல் ஏற்பட்டது, இது சமீபத்தில் சரி செய்யப்பட்டுள்ளது. இந்தச் சிக்கலைக் கையாள, தயவுசெய்து வெளியேறுங்கள் மற்றும் மீண்டும் உள்நுழைந்துவிடுங்கள்.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <!-- Accessibility label for a button that closes an announcement -->
 </resources>

@@ -64,6 +64,7 @@
     <string name="about_this_app">அறிமுகம்</string>
     <string name="about_taxon_short">பற்றி</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
+    <string name="geoprivacy">நில தனியுரிமை</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">நில தனியுரிமை: %1$s</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
@@ -96,24 +97,36 @@
     <string name="editor">ஆசிரியர்</string>
     <string name="are_you_sure">நீங்கள் உறுதியாக இருக்கிறீர்களா?</string>
     <string name="error">பிழை</string>
+    <string name="login_with">மூலம் புகுபதிகை</string>
+    <string name="gplus">Google</string>
     <string name="email">மின்னஞ்சல்</string>
+    <string name="skip">தவிர்  ›</string>
+    <string name="log_in">புகுபதிகை</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">பதிவு செய்யுங்கள்</string>
     <!-- Title of the view used to sign up for a new account -->
     <string name="sign_up_title">பதிவு செய்யுங்கள்</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">பயனர் பெயர் அல்லது மின்னஞ்சல்</string>
+    <string name="forgot">மறந்துவிட்டதா?</string>
+    <string name="or_login_with">அல்லது இதனுடன் புகுபதிகை:</string>
+    <string name="registering">பதிவு செய்தல்...</string>
+    <string name="recommended_next_step">பரிந்துரைக்கப்படும் அடுத்த படி</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">புகுபதிகை / பதிவு செய்தல்</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <!-- Label for a button to import an existing photo for an observation -->
     <string name="observation">கவனிப்பு</string>
+    <string name="research_grade">ஆராய்ச்சி தரம்</string>
+    <string name="data_quality">தரவுத் தரம்</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="about_this_species">இனம் பெயர்</string>
     <string name="edit_profile">சுயவிவரம் திருத்து</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="not_logged_in">புகுபதிகைல்லை</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">புகுபதிகை அல்லது பதிவு செய்தல்</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="have_been_seen_here">முன்பு இங்கு பார்த்தது</string>
     <!--
@@ -242,6 +255,7 @@
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
     <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">தடைசெய்யப்பட்ட</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <!-- Description of a UI element for screen readers -->
     <!-- Description of a UI element for screen readers -->
@@ -281,6 +295,7 @@
     <!-- Error message shown when an attempt to unfollow an observation fails -->
     <!-- Label for a button to copy the coordinates of an observation -->
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">மீதரவு</string>
     <!--  iNat observation identifier  -->
     <!--  iNat observation Universally Unique Identifier  -->
     <!--  Universal Resource Locator  -->

@@ -651,11 +651,15 @@
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
     <string name="annotation_name_leaves"></string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Створено</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">Квіти</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Плоди або насіння</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Бутони квітів</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Ні квітів, ні фруктів</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Дорослий</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -692,14 +696,23 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Линяння</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Конструкції</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Жовчний</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Волосся</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Листова шахта</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Обривання листових бруньок</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Зелене листя</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Кольорове листя</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Жодного живого листя</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">Не встановлено</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ПРИЄДНАЛИСЯ ДО</string>
     <string name="nearby_projects_all_caps">НЕПОДАЛІК</string>
@@ -742,6 +755,7 @@
     <string name="community_id_at_species_level_or_lower">Ідентифікація спільнотою на рівні виду або нижче</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Ґрунтуючись на свідченнях, чи можна підтвердити або покращити ідентифікатор спільноти?</string>
     <string name="no_as_good_as_it_can_be">Ні, це добре, наскільки можливо</string>
+    <string name="evidence_related_to_single_subject">Докази, що стосуються одного предмета</string>
     <string name="seasonality">Сезонність</string>
     <string name="verifiable">Доступний до перевірки</string>
     <string name="no_annotation">Анотацій немає</string>
@@ -990,6 +1004,7 @@
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">MMM d, yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \'\'yy</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">MMMM d, yyyy HH:mm</string>
     <string name="show_common_names"> Показати звичайні назви</string>
