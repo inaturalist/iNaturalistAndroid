@@ -675,19 +675,19 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Muda(s)</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
-    <string name="annotation_value_construction">Construcciones</string>
+    <string name="annotation_value_construction">Estructura(s)</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
     <string name="annotation_value_gall">Agalla</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
     <string name="annotation_value_hair">Pelo</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
-    <string name="annotation_value_leafmine">Rastros en hojas</string>
+    <string name="annotation_value_leafmine">Minador de hojas</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
-    <string name="annotation_value_breaking_leaf_buds">Brotación de yemas foliares</string>
+    <string name="annotation_value_breaking_leaf_buds">Renuevos de hojas</string>
     <!-- "Leaves" value when for green leaves -->
     <string name="annotation_value_green_leaves">Hojas verdes</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
-    <string name="annotation_value_colored_leaves">Hojas de colores</string>
+    <string name="annotation_value_colored_leaves">Hojas coloreadas</string>
     <!-- "Leaves" value when there are no living leaves -->
     <string name="annotation_value_no_live_leaves">Sin hojas vivas</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
@@ -979,7 +979,7 @@ Más información de nuestra definición de \"contenido apropiado\" en las
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM aaaa</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_obscured">MMM \"yy</string>
+    <string name="date_obscured">MMM \"aa</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d MMM aaaa, hh:mma</string>
     <string name="show_common_names">Muestra nombres comunes</string>
