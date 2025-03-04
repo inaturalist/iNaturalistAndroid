@@ -626,6 +626,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">ללא</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">פרחים ופירות</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">שלב חיים</string>
     <!-- Noun, describes sex of the organism -->
@@ -635,11 +636,17 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">עדות לנוכחות</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">עלים</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">מבוסס</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">פרחים</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">פירות או זרעים</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">ניצני פרחים</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">ללא פרחים או פירות</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">בוגר</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -676,14 +683,23 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">השלה</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">בנייה</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">עפץ</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">שיער</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">נבירת עלה</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">ניצני עלים נשברים</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">עלים ירוקים</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">עלים צבעוניים</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">אין עלים חיים</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">לא מבוסס</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">שהצטרפת</string>
     <string name="nearby_projects_all_caps">בקרבת מקום</string>
@@ -726,6 +742,7 @@
     <string name="community_id_at_species_level_or_lower">זיהוי קהילתי ברמת המין או נמוכה יותר</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">בהתבסס על הראיות, האם עדיין אפשר לאשר או לשפר את הזיהוי הקהילתי?</string>
     <string name="no_as_good_as_it_can_be">לא, זה הכי טוב שאפשר</string>
+    <string name="evidence_related_to_single_subject">ראיות הקשורות לנושא אחד</string>
     <string name="seasonality">עונתיות</string>
     <string name="verifiable">בר-אימות</string>
     <string name="no_annotation">ללא תווית</string>
@@ -972,6 +989,7 @@
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">MMM d, yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \'\'yy</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">הצגת שמות עממיים</string>
@@ -1218,4 +1236,7 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">סגירת הודעה</string>
     <string name="import_photos_from">ייבוא תמונות מ...</string>
+    <string name="cannot_find_default_camera">לא נמצאה מצלמה זמינה לצילום – אנא צרו קשר עם התמיכה</string>
+    <string name="please_click_link_to_confirm_email">נא ללחוץ על הקישור בדוא\"ל שלך לאישור הדוא\"ל שלך ב-iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">יש ללחוץ כאן כדי לשלוח שוב דוא\"ל אימות.</string>
 </resources>
