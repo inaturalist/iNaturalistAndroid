@@ -634,6 +634,7 @@
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">گلها</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">میوه ها یا دانه ها</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_buds">غنچه های گل</string>
     <!-- Observation presents no evidence of flowering phenology -->
@@ -674,9 +675,13 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">پوست اندازی</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">ساخت و ساز</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">گال (رشد غیرطبیعی بافت گیاه)</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">مو</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">شواهد تغذیه بین لایه های پوستی برگ</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
     <string name="annotation_value_breaking_leaf_buds">غنچه های برگ</string>
     <!-- "Leaves" value when for green leaves -->

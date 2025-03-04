@@ -687,7 +687,7 @@
     <!-- "Leaves" value when for green leaves -->
     <string name="annotation_value_green_leaves">Groene bladeren</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
-    <string name="annotation_value_colored_leaves">Gekleurde bladeren</string>
+    <string name="annotation_value_colored_leaves">Verkleurde bladeren</string>
     <!-- "Leaves" value when there are no living leaves -->
     <string name="annotation_value_no_live_leaves">Geen levende bladeren</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
