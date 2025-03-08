@@ -31,6 +31,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -1383,8 +1384,11 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
 
     public boolean isExternalStoragePermissionGranted() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            int permission = PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES);
             return (
-                    PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == PermissionChecker.PERMISSION_GRANTED
+                     permission == PermissionChecker.PERMISSION_GRANTED ||
+                     // Happens when providing access to selected photos only
+                     permission == PermissionChecker.PERMISSION_DENIED_APP_OP
             );
         } else {
             return (
@@ -1398,7 +1402,12 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
     }
 
     public boolean isAccessMediaLocationPermissionGranted() {
-        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION) == PermissionChecker.PERMISSION_GRANTED);
+        int permission = PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION);
+        return (
+                permission == PermissionChecker.PERMISSION_GRANTED ||
+                // Happens when providing access to selected photos only
+                permission == PermissionChecker.PERMISSION_DENIED_APP_OP
+        );
     }
 
 
