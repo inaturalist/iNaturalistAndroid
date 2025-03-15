@@ -777,7 +777,7 @@
     <string name="upload_sound">Scegli il suono</string>
     <string name="multi_select_sound_description">Importa più suoni premendo a lungo su un singolo suono</string>
     <string name="alert_unsupported_audio_type">Siamo spiacenti ma c\'è un problema nel caricamento del suono da questa sorgente</string>
-    <string name="invalid_audio_extension">Errore durante l\'importazione del(i) suono(i): puoi importare solo file immagine con estensione JPG/JPEG/PNG</string>
+    <string name="invalid_audio_extension">Errore durante l\'importazione del(i) suono(i): puoi importare solo file di suoni con estensione WAV/MP3/AMR</string>
     <string name="importing_sounds">Importazione suono(i)...</string>
     <string name="observation_sound">Osservazione come suono</string>
     <string name="deleted_sounds_from_cache_error">Sembra che tu abbia cancellato un suono, prima di caricarlo, effettuando la cancellazione della cache dell\'applicazione. Per questo sarà necessario aggiungere il suono successivamente come osservazione nella tua galleria. In futuro fai attenzione di aver caricato tutti i suoni prima di cancellare la cache dell\'applicazione.</string>
