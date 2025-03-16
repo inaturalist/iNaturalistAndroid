@@ -1369,7 +1369,11 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
                 (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PermissionChecker.PERMISSION_GRANTED) &&
                     (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PermissionChecker.PERMISSION_GRANTED) &&
                     (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q ?
-                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION) == PermissionChecker.PERMISSION_GRANTED) :
+                            (
+                                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION) == PermissionChecker.PERMISSION_GRANTED) ||
+                                // Happens when providing access to selected photos only
+                                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION) == PermissionChecker.PERMISSION_DENIED_APP_OP)
+                            ):
                         true)
         );
     }
