@@ -602,12 +602,15 @@
     <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
     <!-- "Evidence of Presence" value when for bird feathers -->
     <!-- "Evidence of Presence" value when for fecal remains -->
+    <string name="annotation_value_scat">Phân</string>
     <!-- "Evidence of Presence" value for impressions in the ground or snow -->
     <!-- "Evidence of Presence" value when for bones -->
+    <string name="annotation_value_bone">Xương</string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Lông tóc</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
     <!-- "Leaves" value when for leaf buds that are opening -->
     <!-- "Leaves" value when for green leaves -->
@@ -905,7 +908,9 @@ Các bên thứ ba này bao gồm: <br/><ul><li>Google (<a href="https://analyti
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
     <!--  iNat observation identifier  -->
     <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
     <!-- License Names -->
     <!-- License Descriptions -->
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->

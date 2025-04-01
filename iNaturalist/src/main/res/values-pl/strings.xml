@@ -176,6 +176,8 @@
     <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica jest członkiem sieci iNaturalist w Kostaryce. Lokalne instytucje wspierające iNaturalist Costa Rica będą miały dostęp do Twojego adresu e-mail i prawdziwych współrzędnych dla obserwacji, które są publicznie ukryte lub prywatne. Prosimy, nie zmieniaj eksperymentalnie przynależności, jeśli posiadasz więcej niż 1000 obserwacji. Czy chcesz zmienić swoją przynależność?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala jest członkiem sieci iNaturalist w Gwatemali. Lokalne instytucje wspierające Guatemala będą miały dostęp do Twojego adresu e-mail i prawdziwych współrzędnych dla obserwacji, które są publicznie ukryte lub prywatne. Prosimy, nie zmieniaj eksperymentalnie przynależności, jeśli posiadasz więcej niż 1000 obserwacji. Czy chcesz zmienić swoją przynależność?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden jest członkiem sieci iNaturalist w Szwecji. Lokalne instytucje wspierające Sweden będą miały dostęp do Twojego adresu e-mail i prawdziwych współrzędnych dla obserwacji, które są publicznie ukryte lub prywatne. Prosimy, nie zmieniaj eksperymentalnie przynależności, jeśli posiadasz więcej niż 1000 obserwacji. Czy chcesz zmienić swoją przynależność?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Urugwaj jest członkiem sieci iNaturalist w Urugwaju. Lokalne instytucje wspierające Naturalista Urugwaj będą miały dostęp do Twojego adresu e-mail i dostępu do prawdziwych współrzędnych dla obserwacji, które są publicznie ukryte lub prywatne. Nie zmieniaj swojego powiązania eksperymentalnie, jeśli masz więcej niż 1000 obserwacji. Czy chcesz zmienić powiązanie?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Tajwan jest członkiem sieci iNaturalist w Tajwanie. Lokalne instytucje wspierające iNaturalist Taiwan będą miały dostęp do Twojego adresu e-mail i dostępu do prawdziwych współrzędnych dla obserwacji, które są publicznie ukryte lub prywatne. Nie zmieniaj swojego powiązania eksperymentalnie, jeśli masz więcej niż 1000 obserwacji. Czy chcesz zmienić powiązanie?</string>
     <string name="editor">Redaktor</string>
     <string name="license">Licencja</string>
     <string name="download_for_offline_use">Pobierz do użytku offline</string>
@@ -586,6 +588,7 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="inat_credits2"><![CDATA[iNaturalist istnieje dzięki każdej osobie, która uczestniczy w naszej społeczności. Ludzie, którzy tworzą oprogramowanie, projektują interfejsy, utrzymują naszą infrastrukturę, wspierają społeczność i nawiązują współpracę to Yaron Budowski, Amanda Bullington, Tony Iwane, Johannes Klein, Patrick Leary, Scott Loarie, Abhas Misraraj, Sylvain Morin, Carrie Seltzer, Alex Shepard, Angie Ta, i Ken-ichi Ueda.<br/><br/>CalTech i Cornell Tech pomogły w opracowaniu systemu rozpoznawania komputerowego, który sugeruje identyfikację ze zdjęć. Dziękujemy Grantowi Van Hornowi, Sergeowi Belongie i Pietro Peronie za przyspieszenie badań nad wizją komputerową. Więcej informacji można znaleźć na stronie <a href="https://www.visipedia.org">visipedia.org</a>. Specjalne podziękowania dla NVIDIA za dodatkową pomoc.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Międzynarodowa Sieć iNaturalist, dzięki pomocy powiązanych organizacji partnerskich, wspiera lokalne, w pełni zintegrowane i bazujące na iNaturalist strony w następujących krajach.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist jest również głęboko wdzięczny developerom open source, którzy dostarczyli tak dużą część oprogramowania, na którym polegamy na codzień. Odwiedź <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github. om/inaturalist/iNaturalistAndroid</a> by obejrzeć wkład open source.<br/> Jesteśmy wdzięczni za pomoc w tłumaczeniach świadczoną przez wolontariuszy społeczności crowdin.com, a zwłaszcza Eduardo Martiţnez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, i katunchik. <br/>Miejsca z kategorii II IUCN dostarczone przez IUCN i UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Dostępne pod adresem: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Podziękowania</string>
@@ -635,6 +638,7 @@
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
     <string name="annotation_name_leaves">Liście</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Ustanowiona</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">Kwiaty</string>
     <!-- Adjective, having fruit or seeds -->
@@ -681,9 +685,13 @@
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
     <string name="annotation_value_construction">Konstrukcja</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Narośl</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Sierść</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Miny na liściach</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Pąki liściowe</string>
     <!-- "Leaves" value when for green leaves -->
     <string name="annotation_value_green_leaves">Zielone liście</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
@@ -691,6 +699,7 @@
     <!-- "Leaves" value when there are no living leaves -->
     <string name="annotation_value_no_live_leaves">Brak żywych liści</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">Nieustanowiona</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">DOŁĄCZONO</string>
     <string name="nearby_projects_all_caps">W POBLIŻU</string>
@@ -733,6 +742,7 @@
     <string name="community_id_at_species_level_or_lower">Oznaczenie społeczności na poziomie gatunku lub niższym</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Czy na podstawie dowodów oznaczenie społeczności wciąż może zostać potwierdzone lub ulepszone?</string>
     <string name="no_as_good_as_it_can_be">Nie, jest tak dobrze jak może być</string>
+    <string name="evidence_related_to_single_subject">Dowody dotyczące pojedynczego organizmu</string>
     <string name="seasonality">Sezonowość</string>
     <string name="verifiable">Weryfikowalne</string>
     <string name="no_annotation">Brak adnotacji</string>
@@ -750,6 +760,13 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ekwador: Instituto Nacional de Biodiversidad (INABIO) wspierający iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Izrael: Uniwersytet Haifa wspierający iNaturalist Izrael (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlandia: fińskie Muzeum Historii Naturalnej (LUOMUS) wspierające iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente wspierające iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grecja: iSea wspierające iNaturalist Grecja (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luksemburg: Luxembourg National Museum of Natural History (MnhnL) wspierające iNaturalist Luksemburg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Wielka Brytania: National Biodiversity Network Trust wspierające iNaturalist Wielka Brytania (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Kostaryka: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) wspierające Naturalista Kostaryka (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Gwatemala: Consejo Nacional de Áreas Protegidas (CONAP) wspierające iNaturalist Gwatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Szwecja: SLU Swedish Species Information Centre wspierające iNaturalist Szwecja (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Urugwaj: JULANA i Biodiversidata wspierające Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="network_credit_inaturalisttw"><![CDATA[Tajwan: National Chiayi University i Taiwan Forestry Research Institute wspierające iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Oznacz wszystkie jako przejrzane</string>
@@ -854,6 +871,9 @@
     <string name="warning_multiple_photos">Jeżeli próbujesz dodać zdjęcia innego gatunku do tej obserwacji albo zdjęcia tego samego, ale widzianego w innym miejscu lub czasie, powinieneś usunąć te zdjęcia i dodać je jako osobną obserwację. Każda obserwacja może mieć %1$d zdjęć.</string>
     <string name="choosing_specific_language_warning">Wybór określonego języka dla Twojego konta wymaga połączenia z Internetem</string>
     <string name="running_in_background_notfication">Praca w tle, abyśmy mogli działać bez przerwy</string>
+    <string name="opt_out_of_community_taxon">Zrezygnuj z taksonu wybranego przez społeczność</string>
+    <string name="opt_in_to_community_taxon">Wybierz takson wybrany przez społeczność</string>
+    <string name="opt_out_message">Rezygnacja z taksonu wybranego przez społeczność wiąże tę obserwację z taksonem z Twojej aktualnej identyfikacji, nie z taksonem zasugerowanym przez wszystkie identyfikacje dodane do Twojej obserwacji. Jeśli wystarczająca liczba identyfikujących nie zgodzi się z Tobą, Twoja obserwacje zostanie oznaczona jako Nieformalna. Powinieneś zrezygnować z taksonu jedynie, jeśli masz pewność, że Twoja identyfikacja jest poprawna, a inne błędne. </string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Wymagane Uprawnienie</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -969,6 +989,7 @@
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \'\'rr</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d MMMM yyyy h:mm</string>
     <string name="show_common_names">Pokazuj nazwy zwyczajowe</string>
@@ -1133,6 +1154,13 @@
     <string name="license_name_cc_by_sa">Uznanie autorstwa - Na tych samych warunkach</string>
     <string name="license_name_no_license">Wszelkie prawa zastrzeżone</string>
     <!-- License Descriptions -->
+    <string name="license_description_cc0">Ta licencja pozwala na opublikowanie twojej pracy w domenie publicznej. Dzięki temu inni mogą kopiować, modyfikować, dystrybuować i odtwarzać twoje dzieło, nawet w celach komercyjnych, bez pytania cię o zgodę oraz bez uznania twojego autorstwa. Jest to najbardziej otwarta forma licencjonowania, polecana do szerokiego rozprzestrzeniania licencjonowanych materiałów.</string>
+    <string name="license_description_cc_by">Ta licencja pozwala innym na dystrybuowanie, remiksowanie, ulepszanie i nadbudowywanie twojej pracy, nawet komercyjnie, o ile uznają twoje autorstwo.</string>
+    <string name="license_description_cc_by_nc">Ta licencja pozwala innym na niekomercyjne remiksowanie, ulepszanie i nadbudowywanie twojej pracy. O ile nowe dzieła muszą uznawać twoje autorstwo i być niekomercyjne, o tyle autorzy nie muszą licencjonować utworów zależnych na tych samych zasadach.</string>
+    <string name="license_description_cc_by_nc_sa">Ta licencja pozwala innym na remiksowanie, ulepszanie i nadbudowywanie twojej pracy niekomercyjnie, o ile uznają twoje autorstwo i licencjonują nowe dzieła pod identycznymi zasadami.</string>
+    <string name="license_description_cc_by_nc_nd">Ta licencja jest najbardziej restrykcyjną spośród sześciu głównych licencji. Pozwala jedynie na pobieranie i dzielenie się twoimi dziełami, bez możliwości zmian i użycia komercyjnego, o ile uznają twoje autorstwo.</string>
+    <string name="license_description_cc_by_nd">Ta licencja pozwala na komercyjną i niekomercyjną redystrybucję, o ile utwór jest przekazywany dalej w całości i niezmieniony oraz z uznaniem twojego autorstwa.</string>
+    <string name="license_description_cc_by_sa">Licencja ta pozwala innym na remiksowanie, dostosowywanie i budowanie na podstawie Waszej pracy nawet w celach komercyjnych, pod warunkiem, że podadzą Waszą nazwę i udzielą licencji na swoje nowe dzieła na identycznych warunkach. Licencja ta jest często porównywana do licencji \"copyleft\" wolnego i otwartego oprogramowania. Wszystkie nowe utwory oparte na Waszych będą opatrzone tą samą licencją, więc wszelkie pochodne będą mogły być wykorzystywane w celach komercyjnych. Jest to licencja używana przez Wikipedię i jest zalecana w przypadku materiałów, które mogłyby skorzystać na włączeniu treści z Wikipedii i projektów o podobnych licencjach.</string>
     <string name="license_description_no_license">Zachowujesz pełne prawa autorskie do swoich treści niezależnie od tych zagwarantowanych iNaturalist w naszych Warunkach użytkowania.</string>
     <string name="invalid_photo">Format zdjęcia nie jest obsługiwany</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
@@ -1201,6 +1229,7 @@
     <string name="authentication_failed">Błąd uwierzytelniania</string>
     <string name="please_try_again_soon">Wkrótce spróbuj ponownie</string>
     <string name="verify_your_email">Potwierdź adres E-mail</string>
+    <string name="after_you_change_your_password">Po zmianie hasła zostaniesz wylogowany i będziesz musiał zalogować się ponownie przy użyciu nowego hasła. Zostaniesz również wylogowany z aplikacji mobilnych iNaturalist i innych aplikacji lub stron internetowych, które publikują na iNaturalist w Twoim imieniu, więc upewnij się, że przesłałeś oczekujące obserwacje, zanim to zrobisz. Wszelkie obserwacje, które nie zostaną przesłane, zostaną utracone.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Nie udało się wgrać pliku - jest większy niż 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Zostałeś wylogowany. Proszę zaloguj się ponownie.</string>
