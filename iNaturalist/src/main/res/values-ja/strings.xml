@@ -644,7 +644,9 @@
     <string name="annotation_value_molt">抜け殻</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">虫こぶ（虫癭）</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">体毛</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
     <!-- "Leaves" value when for leaf buds that are opening -->
     <string name="annotation_value_breaking_leaf_buds">芽吹き</string>

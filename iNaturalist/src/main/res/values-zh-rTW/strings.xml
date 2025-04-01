@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="email_address">電子郵件地址</string>
-    <string name="delete_observation">刪除觀察記錄</string>
+    <string name="delete_observation">刪除觀察紀錄</string>
     <string name="observation_deleted">已刪除的觀察記錄</string>
     <string name="species_guess_hint">物種名稱</string>
     <string name="ok">好的</string>
