@@ -6042,16 +6042,18 @@ public class INaturalistServiceImplementation {
                         // Extract error description, if exists
                         if (json != null) {
                             JSONObject innerJson = json.optJSONObject(0);
-                            Object errorObject = innerJson.opt("error");
-                            if (errorObject instanceof String) {
-                                mResponseErrors = new JSONArray();
-                                mResponseErrors.put((String)errorObject);
-                            } else if (errorObject != null) {
-                                if (((JSONObject)errorObject).optJSONObject("original") != null) {
-                                    String error = ((JSONObject)errorObject).optJSONObject("original").optString("error");
-                                    if (error != null) {
-                                        mResponseErrors = new JSONArray();
-                                        mResponseErrors.put(error);
+                            if (innerJson != null) {
+                                Object errorObject = innerJson.opt("error");
+                                if (errorObject instanceof String) {
+                                    mResponseErrors = new JSONArray();
+                                    mResponseErrors.put((String) errorObject);
+                                } else if (errorObject != null) {
+                                    if (((JSONObject) errorObject).optJSONObject("original") != null) {
+                                        String error = ((JSONObject) errorObject).optJSONObject("original").optString("error");
+                                        if (error != null) {
+                                            mResponseErrors = new JSONArray();
+                                            mResponseErrors.put(error);
+                                        }
                                     }
                                 }
                             }
