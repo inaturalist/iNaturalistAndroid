@@ -634,6 +634,7 @@
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">Flors</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Fruits o Llavors</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_buds">Gemmes de Flors</string>
     <!-- Observation presents no evidence of flowering phenology -->
@@ -674,10 +675,15 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Muda</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Construcció</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Cecidi</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Pèl</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Fulla mossegada</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Botons de les Fulles</string>
     <!-- "Leaves" value when for green leaves -->
     <string name="annotation_value_green_leaves">Fulles Verdes</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
