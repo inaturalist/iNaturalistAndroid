@@ -297,9 +297,11 @@
     <string name="there_was_a_problem_updating_profile">更新您的個人資料時發生問題！</string>
     <string name="there_was_a_problem_updating_profile_params">更新您的個人資料時發生問題：%1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[當前登入為 <b>%1$s</b>]]></string>
     <string name="log_out">登出</string>
     <string name="not_logged_in">尚未登入</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">登入 / 註冊</string>
     <string name="auto_upload_description">自動上傳新的觀察和編輯過的觀察記錄</string>
     <string name="language">語言</string>
     <string name="version">版本</string>
@@ -321,6 +323,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">更新物種辨認描述</string>
     <string name="your_identification">您的 ID: %1$s</string>
+    <string name="onboarding_species_name">如果可以的话，請命名您所看到的東西，即使只是「昆蟲」或「鳥」都可以，或者直接留空。其他人可能會幫助您識別它！</string>
     <string name="upload_complete">上傳完成！</string>
     <string name="onboarding_upload_description">請稍後回來查看其他人對你的觀察記錄的辨認及評論。</string>
     <string name="importing_photos">正在上載照片中...</string>
@@ -334,6 +337,7 @@
     <string name="mammals">哺乳動物</string>
     <string name="insects">昆蟲</string>
     <string name="reptiles">爬行動物</string>
+    <string name="animals">動物</string>
     <string name="fish">魚類</string>
     <string name="mollusks">軟體動物</string>
     <string name="amphibians">兩棲類</string>
