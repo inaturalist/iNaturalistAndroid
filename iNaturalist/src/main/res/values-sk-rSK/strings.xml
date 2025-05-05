@@ -588,6 +588,7 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="inat_credits2"><![CDATA[iNaturalist existuje vďaka každej jednotlivej osobe, ktorá sa zúčastňuje našej komunity. Ľudia, ktorí vytvárajú softvér, navrhujú rozhranie, udržujú našu infraštruktúru, podporujú komunitu a rozvíjajú spoluprácu, sú Yaron Budowski, Amanda Bullington, Tony Iwane, Johannes Klein, Patrick Lear, Scott Loarie, Abhas Misraraj, Sylvain Morin, Carrie Seltzer, Alex Shepard, Angie Ueda.<br/><br/>CalTech a Cornell Tech pomohli vyvinúť počítačový vizuálny systém, ktorý naznačuje identifikáciu z fotografií. Ďakujeme Grantovi Van Hornovi, Sergei Belongiemu a Pietrovi Peronovi za pokrok vo výskume počítačového videnia. Viac informácií nájdete na adrese <a href="https://www.visipedia.org">visipedia.org</a>. Osobitné poďakovanie patrí NVIDIA za ďalšiu pomoc.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Medzinárodná sieť iNaturalist podporuje lokalizované, plne integrované webové stránky založené na iNaturalist v nasledujúcich krajinách vďaka podpore pridružených partnerských organizácií.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist je tiež veľmi vďačný vývojárom s otvoreným kódom, ktorí poskytli softvér, na ktorý sa dnes každý deň spoliehame. Príspevky s otvoreným kódom nájdete na stránke <a href="https://github.com/inaturalist/iNaturalistAndroid"> https://github.com/inaturalist/iNaturalistAndroid </a>. <br/> Sme vďační za pomoc s prekladmi poskytovanú dobrovoľníkmi v komunite crowdin.com, najmä Eduardovi Martínezovi, Lin Cheng-Taovi, KestrelLamovi, cgalindovi, vilseskogovi, NCAA, ldacoste, radane, Mykolovi Puchalskému, danieleseglie a katunchikovi. <br/> Miesta IUCN kategórie II poskytované IUCN a UNEP-WCMC (2015), Svetová databáza chránených území (WDPA) [On-line], [11/2014], Cambridge, Spojené Kráľovstvo: UNEP-WCMC. Dostupné na adrese: <a href="http://www.protectedplanet.net"> 
 www.protectedplanet.net</a>]]></string>
@@ -626,6 +627,7 @@ www.protectedplanet.net</a>]]></string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Žiadne</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Kvety a plody</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Životné štádium</string>
     <!-- Noun, describes sex of the organism -->
@@ -635,11 +637,17 @@ www.protectedplanet.net</a>]]></string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Dôkaz prítomnosti</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Listy</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Založené</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Kvety</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Plody alebo semená</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Kvetné púčiky</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Žiadne kvety ani plody</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Dospelý</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -676,14 +684,23 @@ www.protectedplanet.net</a>]]></string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Zvlečka</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Konštrukcia</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Hálka</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Srsť</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Okus</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Listové púčiky</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Zelené listy</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Farebné listy</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Žiadne živé listy</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">Nezaložené</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ČLENSKÉ</string>
     <string name="nearby_projects_all_caps">V OKOLÍ</string>
@@ -1213,6 +1230,7 @@ www.protectedplanet.net</a>]]></string>
     <string name="authentication_failed">Overenie zlyhalo</string>
     <string name="please_try_again_soon">Skúste to znova neskôr.</string>
     <string name="verify_your_email">Overte svoju e-mailovú adresu</string>
+    <string name="after_you_change_your_password">Potom, čo zmeníte svoje heslo, budete odhlásení a budete sa musieť znovu prihlásiť svojim novým heslom. Budete tiež odhlásení z mobilných aplikácií iNaturalist a akýchkoľvek ďalších aplikácií alebo webových stránok, ktoré váš menom publikujú iNaturalist tak sa uistite, že ste nahrali všetky čakajúce pozorovania, než to urobíte. Všetky pozorovania, ktoré nie sú nahrané, budú stratené.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Nemožno nahrať súbor, pretože presahuje 20 MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Boli ste odhlásení. Prosím, prihláste sa znovu.</string>

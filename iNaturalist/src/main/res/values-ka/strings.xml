@@ -52,18 +52,22 @@
     <string name="no">არა</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">ეთანხმებით?</string>
+    <string name="no_comments">კომენტარები/იდენტიფიკაციები ჯერ არ არის</string>
     <string name="add_comment">კომენტარის დამატება</string>
     <string name="add_id">დაამატეთ იდენთიფიკაცია</string>
     <string name="remarks">შენიშვნები...</string>
     <string name="enter_taxon_name">სახეობის სახელი</string>
     <string name="no_projects">პროექტები არ მოიძებნა!</string>
+    <string name="no_guides">მეგზურები ვერ მოიძებნა!</string>
     <string name="loading_projects">პროექტები იტვირთება...</string>
     <string name="joined_projects">წევრი</string>
     <string name="nearby_projects">ახლო</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
+    <string name="featured_projects">რჩეული</string>
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">მიტოვება</string>
     <string name="join">შეერთება</string>
+    <string name="no_check_list">საკონტროლო სიაში ტაქსონები არ არის!</string>
     <string name="failed_to_add_obs_to_project">დაკვირვება \'%1$s\' ვერ დაემატა პროექტს \'%2$s\': %3$s</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <string name="select_projects">მონიშნეთ გაწევრიანებული პროექტებიდან</string>
@@ -80,7 +84,9 @@
     <string name="about_this_app">ჩვენზე</string>
     <string name="about_taxon_short">ჩვენზე</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
+    <string name="geoprivacy">გეოკონფიდენციალურობა</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
+    <string name="geoprivacy_with_value">გეოკონფიდენციალურობა: %1$s</string>
     <string name="delete_confirmation">ნამდვილად გსურთ ამ დაკვირვების წაშლა?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">მეგზურები</string>
@@ -116,37 +122,71 @@
         <item>შეიტანეთ წვლილი</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Explore and Connect with Nature</item>
-        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
+        <item>გამოიკვლიეთ და დაუკავშირდით ბუნებას</item>
+        <item>გადით გარეთ! იპოვეთ რაიმე ველური და გადაუღეთ მკაფიო, სრული კადრის ფოტო.</item>
         <item>გაუზიარეთ თქვენი დაკვირვება iNaturalist-ის თემს.</item>
-        <item>Check back for comments and identifications on your observation!</item>
-        <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
+        <item>მოგვიანებით შეამოწმეთ თქვენი დაკვირვების კომენტარები და იდენტიფიკაციები!</item>
+        <item><![CDATA[<b>კვლევის დონის</b> დაკვირვებები ეზიარება მეცნიერებს, რომლებიც მუშაობენ ბუნების უკეთ გაგებასა და დაცვაზე.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>გახსნა</item>
         <item>გაბუნდოვანება</item>
         <item>პირადი</item>
     </string-array>
+    <string name="alert_sign_out">დარწმუნებული ხართ, რომ გსურთ გამოსვლა? ეს წაშლის ყველა თქვენს დაკვირვებას ამ მოწყობილობიდან. ეს არ იმოქმედებს iNaturalist-ზე თქვენ მიერ ატვირთულ არცერთ დაკვირვებაზე.</string>
     <string name="alert_unsupported_media_type">უკაცრავად, ამ წყაროდან ფოტოს ჩატვირთვისას შეცდომა მოხდა</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">გამოიკვლიეთ</string>
+    <string name="restricted_to_current_map_area">შეზღუდულია რუკის მიმდინარე არეალით</string>
     <string name="search">ძებნა</string>
     <string name="details">დეტალები</string>
     <string name="observation_photos">დაკვირვების ფოტოები</string>
     <string name="no_observations_found">დაკვირვებები არ მოიძებნა</string>
+    <string name="license_none">არცერთი, ყველა უფლება დაცულია</string>
+    <string name="sources_and_attribution">წყაროები და ატრიბუცია</string>
     <string name="photos"><![CDATA[<b>ფოტო:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>ტექსტი:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
+    <string name="alert_message_use_inaturalist">iNaturalist-ის მთავარი ქსელი. OK-ზე დაწკაპუნებით თქვენი აპლიკაცია გახდება გლობალური iNaturalist ქსელის ნაწილი.</string>
+    <string name="alert_message_use_naturalista">NaturaLista არის iNaturalist ქსელის წევრი მექსიკაში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ NaturaLista-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ არის iNaturalist ქსელის წევრი ახალ ზელანდიაში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist NZ-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada არის iNaturalist ქსელის წევრი კანადაში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Canada-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista არის iNaturalist ქსელის წევრი კოლუმბიაში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ Naturalista-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All არის iNaturalist ქსელის წევრი პორტუგალიაში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ Biodiversity4All-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá არის iNaturalist ქსელის წევრი პანამაში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Panamá-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador არის iNaturalist ქსელის წევრი ეკვადორში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Ecuador-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia არის iNaturalist ქსელის წევრი ავსტრალიაში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Australia-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat არის iNaturalist ქსელის წევრი არგენტინაში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ ArgentiNat-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel არის iNaturalist ქსელის წევრი ისრაელში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Israel-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland არის iNaturalist ქსელის წევრი ფინეთში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Finland-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile არის iNaturalist ქსელის წევრი ჩილეში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Chile-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece არის iNaturalist ქსელის წევრი საბერძნეთში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Greece-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg არის iNaturalist ქსელის წევრი ლუქსემბურგში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Luxembourg-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom არის iNaturalist ქსელის წევრი გაერთიანებულ სამეფოში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist United Kingdom-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica არის iNaturalist ქსელის წევრი კოსტა-რიკაში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ Naturalista Costa Rica-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala არის iNaturalist ქსელის წევრი გვატემალაში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Guatemala-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden არის iNaturalist ქსელის წევრი შვედეთში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Sweden-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay არის iNaturalist ქსელის წევრი ურუგვაიში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ Naturalista Uruguay-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan არის iNaturalist ქსელის წევრი ტაივანში. ადგილობრივ ინსტიტუტებს, რომლებიც მხარს უჭერენ iNaturalist Taiwan-ს, ექნებათ წვდომა თქვენს ელფოსტის მისამართზე და იმ დაკვირვებების ზუსტ კოორდინატებზე, რომლებიც საჯაროდ დაფარული ან პირადი ხასიათისაა. გთხოვთ, ექსპერიმენტულად არ შეცვალოთ თქვენი კუთვნილება, თუ 1000-ზე მეტი დაკვირვება გაქვთ. გსურთ შეცვალოთ თქვენი კუთვნილება?</string>
     <string name="editor">რედაქტორი</string>
     <string name="license">ლიცენზია</string>
+    <string name="download_for_offline_use">ჩამოტვირთვა ოფლაინ გამოყენებისთვის</string>
+    <string name="download_not_available">ჩამოტვირთვა მიუწვდომელია</string>
     <string name="guide_editor_must_enable_this_feature">მეგზურის რედაქტორმა უნდა დაუშვას ეს ფუნქცია.</string>
     <string name="are_you_sure">დარწმუნებული ხართ?</string>
+    <string name="download_guide_alert">ეს ჩამოტვირთავს %1$s მონაცემს, ასე რომ თქვენ შეგიძლიათ გამოიყენოთ ეს მეგზური მაშინაც კი, როდესაც ინტერნეტთან წვდომა არ გაქვთ.</string>
     <string name="failed_to_download_guide">მეგზური ვერ ჩამოიტვირთა</string>
+    <string name="internet_connection_seems_to_be_offline">ინტერნეტ კავშირი გამორთული ჩანს.</string>
     <string name="downloading">იტვირთება...</string>
+    <string name="extracting">ამოღება...</string>
     <string name="downloaded">გადმოწერილია</string>
+    <string name="delete_download">ჩამოტვირთვის წაშლა</string>
     <string name="re_download">თავიდან გადმოწერა</string>
     <string name="error">შეცდომა</string>
+    <string name="could_not_retrieve_guide">მეგზურის დეტალების მიღება ვერ მოხერხდა - სავარაუდოდ ქსელის შეცდომაა.</string>
+    <string name="inat_support_email_subject">დახმარება iNaturalist-თან დაკავშირებით (ვერსია %1$s - %2$s; მომხმარებლის ID - %3$s)</string>
     <string name="send_email">ელ-წერილის გაგზავნა...</string>
+    <string name="login_with">შესვლა ამით</string>
     <string name="gplus">Google</string>
     <string name="email">ელფოსტა</string>
     <string name="skip">გამოტოვება  ›</string>
@@ -154,7 +194,9 @@
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">რეგისტრაცია</string>
     <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">რეგისტრაცია</string>
     <string name="min_6_chars">მინიმუმ 6 სიმბოლო</string>
+    <string name="content_licensing">მასალის ლიცენზია</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">მომხმარებლის სახელი, ან ელფოსტა</string>
     <string name="forgot">დაგავიწყდათ?</string>
@@ -192,6 +234,16 @@
     <string name="share">გაზიარება</string>
     <string name="needs_id">ID სჭირდება</string>
     <string name="data_quality">მონაცემთა ხარისხი</string>
+    <string name="casual_grade_add_location"><![CDATA[ დაამატეთ <b>ადგილმდებარეობა</b>, რათა ეს დაკვირვება გადავიდეს „საჭიროებს იდენტიფიკაციას“ სტატუსზე. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ დაამატეთ <b>თარიღი</b>, რათა ეს დაკვირვება გადავიდეს „საჭიროებს იდენტიფიკაციას“ სტატუსზე. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ დაამატეთ <b>ფოტო</b>, რათა ეს დაკვირვება გადავიდეს „საჭიროებს იდენტიფიკაციას“ სტატუსზე. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ დაკვირვება არის ჩვეულებრივი დონის, რადგან ის <b>ტყვეობაშია/კულტივირებულია</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ დაკვირვებას სჭირდება <b>მეტი იდენტიფიკაცია</b> საზოგადოებისგან, რათა მიენიჭოს „კვლევის დონის“ სტატუსი. ]]></string>
+    <plurals name="included_in_projects">
+        <item quantity="one">შეტანილია %1$d პროექტში</item>
+        <item quantity="other">შეტანილია %1$d პროექტში</item>
+    </plurals>
+    <string name="geoprivacy_explanation"><![CDATA[ გეოკონფიდენციალურობა არის პარამეტრი, რომელიც შეგიძლიათ დააყენოთ თქვენს დაკვირვებებზე და აკონტროლებს სივრცითი კოორდინატების (განედი და გრძედი) ჩვენებას. აი, პარამეტრები:<br/><b>ღია</b> - კოორდინატების ნახვა ყველას შეუძლია, გარდა იმ შემთხვევისა, თუ ტაქსონი საფრთხეშია.<br/><b>დაფარული</b> - საჯარო კოორდინატები ნაჩვენებია როგორც შემთხვევითი წერტილი 0.2x0.2 გრადუსიან არეალში, რომელიც შეიცავს ნამდვილ კოორდინატებს. ეს ეკვატორზე დაახლოებით 22x22 კმ კვადრატული ფართობის გაურკვევლობას ნიშნავს, რომელიც მცირდება პოლუსებისკენ. ნამდვილი კოორდინატები მხოლოდ თქვენთვის და იმ პროექტების კურატორებისთვისაა ხილული, რომლებშიც დაკვირვებას ამატებთ.<br/><b>პირადი</b> - კოორდინატები სრულად დაფარულია საჯარო რუკებიდან. ნამდვილი კოორდინატები მხოლოდ თქვენთვის და იმ პროექტების კურატორებისთვისაა ხილული, რომლებშიც დაკვირვებას ამატებთ.<br/><br/>გაითვალისწინეთ, რომ ცალკეული პროექტების კურატორებს ყოველთვის შეუძლიათ კოორდინატების ნახვა თქვენი გეოკონფიდენციალურობის პარამეტრის მიუხედავად. ამიტომ, თუ გაწუხებთ, ვის ექნება წვდომა კოორდინატებზე, უნდა დარწმუნდეთ, რომ ენდობით იმ პროექტების კურატორებს, რომლებშიც მონაწილეობთ. ]]></string>
     <string name="id_title">%1$s-ის ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">წაშლა</string>
@@ -235,6 +287,7 @@
     <string name="log_out">გამოსვლა</string>
     <string name="not_logged_in">არ ხართ შემოსული</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">შესვლა ან რეგისტრაცია</string>
     <string name="language">ენა</string>
     <string name="version">ვერსია</string>
     <string name="inat_network">iNaturalist-ის ქსელი</string>
@@ -243,6 +296,7 @@
     <string name="stop">შეჩერება</string>
     <string name="resume">გაგრძელება</string>
     <string name="cleaning_up">იწმინდება...</string>
+    <string name="syncing">სინქრონიზაცია...</string>
     <string name="syncing_observations">დაკვირვებების სინქრონიზაცია...</string>
     <string name="syncing_paused">შეჩერებული</string>
     <string name="upload">ატვირთვა</string>
@@ -281,6 +335,10 @@
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s ახალი</item>
+        <item quantity="other">%1s ახალი</item>
+    </plurals>
     <string name="no_results_found">შედეგები ვერ მოიძებნა.</string>
     <string name="deleting_observations">დაკვირვებების წაშლა...</string>
     <string name="restore">აღდგენა</string>
@@ -496,10 +554,64 @@
     <string name="date_is_accurate">თარიღი ზუსტია</string>
     <string name="location_is_accurate">მდებარეობა ზუსტია</string>
     <string name="no_annotation">ანოტაცია არ აქვს</string>
+    <string name="donate_to_inaturalist">შემოწირულობა iNaturalist-ისთვის</string>
+    <string name="prefers_scientific_name_first">პირველად სამეცნიერო სახელების ჩვენება</string>
+    <string name="prefers_scientific_name_first_description">სამეცნიერო სახელების ჩვენება ჩვეულებრივი სახელების წინ.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[კანადა: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada და Parks Canada, რომლებიც მართავენ iNaturalist Canada-ს (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[კოლუმბია: Instituto Humboldt, რომელიც მართავს Naturalista-ს (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[მექსიკა: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO), რომელიც მართავს NaturaLista-ს (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[ახალი ზელანდია: New Zealand Biodiversity Recording Network, რომელიც მართავს iNaturalist NZ — Mātaki Taiao-ს (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[პორტუგალია: Associação Biodiversidade Para Todos, რომელიც მართავს Biodiversity4All-ს (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[პანამა: Ministerio de Ambiente, რომელიც მართავს iNaturalistPa-ს (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[არგენტინა: Fundación Vida Silvestre Argentina, რომელიც მხარს უჭერს ArgentiNat-ს (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[ავსტრალია: Atlas of Living Australia, რომელიც მხარს უჭერს iNaturalist Australia-ს (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[ეკვადორი: Instituto Nacional de Biodiversidad (INABIO), რომელიც მხარს უჭერს iNaturalist Ecuador-ს (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[ისრაელი: University of Haifa, რომელიც მხარს უჭერს iNaturalist Israel-ს (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[ფინეთი: Finnish Museum of Natural History (LUOMUS), რომელიც მხარს უჭერს iNaturalist Finland-ს (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[ჩილე: Ministerio del Medio Ambiente, რომელიც მხარს უჭერს iNaturalist Chile-ს (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[საბერძნეთი: iSea, რომელიც მხარს უჭერს iNaturalist Greece-ს (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[ლუქსემბურგი: Luxembourg National Museum of Natural History (MnhnL), რომელიც მხარს უჭერს iNaturalist Luxembourg-ს (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[გაერთიანებული სამეფო: National Biodiversity Network Trust, რომელიც მხარს უჭერს iNaturalist United Kingdom-ს (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[კოსტა-რიკა: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO), რომელიც მხარს უჭერს Naturalista Costa Rica-ს (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[გვატემალა: Consejo Nacional de Áreas Protegidas (CONAP), რომელიც მხარს უჭერს iNaturalist Guatemala-ს (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[შვედეთი: SLU Swedish Species Information Centre, რომელიც მხარს უჭერს iNaturalist Sweden-ს (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[ურუგვაი: JULANA და Biodiversidata, რომლებიც მხარს უჭერენ Naturalista Uruguay-ს (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[ტაივანი: National Chiayi University და Taiwan Forestry Research Institute, რომლებიც მხარს უჭერენ iNaturalist Taiwan-ს (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="mark_all_as_viewed">ყველას ნახულად მონიშვნა</string>
+    <string name="content_hidden">კონტენტი დაფარულია</string>
+    <string name="show_hidden_content">დაფარული კონტენტის ჩვენება</string>
+    <string name="content_hidden_because">კონტენტი დაფარულია @%1$s-ის მიერ %2$s-ზე, მიზეზი: „%3$s“</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">დაუკავშირდით მხარდაჭერას</a>]]></string>
+    <string name="content">კონტენტი</string>
+    <string name="has_photos">აქვს ფოტოები</string>
+    <string name="has_sounds">აქვს ხმები</string>
+    <string name="could_not_play_sound">ხმის დაკვრა ვერ მოხერხდა - სავარაუდოდ ქსელის პრობლემაა</string>
+    <string name="cant_play_soundcloud"><![CDATA[Soundcloud-ის ხმების მოსასმენად იხილეთ <a href="%1$s">ვებსაიტი</a>.]]></string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">ხმის ჩაწერა</string>
+    <string name="couldnt_retrieve_sound">ნაგულისხმევი ჩამწერიდან ხმის მიღება ვერ მოხერხდა - სცადეთ ხმის იმპორტირება</string>
     <!-- Label for a button to import an existing sound for an observation -->
+    <string name="upload_sound">ხმის არჩევა</string>
+    <string name="multi_select_sound_description">რამდენიმე ხმის იმპორტირება შესაძლებელია ერთ ხმაზე ხანგრძლივი დაჭერით</string>
+    <string name="alert_unsupported_audio_type">უკაცრავად, ამ წყაროდან ხმის ჩატვირთვისას პრობლემა წარმოიშვა</string>
+    <string name="invalid_audio_extension">ხმის(ების) იმპორტირების შეცდომა: შესაძლებელია მხოლოდ WAV/MP3/AMR გაფართოების ხმის ფაილების იმპორტი</string>
+    <string name="importing_sounds">მიმდინარეობს ხმის(ების) იმპორტი...</string>
+    <string name="observation_sound">დაკვირვების ხმა</string>
+    <string name="deleted_sounds_from_cache_error">როგორც ჩანს, ატვირთვამდე წაშალეთ ხმა აპლიკაციის ქეშის გასუფთავებით. საჭიროა ხმის ხელახლა დამატება თქვენს დაკვირვებაში გალერეიდან. მომავალში, გთხოვთ, დარწმუნდეთ, რომ ყველა ხმა ატვირთული გაქვთ აპლიკაციის ქეშის გასუფთავებამდე.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f წმ</string>
+    <string name="clear_all_debug_logs">ყველა დიაგნოსტიკური ჟურნალის გასუფთავება</string>
+    <string name="clears_up_storage_room_on_your_phone">ათავისუფლებს ადგილს თქვენს ტელეფონში</string>
+    <string name="number_of_days_to_store_logs">ჟურნალების შენახვის დღეების რაოდენობა</string>
+    <string name="send_debug_logs_from_start_date">დიაგნოსტიკური ჟურნალების გაგზავნა დაწყების თარიღიდან</string>
+    <string name="send_debug_logs_by_email">დიაგნოსტიკური ჟურნალების გაგზავნა ელფოსტით (მითითებული დაწყების თარიღიდან)</string>
+    <string name="debug_settings">დიაგნოსტიკის პარამეტრები</string>
+    <string name="are_you_sure_you_want_to_delete_logs">დარწმუნებული ხართ, რომ გსურთ ყველა დიაგნოსტიკური ჟურნალის წაშლა? დააჭირეთ \'დიახ\' მხოლოდ იმ შემთხვევაში, თუ გსურთ თქვენს ტელეფონში ადგილის გათავისუფლება</string>
+    <string name="no_log_files_found">ამ თარიღების დიაპაზონისთვის ჟურნალის ფაილები ვერ მოიძებნა - სცადოთ უფრო ადრინდელი თარიღი?</string>
+    <string name="choose_pinned_location">ჩამაგრებული ადგილმდებარეობის არჩევა</string>
+    <string name="pin_current_location">მიმდინარე ადგილმდებარეობის ჩამაგრება</string>
+    <string name="location_pinned_successfully">მიმდინარე ადგილმდებარეობა წარმატებით ჩაემაგრა</string>
+    <string name="delete_this_pinned_location">წაიშალოს ეს ჩამაგრებული ადგილმდებარეობა?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <!-- Verb, as in "Rotate this photo" -->
@@ -517,12 +629,43 @@
     <!-- Verb phrase, button label to edit an observation photo -->
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
     <string name="hours">საათი</string>
+    <string name="minutes">წუთი</string>
+    <string name="seconds_value">წამი</string>
+    <string name="shop_the_inat_store">iNat მაღაზია</string>
+    <string name="delete_your_account">თქვენი ანგარიშის წაშლა</string>
+    <string name="delete_account_message"><![CDATA[თქვენი ანგარიშის წაშლით თქვენ წაშლით:<br/><br/><ul><li> თქვენს ყველა დაკვირვებას, მათ შორის ყველა იმ ადამიანის ნამუშევარს, ვინც დაგეხმარათ იდენტიფიკაციაში.</li><li> ყველა იდენტიფიკაციას, რომელიც დაამატეთ სხვა ადამიანების დაკვირვებებს, რაც პოტენციურად იმოქმედებს ამ დაკვირვებების მონაცემთა ხარისხზე.</li><li> თქვენ მიერ დამატებულ ყველა კომენტარს.</li></ul><br/>გარდა ამისა, ამ ქმედების გაუქმება შეუძლებელია.<br/><br/>თუ მოგვიანებით გადაიფიქრებთ, ამ კონტენტს ვეღარ დაიბრუნებთ.<br/><br/>თუ ეს სერვისი ძალიან ბევრ შეტყობინებას გიგზავნით, განიხილეთ <a href="https://www.inaturalist.org/users/edit">თქვენი პარამეტრების რედაქტირება ვებსაიტზე</a>, რათა უარი თქვათ გარკვეულ შეტყობინებებზე ან შეწყვიტოთ ჩვენგან ელფოსტის მიღება. თუ კონკრეტულ ადამიანთან პრობლემები გაქვთ, განიხილეთ მათი <a href="https://www.inaturalist.org/users/edit">დადუმება</a> თქვენი ანგარიშის წაშლის ნაცვლად.<br/><br/>თუ კვლავ დარწმუნებული ხართ, რომ გსურთ თქვენი ანგარიშის წაშლა, შეიყვანეთ <b>„%1$s“</b> ქვემოთ მოცემულ ფორმაში და დააწკაპუნეთ ღილაკზე თქვენი ანგარიშისა და ყველა თქვენი მონაცემის წასაშლელად.]]></string>
+    <string name="your_account_has_been_deleted">თქვენი ანგარიში წაშლილია</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">თქვენი ანგარიშის წასაშლელად ფორმაში უნდა შეიყვანოთ \'%1$s\'</string>
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">ჩაწერეთ თქვენი მომხმარებლის სახელი</string>
+    <string name="error_deleting_account">თქვენი ანგარიშის წაშლისას მოხდა შეცდომა - გთხოვთ, შეამოწმოთ თქვენი ინტერნეტ კავშირი</string>
     <string name="verify_your_password">პაროლის დამოწმება</string>
+    <string name="third_party_data_sharing">მონაცემების გაზიარება მესამე მხარეებთან</string>
+    <string name="disable_third_party_data_sharing">მონაცემების მესამე მხარეებთან გაზიარების გამორთვა</string>
+    <string name="do_not_collect_third_party_data">არ შეგროვდეს სტაბილურობისა და გამოყენების მონაცემები მესამე მხარის სერვისების გამოყენებით</string>
     <string name="enabled">ჩართულია</string>
+    <string name="disabled">გამორთულია</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[ჩვენ ვიყენებთ სხვადასხვა მესამე მხარის სერვისებს ჩვენი პროგრამული უზრუნველყოფის სტაბილურობის მონიტორინგისა და ხარვეზებისა და პრობლემების დიაგნოსტიკისთვის. ეს მესამე მხარეები მოიცავს:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[ინფორმაცია, რომელსაც ამ მესამე მხარეებს ვუზიარებთ, მოიცავს:<br/><ul><li> IP მისამართებს (რომლებიც შეიძლება გამოყენებულ იქნას მდებარეობის ქალაქის დონის რეზოლუციით დასადგენად და თქვენი თვალყურის დევნებისთვის სხვადასხვა ვებსაიტებსა და სერვისებზე; გაითვალისწინეთ, რომ ჩვენ ჩართული გვაქვს <a href="https://support.google.com/analytics/answer/2763052">IP ანონიმიზაცია</a> Google Analytics-ში და, ჩვენი ცოდნით, <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> არ იწერს IP მისამართს)</li><li> ბრაუზერის დეტალებს, როგორიცაა მწარმოებელი, მოდელი და ვერსია</li><li> ავარიის დეტალებს, მაგალითად, კოდის რომელმა ხაზმა გამოიწვია ავარია</li><li> მოწყობილობის დეტალებს, როგორიცაა მობილური ტელეფონის მწარმოებელი და მოდელი</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>ეს მესამე მხარის სერვისები უზარმაზარ ღირებულებას გვაწვდის</b> iNaturalist-ის სტაბილურობისა და გამოყენებადობის შენარჩუნებაში ჩვენი შედარებით მცირე პერსონალით. მობილურ მოწყობილობებზე, თითქმის არ არსებობს სხვა გზა, რომლითაც შეგვიძლია მივიღოთ ინფორმაცია წარმოქმნილი პრობლემების შესახებ, რადგან პროგრამული უზრუნველყოფა მუშაობს მოწყობილობებზე, რომლებსაც ჩვენ არ ვაკონტროლებთ. ზოგჯერ ჩვენ არც კი ვიცით ასეთი პრობლემების არსებობის შესახებ, სანამ არ დავინახავთ მათ ამ სერვისების მიერ მოწოდებულ მონაცემებში. <b>ამ ინფორმაციის გაზიარებით, თქვენ გვეხმარებით მოგემსახუროთ თქვენ და მთელ iNaturalist საზოგადოებას.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[გაითვალისწინეთ, რომ ეს პარამეტრი ვრცელდება მხოლოდ ანალიტიკისა და ავარიის მონაცემებზე, რომლებსაც ჩვენ პირდაპირ ვუგზავნით ამ კომპანიებს. iNaturalist-ის ყველა სერვერი მოწოდებული და განთავსებულია Microsoft-ის მიერ, iNaturalist-ის ყველა სურათი განთავსებულია Amazon-ზე, და თითქმის ყველა iNaturalist რუკა მოწოდებულია Google-ის მიერ, რაც ნიშნავს, რომ ყოველ ჯერზე, როდესაც iNaturalist-ზე დაკვირვებას ათვალიერებთ, თქვენ უკავშირდებით ამ კომპანიების მიერ მოწოდებულ სერვისებს და, სულ მცირე, უზიარებთ მათ თქვენს IP მისამართს (iPhone აპლიკაციაში ვიყენებთ Apple-ის რუკებს). iNaturalist, სავარაუდოდ, არ იარსებებდა ამ კომპანიების მიერ მოწოდებული სერვისების გარეშე, და მიუხედავად იმისა, რომ ჩვენ შეგვიძლია შევზღუდოთ მონაცემების რაოდენობა და სახეობები, რომლებსაც თქვენ უზიარებთ მათ iNat-ის გამოყენებისას, ჩვენ არ შეგვიძლია მთლიანად შევაჩეროთ მონაცემთა ნაკადი.]]></string>
+    <string name="common_names_place"><![CDATA[საერთო სახელების ადგილი: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">დააწკაპუნეთ კონკრეტული ადგილიდან საერთო სახელების პრიორიტეტიზაციისთვის.</string>
     <string name="search_places">ადგილების ძიება</string>
     <string name="restart_app">აპლიკაციის გადატვირთვა</string>
+    <string name="disable_third_party_sharing_restart">მესამე მხარესთან მონაცემების გაზიარების დაუყოვნებლივ გამორთვისთვის, აპლიკაცია უნდა გადაიტვირთოს.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">დარწმუნებული ხართ, რომ გსურთ წაშალოთ ეს %1$d დაკვირვება?</item>
+        <item quantity="other">დარწმუნებული ხართ, რომ გსურთ წაშალოთ ეს %1$d დაკვირვება?</item>
+    </plurals>
+    <string name="future_observed_on_date_error">თქვენი დაკვირვება შეიქმნა (და გაიგზავნა) %1$s-ზე, მაგრამ თქვენ ცდილობთ დააყენოთ დაკვირვების თარიღი, რომელიც ამაზე გვიანია: %2$s</string>
+    <string name="no_more_photos_allowed">დაკვირვებებს შეიძლება ჰქონდეს მხოლოდ %1$d ფოტო. მეტის დასამატებლად საჭიროა ზოგიერთის წაშლა.</string>
+    <string name="warning_multiple_photos">თუ ამ დაკვირვებას ამატებთ სხვადასხვა სახის ორგანიზმის ფოტოებს, ან იგივე სახეობისას სხვადასხვა ადგილას ან დროს, თქვენ უნდა წაშალოთ ეს ფოტოები და დაამატოთ ისინი ცალკე დაკვირვებებად. დაკვირვებას შეიძლება ჰქონდეს მხოლოდ %1$d ფოტო.</string>
+    <string name="choosing_specific_language_warning">თქვენი ანგარიშისთვის კონკრეტული ენის არჩევას სჭირდება ინტერნეტ კავშირი</string>
+    <string name="running_in_background_notfication">მუშაობს ფონურ რეჟიმში, რათა შეფერხების გარეშე ვიმუშაოთ</string>
+    <string name="opt_out_of_community_taxon">საზოგადოების ტაქსონისგან უარის თქმა</string>
+    <string name="opt_in_to_community_taxon">საზოგადოების ტაქსონზე თანხმობა</string>
+    <string name="opt_out_message">საზოგადოების ტაქსონისგან უარის თქმა აიძულებს ამ დაკვირვებას, რომ დაკავშირებული იყოს თქვენი მიმდინარე იდენტიფიკაციის ტაქსონთან და არა იმ ტაქსონთან, რომელიც მიღებულია ამ დაკვირვებისთვის დამატებული ყველა იდენტიფიკაციიდან. თუ საკმარისი იდენტიფიკატორი არ დაგეთანხმებათ, თქვენი დაკვირვება გახდება ჩვეულებრივი (Casual). თქვენ უნდა თქვათ უარი მხოლოდ იმ შემთხვევაში, თუ დარწმუნებული ხართ, რომ თქვენი იდენტიფიკაცია სწორია და სხვა იდენტიფიკაციები არასწორია.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
     <!-- Dialog title when displaying a message that an action is not permitted -->
@@ -563,14 +706,58 @@
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="pretty_sure_kingdom">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ სამეფოშია:</string>
+    <string name="pretty_sure_subkingdom">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვესამეფოშია:</string>
+    <string name="pretty_sure_phylum">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ტიპშია:</string>
+    <string name="pretty_sure_subphylum">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვესტიპშია:</string>
+    <string name="pretty_sure_superclass">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზეკლასშია:</string>
+    <string name="pretty_sure_class">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ კლასშია:</string>
+    <string name="pretty_sure_subclass">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვეკლასშია:</string>
     <string name="pretty_sure_infraclass">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ინფრაკლასშია:</string>
+    <string name="pretty_sure_superorder">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზერიგშია:</string>
+    <string name="pretty_sure_order">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ რიგშია:</string>
+    <string name="pretty_sure_suborder">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვერიგშია:</string>
     <string name="pretty_sure_infraorder">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ინფრარიგშია:</string>
+    <string name="pretty_sure_subterclass">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ სუბტერკლასშია:</string>
     <string name="pretty_sure_parvorder">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ პარვრიგშია:</string>
+    <string name="pretty_sure_zoosection">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზოოსექციაშია:</string>
+    <string name="pretty_sure_zoosubsection">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზოოქვესექციაშია:</string>
+    <string name="pretty_sure_superfamily">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზეოჯახშია:</string>
+    <string name="pretty_sure_epifamily">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ეპიოჯახშია:</string>
+    <string name="pretty_sure_family">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ოჯახშია:</string>
+    <string name="pretty_sure_subfamily">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვეოჯახშია:</string>
+    <string name="pretty_sure_supertribe">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზერტომშია:</string>
+    <string name="pretty_sure_tribe">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ტომშია:</string>
+    <string name="pretty_sure_subtribe">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვეტომშია:</string>
+    <string name="pretty_sure_genus">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ გვარშია:</string>
+    <string name="pretty_sure_genushybrid">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ გვარჰიბრიდშია:</string>
+    <string name="pretty_sure_subgenus">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვეგვარშია:</string>
+    <string name="pretty_sure_section">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ სექციაშია:</string>
+    <string name="pretty_sure_subsection">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვესექციაშია:</string>
+    <string name="pretty_sure_complex">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ კომპლექსშია:</string>
     <!-- Singular -->
     <!-- Singular -->
+    <string name="pretty_sure_subspecies">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვესახეობაშია:</string>
+    <string name="pretty_sure_variety">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ნაირსახეობაშია:</string>
+    <string name="pretty_sure_form">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ფორმაშია:</string>
     <string name="pretty_sure_infrahybrid">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ინფრაჰიბრიდშია:</string>
+    <string name="remove_date_observed">დაკვირვების თარიღისა და დროის წაშლა</string>
+    <string name="remove_time_observed">დაკვირვების დროის წაშლა</string>
+    <string name="remove_location">მდებარეობის წაშლა</string>
+    <string name="are_you_sure_you_want_to_remove_date">დარწმუნებული ხართ, რომ გსურთ წაშალოთ დაკვირვების თარიღი და დრო?</string>
+    <string name="are_you_sure_you_want_to_remove_time">დარწმუნებული ხართ, რომ გსურთ წაშალოთ დაკვირვების დრო?</string>
+    <string name="are_you_sure_you_want_to_remove_location">დარწმუნებული ხართ, რომ გსურთ წაშალოთ მდებარეობა?</string>
+    <string name="share_location">მდებარეობის გაზიარება</string>
+    <string name="share_hidden_location">დაფარული მდებარეობის გაზიარება</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_sound">ხმის დუბლირება ვერ მოხერხდა!</string>
+    <string name="sound_format_not_supported">აუდიოს ეს კოდირება Android-ის მიერ მხარდაჭერილი არ არის.</string>
+    <string name="view_observations">დაკვირვებების ნახვა</string>
+    <string name="choose_this_option">აირჩიეთ ეს ვარიანტი</string>
+    <string name="compare_observation_with_this_option">დაკვირვების შედარება ამ ვარიანტთან</string>
     <string name="go_back">უკან</string>
+    <string name="change_the_source_of_the_suggestions">შემოთავაზებების წყაროს შეცვლა</string>
+    <string name="thumbnail_photo_for_suggested_taxon">შემოთავაზებული ტაქსონის მინიატურული ფოტო</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <!-- Accessibility text for the faves tab on the observation detail view -->
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
@@ -589,12 +776,72 @@
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">ნაგულისხმევი ლიცენზიები</string>
+    <string name="default_observation_license">დაკვირვების ნაგულისხმევი ლიცენზია</string>
+    <string name="default_photo_license">ფოტოს ნაგულისხმევი ლიცენზია</string>
+    <string name="default_sound_license">ხმის ნაგულისხმევი ლიცენზია</string>
+    <string name="change_existing_licenses">არსებული ლიცენზიების შეცვლა</string>
+    <string name="change_licenses_for_existing_observations">არსებული დაკვირვებების, ფოტოებისა და ხმების ლიცენზიების შეცვლა</string>
+    <string name="change_licenses_for_all_existing_observations">ყველა არსებული დაკვირვების ლიცენზიის შეცვლა</string>
+    <string name="change_licenses_for_all_existing_photos">ყველა არსებული ფოტოს ლიცენზიის შეცვლა</string>
+    <string name="change_licenses_for_all_existing_sounds">ყველა არსებული ხმის ლიცენზიის შეცვლა</string>
+    <string name="change_observation_licenses">დაკვირვების ლიცენზიების შეცვლა</string>
+    <string name="change_photo_licenses">ფოტოს ლიცენზიების შეცვლა</string>
+    <string name="change_sound_licenses">ხმის ლიცენზიების შეცვლა</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[შეიცვალოს <b>%1$d</b> არსებული დაკვირვების ლიცენზია <b>%2$s</b>-ით?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[შეიცვალოს არსებული ფოტოების ლიცენზია <b>%1$s</b>-ით?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[შეიცვალოს არსებული ხმების ლიცენზია <b>%1$s</b>-ით?]]></string>
+    <string name="observation_licenses_updated">დაკვირვების ლიცენზიები განახლდა</string>
+    <string name="photo_licenses_updated">ფოტოს ლიცენზიები განახლდა</string>
+    <string name="sound_licenses_updated">ხმის ლიცენზიები განახლდა</string>
+    <string name="existing_observation_licenses_have_been_updated">ყველა არსებული დაკვირვების ლიცენზია შეიცვალა %1$s-ით.</string>
+    <string name="existing_photo_licenses_have_been_updated">ყველა არსებული ფოტოს ლიცენზია შეიცვალა %1$s-ით.</string>
+    <string name="existing_sound_licenses_have_been_updated">ყველა არსებული ხმის ლიცენზია შეიცვალა %1$s-ით.</string>
+    <string name="default_licenses_description"><![CDATA[თქვენი კონტენტის ლიცენზირება ნებისმიერს აძლევს კანონიერ უფლებას გამოიყენოს იგი თქვენი ნებართვის გარეშე, თუ ისინი დაიცავენ ლიცენზიის პირობებს. გარდა ამისა, iNat რთავს თქვენს Creative Commons-ლიცენზირებულ კონტენტს რეგულარულად განახლებად არქივებში, რომლებიც იქმნება შერჩეული პარტნიორი ორგანიზაციებისთვის, რომლებიც დაინტერესებულნი არიან ჩვენი მონაცემებით. მაგალითად, ჩვენ ვრთავთ საავტორო უფლებების გარეშე (CC0), ატრიბუციის (CC BY) და ატრიბუცია-არაკომერციული (CC BY-NC) ჩანაწერებს არქივში, რომელსაც ვქმნით <a href="https://www.gbif.org/">გლობალური ბიომრავალფეროვნების საინფორმაციო ფონდისთვის (GBIF)</a>, საერთაშორისო, მთავრობათაშორისი ორგანიზაციისთვის, რომელიც აგროვებს და ავრცელებს ბიომრავალფეროვნების ინფორმაციას მთელი მსოფლიოდან.]]></string>
+    <string name="photo_license">ფოტოს ლიცენზია</string>
+    <string name="sound_license">ხმის ლიცენზია</string>
+    <string name="edit_photo_license">ფოტოს ლიცენზიის რედაქტირება</string>
+    <string name="observation_license">დაკვირვების ლიცენზია</string>
+    <string name="edit_observation_license">დაკვირვების ლიცენზიის რედაქტირება</string>
+    <string name="about_licenses">ლიცენზიების შესახებ</string>
+    <string name="view_license">ლიცენზიის ნახვა</string>
     <!-- License Names -->
     <!-- License Descriptions -->
+    <string name="license_description_cc0">ეს ლიცენზია გადასცემს თქვენს ნამუშევარს საზოგადოებრივ დომენში, ასე რომ სხვებს შეუძლიათ დააკოპირონ, შეცვალონ, გაავრცელონ და შეასრულონ თქვენი ნამუშევარი, თუნდაც კომერციული მიზნებისთვის, ყოველივე ეს თქვენი ნებართვის თხოვნის ან თქვენი ავტორობის მითითების გარეშე. ეს არის შემოთავაზებულ ლიცენზიებს შორის ყველაზე ხელსაყრელი. რეკომენდებულია ლიცენზირებული მასალების მაქსიმალური გავრცელებისა და გამოყენებისთვის.</string>
+    <string name="license_description_cc_by">ეს ლიცენზია სხვებს აძლევს უფლებას გაავრცელონ, გადააკეთონ, შეცვალონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე, თუნდაც კომერციულად, სანამ ისინი მიუთითებენ თქვენს ავტორობას ორიგინალური ქმნილებისთვის.</string>
+    <string name="license_description_cc_by_nc">ეს ლიცენზია სხვებს აძლევს უფლებას გადააკეთონ, შეცვალონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე არაკომერციულად, და მიუხედავად იმისა, რომ მათმა ახალმა ნამუშევრებმაც უნდა მიუთითონ თქვენი ავტორობა და იყვნენ არაკომერციული, მათ არ მოეთხოვებათ თავიანთი წარმოებული ნამუშევრების ლიცენზირება იმავე პირობებით.</string>
+    <string name="license_description_cc_by_nc_sa">ეს ლიცენზია სხვებს აძლევს უფლებას გადააკეთონ, შეცვალონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე არაკომერციულად, სანამ ისინი მიუთითებენ თქვენს ავტორობას და მოახდენენ თავიანთი ახალი ქმნილებების ლიცენზირებას იდენტური პირობებით.</string>
+    <string name="license_description_cc_by_nc_nd">ეს ლიცენზია ექვს მთავარ ლიცენზიას შორის ყველაზე შემზღუდველია, ის სხვებს მხოლოდ თქვენი ნამუშევრების ჩამოტვირთვისა და სხვებისთვის გაზიარების უფლებას აძლევს, სანამ ისინი მიუთითებენ თქვენს ავტორობას, მაგრამ მათ არ შეუძლიათ მათი რაიმე სახით შეცვლა ან კომერციულად გამოყენება.</string>
+    <string name="license_description_cc_by_nd">ეს ლიცენზია უშვებს ხელახლა გავრცელებას, კომერციულს და არაკომერციულს, სანამ ის გადაეცემა უცვლელად და მთლიანად, თქვენი ავტორობის მითითებით.</string>
+    <string name="license_description_cc_by_sa">ეს ლიცენზია სხვებს აძლევს უფლებას გადააკეთონ, მოარგონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე, თუნდაც კომერციული მიზნებისთვის, სანამ ისინი მიუთითებენ თქვენს ავტორობას და მოახდენენ თავიანთი ახალი ქმნილებების ლიცენზირებას იდენტური პირობებით. ეს ლიცენზია ხშირად შედარებულია „ქოფილეფთ“ თავისუფალი და ღია კოდის პროგრამული უზრუნველყოფის ლიცენზიებთან. თქვენს ნამუშევარზე დაფუძნებული ყველა ახალი ნამუშევარი ატარებს იგივე ლიცენზიას, ასე რომ ნებისმიერი წარმოებული ნამუშევარი ასევე დაუშვებს კომერციულ გამოყენებას. ეს არის ლიცენზია, რომელსაც იყენებს ვიკიპედია, და რეკომენდებულია მასალებისთვის, რომლებიც სარგებელს მიიღებენ ვიკიპედიიდან და მსგავსად ლიცენზირებული პროექტებიდან კონტენტის ჩართვით.</string>
+    <string name="license_description_no_license">თქვენ ინარჩუნებთ სრულ საავტორო უფლებას თქვენს კონტენტზე, გარდა იმ უფლებებისა, რომლებიც მინიჭებული აქვს iNaturalist-ს ჩვენს მომსახურების პირობებში.</string>
+    <string name="invalid_photo">ფოტოს ფორმატი მხარდაჭერილი არ არის</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <!-- Preference to control what tapping on the action button does on My Observations -->
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <!-- Placeholder text for an observation field value -->
+    <string name="field_value">ველის მნიშვნელობა</string>
+    <string name="expand_annotation_to_agree_or_disagree">ანოტაციის გაშლა დასათანხმებლად ან უარსაყოფად</string>
+    <string name="delete_attribute_value">ატრიბუტის მნიშვნელობის წაშლა</string>
+    <string name="open_menu_for_more_options">მენიუს გახსნა დამატებითი პარამეტრებისთვის</string>
+    <string name="change_user_profile_photo">მომხმარებლის პროფილის ფოტოს შეცვლა</string>
+    <string name="expand_list">სიის გაშლა</string>
+    <string name="change_map_layers">რუკის ფენების შეცვლა (რელიეფი / სატელიტი)</string>
+    <string name="redo_observation_search">დაკვირვების ძიების განმეორება რუკის ამ არეალში</string>
+    <string name="view_observations_on_map">დაკვირვებების რუკაზე ნახვა</string>
+    <string name="view_observations_on_grid">დაკვირვებების ბადეზე ნახვა</string>
+    <string name="clear_text">ტექსტის გასუფთავება</string>
+    <string name="observation_has_sounds">დაკვირვებას აქვს ხმები</string>
+    <string name="go_to_my_location">ჩემს მიმდინარე ადგილმდებარეობაზე გადასვლა</string>
+    <string name="change_geoprivacy">გეოკონფიდენციალურობის შეცვლა</string>
+    <string name="active_filters">აქტიური ფილტრები</string>
+    <string name="message_is_flagged">შეტყობინება მონიშნულია</string>
+    <string name="user_is_muted">მომხმარებელი დადუმებულია</string>
+    <string name="cancel_multiple_obs_selection">რამდენიმე დაკვირვების მონიშვნის გაუქმება</string>
+    <string name="delete_observations">დაკვირვებების წაშლა</string>
+    <string name="comment_count">კომენტარების რაოდენობა</string>
+    <string name="id_count">იდენტიფიკაციების რაოდენობა</string>
+    <string name="observation_selected">დაკვირვება მონიშნულია</string>
     <string name="share_observation">დაკვირვების გაზიარება</string>
     <string name="unknown_location">უცნობი ადგილმდებარეობა</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
@@ -604,6 +851,21 @@
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="add_media_evidence">მედია მტკიცებულების დამატება</string>
+    <string name="remove_identification">იდენტიფიკაციის წაშლა</string>
+    <string name="issue_with_updating_photos">ამ დაკვირვებაში ფოტოების განახლებისას იყო პრობლემა, რომელიც ახლახან გამოსწორდა. გთხოვთ, გამოხვიდეთ სისტემიდან და ხელახლა შეხვიდეთ ამ პრობლემის მოსაგვარებლად.</string>
+    <string name="app_version_copied_to_clipboard">აპლიკაციის ვერსია დაკოპირებულია ბუფერში</string>
+    <string name="authentication_failed">ავთენტიფიკაცია ვერ მოხერხდა</string>
+    <string name="please_try_again_soon">გთხოვთ, მალე ისევ სცადოთ.</string>
+    <string name="verify_your_email">თქვენი ელფოსტის მისამართის დადასტურება</string>
+    <string name="after_you_change_your_password">პაროლის შეცვლის შემდეგ, თქვენ გამოხვალთ სისტემიდან და ხელახლა მოგიწევთ შესვლა ახალი პაროლით. თქვენ ასევე გამოხვალთ iNaturalist-ის მობილური აპლიკაციებიდან და ნებისმიერი სხვა აპლიკაციიდან ან ვებსაიტიდან, რომლებიც თქვენი სახელით აქვეყნებენ iNaturalist-ზე, ამიტომ დარწმუნდით, რომ ატვირთული გაქვთ ყველა მომლოდინე დაკვირვება, სანამ ამას გააკეთებთ. ნებისმიერი დაკვირვება, რომელიც ატვირთული არ არის, დაიკარგება.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">ფაილის ატვირთვა ვერ მოხერხდა - 20მბ-ზე დიდია</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">თქვენ გამოხვედით სისტემიდან. გთხოვთ, ხელახლა შეხვიდეთ.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">განცხადების დახურვა</string>
+    <string name="import_photos_from">ფოტოების იმპორტი აქედან...</string>
+    <string name="cannot_find_default_camera">ფოტოების გადასაღებად ნაგულისხმევი კამერა ვერ მოიძებნა - გთხოვთ, დაუკავშირდეთ მხარდაჭერას</string>
+    <string name="please_click_link_to_confirm_email">გთხოვთ, დააწკაპუნოთ ბმულზე თქვენს ელფოსტაში, რათა დაადასტუროთ თქვენი ელფოსტა iNaturalist-ზე.</string>
+    <string name="click_to_resend_confirmation_email">დააწკაპუნეთ აქ დამადასტურებელი ელფოსტის ხელახლა გასაგზავნად.</string>
 </resources>

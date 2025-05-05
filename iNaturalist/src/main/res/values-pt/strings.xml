@@ -423,6 +423,7 @@
     <string name="suggest_species_description">Sugerir espécie(s) com base na semelhança visual com fotos.</string>
     <string name="visually_similar">Semelhante Visualmente</string>
     <string name="visually_similar_seen_nearby">Semelhante visualmente / Visto nas Proximidades</string>
+    <string name="visually_similar_expected_nearby">Visualmente semelhante / Previsto na redondeza</string>
     <string name="seen_nearby">Visto nas Proximidades</string>
     <string name="enlarge">Ampliar</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
@@ -553,6 +554,7 @@
     <string name="change_password">Alterar Palavra-passe</string>
     <string name="search_projects_youve_joined">Procurar projetos a que aderiu...</string>
     <string name="must_be_connected_to_load_more_obs">Precisa de uma ligação Internet para carregar mais observações</string>
+    <string name="inat_about_title_new">iNaturalist é um NGO independente do 501(c)(3)  nos Estados Unidos (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -561,6 +563,7 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="inat_credits2"><![CDATA[O iNaturalist existe graças a cada pessoa que participa na nossa comunidade. Os que desenvolvem o software, designam as interfaces, mantêm a nossa infraestrutura, apoiam a comunidade e promovem colaborações são Yaron Budowski, Amanda Bullington, Tony Iwane, Johannes Klein, Patrick Leary, Scott Loarie, Abhas Misraraj, Sylvain Morin, Carrie Seltzer, Alex Shepard, Angie Ta e Ken- ichi Ueda.<br/><br/>A CalTech e a Cornell Tech ajudaram desenvolver um sistema de visão computacional que sugere identificações a partir das fotografias. Agradecemos Grant Van Horn, Serge Belongie e Pietro Perona pelo progresso à investigação à visão computacional. As informações adicionais encontram-se no <a href="https://www.visipedia.org">visipedia.org</a>. Um agradecimento especial à NVIDIA pela assistência adicional.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[A rede internacional iNaturalist suporta projetos e websites localizados, totalmente integrados, baseados em iNaturalist nos seguintes países, graças ao apoio de organizações parceiras associadas.]]></string>
     <string name="inat_credits_post"><![CDATA[O iNaturalist também está muito grato aos técnicos que desenvolveram o código aberto em fornecer o software em que confiamos todos os dias. Veja <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> para as contribuições de código aberto.<br/> Estamos gratos pela assistência na tradução efetuada por voluntários na comunidade crowdin.com, especialmente a Eduardo Martinez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie e katunchik. <br/>Os locais da categoria II da IUCN são fornecidos pelo IUCN e UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, Reino Unido: UNEP-WCMC. Disponível em: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>
 
@@ -600,6 +603,7 @@ nossa comunidade de código aberto]]></string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Nenhuma</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Flores e Frutos</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Fase da Vida</string>
     <!-- Noun, describes sex of the organism -->
@@ -609,11 +613,17 @@ nossa comunidade de código aberto]]></string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Evidência de Presença</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Folhas</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Estabelecido</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Flores</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Frutas ou Sementes</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Botões de flor</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Sem flores ou frutos</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -642,6 +652,7 @@ nossa comunidade de código aberto]]></string>
     <!-- "Evidence of Presence" value when for bird feathers -->
     <string name="annotation_value_feather">Pena</string>
     <!-- "Evidence of Presence" value when for fecal remains -->
+    <string name="annotation_value_scat">Scat</string>
     <!-- "Evidence of Presence" value for impressions in the ground or snow -->
     <string name="annotation_value_track">Pegada</string>
     <!-- "Evidence of Presence" value when for bones -->
@@ -649,14 +660,23 @@ nossa comunidade de código aberto]]></string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Muda</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Construção</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Galha</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Pêlo</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Leafmine</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Botões de folha quase abertas</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Folhas verdes</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Folhas Coloridas</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Sem folhas vivas</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">Não estabelecido</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">A QUE ADERIU</string>
     <string name="nearby_projects_all_caps">NAS PROXIMIDADES</string>
@@ -693,6 +713,7 @@ nossa comunidade de código aberto]]></string>
     <string name="community_id_at_species_level_or_lower">Identificação pela Comunidade ao nível da espécie ou inferior</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Com base nas evidências, pode a Identificação pela Comunidade ser confirmada ou melhorada?</string>
     <string name="no_as_good_as_it_can_be">Não, está tão bom como pode ser</string>
+    <string name="evidence_related_to_single_subject">Prova a um único tópico</string>
     <string name="seasonality">Sazonalidade</string>
     <string name="verifiable">Verificável</string>
     <string name="no_annotation">Sem Anotação</string>
@@ -714,6 +735,11 @@ nossa comunidade de código aberto]]></string>
     <string name="network_credit_inaturalistgr"><![CDATA[Grécia: iSea apoiando o iNaturalist Grécia (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburgo, Museu Nacional de História Natural do Luxemburgo (MnhnL) que apoia o iNaturalist Luxemburgo (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: National Biodiversity Network Trust apoiando o iNaturalist UK (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) apoiando Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) apoiando iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Suécia: SLU Swedish Species Information Centre apoiando iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguai: JULANA and Biodiversidata apoiando Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University e Taiwan Forestry Research Institute apoiando iNaturalist Taiwan  (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar tudo como visto</string>
     <string name="content_hidden">Conteúdo Oculto</string>
     <string name="show_hidden_content">Mostrar Conteúdo Oculto</string>
@@ -839,6 +865,7 @@ nossa comunidade de código aberto]]></string>
     <string name="send_a_message">Enviar uma mensagem</string>
     <string name="sending_message">A enviar mensagem...</string>
     <string name="could_not_send_message">Não foi possível enviar mensagem: %1$s</string>
+    <string name="subject">Tópico</string>
     <string name="body">Corpo</string>
     <string name="type_your_message_here">Escreva aqui a sua mensagem</string>
     <string name="new_message_to">Nova mensagem para %1$s</string>
@@ -890,10 +917,18 @@ nossa comunidade de código aberto]]></string>
     <string name="rank_zoosection">Zoosecção</string>
     <string name="rank_zoosubsection">Zoosubsecção</string>
     <string name="rank_superfamily">Superfamília</string>
+    <string name="rank_epifamily">Epifamily</string>
     <string name="rank_family">Família</string>
     <string name="rank_subfamily">Subfamília</string>
+    <string name="rank_supertribe">Supertribe</string>
+    <string name="rank_tribe">Tribe</string>
+    <string name="rank_subtribe">Subtribe</string>
     <string name="rank_genus">Género</string>
+    <string name="rank_genushybrid">Genushybrid</string>
     <string name="rank_subgenus">Subgénero</string>
+    <string name="rank_section">Section</string>
+    <string name="rank_subsection">subsection</string>
+    <string name="rank_complex">Complex</string>
     <!-- Singular -->
     <string name="rank_species">Espécie</string>
     <string name="rank_hybrid">Híbrido</string>
@@ -901,7 +936,17 @@ nossa comunidade de código aberto]]></string>
     <string name="rank_subspecies">Subespécie</string>
     <string name="rank_variety">Variedade</string>
     <string name="rank_form">Forma</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Localização: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Eu concordo que o iNaturalist armazenar e processar as minhas informações pessoais limitados por gerenciar a minha conta. <b>Saiba Mais</b>]]></string>
+    <string name="about_personal_information">Sobre Informações Pessoais</string>
+    <string name="personal_information_notes"><![CDATA[Armazenamos informações pessoais, como nomes de usuário e endereços de e-mail por gerenciar contas neste site, e para cumprir as leis de privacidade, precisamos que vocês marquem esta área por indicar que concordam com uso a essas informações pessoais. Por saberem mais sobre quais informações coletamos e como as usamos, consultem as nossas  <a href="https://www.inaturalist.org/privacy">Regras de Privacidade</a>  e os nossos  <a href="https://www.inaturalist.org/terms">Termos de serviço</a>. ]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Concordo com os <a href="https://www.inaturalist.org/terms">Termos de Serviço</a> e  <a href="https://www.inaturalist.org/privacy">Regras de Privacidade</a> e eu já li as <a href="https://www.inaturalist.org/pages/community+guidelines">Diretrizes da Comunidade</a>.]]></string>
+    <string name="privacy_policy">Regra de Privacidade</string>
+    <string name="terms_of_service">Termos de serviço</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
+    <string name="deleted_user">Usuário excluído</string>
     <!-- Short date formatting template for dates in the current year. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -913,7 +958,21 @@ nossa comunidade de código aberto]]></string>
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \'\'yy</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="show_common_names">Mostrar os nomes comuns</string>
+    <string name="show_common_names_description">Desative se quiser ver apenas nomes científicos.</string>
+    <string name="email_must_look_like_email_address">O endereço de e-mail deve parecer ser um e-mail</string>
+    <string name="username_must_begin_with">Nome de utilizador deve começar com uma letra, sem espaços e usar apenas letras, números, \"-\" e “_”</string>
+    <string name="password_too_short">A palavra-passe deve ter pelo menos 6 caracteres</string>
+    <string name="switch_to_grid_view">Trocar para vista em grelha</string>
+    <string name="switch_to_list_view">Trocar para vista em lista</string>
+    <string name="remove_project_filter">Remover filtro de projeto</string>
+    <string name="remove_observer_filter">Remover filtro de observador</string>
+    <string name="filter_observations_by_an_exact_date">Filtrar observações de acordo a uma data exata</string>
+    <string name="filter_observations_by_a_date_range">Filtrar observações de acordo ao intervalo de datas</string>
+    <string name="filter_observations_by_months">Filtrar observações de acordo a mês</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
     <string name="include_suggestions_not_seen_nearby">Incluir sugestões não vistas nas proximidades</string>
@@ -961,6 +1020,12 @@ nossa comunidade de código aberto]]></string>
     <string name="pretty_sure_variety">Temos quase a certeza que pertence a esta variedade:</string>
     <string name="pretty_sure_form">Temos quase a certeza que pertence a esta forma:</string>
     <string name="pretty_sure_infrahybrid">Temos quase a certeza que pertence a este infrahíbrido:</string>
+    <string name="remove_date_observed">Remover data &amp; tempo de observação</string>
+    <string name="remove_time_observed">Remover tempo de observação</string>
+    <string name="remove_location">Remover localização</string>
+    <string name="are_you_sure_you_want_to_remove_date">Tem certeza de que deseja remover a data &amp; tempo de observação?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Tem certeza de que deseja remover o tempo de observação?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Tem certeza que deseja remover este local?</string>
     <string name="share_location">Partilhar localização</string>
     <string name="share_hidden_location">Partilhar localização oculta</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
@@ -1023,6 +1088,7 @@ nossa comunidade de código aberto]]></string>
     <string name="default_observation_license">Licença padrão para observações</string>
     <string name="default_photo_license">Licença padrão para fotografias</string>
     <string name="default_sound_license">Licença padrão para sons</string>
+    <string name="change_existing_licenses">Alterar Licenças</string>
     <string name="change_licenses_for_existing_observations">Alterar licenças para observações, fotos e sons existentes</string>
     <string name="change_licenses_for_all_existing_observations">Alterar licenças para todas as observações existentes</string>
     <string name="change_licenses_for_all_existing_photos">Alterar licenças para todas as fotos existentes</string>
@@ -1041,6 +1107,7 @@ nossa comunidade de código aberto]]></string>
     <string name="existing_sound_licenses_have_been_updated">Todas as licenças de som existentes foram alteradas para %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licenciar o seu conteúdo dá a qualquer pessoa o direito legal de usá-lo sem pedir a sua permissão se cumprir os termos da licença. Além disso, iNat inclui o seu conteúdo com licença Creative Commons em arquivos atualizados regularmente, produzidos para organizações parceiras selecionadas, interessadas nos nossos dados. Por exemplo, incluímos No Copyright (CC0), Attribution (CC BY), e registros Attribution-NonCommercial (CC BY-NC) no arquivo que geramos para <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>,  uma organização internacional intergovernamental que compila e distribui informação sobre biodiversidade em todo o mundo.]]></string>
     <string name="photo_license">Licença da Foto</string>
+    <string name="sound_license">Licença de som</string>
     <string name="edit_photo_license">Editar Licença Foto</string>
     <string name="observation_license">Licença de Observação</string>
     <string name="edit_observation_license">Editar Licença de Observação</string>
@@ -1062,17 +1129,75 @@ nossa comunidade de código aberto]]></string>
     <string name="license_description_cc_by_nc_sa">Esta licença permite a outros remexer, alterar e trabalhar a partir da sua obra para fins não comerciais, desde que lhe dêem crédito e licenciem as novas criações nos mesmos termos.</string>
     <string name="license_description_cc_by_nc_nd">Esta licença é a mais restritiva das seis principais licenças, permitindo apenas a outros fazer download dos seus trabalhos e partilhá-los com outros desde que lhe dêem crédito, mas não permitindo alterações de qualquer tipo ou o seu uso comercial.</string>
     <string name="license_description_cc_by_nd">Esta licença permite a redistribuição, comercial e não comercial, desde que seja usada integralmente sem alterações, e lhe dêem crédito enquanto autor.</string>
+    <string name="license_description_cc_by_sa">Esta licença permite outras pessoas remixarem, afinarem e reconstruirem o seu trabalho mesmo para usos comerciais se ao senhor credenciem e licenciem as novas criações deles com os mesmos termos como o senhor. Esta licença é frequentemente comparada a licenças de software livre e de código aberto \"copyleft\". Todas as novas obras baseadas na sua terão a mesma licença, pelo que os derivados também permitirão ser usados nas áreas comerciais. Isto é a licença utilizada pela Wikipedia e é recomendada a ser usada aos materiais que beneficiariam dos conteúdos da Wikipedia e projetos licenciados de forma semelhante.</string>
     <string name="license_description_no_license">Você detém total direito sobre o seu conteúdo a partir dos direitos concedidos ao iNaturalist nos nossos Termos de Serviço.</string>
     <string name="invalid_photo">Formato de foto não suportado</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">As sugestões baseadas nas observações e identificações são fornecidas pela comunidade do iNaturalist, incluindo %1$s, %2$s, %3$s e muitas outras.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Ação planeada por observação</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Mostrar opções</string>
     <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Valor de Campo</string>
+    <string name="expand_annotation_to_agree_or_disagree">Mostrar anotação por concordar ou discordar</string>
+    <string name="delete_attribute_value">Excluir valor de atributo</string>
+    <string name="open_menu_for_more_options">Abrir ementa para mais opções</string>
+    <string name="change_user_profile_photo">Alterar foto de utilizador</string>
+    <string name="expand_list">Expandir lista</string>
+    <string name="change_map_layers">Alterar camadas em mapa (terreno vs. satélite)</string>
+    <string name="redo_observation_search">Refazer procura de observação nesta área de mapa</string>
+    <string name="view_observations_on_map">Ver marcas de observação no mapa</string>
+    <string name="view_observations_on_grid">Ver marcas de observação na grelha</string>
+    <string name="clear_text">Limpar texto</string>
+    <string name="observation_has_sounds">Observação deve ter sons</string>
+    <string name="go_to_my_location">Ir para a minha localização atual</string>
+    <string name="change_geoprivacy">Alterar geoprivacidade</string>
+    <string name="active_filters">Filtros ativos</string>
+    <string name="message_is_flagged">Mensagem sinalizada</string>
+    <string name="user_is_muted">Utilizador silenciado</string>
+    <string name="cancel_multiple_obs_selection">Cancelar seleção de observação múltipla</string>
+    <string name="delete_observations">Excluir observações</string>
+    <string name="comment_count">Número de Comentário</string>
+    <string name="id_count">Contagem de identificação</string>
+    <string name="observation_selected">Observação sinalizada</string>
+    <string name="share_observation">Compartilhar observação</string>
+    <string name="unknown_location">Localização não especificada</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Fechar</string>
+    <string name="set_date2">Definir data</string>
+    <string name="project_selected">Projeto Selecionado</string>
+    <string name="project_unselected">Projeto Não Selecionado</string>
+    <string name="show_my_observations">Mostrar as minhas observações</string>
+    <string name="play_pause_sound">Produzir ou pausar som</string>
+    <string name="view_image">Ver imagens</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Excluir observação selecionada do %1$d</item>
+        <item quantity="other">Excluir observações selecionada do %1$d</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sincronizar observação selecionada do %1$d</item>
+        <item quantity="other">Sincronizar observações selecionadas do %1$d</item>
+    </plurals>
+    <string name="add_media_evidence">Adicionar provas com multimédia</string>
+    <string name="remove_identification">Remover identificação</string>
+    <string name="issue_with_updating_photos">Houvera um problema na atualização das fotos nesta observação, mas o problema foi resolvido recentemente. Termine sessão e inicie sessão novamente para resolver este problema.</string>
+    <string name="app_version_copied_to_clipboard">A versão do aplicativo foi copiado para área de transferência</string>
+    <string name="authentication_failed">Autenticação falhou</string>
+    <string name="please_try_again_soon">Por favor, tente novamente em breve.</string>
+    <string name="verify_your_email">Verificar o seu endereço de correio eletrónico</string>
+    <string name="after_you_change_your_password">Depois de alterar sua senha, você será desconectado e precisará entrar novamente com sua nova senha. Você também será desconectado dos aplicativos móveis iNaturalist e de qualquer outro aplicativo ou site que postar no iNaturalist em seu nome, portanto, certifique-se de ter enviado quaisquer observações pendentes antes de fazer isso. Quaisquer observações que não forem enviadas serão perdidas.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">Não foi possível carregar o arquivo - maior que 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">A sua sessão foi terminada. Inicie sessão novamente.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Fechar anúncio</string>
+    <string name="import_photos_from">Importar fotos de...</string>
+    <string name="cannot_find_default_camera">Não foi possível encontrar uma câmara para tirar fotos, por favor, contacte o suporte</string>
+    <string name="please_click_link_to_confirm_email">Por favor, clique ao link que está no seu e-mail para confirmar o seu e-mail ao iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Clique aqui para reenviar um e-mail de confirmação</string>
 </resources>
