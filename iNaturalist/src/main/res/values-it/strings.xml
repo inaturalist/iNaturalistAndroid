@@ -33,7 +33,7 @@
     <string name="my_location">La mia posizione</string>
     <string name="nearby_observations">Osservazioni nelle vicinanze</string>
     <string name="add">Aggiungi</string>
-    <string name="view_on_inat">Visualizza su iNat</string>
+    <string name="view_on_inat">Visualizza su iNaturalist.org</string>
     <string name="reload">Ricarica</string>
     <string name="view_in_browser">Visualizza nel browser</string>
     <string name="add_observation">Aggiungi osservazione</string>
@@ -56,7 +56,7 @@
     <string name="add_comment">Aggiungi commento</string>
     <string name="add_id">Aggiungi identificazione</string>
     <string name="remarks">Note...</string>
-    <string name="enter_taxon_name">Inserisci il nome del taxon</string>
+    <string name="enter_taxon_name">Nome della specie</string>
     <string name="no_projects">Nessun progetto trovato!</string>
     <string name="no_guides">Nessuna guida trovata!</string>
     <string name="loading_projects">Caricamento progetti...</string>
@@ -71,7 +71,7 @@
     <string name="failed_to_add_obs_to_project">Problema nell\'aggiungere osservazione \'%1$s\' al progetto \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Immeti un valore valido per il campo \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
-    <string name="select_projects">Seleziona Progetti</string>
+    <string name="select_projects">Seleziona da Progetti di cui sei membro</string>
     <string name="not_connected">Devi essere connesso a internet per fare questo!</string>
     <string name="search_projects">Cerca progetti...</string>
     <string name="search_guides">Cerca guide...</string>
@@ -131,7 +131,7 @@
     </string-array>
     <string-array name="tutorial_descriptions">
         <item>Esplora e Connettiti con la Natura</item>
-        <item>Esci! Osserva qualcosa e scatta una foto chiara e completa.</item>
+        <item>Esci fuori! Trova qualcosa di selvatico e scatta una foto chiara e completa.</item>
         <item>Condividi le tue osservazioni con la comunità di iNaturalist.</item>
         <item>Torna indietro per controllare i commenti e le identificazioni sulla tua osservazione!</item>
         <item><![CDATA[<b>Grado di ricerca</b> osservazioni sono condivise con gli scienziati che lavorano per capire meglio e di proteggere la natura.]]></item>
@@ -156,7 +156,7 @@
     <string name="text"><![CDATA[<b>Testo:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">La rete principale di iNaturalist. Premendo OK aggiungerai la tua app alla rete iNaturalist.</string>
-    <string name="alert_message_use_naturalista">NaturaLista è membro del Network iNaturalist in Mexico. Le istituzioni locali che supportano NaturaLista avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione come esperimento se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_naturalista">NaturaLista è membro di iNaturalist Network in Messico. Le istituzioni locali che supportano NaturaLista avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione come esperimento se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_naturewatchnz">iNaturalist NZ è membro del Network iNaturalist in Nuova Zelanda. Le istituzioni locali che supportano iNaturalist NZ avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione come esperimento se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada è membro del Network iNaturalist in Canada. Le istituzioni locali che supportano iNaturalist Canada avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione come esperimento se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista è membro del Network iNaturalist in Colombia. Le istituzioni locali che supportano Naturalista avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione come esperimento se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
