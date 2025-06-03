@@ -362,7 +362,8 @@ public class ImageUtils {
 
 
     public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions, boolean isCameraPhoto) {
-        return resizeImage(context, path, photoUri, maxDimensions, false, isCameraPhoto);
+        // Don't use Lanczos resizing, since under certain conditions it can cause a native JNI crash which we cannot catch
+        return resizeImage(context, path, photoUri, maxDimensions, true, isCameraPhoto);
     }
 
     private static InputStream readInputStream(Context context, String path, Uri photoUri) throws FileNotFoundException {
