@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.SurfaceTexture;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -22,10 +23,17 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.livefront.bridge.Bridge;
 
+import org.tinylog.Logger;
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class RecordSoundActivity extends AppCompatActivity implements SoundRecorder.OnRecordingStatus {
     private static String TAG = "RecordSoundActivity";
@@ -144,6 +152,7 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
         mStopRecording.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Logger.tag(TAG).info("Stop recording button pressed");
                 mIsRecording = false;
                 mRecorder.stopRecording();
                 mHelper.loading();
@@ -330,6 +339,7 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
 
     @Override
     public void onRecordingStopped() {
+        Logger.tag(TAG).info("onRecordingStopped: " + mCancelledRecording + ": " + mOutputFilename);
         mHelper.stopLoading();
 
         if (mCancelledRecording) {
@@ -342,25 +352,47 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
             return;
         }
 
-        // Make this sound accessible via the Android Files app (under Audio category)
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(System.currentTimeMillis());
+        String fileName = "recording_" + timeStamp + ".wav";
+
         ContentValues values = new ContentValues();
-        File file = new File(mOutputFilename);
-        values.put(MediaStore.Audio.Media.DATA, mOutputFilename);
-        values.put(MediaStore.Audio.Media.SIZE, file.length());
-        values.put(MediaStore.Audio.Media.DISPLAY_NAME, mOutputFilename.substring(mOutputFilename.lastIndexOf(File.separator) + 1));
+        values.put(MediaStore.Audio.Media.DISPLAY_NAME, fileName);
         values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/wav");
         values.put(MediaStore.Audio.Media.IS_MUSIC, true);
         values.put(MediaStore.Audio.Media.ARTIST, "iNaturalist");
         values.put(MediaStore.Audio.Media.ALBUM, "Sound Recordings");
-        values.put(MediaStore.Audio.Media.DATE_ADDED, System.currentTimeMillis());
-        values.put(MediaStore.Audio.Media.DATE_MODIFIED, System.currentTimeMillis());
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(System.currentTimeMillis());
-        values.put(MediaStore.Audio.Media.TITLE, String.format("iNaturalist Sound Recording - %s", timeStamp));
+        values.put(MediaStore.Audio.Media.TITLE, "iNaturalist Sound Recording - " + timeStamp);
 
-        Uri uri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
+        Uri uri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            // Android 10+ (Scoped Storage)
+            values.put(MediaStore.Audio.Media.RELATIVE_PATH, Environment.DIRECTORY_MUSIC + "/iNaturalist");
+            uri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
+        } else {
+            // Android 9 and below
+            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC) + "/iNaturalist", fileName);
+            file.getParentFile().mkdirs();
+            values.put(MediaStore.Audio.Media.DATA, file.getAbsolutePath());
+            uri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
+        }
+
+        if (uri != null) {
+            try (OutputStream out = getContentResolver().openOutputStream(uri);
+                 InputStream in = new FileInputStream(mOutputFilename)) {
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                getContentResolver().delete(uri, null, null);
+            }
+        }
+
 
         Intent intent = new Intent();
-        intent.setData(Uri.parse(mOutputFilename));
+        intent.setData(uri);
         setResult(RESULT_OK, intent);
         finish();
     }
