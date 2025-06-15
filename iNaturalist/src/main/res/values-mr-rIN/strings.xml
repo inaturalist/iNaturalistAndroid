@@ -451,21 +451,12 @@
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <!-- Preference to control what tapping on the action button does on My Observations -->
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
-    <string name="show_options">पर्याय दाखवा </string>
     <!-- Placeholder text for an observation field value -->
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
-    <string name="issue_with_updating_photos">ह्या निरीक्षणामधील छायाचित्रे अद्यतनित करण्यात एक समस्या आली होती,  ज्याची दुरुस्ती करण्यात आलेली आहे. कृपया, ह्या समस्येचे निराकरण करण्यासाठी तुम्ही साइन आउट करून पुन्हा साइन इन करा.</string>
-    <string name="authentication_failed">सत्यापन अयशस्वी</string>
-    <string name="please_try_again_soon">कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.</string>
-    <string name="verify_your_email">आपल्या ई-मेल पत्त्याची खात्री करा</string>
-    <string name="after_you_change_your_password">म्ही तुमचा पासवर्ड बदलल्यानंतर, तुम्हाला साइन आउट केले जाईल आणि तुम्हाला तुमच्या नवीन पासवर्डने पुन्हा साइन इन करावे लागेल. तुम्हाला iNaturalist मोबाइल ऍप्स आणि तुमच्या वतीने iNaturalist वर पोस्ट करणार्‍या इतर कोणत्याही ऍप्स किंवा वेबसाइटमधून साइन आउट केले जाईल, म्हणून तुम्ही हे करण्यापूर्वी कोणतीही प्रलंबित निरीक्षणे अपलोड केली आहेत याची खात्री करा. अपलोड न केलेली कोणतीही निरीक्षणे गमावली जातील.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
-    <string name="couldnt_upload_file_too_large">फाइल अपलोड करू शकत नाही - 20MB पेक्षा मोठी</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">तुम्हाला साइन आउट केले गेले आहे. कृपया पुन्हा साइन इन करा.</string>
     <!-- Accessibility label for a button that closes an announcement -->
-    <string name="import_photos_from">येथून फोटो इंपोर्ट करा...</string>
 </resources>
