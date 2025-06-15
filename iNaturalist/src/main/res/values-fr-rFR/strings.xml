@@ -58,7 +58,7 @@
     <string name="remarks">Remarques...</string>
     <string name="enter_taxon_name">Nom de l\'espèce</string>
     <string name="no_projects">Aucun projet trouvé !</string>
-    <string name="no_guides">Aucun guide trouvé!</string>
+    <string name="no_guides">Aucun guide trouvé !</string>
     <string name="loading_projects">Chargement des projets...</string>
     <string name="joined_projects">Mes projets</string>
     <string name="nearby_projects">À proximité</string>
@@ -67,7 +67,7 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Quitter</string>
     <string name="join">Joindre</string>
-    <string name="no_check_list">Aucun taxon dans la liste!</string>
+    <string name="no_check_list">Aucun taxon dans la checklist !</string>
     <string name="failed_to_add_obs_to_project">Impossible d\'ajouter l\'observation « %1$s » au projet « %2$s » : %3$s</string>
     <string name="invalid_project_field">Veuillez entrer une valeur valide dans le champ « %1s »</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->

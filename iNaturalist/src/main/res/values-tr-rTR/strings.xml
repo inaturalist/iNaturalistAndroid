@@ -67,7 +67,7 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Ayrıl</string>
     <string name="join">Katıl</string>
-    <string name="no_check_list">Kontrol Listesinde Sınıflar Yok!</string>
+    <string name="no_check_list">Kontrol Listesinde Taksonlar Yok!</string>
     <string name="failed_to_add_obs_to_project">%2$s projesine \'%1$s\' gözlemini ekleme başarısız: %3$s</string>
     <string name="invalid_project_field">Lütfen \'%1s\' alanı için geçerli bir değer girin.</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
@@ -94,8 +94,8 @@
     <string name="my_guides">Seninkiler</string>
     <string name="nearby_guides">Yakında</string>
     <string name="all_guides">Hepsi</string>
-    <string name="no_taxa">Bu rehber için sınıflar bulunamadı!</string>
-    <string name="search_taxa">Sınıfları ara...</string>
+    <string name="no_taxa">Bu rehber için taksonlar bulunamadı!</string>
+    <string name="search_taxa">Taksonları ara...</string>
     <string name="no_internet_guides">Rehberler internet bağlantısı gerektirir</string>
     <string name="no_internet_projects">Projeler internet bağlantısı gerektirir</string>
     <string name="locale_gl">Galiççe</string>
@@ -415,15 +415,15 @@
     <string name="conservation_status_least_concern">En az endişe</string>
     <string name="conservation_status_near_threatened">Tehdite yakın</string>
     <string name="conservation_status_vulnerable">Savunmasız</string>
-    <string name="conservation_status_endangered">Soyu tükenmekte</string>
-    <string name="conservation_status_critically_endangered">Soyu kritik şekilde tükenmekte</string>
+    <string name="conservation_status_endangered">Nesli tükenmekte</string>
+    <string name="conservation_status_critically_endangered">Kritik derecede nesli tükenmekte</string>
     <string name="conservation_status_extinct_in_the_wild">Doğada soyu tükenmiş</string>
     <string name="conservation_status_extinct">Soyu tükenmiş</string>
     <string name="map_of_observations">Gözlem Haritası</string>
-    <string name="taxonomy">Sınıflandırma</string>
+    <string name="taxonomy">Taksonomi</string>
     <string name="about_this_section">Bu Bölüm Hakkında</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">Bunlar, bu sınıfın atalarıyla bağlıdır. En kapsamlıdan en özele doğru sıralanır. Yaşam Ağacı\'nda aşağı yukarı hareket etmek için bu bağlantıları kullanın. Örneğin, bir organizmanın ne olduğunu bilmiyorsanız ancak hangi gruba girdiğini biliyorsanız, bu konuda daha çok bilgi edinmek için listeden bir sınıfa dokunun.</string>
+    <string name="taxonomy_info">Bunlar, bu taksonun üst soyuyla ilişkilidir. En kapsamlıdan en özele doğru sıralanır. Yaşam Ağacı\'nda aşağı yukarı hareket etmek için bu bağlantıları kullanın. Örneğin, bir organizmanın ne olduğunu bilmiyorsanız ancak hangi gruba girdiğini biliyorsanız, bu konuda daha çok bilgi edinmek için listeden bir taksona dokunun.</string>
     <string name="more_info_on_inat">iNaturalist.org üzerinden daha çok bilgi</string>
     <string name="view_suggestions">Önerileri Görüntüle</string>
     <string name="species_search">Tür Ara</string>
@@ -445,7 +445,7 @@
     <string name="enlarge">Genişlet</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Alt Soyu Görüntüle</string>
-    <string name="taxon_has_no_photos">Bu sınıfın fotoğrafları yok.</string>
+    <string name="taxon_has_no_photos">Bu taksonun fotoğrafları yok.</string>
     <string name="terrain">Arazi</string>
     <string name="filters">Filtreler</string>
     <string name="exploring_all">Tümünü Keşfet</string>
@@ -455,8 +455,8 @@
     <string name="research_grade_initials">AS</string>
     <string name="taxon_search_hint">örn. kuşlar, kral kelebeği</string>
     <string name="location_search_hint">örn: kent, eyalet, park, ülke...</string>
-    <string name="no_taxon">Üzgünüz, sınıf bulunamadı</string>
-    <string name="please_select_taxon">Lütfen listeden geçerli bir sınıf seçin (ya da sınıf alanını temizleyin).</string>
+    <string name="no_taxon">Üzgünüz, takson bulunamadı</string>
+    <string name="please_select_taxon">Lütfen listeden geçerli bir takson seçin (ya da takson alanını temizleyin).</string>
     <string name="sorry_no_location">Üzgünüz, konum bulunamadı</string>
     <string name="location_not_found">Aradığın konum ya da yer veri tabanımızda bulunmuyor. Lütfen konum arama alanının altındaki seçenekler listesinden bir yer seç ya da arama alanını temizle.</string>
     <string name="undefined">Tanımlanmamış</string>
@@ -553,7 +553,7 @@
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dh</string>
     <string name="new_observation">Yeni Gözlem</string>
-    <string name="inactive_taxon">Etkin Olmayan Sınıf</string>
+    <string name="inactive_taxon">Etkin Olmayan Takson</string>
     <string name="no_identifications_found">Buradaki diğer kişilerin incelemeleri için önerdiğin tanımlamaları takip et.</string>
     <string name="no_species_found">Bu, en çok gözlemlediğin türlerin bir listesi.\n\nFYI: Gezegende tahmini 9 milyon tür var, o yüzden oraya çık ve onları gözlemle!</string>
     <string name="make_an_observation">Bir gözlem yap</string>
@@ -618,6 +618,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Hiçbiri</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Çiçekler ve Meyveler</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Yaşam Evresi</string>
     <!-- Noun, describes sex of the organism -->
@@ -627,11 +628,17 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Varlık Kanıtı</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Yapraklar</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Yerleşik</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Çiçekler</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Meyveler veya Tohumlar</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Çiçek Tomurcukları</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Çiçek veya meyve yok</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Yetişkin</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -644,7 +651,7 @@
     <string name="annotation_value_larva">Larva</string>
     <string name="annotation_value_egg">Yumurta</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Olgunlaşmamış</string>
+    <string name="annotation_value_juvenile">Jüvenil</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Dişi</string>
@@ -668,14 +675,23 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Deri değiştirme/Tüy dökme</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">İnşa</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Gal</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Kıl</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Yaprak madeni</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Yaprak tomurcukları</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Yeşil Yapraklar</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Renkli Yapraklar</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Canlı Yaprak Yok</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">Yerleşik değil</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">KATILDIĞIN</string>
     <string name="nearby_projects_all_caps">YAKINDAKİ</string>
@@ -844,9 +860,9 @@
 Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="choosing_specific_language_warning">Hesabında belirli bir dil seçmek için internet bağlantısı gerekir</string>
     <string name="running_in_background_notfication">Kesintisiz çalışabilmemiz için arka planda çalışıyor</string>
-    <string name="opt_out_of_community_taxon">Topluluk Sınıfını reddet</string>
-    <string name="opt_in_to_community_taxon">Topluluk Sınıfını onayla</string>
-    <string name="opt_out_message">Topluluk Sınıfını reddetme, bu gözlemde var olan tanımlamana göre sınıfla ilişkilendirilecek ve bu nedenle bu gözleme eklenen tüm tanımlamalardan türetilen bir sınıf olmayacaktır. Yeterince kişi seninle aynı düşüncede olmazsa, tanımlaman Sıradan olur. Bunu yalnızca tanımlamanın doğru olduğundan ve diğer tanımlamaların yanlış olduğundan eminsen reddetmelisin.</string>
+    <string name="opt_out_of_community_taxon">Topluluk Taksonunu reddet</string>
+    <string name="opt_in_to_community_taxon">Topluluk Taksonunu onayla</string>
+    <string name="opt_out_message">Topluluk Taksonunu reddetme, bu gözlemde var olan tanımlamana göre taksonla ilişkilendirilecek ve bu nedenle bu gözleme eklenen tüm tanımlamalardan türetilen bir takson olmayacaktır. Yeterince kişi seninle aynı düşüncede olmazsa, tanımlaman Sıradan olur. Bunu yalnızca tanımlamanın doğru olduğundan ve diğer tanımlamaların yanlış olduğundan eminsen reddetmelisin.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">İzin Gerekli</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -858,7 +874,7 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Çoklu seçim modunda gözlem seçmek için onay kutusu</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Gözlem sınıfı için küçük resim</string>
+    <string name="observation_list_item_iconic_pic_description">Gözlem taksonu için küçük resim</string>
     <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Gözlem için küçük resim</string>
     <string name="messages">İletiler</string>
@@ -962,6 +978,7 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM, yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \'\'yy</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d MMM, yyyy hh:mma</string>
     <string name="show_common_names">Yaygın adları göster</string>
@@ -984,7 +1001,7 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="research_grade_observations">Araştırma Sınıfı Gözlemler</string>
     <string name="visually_similar_description">iNaturalist yılın bu zamanlarında bu bölgeye yakın gözlemlenen türlere en çok benzeyen fotoğrafları temel alarak önerilerde bulunacak.</string>
     <string name="research_grade_observations_description">iNaturalist görsel olarak benzerliğe dayanan önerilerin yerine, belli bir yerde ve belli bir taksonomik grupta gözlenen türleri önerecek.</string>
-    <string name="taxon">Sınıf:</string>
+    <string name="taxon">Takson:</string>
     <string name="place">Konum:</string>
     <string name="pretty_sure_kingdom">Şu alemde olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_subkingdom">Şu alt alemde olduğuna oldukça eminiz:</string>
@@ -1039,7 +1056,7 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="compare_observation_with_this_option">Gözlemi bu seçenekle karşılaştır</string>
     <string name="go_back">Geri git</string>
     <string name="change_the_source_of_the_suggestions">Öneri kaynağını değiştir</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Önerilen sınıfın küçük fotoğrafı</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Önerilen taksonun küçük fotoğrafı</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <string name="comments_ids_title">Yorumlar ve Tanımlamalar</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
