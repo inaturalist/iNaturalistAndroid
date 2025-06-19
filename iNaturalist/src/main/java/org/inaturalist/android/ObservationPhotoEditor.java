@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Animatable;
@@ -235,6 +236,16 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
         switch (result.mResultCode) {
             case RESULT_OK:
                 Uri resultUri = UCrop.getOutput(result.mResultData);
+
+                Bitmap newBitmap = BitmapFactory.decodeFile(resultUri.getPath());
+                Uri originalUri = Uri.parse(getIntent().getStringExtra(PHOTO_URI));
+                Bitmap originalBitmap = BitmapFactory.decodeFile(originalUri.getPath());
+
+                if (newBitmap.sameAs(originalBitmap)) {
+                    // No change made - return original image
+                    setResult(RESULT_CANCELED);
+                    break;
+                }
 
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
