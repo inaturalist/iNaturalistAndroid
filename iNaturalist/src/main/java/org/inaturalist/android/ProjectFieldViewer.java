@@ -7,13 +7,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Typeface;
-import androidx.core.content.ContextCompat;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,10 +75,13 @@ public class ProjectFieldViewer {
     private TextView mFieldDescription;
     private FocusedListener mFocusedListener;
     private boolean mIsFocusing;
+    private List<TextView> mIdNames;
+    private List<TextView> mIdTaxonNames;
+    private List<ImageView> mTaxonPics;
 
     private String mValue;
 
-    private View mView;
+    private ViewGroup mView;
 
     public void unregisterReceivers() {
         BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, mContext);
@@ -92,33 +94,51 @@ public class ProjectFieldViewer {
 
             BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
 
+            Logger.tag(TAG).info("TaxonReceiver: " + taxon);
+
             if (taxon == null) {
                 return;
             }
 
             int taxonId = taxon.getInt("id");
 
+            Logger.tag(TAG).info("TaxonReceiver 2: " + taxonId + " vs " + mTaxonId);
+
             if (taxonId != mTaxonId) {
                 // Result was not from out taxon
                 return;
             }
 
-            UrlImageViewHelper.setUrlDrawable(mTaxonPic, taxon.getString("image_url"));
-            mIdName.setText(taxon.getString("unique_name"));
-            mIdTaxonName.setText(TaxonUtils.getTaxonScientificName(mApp, taxon.getJSONObject()));
+            updateTaxonName(taxon);
+        }
+    }
+
+    private void updateTaxonName(BetterJSONObject taxon) {
+        for (int i = 0; i < mIdTaxonNames.size(); i++) {
+            TextView taxonName = mIdTaxonNames.get(i);
+            TextView idName = mIdNames.get(i);
+            ImageView taxonPic = mTaxonPics.get(i);
+
+            JSONObject defaultPhoto = taxon.getJSONObject("default_photo");
+            if (defaultPhoto != null) {
+                UrlImageViewHelper.setUrlDrawable(taxonPic, defaultPhoto.optString("url"));
+            }
+            idName.setText(taxon.getString("unique_name"));
+            taxonName.setText(TaxonUtils.getTaxonScientificName(mApp, taxon.getJSONObject()));
             if (taxon.getJSONObject().optInt("rank_level", 0) <= 20) {
-                mIdTaxonName.setTypeface(null, Typeface.ITALIC);
+                taxonName.setTypeface(null, Typeface.ITALIC);
             } else {
-                mIdTaxonName.setTypeface(null, Typeface.NORMAL);
+                taxonName.setTypeface(null, Typeface.NORMAL);
             }
             String idNameString = getTaxonName(taxon.getJSONObject());
             if (idNameString != null) {
-                mIdName.setText(idNameString);
-                mIdTaxonName.setText(taxon.getJSONObject().optString("name", ""));
+                idName.setText(idNameString);
+                taxonName.setText(taxon.getJSONObject().optString("name", ""));
+                Logger.tag(TAG).info("TaxonReceiver: " + idNameString);
             } else {
-                mIdName.setText(taxon.getJSONObject().optString("name", mContext.getResources().getString(R.string.unknown)));
-                mIdTaxonName.setText("");
-                mIdName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+                idName.setText(taxon.getJSONObject().optString("name", mContext.getResources().getString(R.string.unknown)));
+                taxonName.setText("");
+                idName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
             }
         }
     }
@@ -149,25 +169,32 @@ public class ProjectFieldViewer {
 
         if (displayName == null) {
             // Couldn't extract the display name from the taxon names list - use the default one
-            try {
-                displayName = item.getString("unique_name");
-            } catch (JSONException e2) {
-                displayName = null;
-            }
-            try {
-                defaultName = item.getJSONObject("default_name");
-                displayName = defaultName.getString("name");
-            } catch (JSONException e1) {
-                // alas
-                JSONObject commonName = item.optJSONObject("common_name");
-                if (commonName != null) {
-                    displayName = commonName.optString("name");
-                } else {
-                    displayName = item.optString("name");
+            displayName = item.optString("preferred_common_name");
+
+            if (displayName == null) {
+                try {
+                    displayName = item.getString("unique_name");
+                } catch (JSONException e2) {
+                    displayName = null;
+                }
+                try {
+                    defaultName = item.getJSONObject("default_name");
+                    displayName = defaultName.getString("name");
+                } catch (JSONException e1) {
+                    // alas
+                    JSONObject commonName = item.optJSONObject("common_name");
+                    if (commonName != null) {
+                        displayName = commonName.optString("name");
+                    } else {
+                        displayName = item.optString("name");
+                    }
                 }
             }
         }
 
+        Logger.tag(TAG).error("getTaxonName: " + displayName);
+
+        Logger.tag(TAG).error("getTaxonName final: " + displayName);
         return displayName;
 
     }
@@ -183,6 +210,10 @@ public class ProjectFieldViewer {
         mContext = context;
         mApp = (INaturalistApp) mContext.getApplicationContext();
         mIsConfirmation = isConfirmation;
+
+        mIdTaxonNames = new ArrayList<>();
+        mIdNames = new ArrayList<>();
+        mTaxonPics = new ArrayList<>();
 
         if (mFieldValue == null) {
             mFieldValue = new ProjectFieldValue();
@@ -294,11 +325,7 @@ public class ProjectFieldViewer {
     }
 
     public View getView() {
-        if (mView != null && false) {
-            return mView;
-        }
-
-        ViewGroup row = (ViewGroup) LayoutInflater.from(mContext).inflate(mIsConfirmation ? R.layout.project_field_confirmation : R.layout.project_field, null);
+        ViewGroup row = ((ViewGroup) LayoutInflater.from(mContext).inflate(mIsConfirmation ? R.layout.project_field_confirmation : R.layout.project_field, null));
         row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
         mFieldName = (TextView) row.findViewById(R.id.field_name);
@@ -328,6 +355,10 @@ public class ProjectFieldViewer {
         mIdName = (TextView) row.findViewById(R.id.id_name);
         mIdTaxonName = (TextView) row.findViewById(R.id.id_taxon_name);
         mIdTaxonName.setTypeface(null, Typeface.ITALIC);
+
+        mIdNames.add(mIdName);
+        mIdTaxonNames.add(mIdTaxonName);
+        mTaxonPics.add(mTaxonPic);
 
         mFieldName.setText(mField.name);
         mFieldDescription.setText(mField.description);
