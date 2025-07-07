@@ -118,6 +118,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     @State public String mPlaceGuess;
     @State public String mQuery = "";
     @State public boolean mGeodecodingPlaceName;
+    @State public boolean mLocationSetByPinnedLocation;
     private TextView mActionBarPlaceGuess;
     private TextView mActionBarGeoprivacy;
     private TextView mActionBarLatitude;
@@ -977,8 +978,10 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
                         runOnUiThread(() -> {
                             mGeodecodingPlaceName = false;
-                            mPlaceGuess = location.toString();
-                            refreshActionBar();
+                            if (!mLocationSetByPinnedLocation) {
+                                mPlaceGuess = location.toString();
+                                refreshActionBar();
+                            }
                         });
 
                     } else {
@@ -1057,6 +1060,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
                 mGeoprivacySpinner.setSelection(values.indexOf(data.getStringExtra(PinnedLocationSearchActivity.GEOPRIVACY)));
                 mPlaceGuess = data.getStringExtra(PinnedLocationSearchActivity.TITLE);
+                mLocationSetByPinnedLocation = true;
 
                 refreshActionBar();
                 zoomToLocation();
