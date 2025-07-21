@@ -2028,11 +2028,6 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         }
 
         if ((userIconUrl != null) && (userIconUrl.length() > 0)) {
-            String extension = userIconUrl.substring(userIconUrl.lastIndexOf(".") + 1);
-            userIconUrl = userIconUrl.substring(0, userIconUrl.lastIndexOf('/') + 1) + "medium." + extension;
-        }
-
-        if ((userIconUrl != null) && (userIconUrl.length() > 0)) {
             Picasso.with(getActivity())
                     .load(userIconUrl)
                     .placeholder(R.drawable.ic_account_circle_black_24dp)
