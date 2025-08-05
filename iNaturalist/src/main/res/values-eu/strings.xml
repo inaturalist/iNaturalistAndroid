@@ -260,6 +260,7 @@
         <item quantity="one">Proiektu %1$dean sartua</item>
         <item quantity="other">%1$d proiektutan sartua</item>
     </plurals>
+    <string name="geoprivacy_explanation"><![CDATA[Geopribatutasuna zure behaketetan egin dezakezun aukera bat da, koordenatu espazialak (latitudea eta longitudea) nola erakutsi kontrolatzen duena. Hona hamen aukerak: <br/><b>irekia</b> - Mundu guztiak ikus ditzake koordenatuak, non eta taxoia ez dagoen mehatxatuta. <br/><b>lausotua</b> - Koordenatu publikoak ausazko puntu gisa erakusten dira 0,2 eta 0,2 graduko eremu baten barruan, zeinak benetako koordenatuak biltzen dituen, eta ekuatorean 22x22 km karratuko ziurgabetasun-eremu batera iristen baiten, poloetara hurbildu ahala gutxituz doana. Benetako koordenatuak zuretzat eta behaketa egiten diezun proiektuen arduradunentzat baino ez dira ikusgarri. <br/><b>pribatua</b> - Mapa publikoetatik erabat ezkutatuta daude koordenatuak. Benetako koordenatuak, zuk bakarrik ikus ditzakezu. Banakako proiektuen arduradunek koordenatuak ikus ditzakete, geopribatutasuna edozein dela ere.  Beraz, koordenatuak nork eskuratu ditzakeen kezkatzen bazaituzte, ziur egon zuen parte hartzen duzuen proiektuen arduradunengan konfiantza duzuela.]]></string>
     <string name="id_title">%1$s(e)k ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Ezabatu</string>
@@ -628,6 +629,7 @@
     <string name="annotation_name_leaves">Hostoak</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Loreak</string>
     <!-- Adjective, having fruit or seeds -->
     <string name="annotation_value_fruits_or_seeds">Fruituak edo haziak</string>
     <!-- Adjective, having unopened flowers -->
@@ -722,6 +724,7 @@
     <string name="organism_is_wild">Organismoa basatia da</string>
     <string name="evidence_of_organism">Organismoa egotearen ebidentzia</string>
     <string name="recent_evidence_of_an_organism">Organismo baten oraintsuko ebidentzia</string>
+    <string name="community_id_at_species_level_or_lower">Komunitateak espezie maila edo baxuagoan identifikatua</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Frogetan oinarrituta, oraindik ere baieztatu edo hobetu al daiteke Komunitatearen IDa?</string>
     <string name="no_as_good_as_it_can_be">Ez, ezin da hobetu</string>
     <string name="evidence_related_to_single_subject">Gai bakarrari lotutako frogak</string>
@@ -760,6 +763,8 @@
     <string name="has_photos">Argazkiak ditu</string>
     <string name="has_sounds">Soinuak ditu</string>
     <string name="could_not_play_sound">Ezin da soinua erreproduzitu - seguruenik sareko arazo bat</string>
+    <string name="cant_play_soundcloud"><![CDATA[Soundcloud-en soinuak entzuteko, ikus ezazu <a href="%1$s">website</a>.]]></string>
+    <string name="soundcloud">Soinu-hodeia</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Soinu-grabazioa</string>
     <string name="couldnt_retrieve_sound">Ezin izan da soinua berreskuratu grabagailu lehenetsitik - saiatu soinua inportatzen horren ordez</string>
@@ -773,8 +778,11 @@
     <string name="deleted_sounds_from_cache_error">Badirudi, kargatu aurretik, argazki bat ezabatu duzula aplikazioaren cache memoria ezabatzean. Soinua berriro erantsi beharko diozu zure behaketari zure galeriatik. Etorkizunean, ziurtatu zure soinu guztiak kargatu izana aplikazioaren cache memoria ezabatu aurretik.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f segundo</string>
+    <string name="clear_all_debug_logs">Garbitu arazketa-erregistro guztiak</string>
     <string name="clears_up_storage_room_on_your_phone">Garbitu zure telefonoko biltegiratze-tokia</string>
     <string name="number_of_days_to_store_logs">Erregistroak gordetzeko egun-kopurua</string>
+    <string name="send_debug_logs_from_start_date">Bidali arazketa-erregistroak hasiera-datatik</string>
+    <string name="debug_settings">Arazketa ezarpenak</string>
     <string name="choose_pinned_location">Aukeratu ainguratutako kokapena</string>
     <string name="pin_current_location">Ainguratu uneko kokapena</string>
     <string name="location_pinned_successfully">Uneko kokapena arrakastaz ainguratu da</string>
@@ -861,8 +869,10 @@
     <string name="new_message_to">Mezu berria %1$s-ri</string>
     <string name="who_would_you_like_to_send_a_message_to">Nori bidali nahi diozu mezua?</string>
     <string name="new_message">Mezu berria</string>
+    <string name="search_for_inaturalist_users">iNaturalisteko erabiltzaileak bilatu</string>
     <string name="please_sign_in_for_messages">Saioa hasita egon behar duzu zure mezuak ikusteko.</string>
     <string name="sorry">Barkatu</string>
+    <string name="you_must_have_three_observations">Hori egin ahal izateko hiru behaketa egiaztagarri edo besteek egindako hiru identifikazio izan behar dituzu.</string>
     <string name="mute_this_user">Isildu erabiltzaile hau</string>
     <string name="unmute_this_user">Erabiltzaile hau aktibatu</string>
     <string name="flag_this_conversation">Elkarrizketa hau markatu</string>
@@ -873,14 +883,20 @@
     <string name="unmuting_user">Erabiltzailea aktibatzen...</string>
     <string name="failed_muting_user">Ezin izan da erabiltzailea isilarazi!</string>
     <string name="failed_unmuting_user">Ezin izan da erabiltzailea aktibatu!</string>
+    <string name="flag_conversation">Elkarrizketa hau markatu</string>
     <string name="spam">Spama</string>
+    <string name="commercial_solicitation">Iragarri zerbait, estekak ez dira baliagarriak eta abar.</string>
     <string name="offensive_inappropriate">Iraingarria/ Desegokia</string>
     <string name="misleading_or_illegal_content">Eduki engainagarria edo legez kanpokoa, arrazista, xenofoboa, etab. Gure \"egokia\" definizioari buruzko informazio gehiago lortzeko, ikus FAQ.</string>
     <string name="other">Bestelakoa</string>
     <string name="some_other_reason">Azaldu dezakezun beste arrazoiren bat.</string>
     <string name="continue_text">Jarraitu</string>
+    <string name="why_are_you_flagging_this_item">Zergatik ari zara elementu hau markatzen?</string>
+    <string name="thank_you_for_submitting_the_flag">Eskerrik asko marka jartzeagatik!</string>
+    <string name="flagging_conversation">Elkarrizketa markatzen...</string>
     <string name="no_subject">Gairik ez</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
+    <string name="rank_state_of_matter">Gaiaren egoera</string>
     <string name="rank_kingdom">Erreinu</string>
     <string name="rank_subkingdom">Suberreinua</string>
     <string name="rank_phylum">Filuma</string>
@@ -913,7 +929,9 @@
     <string name="rank_variety">Barietatea</string>
     <string name="rank_form">Forma</string>
     <string name="rank_infrahybrid">Infrahibridoa</string>
+    <string name="rank_leaves">Hostoak</string>
     <string name="location_lat_lng">Kokapena: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Baimena ematen diot iNaturalist-i niri buruzko informazio pertsonal mugatua gorde eta prozesatzeko, nire kontua kudeatzeko. <b>Ikasi gehiago</b>]]></string>
     <string name="about_personal_information">Informazio pertsonalari buruz</string>
     <string name="privacy_policy">Pribatutasun-politika</string>
     <string name="terms_of_service">Zerbitzuaren baldintzak</string>
@@ -1000,6 +1018,7 @@
     <string name="choose_this_option">Aukeratu aukera hau</string>
     <string name="compare_observation_with_this_option">Konparatu behaketa aukera honekin</string>
     <string name="go_back">Atzera</string>
+    <string name="change_the_source_of_the_suggestions">Aldatu iradokizunen jatorria</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <string name="comments_ids_title">Oharrak eta identifikazioak</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
@@ -1096,6 +1115,7 @@
     <string name="show_options">Aukerak erakutsi</string>
     <!-- Placeholder text for an observation field value -->
     <string name="field_value">Eremu balioa</string>
+    <string name="expand_annotation_to_agree_or_disagree">Zabaldu oharra adostasuna adierazteko edo ez. </string>
     <string name="delete_attribute_value">Atributuaren balioa ezabatu</string>
     <string name="open_menu_for_more_options">Ireki menua aukera gehiago izateko</string>
     <string name="change_user_profile_photo">Aldatu erabiltzailearen profileko argazkia</string>
