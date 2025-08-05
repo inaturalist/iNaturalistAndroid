@@ -583,7 +583,7 @@
     <string name="new_to_inat_sign_up_now"><![CDATA[ใหม่สำหรับ %1$s? <b>สมัครตอนนี้เลย!</b>]]></string>
     <string name="see_more_observations">ดูการสังเกตเพิ่มเติม</string>
     <string name="see_more_species">ดูชนิดเพิ่มเติม</string>
-    <string name="see_more_identifications">ดูการระบุเพิ่มเติม</string>
+    <string name="see_more_identifications">ดูการจำแนกเพิ่มเติม</string>
     <string name="collection_and_umbrella_projects">โครงการเก็บสะสมตัวอย่างและเพื่อการอนุรักษ์</string>
     <string name="description">คำอธิบาย</string>
     <string name="quantity">จำนวน</string>
@@ -662,13 +662,21 @@
     <string name="annotation_value_molt">คราบ</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">ปุ่มปมในพืช</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">ขน</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">รอยชอนใบ</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">แตกใบอ่อน</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">ใบเขียว</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">ใบเปลี่ยนสี</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">ใบร่วงทั้งหมด</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">หลุด/ถูกปล่อย</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">เข้าร่วมแล้ว</string>
     <string name="nearby_projects_all_caps">ใกล้เคียง</string>

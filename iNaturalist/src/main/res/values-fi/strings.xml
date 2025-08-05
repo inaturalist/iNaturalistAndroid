@@ -936,6 +936,8 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="rank_suborder">Alalahko</string>
     <string name="rank_infraorder">Osalahko</string>
     <string name="rank_parvorder">Parvolahko</string>
+    <string name="rank_zoosection">Sektio</string>
+    <string name="rank_zoosubsection">Alasektio</string>
     <string name="rank_superfamily">Yläheimo</string>
     <string name="rank_epifamily">Epiheimo</string>
     <string name="rank_family">Heimo</string>
@@ -947,6 +949,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="rank_genushybrid">Sukuristeymä</string>
     <string name="rank_subgenus">Alasuku</string>
     <string name="rank_section">Osa</string>
+    <string name="rank_subsection">alasektio</string>
     <string name="rank_complex">Kompleksi</string>
     <!-- Singular -->
     <string name="rank_species">Laji</string>
@@ -994,7 +997,10 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="equals_sign">=</string>
     <string name="include_suggestions_not_seen_nearby">Anna ehdotuksia myös lajeista, joita ei ole havaittu lähistöllä</string>
     <string name="only_view_nearby_suggestions">Näytä vain ehdotukset lajeista, jotka on havaittu lähistöllä</string>
+    <string name="suggestions_source">Ehdotusten lähde</string>
+    <string name="research_grade_observations">Tutkimustason havainnot</string>
     <string name="visually_similar_description">iNaturalist antaa ehdotuksia perustuen kuvaan, vuodenaikaan ja paikkaan.</string>
+    <string name="research_grade_observations_description">Visuaalisesti samankaltaisten ehdotusten sijaan iNaturalist ehdottaa lajeja, joita on havaittu tietyssä paikassa ja tietystä taksonomisesta ryhmässä.</string>
     <string name="taxon">Taksoni:</string>
     <string name="place">Paikka:</string>
     <string name="pretty_sure_kingdom">Olemme melko varmoja että tämä kuuluu kuntaan </string>
@@ -1047,10 +1053,21 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="sound_format_not_supported">Android ei tue tätä äänen tallennusmuotoa.</string>
     <string name="view_observations">Näytä havainnot</string>
     <string name="choose_this_option">Valitse tämä vaihtoehto</string>
+    <string name="compare_observation_with_this_option">Vertaa havaintoa tähän vaihtoehtoon</string>
+    <string name="go_back">Siirry takaisin</string>
+    <string name="change_the_source_of_the_suggestions">Muuta ehdotusten lähdettä</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Ehdotetun taksonin esikatselukuva</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Kommentit ja tunnistukset</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Suosikit</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Edellinen vaihtoehto</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Seuraava vaihtoehto</string>
+    <string name="no_observations_yet2">Ei vielä havaintoja.</string>
+    <string name="no_species_yet">Ei vielä lajeja.</string>
+    <string name="no_identifications_yet">Ei vielä tunnistuksia.</string>
     <string name="sort_by">Järjestys</string>
     <string-array name="explore_order_by_items">
         <item>Lisäyspäivämäärä</item>
@@ -1065,6 +1082,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Lajiteltu %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
     <string name="hide_my_observations">Piilota havaintoni</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
@@ -1072,12 +1090,18 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
     <string name="unfollow_this_observation">Lopeta tämän havainnon seuraaminen</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Tätä havaintoa ei voitu seurata</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Tämän havainnon seuraamista ei voitu lopettaa</string>
     <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Kopioi koordinaatit</string>
+    <string name="coordinates_copied_to_clipboard">Koordinaatit kopioitu leikepöydälle</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
     <string name="metadata">Metatiedot</string>
     <!--  iNat observation identifier  -->
+    <string name="id">Tunnistus</string>
     <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL-osoite</string>
     <string name="default_licenses">Oletuslisenssit</string>
@@ -1127,6 +1151,7 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="license_description_cc_by_nc_sa">Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa, kunhan nimesi mainitaan alkuperäisen teoksen tekijänä ja uusi teos lisensoidaan tällä samalla lisenssillä.</string>
     <string name="license_description_cc_by_nc_nd">Tämä lisenssi on kuudesta tärkeimmästä lisenssistä rajoittavin. Se antaa muille oikeuden tallentaa ja jakaa teostasi sillä edellytyksellä, että nimesi mainitaan jakamisen yhteydessä. Muilla ei ole oikeutta muokata teostasi millään tavalla eikä käyttää sitä kaupallisiin tarkoituksiin.</string>
     <string name="license_description_cc_by_nd">Tämä lisenssi sallii kaupallisen ja epäkaupallisen uudelleenjakelun kunhan se esitetään muokkaamatta ja kokonaisena sekä sinut tekijänä mainittuna.</string>
+    <string name="license_description_cc_by_sa">Tämän lisenssin avulla muut voivat remiksata, mukauttaa ja rakentaa työtäsi jopa kaupallisiin tarkoituksiin, kunhan he mainitsevat sinut ja lisensoivat uudet luomuksensa samoilla ehdoilla. Tätä lisenssiä verrataan usein \"copyleft\" -vapaisiin ja avoimen lähdekoodin ohjelmistolisensseihin. Kaikilla uusilla teoksilla, jotka perustuvat sinun teokseesi, on sama lisenssi, joten kaikki johdannaiset sallivat myös kaupallisen käytön. Tämä on Wikipedian käyttämä lisenssi, ja sitä suositellaan materiaaleille, jotka hyötyisivät Wikipedian ja vastaavien lisensoitujen projektien sisällön sisällyttämisestä.</string>
     <string name="license_description_no_license">Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä iNaturalistille myönnettyjä oikeuksia.</string>
     <string name="invalid_photo">Kuvaformaattia ei tueta</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
@@ -1153,6 +1178,7 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="active_filters">Aktiiviset rajaukset</string>
     <string name="message_is_flagged">Viesti on liputettu</string>
     <string name="user_is_muted">Käyttäjä on mykistetty</string>
+    <string name="cancel_multiple_obs_selection">Peruuta usean havainnon valinta</string>
     <string name="delete_observations">Poista havaintoja</string>
     <string name="comment_count">Kommenttien lukumäärä</string>
     <string name="id_count">Tunnistuksien määrä</string>
@@ -1187,6 +1213,8 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="remove_identification">Poista tunnistus</string>
     <string name="issue_with_updating_photos">Tämän havainnon valokuvien päivityksessä tapahtui ongelma, joka on hiljattain korjattu. Kirjaudu ulos ja kirjaudu uudelleen sisään ratkaistaksesi tämän ongelman.</string>
     <string name="app_version_copied_to_clipboard">Sovelluksen versio kopioitu leikepöydälle</string>
+    <string name="authentication_failed">Tunnistautuminen epäonnistui</string>
+    <string name="please_try_again_soon">Yritä pian uudelleen.</string>
     <string name="verify_your_email">Vahvista sähköpostiosoitteesi</string>
     <string name="after_you_change_your_password">Kun olet vaihtanut salasanasi, sinut kirjaudutaan ulos ja sinun täytyy kirjautua sisään uudelleen uudella salasanallasi. Sinut kirjataan ulos möys iNaturalist-mobiilisovelluksesta ja muista sovelluksista tai sivustoista, jotka lähettävät havainnot iNaturalistiin puolestasi, joten varmista, että olet ladannut kaikki olevat havainnot ennen kuin teet tämän. Kaikki tallentamattomat havainnot menetetään.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
@@ -1194,4 +1222,8 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="you_have_been_signed_out_please_sign_in_again">Sinut on kirjattu ulos. Kirjaudu sisään uudelleen.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Sulje ilmoitus</string>
+    <string name="import_photos_from">Tuo valokuvia...</string>
+    <string name="cannot_find_default_camera">Oletuskameraa kuvien ottamiseksi ei löytynyt – ota yhteyttä tukeen</string>
+    <string name="please_click_link_to_confirm_email">Ole hyvä ja klikkaa vahvistusviestissä olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi:</string>
+    <string name="click_to_resend_confirmation_email">Klikkaa tästä lähettääksesi vahvistussähköpostin uudelleen.</string>
 </resources>
