@@ -78,6 +78,7 @@ public class ProjectFieldViewer {
     private List<TextView> mIdNames;
     private List<TextView> mIdTaxonNames;
     private List<ImageView> mTaxonPics;
+    private BetterJSONObject mTaxon;
 
     private String mValue;
 
@@ -109,6 +110,7 @@ public class ProjectFieldViewer {
                 return;
             }
 
+            mTaxon = taxon;
             updateTaxonName(taxon);
         }
     }
@@ -499,14 +501,27 @@ public class ProjectFieldViewer {
 
             if (mTaxonId != -1) {
                 // Get the taxon details
-                mTaxonReceiver = new TaxonReceiver();
-                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
-                Logger.tag(TAG).info("Registering ACTION_GET_TAXON_RESULT");
-                BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, mContext);
 
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, mContext, INaturalistService.class);
-                serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
-                INaturalistService.callService(mContext, serviceIntent);
+                if (mTaxon != null) {
+                    int taxonId = mTaxon.getInt("id");
+                    if (taxonId != mTaxonId) {
+                        mTaxon = null;
+                    } else {
+                        updateTaxonName(mTaxon);
+                    }
+                }
+
+                if (mTaxon == null) {
+                    mTaxonReceiver = new TaxonReceiver();
+
+                    IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
+                    Logger.tag(TAG).info("Registering ACTION_GET_TAXON_RESULT");
+                    BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, mContext);
+
+                    Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, mContext, INaturalistService.class);
+                    serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
+                    INaturalistService.callService(mContext, serviceIntent);
+                }
             } else {
                 mIdName.setText("");
                 mIdTaxonName.setText("");

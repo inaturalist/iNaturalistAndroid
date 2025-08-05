@@ -155,6 +155,9 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
                 
                 mAdapter = new ProjectAdapter(ProjectSelectorActivity.this, mProjects);
                 mProjectList.setAdapter(mAdapter);
+                if (mSearchText.getText().length() > 0) {
+                    mAdapter.getFilter().filter(mSearchText.getText());
+                }
                 mProjectList.setOnItemClickListener(ProjectSelectorActivity.this);
 
                 mProjectList.setOnScrollListener(new AbsListView.OnScrollListener() {
