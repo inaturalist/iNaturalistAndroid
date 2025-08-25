@@ -1061,6 +1061,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 mGeoprivacySpinner.setSelection(values.indexOf(data.getStringExtra(PinnedLocationSearchActivity.GEOPRIVACY)));
                 mPlaceGuess = data.getStringExtra(PinnedLocationSearchActivity.TITLE);
                 mLocationSetByPinnedLocation = true;
+                mGeodecodingPlaceName = false;
 
                 refreshActionBar();
                 zoomToLocation();
