@@ -603,23 +603,13 @@ public class INaturalistService extends IntentService {
             return super.onStartCommand(intent, flags, startId);
         }
 
-        // Only use the notification for actions for which their response is crucial (e.g. syncing)
-        // (but make sure we call it at least once)
+        // Make sure we call startForeground in order to avoid this crash:
+        // https://issuetracker.google.com/issues/76112072?pli=1
         String action = intent.getAction();
         Logger.tag(TAG).info("Should call startIntentForeground? " + mApp.hasCalledStartForeground() + ":" + action);
 
-        if (!mApp.hasCalledStartForeground() ||
-                Arrays.asList(new String[]{
-                    ACTION_DELETE_OBSERVATIONS, ACTION_DELETE_ACCOUNT, ACTION_FIRST_SYNC,
-                    ACTION_GET_AND_SAVE_OBSERVATION, ACTION_JOIN_PROJECT, ACTION_LEAVE_PROJECT,
-                    ACTION_PASSIVE_SYNC, ACTION_POST_MESSAGE, ACTION_PULL_OBSERVATIONS,
-                    ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON, ACTION_REFRESH_CURRENT_USER_SETTINGS,
-                    ACTION_REGISTER_USER, ACTION_SYNC,
-                    ACTION_SYNC_JOINED_PROJECTS, ACTION_UPDATE_USER_DETAILS, ACTION_UPDATE_USER_NETWORK
-            }).contains(action)) {
-            mApp.setCalledStartForeground(true);
-            startIntentForeground();
-        }
+        mApp.setCalledStartForeground(true);
+        startIntentForeground();
 
         return super.onStartCommand(intent, flags, startId);
     }
