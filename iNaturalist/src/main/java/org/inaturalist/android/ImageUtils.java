@@ -25,7 +25,6 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.schokoladenbrown.Smooth;
 
 import org.apache.sanselan.ImageReadException;
 import org.apache.sanselan.ImageWriteException;
@@ -460,21 +459,10 @@ public class ImageUtils {
             Bitmap resizedBitmap = BitmapFactory.decodeStream(is);
 
             if ((resizedBitmap != null) && ((newHeight != originalHeight) || (newWidth != originalWidth))) {
-                if (!noLanczos && android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                    // Resize bitmap using Lanczos algorithm (provides smoother/better results than the
-                    // built-in Android resize methods)
-                    try {
-                        resizedBitmap = Smooth.rescale(resizedBitmap, newWidth, newHeight, Smooth.AlgoParametrized1.LANCZOS, 1.0);
-                    } catch (Throwable exc) {
-                        Logger.tag(TAG).error("Crashed while using SmoothRescale library - resizing using Android OS");
-                        Logger.tag(TAG).error(exc);
-                        resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, true);
-                    }
-                } else {
-                    // The Smooth rescale library has issues with Older Android versions (causes crashes) - use
-                    // built-in Android resizing
-                    resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, !noLanczos);
-                }
+                // The Smooth rescale library has issues with Older Android versions (causes crashes) - use
+                // built-in Android resizing + it has not 16kb page alignment, which is mandatory
+                // for Android 15+
+                resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, !noLanczos);
             }
 
             if (resizedBitmap == null) {
