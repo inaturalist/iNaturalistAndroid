@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto"
-    android:versionCode="640"
+    android:versionCode="641"
     android:versionName="1.37.4">
 
     <uses-permission android:name="android.permission.INTERNET" />
