@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">E-mail adresse</string>
+    <string name="email_address">E-mailadresse</string>
     <string name="delete_observation">Slet observation</string>
     <string name="observation_deleted">Observation slettet</string>
     <string name="species_guess_hint">Artsnavn</string>
