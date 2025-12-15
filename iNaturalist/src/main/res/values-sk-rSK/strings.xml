@@ -115,10 +115,10 @@
     <string name="release_to_refresh">Obnoviť uvoľnením...</string>
     <string name="refreshing">Obnovuje sa...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Zachovať %1$d pozorovania </item>
-        <item quantity="few">Zachovať %1$d pozorovania</item>
-        <item quantity="many">Zachovať %1$d pozorovania </item>
-        <item quantity="other">Zachovanie %1$d pozorovaní</item>
+        <item quantity="one">Nahrať %1$d pozorovanie</item>
+        <item quantity="few">Nahrať %1$d pozorovania</item>
+        <item quantity="many">Nahrať %1$d pozorovania</item>
+        <item quantity="other">Nahrať %1$d pozorovaní</item>
     </plurals>
     <string name="sync_observations">Synchronizácia pozorovaní</string>
     <string name="lets_get_started">Začnime!</string>

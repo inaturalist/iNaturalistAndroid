@@ -742,6 +742,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="community_id_at_species_level_or_lower">Yhteisö on tunnistanut havainnon lajilleen tai tarkemmin</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Voiko yhteisön tekemää tunnistusta vielä vahvistaa tai parantaa perustuen havainnon tietoihin?</string>
     <string name="no_as_good_as_it_can_be">Ei, se on niin hyvä kuin se voi olla</string>
+    <string name="evidence_related_to_single_subject">Havainnon dokumentaatio koskee yhtä eliötä</string>
     <string name="seasonality">Kausiluonteisuus</string>
     <string name="verifiable">Todennettavissa</string>
     <string name="no_annotation">Ei huomautusta</string>
