@@ -261,6 +261,7 @@
         <item quantity="many">Įtrauktas į %1$d projektus</item>
         <item quantity="other">Įtrauktas į %1$d projektus</item>
     </plurals>
+    <string name="geoprivacy_explanation"><![CDATA[ "Geografinis privatumas" yra tikslių vietos koordinačių rodymo nustatymas, kurį galite kontroliuoti savo stebėjimuose ir kuris nustato, kaip rodomos erdvinės koordinatės (platuma ir ilguma). Štai parinktys:<br/><b>Vieša</b> - Visi gali matyti koordinates, nebent taksonui kiltų grėsmė. <br/><b>Truputį paslėpta</b> - Viešosios koordinatės rodomos kaip atsitiktinis taškas 0,2 x 0,2 laipsnio plote, kuriame yra tikrosios koordinatės, o tai apima apie 22x22 kv. km plotą ties pusiauju, mažėjantį artėjant prie ašigalių. Tikrosios koordinatės matomos tik jums ir projektų, prie kurių pridedate stebėjimą, kuratoriams. <br/><b>Privatus</b> - Koordinatės visiškai paslėptos viešuose žemėlapiuose, tikrosios koordinatės matomos tik jums ir projektų, prie kurių pridedate stebėjimą, kuratoriams. <br/><br/>Atkreipkite dėmesį, kad atskirų projektų kuratoriai visada gali matyti koordinates, nepriklausomai nuo jūsų geografinio privatumo nustatymo, todėl, jei nerimaujate dėl to, kas turi prieigą prie koordinačių, turėtumėte būti tikri, kad pasitikite projektų, kuriuose dalyvaujate, kuratoriais. ]]></string>
     <string name="id_title">%1$s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Ištrinti</string>
@@ -328,6 +329,7 @@
     <string name="language">Kalba</string>
     <string name="version">Versija</string>
     <string name="inat_network">iNaturalist tinklas</string>
+    <string name="inat_network_description">\"iNaturalist\" platforma skirta \"iNaturalist\" bendruomenei. Tinklo svetaines remia vietos institucijos, pasirašiusios sutartį su \"iNaturalist\", kad paskatintų vietinį susidomėjimą biologine įvairove.</string>
     <string name="more_info">Daugiau info.</string>
     <string name="select_network">Pasirinkite tinklo priskyrimą</string>
     <string name="help">Pagalba</string>
@@ -621,6 +623,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Nėra</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Žiedai ir vaisiai</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Amžiaus tarpsnis</string>
     <!-- Noun, describes sex of the organism -->
@@ -630,12 +633,17 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Organizmo buvimo įrodymai</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Lapai</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Įkurta</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Žiedai</string>
     <!-- Adjective, having fruit or seeds -->
     <string name="annotation_value_fruits_or_seeds">Vaisiai ar uogos</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Žiedpumpuriai</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Nėra žiedų ar vaisių</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Suaugęs</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -678,11 +686,17 @@
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
     <string name="annotation_value_hair">Plaukai</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Lapo mina</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Spogstantys lapų pumpurai</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Žali lapai</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Spalvoti lapai</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Nėra gyvų lapų</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">Nenustatyta</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">PRISIJUNGTA</string>
     <string name="nearby_projects_all_caps">NETOLIESE</string>
@@ -725,6 +739,7 @@
     <string name="community_id_at_species_level_or_lower">Bendruomenė identifikavo iki rūšies arba dar žemesnio lygio</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Sprendžiant iš pateiktų įrodymų, ar bendruomenė gali patvirtinti ar pagerinti identifikaciją?</string>
     <string name="no_as_good_as_it_can_be">Ne, geriau identifikuoti neįmanoma</string>
+    <string name="evidence_related_to_single_subject">Įrodymai, susiję su vienu dalyku</string>
     <string name="seasonality">Sezoniškumas</string>
     <string name="verifiable">Identifikuotinas</string>
     <string name="no_annotation">Be papildomos informacijos</string>
@@ -850,6 +865,8 @@
     <string name="warning_multiple_photos">Jeigu pridedate nuotraukas su skirtingų rūšių organizmais, arba su ta pačios rūšies organizmais, bet darytas skirtingose vietose ar skirtingu laiku, jums reikėtų panaikinti tas nuotraukas ir įkelti jas kaip atskirus stebėjimus. Vienas stebėjimas gali turėti tik %1$d nuotraukų.</string>
     <string name="choosing_specific_language_warning">Specifinės kalbos parinkimui paskyrai reikalingas interneto ryšys</string>
     <string name="running_in_background_notfication">Veikia fone, kad veiktų be pertraukimų</string>
+    <string name="opt_out_of_community_taxon">Atsisakyti Bendrijos taksono</string>
+    <string name="opt_in_to_community_taxon">Pasirinkti Bendrijos taksoną</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Reikalingos papildomos teisės</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -858,6 +875,7 @@
     <string name="forbidden">Draudžiama</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <!-- Description of a UI element for screen readers -->
+    <string name="list_observation_checkbox_description">Žymimasis laukelis, skirtas pasirinkti kelis stebėjimus</string>
     <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Miniatiūrinė stebėjimo taksono nuotrauka</string>
     <!-- Description of a UI element for screen readers -->
@@ -933,6 +951,7 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="rank_variety">Varietetas</string>
     <string name="rank_form">Forma</string>
     <string name="rank_infrahybrid">infrahibridas</string>
+    <string name="rank_leaves">Lapai</string>
     <string name="location_lat_lng">Vieta: %1$f, %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[Aš suteikiu leidimą iNaturalist saugoti ir apdoroti ribotą kiekį mano asmeninės informacijos, kad būtų valdoma mano paskyra.]]></string>
     <string name="about_personal_information">Apie asmeninę informaciją</string>
@@ -943,9 +962,13 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Ištrintas vartotojas</string>
     <!-- Short date formatting template for dates in the current year. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">MM/dd/yy</string>
     <!-- Short time formatting template for 24-hour locales. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -1073,9 +1096,13 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="change_observation_licenses">Keisti stebėjimų licencijas</string>
     <string name="change_photo_licenses">Keisti nuotraukų licencijas</string>
     <string name="change_sound_licenses">Keisti garsų licencijas</string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Pakeisti įkeltų garso įrašų licencijas į <b>%1$s</b>?]]></string>
     <string name="observation_licenses_updated">Stebėjimo licencijos atnaujintos</string>
     <string name="photo_licenses_updated">Nuotraukos licencijos atnaujintos</string>
     <string name="sound_licenses_updated">Garso licencijos atnaujintos</string>
+    <string name="existing_observation_licenses_have_been_updated">Visos įkelto stebėjimo licencijos buvo pakeistos į %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Visos įkeltų nuotraukų licencijos buvo pakeistos į %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Visos įkeltų garso įrašų licencijos buvo pakeistos į %1$s.</string>
     <string name="photo_license">Nuotraukos licencija</string>
     <string name="sound_license">Garso licencija</string>
     <string name="edit_photo_license">Redaguoti nuotraukos licenciją</string>
@@ -1085,6 +1112,8 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="view_license">Žiūrėti licenciją</string>
     <!-- License Names -->
     <string name="license_name_cc0">Viešo naudojimo</string>
+    <string name="license_name_cc_by">Autorinės teisės</string>
+    <string name="license_name_cc_by_nc">Autorinės teisės - Nekomercinis</string>
     <string name="license_name_no_license">Visos teisės saugomos</string>
     <!-- License Descriptions -->
     <string name="invalid_photo">Nuotraukos formatas nepalaikomas</string>
@@ -1160,6 +1189,7 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Uždaryti pranešimą</string>
     <string name="import_photos_from">Importuoti nuotraukas iš...</string>
+    <string name="cannot_find_default_camera">Nepavyko rasti fotoaparato, su kuriuo būtų galima fotografuoti – kreipkitės į pagalbą</string>
     <string name="please_click_link_to_confirm_email">El. laiške spustelėkite nuorodą, kad patvirtintumėte savo el. paštą „iNaturalist“.</string>
     <string name="click_to_resend_confirmation_email">Spustelėkite čia, kad pakartotinai išsiųstumėme patvirtinimo laišką.</string>
 </resources>
