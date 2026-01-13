@@ -17,6 +17,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.ImageView;
@@ -50,7 +51,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
@@ -60,6 +63,12 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 
 
 /**
@@ -488,7 +497,7 @@ public class ImageUtils {
             is = readInputStream(context, path, photoUri);
 
             // Copy all EXIF data from original image into resized image
-            copyExifData(is, new File(imageFile.getAbsolutePath()), null);
+            copyAllExif(context, is, imageFile.getAbsolutePath(), false);
 
             is.close();
 
@@ -508,95 +517,138 @@ public class ImageUtils {
         return null;
     }
 
+    public static void copyAllExif(Context ctx,
+                                   InputStream in,
+                                   String dstPath,
+                                   boolean normalizeOrientation) throws IOException {
 
-    // EXIF-copying code taken from: https://bricolsoftconsulting.com/copying-exif-metadata-using-sanselan/
-    private static boolean copyExifData(InputStream sourceFileStream, File destFile, List<TagInfo> excludedFields) {
-        String tempFileName = destFile.getAbsolutePath() + ".tmp";
-        File tempFile = null;
-        OutputStream tempStream = null;
+        // 1) Build ExifInterface for source (handle Uri)
+        androidx.exifinterface.media.ExifInterface src;
 
-        try {
-            tempFile = new File (tempFileName);
+        src = new androidx.exifinterface.media.ExifInterface(in); // read-only, fine for source
 
-            TiffOutputSet sourceSet = getSanselanOutputSet(sourceFileStream, TiffConstants.DEFAULT_TIFF_BYTE_ORDER);
-            if (sourceSet == null) return false;
-            TiffOutputSet destSet = getSanselanOutputSet(destFile, sourceSet.byteOrder);
-            if (destSet == null) return false;
+        // 2) Create a temp copy of the destination image (we’ll write EXIF into the temp)
+        File dst = new File(dstPath);
+        File parent = dst.getParentFile();
+        File tmp = File.createTempFile(".exifcopy_", ".tmp", parent);
 
-            // If the EXIF data endianess of the source and destination files
-            // differ then fail. This only happens if the source and
-            // destination images were created on different devices. It's
-            // technically possible to copy this data by changing the byte
-            // order of the data, but handling this case is outside the scope
-            // of this implementation
-            if (sourceSet.byteOrder != destSet.byteOrder) return false;
+        // Make a byte-for-byte copy of the destination image first
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Files.copy(dst.toPath(), tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } else {
+            // Pre-Android O (API 26) fallback
+            FileInputStream inStream = null;
+            FileOutputStream outStream = null;
+            try {
+                inStream = new FileInputStream(dst);
+                outStream = new FileOutputStream(tmp);
 
-            destSet.getOrCreateExifDirectory();
-
-            // Go through the source directories
-            List<?> sourceDirectories = sourceSet.getDirectories();
-            for (int i=0; i<sourceDirectories.size(); i++) {
-                TiffOutputDirectory sourceDirectory = (TiffOutputDirectory)sourceDirectories.get(i);
-                TiffOutputDirectory destinationDirectory = getOrCreateExifDirectory(destSet, sourceDirectory);
-
-                if (destinationDirectory == null) continue; // failed to create
-
-                // Loop the fields
-                List<?> sourceFields = sourceDirectory.getFields();
-                for (int j=0; j<sourceFields.size(); j++) {
-                    // Get the source field
-                    TiffOutputField sourceField = (TiffOutputField) sourceFields.get(j);
-
-                    // Check exclusion list
-                    if (excludedFields != null && excludedFields.contains(sourceField.tagInfo)) {
-                        destinationDirectory.removeField(sourceField.tagInfo);
-                        continue;
+                byte[] buffer = new byte[8192];
+                int length;
+                while ((length = inStream.read(buffer)) > 0) {
+                    outStream.write(buffer, 0, length);
+                }
+            } finally {
+                if (inStream != null) {
+                    try {
+                        inStream.close();
+                    } catch (IOException e) {
+                        // Handle close exception
                     }
-
-                    // Remove any existing field
-                    destinationDirectory.removeField(sourceField.tagInfo);
-
-                    // Add field
-                    destinationDirectory.add(sourceField);
                 }
-            }
-
-            // Save data to destination
-            tempStream = new BufferedOutputStream(new FileOutputStream(tempFile));
-            new ExifRewriter().updateExifMetadataLossless(destFile, tempStream, destSet);
-            tempStream.close();
-
-            // Replace file
-            if (destFile.delete()) {
-                tempFile.renameTo(destFile);
-            }
-
-            return true;
-
-        } catch (ImageReadException exception) {
-            Logger.tag(TAG).error(exception);
-
-        } catch (ImageWriteException exception) {
-            Logger.tag(TAG).error(exception);
-
-        } catch (IOException exception) {
-            Logger.tag(TAG).error(exception);
-
-        } finally {
-            if (tempStream != null) {
-                try {
-                    tempStream.close();
-                } catch (IOException e) {
+                if (outStream != null) {
+                    try {
+                        outStream.close();
+                    } catch (IOException e) {
+                        // Handle close exception
+                    }
                 }
-            }
-
-            if (tempFile != null) {
-                if (tempFile.exists()) tempFile.delete();
             }
         }
 
-        return false;
+        // 3) Open writable ExifInterface on the temp file
+        ExifInterface dstExif = new ExifInterface(tmp.getAbsolutePath());
+
+        // 4) Copy every known TAG via reflection (future-proof)
+        for (String tag : getAllKnownTags()) {
+            String val = src.getAttribute(tag);
+            if (val != null) {
+                dstExif.setAttribute(tag, val);
+            }
+        }
+
+        // 5) If the pixel data is already rotated upright, normalize orientation tag
+        if (normalizeOrientation) {
+            dstExif.setAttribute(ExifInterface.TAG_ORIENTATION,
+                    String.valueOf(ExifInterface.ORIENTATION_NORMAL));
+        }
+
+        // 6) Persist metadata (single write)
+        dstExif.saveAttributes(); // works for JPEG/PNG/WebP
+
+        // 7) Atomic replace
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            try {
+                Files.move(tmp.toPath(), dst.toPath(),
+                        StandardCopyOption.REPLACE_EXISTING,
+                        StandardCopyOption.ATOMIC_MOVE);
+            } catch (Exception e) {
+                // Fallback if ATOMIC_MOVE not supported
+                Files.move(tmp.toPath(), dst.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }
+        } else {
+            // Pre-Android O (API 26) fallback
+            if (!tmp.renameTo(dst)) {
+                // If rename fails, copy then delete
+                FileInputStream inStream = null;
+                FileOutputStream outStream = null;
+                try {
+                    inStream = new FileInputStream(tmp);
+                    outStream = new FileOutputStream(dst);
+
+                    byte[] buffer = new byte[8192];
+                    int length;
+                    while ((length = inStream.read(buffer)) > 0) {
+                        outStream.write(buffer, 0, length);
+                    }
+
+                    tmp.delete();
+                } finally {
+                    if (inStream != null) {
+                        try {
+                            inStream.close();
+                        } catch (IOException e) {
+                            // Handle close exception
+                        }
+                    }
+                    if (outStream != null) {
+                        try {
+                            outStream.close();
+                        } catch (IOException e) {
+                            // Handle close exception
+                        }
+                    }
+                }
+            }
+        }
     }
+
+    // Collect all public static String fields named TAG_*
+    private static Set<String> getAllKnownTags() {
+        Set<String> tags = new LinkedHashSet<>();
+        for (Field f : ExifInterface.class.getFields()) {
+            if (Modifier.isStatic(f.getModifiers())
+                    && f.getType() == String.class
+                    && f.getName().startsWith("TAG_")) {
+                try {
+                    String tag = (String) f.get(null);
+                    if (tag != null && !tag.isEmpty()) tags.add(tag);
+                } catch (IllegalAccessException ignored) {}
+            }
+        }
+        return tags;
+    }
+
 
     private static TiffOutputDirectory getOrCreateExifDirectory(TiffOutputSet outputSet, TiffOutputDirectory outputDirectory) {
         TiffOutputDirectory result = outputSet.findDirectory(outputDirectory.type);
