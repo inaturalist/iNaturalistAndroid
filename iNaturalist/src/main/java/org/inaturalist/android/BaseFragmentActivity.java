@@ -556,7 +556,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
         findViewById(R.id.side_menu_user_pic_container).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityIfNew(new Intent(BaseFragmentActivity.this, ProfileEditor.class), false);
+                if (app.loggedIn()) {
+                    startActivityIfNew(new Intent(BaseFragmentActivity.this, ProfileEditor.class), false);
+                }
             }
         });
 
