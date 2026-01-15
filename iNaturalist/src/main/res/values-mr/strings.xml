@@ -155,11 +155,44 @@
     <string name="photos"><![CDATA[<b>फोटो:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>मजकूर:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
+    <string name="alert_message_use_inaturalist">मुख्य आयनॅचरलिस्ट नेटवर्क. ओके वर क्लिक केल्याने आपले अॅप ग्लोबल आयनॅचरलिस्ट नेटवर्कचा भाग म्हणून सेट होईल.</string>
+    <string name="alert_message_use_naturalista">नॅचुरालिस्टा मेक्सिकोतील आयनॅचरलिस्ट नेटवर्कची सदस्य आहे. नेचुरालिस्टाचे समर्थन करणाऱ्या  स्थानिक संस्थांना आपल्या ईमेल पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकपणे अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या जागेचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_naturewatchnz">नॅचरालिस्ट न्यूझीलंड ही न्यूझीलंड मधील आयनॅचरलिस्ट नेटवर्कची सदस्य आहे. नेचरालिस्टचे समर्थन करणाऱ्या  स्थानिक संस्थांना आपल्या ईमेल पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकपणे अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या जागेचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistcanada">नॅचुरालिस्टा मेक्सिकोतील आयनॅचरलिस्ट नेटवर्कची सदस्य आहे. नेचुरालिस्टाचे समर्थन करणाऱ्या   स्थानिक संस्थांना आपल्या ईमेलसंमतीदर्शक उपलब्ध असेल तसेच 
+आपल्या निरीक्षणाच्या जागेचे खरे  निर्देशांक उपलब्ध होतील मग तुमची निरीक्षणे सार्वजनिकपणे अस्पष्ट किंवा खाजगी असली तरीही ती माहिती संस्थांना उपलब्ध असेल. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_naturalistacolombia">नॅचुरालिस्टा ही कोलंबियातील आयनॅचरलिस्ट नेटवर्कची सदस्य आहे. नेचुरालिस्टाचे समर्थन करणाऱ्या  स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_biodiversity4all">बायोडायव्हर्सिटी4ऑल हे पोर्तुगालमधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत . जैवविविधतेचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistpanama">आयनॅचरलिस्ट पनामा हे पनामामधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत . आयनॅचरलिस्ट पनामाचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistecuador">आयनॅचरलिस्ट एक्वाडोर  हे एक्वाडोरमधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत . आयनॅचरलिस्ट एक्वाडोरचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistaustralia">आयनॅचरलिस्ट ऑस्ट्रेलिया हे ऑस्ट्रेलियामधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत . आयनॅचरलिस्ट ऑस्ट्रेलियाचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_argentinat">अर्जेंटिनॅट हे अर्जेंटिनामधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत. अर्जेंटिनॅटचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistil">आयनॅचरलिस्ट इस्राइल हे इस्राइलमधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत . आयनॅचरलिस्ट इस्राइलचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistfi">आयनॅचरलिस्ट फिनलंड हे फिनलंडमधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत . आयनॅचरलिस्ट फिनलंडचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistcl">आयनॅचरलिस्ट चिली  हे चिलीमधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत . आयनॅचरलिस्ट चिलीचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistgr">आयनॅचरलिस्ट ग्रीस हे ग्रीसमधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत . आयनॅचरलिस्ट ग्रीसचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistlu">आयनॅचरलिस्ट लक्झेंबर्ग  हे लक्झेंबर्गमधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत . आयनॅचरलिस्ट लक्झेंबर्गचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistuk">आयनॅचरलिस्ट यूनायटेड किंगडम हे यूनायटेड किंगडममधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत. आयनॅचरलिस्ट यूनायटेड किंगडमचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistcr">आयनॅचरलिस्ट कोस्टा  रिका हे कोस्टा  रिकामधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत. आयनॅचरलिस्ट कोस्टा  रिकाचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistgt">आयनॅचरलिस्ट ग्वाटेमाला हे ग्वाटेमालामधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत. आयनॅचरलिस्ट ग्वाटेमालाचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_inaturalistse">आयनॅचरलिस्ट स्वीडन हे स्वीडनमधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत. आयनॅचरलिस्ट स्वीडनचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
+    <string name="alert_message_use_naturalistauy">आयनॅचरलिस्ट उरूग्वे हे उरूग्वेमधील आयनॅचरलिस्ट नेटवर्कचे सदस्य आहेत. आयनॅचरलिस्ट उरूग्वेचे समर्थन करणाऱ्या स्थानिक संस्थांना आपल्या ईमेल-पत्त्याची माहिती उपलब्ध असेल, तसेच आपली निरीक्षणे सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असली तरीही आपल्या निरीक्षणाच्या ठिकाणाचे खरे  निर्देशांक या संस्थांना उपलब्ध असतील. आपल्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया आपली संलग्नता प्रायोगिकरित्या बदलू नका. आपण आपली संलग्नता बदलू इच्छिता का?</string>
     <string name="alert_message_use_inaturalisttw">iNaturalist तैवान तैवानमधील iNaturalist नेटवर्कचा सदस्य आहे. iNaturalist तैवानचे समर्थन करणार्‍या स्थानिक संस्थांना तुमच्या ईमेल पत्त्यावर प्रवेश असेल आणि सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असलेल्या निरीक्षणांसाठी खर्‍या समन्वयांमध्ये प्रवेश असेल. तुमच्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया प्रायोगिकपणे तुमची संलग्नता बदलू नका. तुम्ही तुमची संलग्नता बदलू इच्छिता?</string>
     <string name="editor">संपादक</string>
     <string name="license">परवाना</string>
+    <string name="download_for_offline_use">ऑफलाइन वापरासाठी डाउनलोड करा</string>
+    <string name="download_not_available">डाउनलोड उपलब्ध नाही</string>
+    <string name="guide_editor_must_enable_this_feature">मार्गदर्शक संपादकाने हे वैशिष्ट्य सक्षम करणे आवश्यक आहे.</string>
     <string name="are_you_sure">नक्की ?</string>
+    <string name="download_guide_alert">हे %1$s डेटा डाउनलोड करेल, ज्यामुळे तुम्ही इंटरनेट नसतानाही हे मार्गदर्शक वापरू शकता.</string>
+    <string name="failed_to_download_guide">मार्गदर्शक डाउनलोड करण्यात अपयश</string>
     <string name="internet_connection_seems_to_be_offline">बहुतेक इंटरेनट कनेक्शन चालत नाही</string>
+    <string name="downloading">डाउनलोड होत आहे...</string>
+    <string name="extracting">निष्कर्षण करत आहे...</string>
+    <string name="downloaded">डाउनलोड झाले</string>
+    <string name="delete_download">डाउनलोड हटवा</string>
+    <string name="re_download">पुन्हा डाऊनलोड करा</string>
+    <string name="error">त्रुटि</string>
+    <string name="could_not_retrieve_guide">मार्गदर्शक तपशील पुनर्प्राप्त करू शकलो नाही - कदाचित नेटवर्क त्रुटि असावी.</string>
     <string name="send_email">ईमेल पाठवा</string>
     <string name="login_with">यासह लॉगइन करा</string>
     <string name="gplus">गुगल</string>
@@ -171,10 +204,16 @@
     <!-- Title of the view used to sign up for a new account -->
     <string name="sign_up_title">साइन अप करा</string>
     <string name="min_6_chars">कमीतकमी ६ अक्षरं  </string>
+    <string name="use_my_license"><![CDATA[होय, माझ्या माहितीचा वापर शास्त्रज्ञांना करता यावा यासाठी परवाना द्या (शिफारस केलेले). <b>अधिक जाणून घ्या</b>]]></string>
+    <string name="content_licensing">माहिती  परवाना</string>
+    <string name="content_licensing_description">तुम्ही तुमच्या फोटोंना क्रिएटीव्ह कॉमन्स ॲट्रिब्युशन-नॉनकॉमर्शियल परवाना लागू करू इच्छित असल्यास हा बॉक्स चेक करा. तुम्ही नंतर वेगळा परवाना निवडू शकता किंवा परवाना काढू शकता, परंतु संशोधकांशी शेअर करण्यासाठी हा सर्वोत्तम परवाना आहे.</string>
     <!-- Try to keep this about the length of the English text -->
+    <string name="username_or_email">वापरकर्ता-नाव किंवा ईमेल</string>
     <string name="forgot">विसरलात?</string>
+    <string name="or_login_with">किंवा खालील पर्यायांनी लॉग इन करा:</string>
     <string name="registering">नोंदणी करत आहे…</string>
     <string name="recommended_next_step">सुचवलेली पुढची पाहिरी </string>
+    <string name="could_not_register_user">वापरकर्ता नोंदणी करता आली नाही</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">लॉग इन / साईन अप करा</string>
     <string name="please_sign_in_via_settings_for_guides">आपली मार्गदर्शके पाहण्यासाठी आपण लॉग इन असणे गरजेचे आहे.</string>
@@ -198,13 +237,29 @@
     <string name="no_thanks">नको. धन्यवाद</string>
     <string name="turn_on">चालू करा</string>
     <string name="introducing_auto_sync">सादर करीत आहोत स्वयं-समक्रमण!</string>
+    <string name="turn_on_auto_sync">सेटिंग्जमध्ये ऑटो-सिंक चालू केल्यास आपली निरीक्षणे आपोआप आयनॅचरलिस्टवर अपलोड केली जातील.</string>
+    <string name="automatic_upload">स्वयंचलित अपलोड (ऑटो सिंक)</string>
+    <string name="waiting_to_upload">अपलोड करण्याच्या प्रतीक्षेत...</string>
     <string name="uploading">अपलोड करीत आहे…</string>
+    <string name="failed_to_add_to_project">प्रकल्पात भर घालण्यात अपयश \'%1$s\': %2$s</string>
     <string name="needs_your_attention">लक्ष द्या </string>
     <string name="observation">निरीक्षण</string>
+    <string name="share">सामायिक करा</string>
     <string name="unable_to_acquire_location">स्थान मिळविण्यात असर्मथ</string>
+    <string name="casual_grade">अनौपचारिक दर्जा</string>
     <string name="needs_id">ओळख पटवा </string>
     <string name="research_grade">संशोधन दर्जा </string>
     <string name="data_quality">माहिती गुणवत्ता</string>
+    <string name="casual_grade_add_location"><![CDATA[या निरीक्षणास "ओळख आवश्यक"   दर्ज्यामध्ये नेण्यासाठी <b> ठिकाण</b> जोडा]]></string>
+    <string name="casual_grade_add_date"><![CDATA[या निरीक्षणास "ओळख आवश्यक" दर्ज्यामध्ये  नेण्यासाठी <b> तारीख </b> जोडा]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[या निरीक्षणास "ओळख आवश्यक" दर्ज्यामध्ये नेण्यासाठी <b> फोटो  </b> जोडा]]></string>
+    <string name="casual_grade_captive"><![CDATA[या निरीक्षणाला अनौपचारिक दर्जा आहे कारण ते <b>पाळीव/ लागवड</b>आहे .]]></string>
+    <string name="needs_id_more_ids"><![CDATA[या निरीक्षणाला "रिसर्च ग्रेड" दर्जा मिळण्यासाठी  <b>अधिक ओळखिची </b> गरज आहे. ]]></string>
+    <plurals name="included_in_projects">
+        <item quantity="one">प्रकल्प %1$d यामध्ये समाविष्ट आहे </item>
+        <item quantity="other">प्रकल्प %1$d यांमध्ये समाविष्ट आहे </item>
+    </plurals>
+    <string name="geoprivacy_explanation"><![CDATA[जिओप्रायव्हसी ही आपल्या निरीक्षणांसाठी एक अशी सेटिंग आहे, ज्यायोगे आपण  स्थानिक निर्देशांक (अक्षांश आणि रेखांश) कसे प्रदर्शित केले जातात यावर नियंत्रण ठेऊ शकतो. येथे हे पर्याय आहेत:<br/><b>उघड</b> - टॅक्सनला धोका नसल्यास प्रत्येकजण निर्देशांक पाहू शकतो. <br/><b>अस्पष्ट</b> - खऱ्या निर्देशांकांच्या भोवताली 0.2 बाय 0.2 डिग्री क्षेत्रामध्ये संदिग्ध ठिकाणाचे  निर्देशांक सार्वजनिक निर्देशांक म्हणून दर्शविले जातात, जे  विषुववृत्तावर सुमारे 22x22 किमी चौरस क्षेत्रापर्यंत अनिश्चितता दाखवतात तर ध्रुवांच्या जवळ ही अनिश्चितता कमी होते. खरे निर्देशांक केवळ आपल्याला आणि ज्या प्रकल्पांमध्ये आपण निरीक्षण जोडता त्या प्रकल्पांच्या क्युरेटर्सनाच दिसतात. <br/><b>खासगी</b> - खरे निर्देशांक हे सार्वजनिक नकाशांपासून पूर्णपणे अदृश्य असून  केवळ आपल्याला आणि आपण ज्या प्रकल्पांमध्ये निरीक्षण जोडता त्या प्रकल्पांच्या  क्युरेटरना दिसतात. <br/><br/>लक्षात घ्या, कुठल्याही भौगोलिक गोपनीयता सेटिंगच्या व्यतिरिक्त प्रत्येक प्रकल्पांचे क्युरेटर नेहमीच खरे निर्देशांक पाहू शकतात. त्यामुळे, जर आपल्याला निर्देशांकांची माहिती कुणाला द्यावी याबद्दल काळजी वाटत असेल तर आपण ज्या प्रकल्पांमध्ये भाग घेता त्या प्रकल्पांच्या क्युरेटर्सवर आपला विश्वास आहे याची खात्री करून घेणे गरजेचे आहे. ]]></string>
     <string name="id_title">%1$s ने दिलेली ओळख • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">खोडा</string>
@@ -214,10 +269,14 @@
     <string name="delete_comment_message">आपण खरंच ही टिप्पणी हटवू इच्छिता?</string>
     <string name="suggest_id">ओळख सुचवा</string>
     <string name="update_comment">टिप्पणी बदल</string>
+    <string name="fave_this_observation">या निरीक्षणास लाडके बनवा. </string>
     <string name="faved">आवडते</string>
+    <string name="be_the_first_to_fave_this_obs">या निरीक्षणास लाडके बनवणारी पहिली व्यक्ती बना </string>
+    <string name="leave_a_comment">टिपणी करा किंवा ओळख सुचवा...</string>
     <string name="location_coords">अक्षांश: %1$s रेखांश: %2$s अचूकता. %3$s</string>
     <string name="location_coords_no_acc">अक्षांश: %1$s रेखांश: %2$s</string>
     <string name="location">ठिकाण </string>
+    <string name="login_in_to_add_comments_ids">टिप्पणी करण्यासाठी  किंवा ओळख सुचवण्यासाठी लॉग इन करा किंवा साइन अप करा...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="photo"><![CDATA[फोटो: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -227,14 +286,21 @@
     <string name="no_news_found">नवीन बातम्या नाहीत </string>
     <string name="news">बातम्या</string>
     <string name="article">लेख</string>
+    <string name="no_location">स्थान उपलब्ध नाही</string>
+    <string name="add_to_projects">प्रकल्पामध्ये जोडा</string>
+    <string name="edit_profile">प्रोफाईल संपादित करा</string>
+    <string name="remove_photo">फोटो काढून टाका</string>
     <string name="name">नाव</string>
+    <string name="tell_us_about_yourself">स्वतःबद्दल सांगा...</string>
     <string name="view_profile">प्रोफाइल बघा</string>
+    <string name="are_you_sure_you_want_to_remove_photo">तुम्हाला नक्की हे छायाचित्र काढून टाकायचे आहे ना?</string>
     <string name="updating_profile">प्रोफाइल अपडेट करत आहे..</string>
     <string name="there_was_a_problem_updating_profile">आपली प्रोफाइल अपडेट करताना अडचण येत आहे!</string>
     <string name="there_was_a_problem_updating_profile_params">आपली प्रोफाइल अपडेट करताना अडचण येत आहे: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[सध्या या नावाने लॉग इन केले आहे  <b>%1$s</b>]]></string>
     <string name="log_out">लॉग आउट करा</string>
+    <string name="not_logged_in">लॉग इन झालेले नाही </string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">लॉग इन किंवा साईन अप करा</string>
     <string name="language">भाषा</string>
@@ -244,34 +310,76 @@
     <string name="stop">थांबवा</string>
     <string name="resume">पुन्हा करा</string>
     <string name="syncing_paused">विराम</string>
+    <string name="upload">अपलोड करा</string>
+    <string name="withdraw">मागे घ्या</string>
     <!-- Dialog title for when you are updating the description of an identification -->
+    <string name="missions">मोहिमा</string>
+    <string name="browse_by_category">श्रेणीनुसार शोधा</string>
+    <string name="plants">वनस्पती</string>
+    <string name="mammals">सस्तन प्राणी</string>
     <string name="insects">कीटक</string>
     <string name="reptiles">सरपटणारे प्राणी</string>
     <string name="animals">प्राणी</string>
     <string name="fish">मासे </string>
+    <string name="mollusks">मृदुकाय प्राणी</string>
+    <string name="protozoans">प्रोटोजोआ </string>
+    <string name="chromista">केल्प, डायटम्स आणि संबंधित प्रजाती</string>
     <string name="amphibians">उभयचर</string>
     <string name="fungi">कवक</string>
     <string name="birds">पक्षी</string>
     <string name="arachnids">अष्टपाद</string>
+    <string name="no_connectivity">कनेक्टिव्हिटी नाही</string>
+    <string name="no_recommended_missions">या परिसरात काहीही शिफारसी दिसत नाहीत. दुसऱ्या ठिकाणी जाऊन पहा.</string>
+    <string name="what_to_look_for">काय शोधावे</string>
+    <string name="have_been_seen_here">येथे नोंदवले गेले आहे.</string>
     <string name="observe">निरीक्षण करा</string>
+    <string name="nearby_missions">परिसरातील मोहिमा</string>
+    <string name="searching_your_area">आपल्या परिसरात शोधत आहे...  </string>
+    <string name="expanding_your_search_area">तुमच्या शोधाचा परिसर विस्तारत आहोत... </string>
+    <string name="introducing_missions">सादर आहे: मोहिमा! </string>
+    <string name="missions_onboarding_description">मोहिमा म्हणजे तुमच्या सभोवताली काय शोधावे यासाठीच्या तात्काळ शिफारसी आहेत. यामुळे तुम्हाला तुमच्यासाठी नवीन असलेल्या प्रजाती शोधता येतील! (कनेक्टिव्हिटी आवश्यक)</string>
+    <string name="ok_got_it">ठीक आहे, समजले!</string>
     <string name="could_not_download_observations">नवीनतम निरीक्षणे डाउनलोड करू शकत नाही - कनेक्शनमध्ये अडचण. थोड्यावेळाने पुन्हा प्रयत्न करा.</string>
+    <string name="no_news_yet">आजून तरी कोणतीही बातमी नाही. इथे लक्ष ठेवा!</string>
+    <string name="my_content">माझा मजकूर</string>
+    <string name="following">अनुयायी</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
     <string name="compare">तुलना</string>
+    <string name="select">निवडा</string>
+    <string name="source_wikipedia">(स्रोत : विकिपीडिया)</string>
+    <string name="conservation_source"><![CDATA[<b>उगम:</b> <i>%1$s</i>]]></string>
     <string name="map_of_observations">निरीक्षणांचा नकाशा </string>
     <string name="taxonomy">वर्गीकरण</string>
+    <string name="about_this_section">या विभागाबद्दल</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <!-- Header for a list of suggested taxa -->
+    <string name="visually_similar">दृष्टीस समान</string>
+    <string name="seen_nearby">जवळच्या परिसरात दिसलेले </string>
+    <string name="expected_nearby">जवळच्या परिसरात अपेक्षित</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
+    <string name="view_children">उपवर्ग पहा </string>
+    <string name="taxon_has_no_photos">या वर्गासाठी फोटो नाहीत.</string>
     <string name="terrain">भूभाग</string>
+    <string name="filters">निवड</string>
+    <string name="exploring_all">सर्वांचा शोध</string>
+    <string name="nearby">जवळपास</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
+    <string name="no_taxon">माफ करा, टॅक्सन सापडला नाही</string>
+    <string name="please_select_taxon">कृपया यादीमधून वैध टॅक्सन निवडा (किंवा टॅक्सन क्षेत्र पुसून टाका).</string>
+    <string name="sorry_no_location">माफ करा, ठिकाण सापडले नाही</string>
+    <string name="location_not_found">आपण शोधलेले स्थान किंवा ठिकाण आमच्या डेटाबेसमध्ये नाही. कृपया स्थान-शोध क्षेत्राखालील पर्यायांच्या यादीमधून एक ठिकाण निवडा किंवा शोध क्षेत्र पुसून टाका.</string>
+    <string name="undefined">अनिर्धारित</string>
+    <string name="street_segment">मार्गखंड</string>
+    <string name="town">गाव </string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">राज्य</string>
     <string name="county">जिल्हा</string>
+    <string name="local_administrative_area">स्थानिक प्रशासकीय क्षेत्र</string>
     <string name="country">देश</string>
     <string name="island">बेट</string>
     <string name="airport">विमानतळ</string>
@@ -280,8 +388,12 @@
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">विभाग</string>
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
+    <string name="zone">झोन</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_county">ऐतिहासिक जिल्हा </string>
+    <string name="continent">खंड </string>
+    <string name="estate">इस्टेट</string>
     <string name="open_space">मोकळी जागा </string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
@@ -429,6 +541,11 @@
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <!-- Singular -->
     <!-- Singular -->
+    <string name="remove_location">स्थान काढून टाका</string>
+    <string name="are_you_sure_you_want_to_remove_date">आपण तारीख &amp;  वेळ खोडू इच्छिता का ?</string>
+    <string name="are_you_sure_you_want_to_remove_time">आपण निरीक्षण वेळ खोडू इच्छिता का ?</string>
+    <string name="are_you_sure_you_want_to_remove_location">आपण हे स्थान खोडू इच्छिता का ?</string>
+    <string name="share_location">स्थान शेअर करा</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <!-- Accessibility text for the faves tab on the observation detail view -->
@@ -447,16 +564,44 @@
     <!--  iNat observation Universally Unique Identifier  -->
     <!--  Universal Resource Locator  -->
     <!-- License Names -->
+    <string name="license_name_no_license">सर्व हक्क राखीव</string>
     <!-- License Descriptions -->
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <!-- Preference to control what tapping on the action button does on My Observations -->
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">पर्याय दाखवा </string>
     <!-- Placeholder text for an observation field value -->
+    <string name="redo_observation_search">या नकाशा क्षेत्रात पुन्हा निरीक्षण शोध करा</string>
+    <string name="view_observations_on_map">नकाशावरील निरीक्षणे पहा</string>
+    <string name="view_observations_on_grid">निरीक्षणे ग्रीडमध्ये पहा</string>
+    <string name="clear_text">मजकूर साफ करा</string>
+    <string name="observation_has_sounds">या निरीक्षणाला ध्वनी आहे </string>
+    <string name="go_to_my_location">माझे सद्य स्थान</string>
+    <string name="change_geoprivacy">भूगोपनीयता बदला</string>
+    <string name="active_filters">सक्रिय फिल्टर</string>
+    <string name="message_is_flagged">संदेश चिन्हांकित केला आहे</string>
+    <string name="user_is_muted">वापरकर्त्याचा आवाज बंद केला आहे</string>
+    <string name="cancel_multiple_obs_selection">एकाधिक निरीक्षण निवड रद्द करा</string>
+    <string name="delete_observations">निरीक्षण काढून टाका </string>
+    <string name="comment_count">टिप्पणी गणना</string>
+    <string name="share_observation">निरीक्षण सामायिक करा</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">बंद करा</string>
+    <string name="set_date2">तारीख सेट करा</string>
+    <string name="view_image">प्रतिमा पहा</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="remove_identification">ओळख काढून टाका</string>
+    <string name="issue_with_updating_photos">ह्या निरीक्षणामधील छायाचित्रे अद्यतनित करण्यात एक समस्या आली होती,  ज्याची दुरुस्ती करण्यात आलेली आहे. कृपया, ह्या समस्येचे निराकरण करण्यासाठी तुम्ही साइन आउट करून पुन्हा साइन इन करा.</string>
+    <string name="authentication_failed">सत्यापन अयशस्वी</string>
+    <string name="please_try_again_soon">कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.</string>
+    <string name="verify_your_email">आपल्या ई-मेल पत्त्याची खात्री करा</string>
+    <string name="after_you_change_your_password">तुम्ही तुमचा पासवर्ड बदलल्यानंतर, तुम्हाला साइन आउट केले जाईल आणि तुम्हाला तुमच्या नवीन पासवर्डने पुन्हा साइन इन करावे लागेल. तुम्हाला iNaturalist मोबाइल ऍप्स आणि तुमच्या वतीने iNaturalist वर पोस्ट करणार्‍या इतर कोणत्याही ऍप्स किंवा वेबसाइटमधून साइन आउट केले जाईल, म्हणून तुम्ही हे करण्यापूर्वी कोणतीही प्रलंबित निरीक्षणे अपलोड केली आहेत याची खात्री करा. अपलोड न केलेली कोणतीही निरीक्षणे गमावली जातील.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">फाइल अपलोड करू शकत नाही - 20MB पेक्षा मोठी</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">तुम्हाला साइन आउट केले गेले आहे. कृपया पुन्हा साइन इन करा.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="import_photos_from">येथून फोटो इंपोर्ट करा...</string>
 </resources>
