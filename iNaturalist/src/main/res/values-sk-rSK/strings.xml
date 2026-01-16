@@ -115,10 +115,10 @@
     <string name="release_to_refresh">Obnoviť uvoľnením...</string>
     <string name="refreshing">Obnovuje sa...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Zachovať %1$d pozorovania </item>
-        <item quantity="few">Zachovať %1$d pozorovania</item>
-        <item quantity="many">Zachovať %1$d pozorovania </item>
-        <item quantity="other">Zachovanie %1$d pozorovaní</item>
+        <item quantity="one">Nahrať %1$d pozorovanie</item>
+        <item quantity="few">Nahrať %1$d pozorovania</item>
+        <item quantity="many">Nahrať %1$d pozorovania</item>
+        <item quantity="other">Nahrať %1$d pozorovaní</item>
     </plurals>
     <string name="sync_observations">Synchronizácia pozorovaní</string>
     <string name="lets_get_started">Začnime!</string>
@@ -984,15 +984,15 @@ www.protectedplanet.net</a>]]></string>
     <!-- Short date formatting template for any date. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short">dd.MM.yy</string>
     <!-- Short time formatting template for 24-hour locales. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="time_short_24_hour">HH.mm</string>
+    <string name="time_short_24_hour">HH:mm \'h\'</string>
     <!-- Short time formatting template for 12-hour locales. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="time_short_12_hour">hh:mm a</string>
+    <string name="time_short_12_hour">HH:mm \'h\'</string>
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d. MMM yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_obscured">MMM \'\'yy</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">d. MMMM yyyy HH:mm</string>
+    <string name="date_long_with_time">d. MMMM yyyy HH:mm \'h\'</string>
     <string name="show_common_names">Zobraziť bežné mená</string>
     <string name="show_common_names_description">Vypnite, ak chcete zobraziť iba vedecké názvy.</string>
     <string name="email_must_look_like_email_address">Email musí vyzerať ako emailová adresa</string>
