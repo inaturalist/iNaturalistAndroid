@@ -117,7 +117,15 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
         }
 
 
-        if (taxon.has("default_photo") && !taxon.isNull("default_photo")) {
+        if (taxon.has("representative_photo") && !taxon.isNull("representative_photo")) {
+            JSONObject representativePhoto = taxon.optJSONObject("representative_photo");
+            Picasso.with(mContext)
+                    .load(representativePhoto.optString("square_url"))
+                    .fit()
+                    .centerCrop()
+                    .placeholder(TaxonUtils.observationIcon(taxon))
+                    .into(taxonPhoto);
+        } else if (taxon.has("default_photo") && !taxon.isNull("default_photo")) {
             JSONObject defaultPhoto = taxon.optJSONObject("default_photo");
             Picasso.with(mContext)
                     .load(defaultPhoto.optString("square_url"))

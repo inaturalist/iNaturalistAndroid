@@ -2375,6 +2375,8 @@ public class INaturalistServiceImplementation {
         ArrayList<Pair<String, String>> params = new ArrayList<>();
         String url = String.format(Locale.ENGLISH, API_HOST + "/taxa/suggest");
 
+        params.add(new Pair("include_representative_photos", "true"));
+
         if (limit != null) params.add(new Pair("limit", limit.toString()));
         if (page != null) params.add(new Pair("page", page.toString()));
         params.add(new Pair("locale", mApp.getPrefLocale()));
