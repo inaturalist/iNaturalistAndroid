@@ -4292,6 +4292,7 @@ public class INaturalistServiceImplementation {
             sb.append("user_id=");
             sb.append(Uri.encode(mLogin));
             sb.append("&per_page=100");
+            sb.append("&spam=false");
             sb.append("&q=");
             sb.append(URLEncoder.encode(query, "utf8"));
 
@@ -4329,7 +4330,7 @@ public class INaturalistServiceImplementation {
 
 
     private JSONObject getUserObservations(String username) throws AuthenticationException {
-        String url = API_HOST + "/observations?per_page=30&user_id=" + username;
+        String url = API_HOST + "/observations?per_page=30&spam=false&user_id=" + username;
         JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
@@ -4374,7 +4375,7 @@ public class INaturalistServiceImplementation {
 
     private BetterJSONObject getObservationResultsForMultipleTaxa(String type, int pageSize, JSONArray taxonIds) throws AuthenticationException {
         String ids = taxonIds.toString();
-        String url = String.format(Locale.ENGLISH, "%s/observations/%s?per_page=%d&taxon_id=%s",
+        String url = String.format(Locale.ENGLISH, "%s/observations/%s?per_page=%d&spam=false&taxon_id=%s",
                 API_HOST,
                 type,
                 pageSize,
@@ -4422,7 +4423,7 @@ public class INaturalistServiceImplementation {
 
         String url;
         if (command == null) {
-            url = String.format(Locale.ENGLISH, "%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&%s",
+            url = String.format(Locale.ENGLISH, "%s/observations%s?locale=%s&page=%d&per_page=%d&spam=false&ordered_by=%s&%s",
                     API_HOST,
                     command == null ? "" : "/" + command,
                     mApp.getPrefLocale(),
@@ -4431,7 +4432,7 @@ public class INaturalistServiceImplementation {
                     orderBy == null ? "" : orderBy,
                     filters.toUrlQueryString());
         } else if (command.equals("species_counts")) {
-            url = String.format(Locale.ENGLISH, "%s/observations/%s?locale=%s&page=%d&per_page=%d&%s",
+            url = String.format(Locale.ENGLISH, "%s/observations/%s?locale=%s&page=%d&per_page&spam=false&s",
                     API_HOST,
                     command,
                     mApp.getPrefLocale(),
@@ -4439,7 +4440,7 @@ public class INaturalistServiceImplementation {
                     pageSize,
                     filters.toUrlQueryString());
         } else {
-            url = String.format(Locale.ENGLISH, "%s/observations/%s?page=%d&per_page=%d&%s",
+            url = String.format(Locale.ENGLISH, "%s/observations/%s?page=%d&per_page=%d&spam=false&%s",
                     API_HOST,
                     command,
                     pageNumber,
@@ -4512,7 +4513,7 @@ public class INaturalistServiceImplementation {
 
 
     private BetterJSONObject getProjectObservations(int projectId) throws AuthenticationException {
-        String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=50&locale=" + mApp.getPrefLocale();
+        String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=50&spam=false&locale=" + mApp.getPrefLocale();
         JSONArray json = get(url);
         if (json == null) return new BetterJSONObject();
         try {
@@ -5723,9 +5724,9 @@ public class INaturalistServiceImplementation {
 
         String url;
         if (extras.containsKey("username")) {
-            url = API_HOST + "/observations?user_id=" + Uri.encode(extras.getString("username")) + "&extra=observation_photos";
+            url = API_HOST + "/observations?user_id=" + Uri.encode(extras.getString("username")) + "&spam=false&extra=observation_photos";
         } else {
-            url = API_HOST + "/observations?extra=observation_photos";
+            url = API_HOST + "/observations?extra=observation_photos&spam=false";
         }
 
         url += "&captive=false&page=" + page + "&per_page=" + perPage;
