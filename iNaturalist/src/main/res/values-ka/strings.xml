@@ -69,6 +69,7 @@
     <string name="join">შეერთება</string>
     <string name="no_check_list">საკონტროლო სიაში ტაქსონები არ არის!</string>
     <string name="failed_to_add_obs_to_project">დაკვირვება \'%1$s\' ვერ დაემატა პროექტს \'%2$s\': %3$s</string>
+    <string name="invalid_project_field">გთხოვთ, შეიყვანოთ ვალიდური მნიშვნელობა ველისთვის \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <string name="select_projects">მონიშნეთ გაწევრიანებული პროექტებიდან</string>
     <string name="not_connected">ინტერნეტთან კავშირი გჭირდებათ ამის გასაკეთებლად!</string>

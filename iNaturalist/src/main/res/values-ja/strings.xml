@@ -514,7 +514,9 @@
     <string name="constituency">選挙区</string>
     <string name="local_authority">自治体</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
+    <string name="poblacion">ポブラシオン</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
+    <string name="delegation">デリゲーション</string>
     <string name="apply_filters">フィルターを適用</string>
     <string name="remove_filters">フィルタの解除</string>
     <string name="reset">リセット</string>
@@ -580,6 +582,7 @@
     <string name="credits_title">クレジット</string>
     <string name="password_changed">Appで使用しているパスワードが動作しないようです - Webサイトでパスワードを変更しましたか? ここに新しいパスワードを入力してください</string>
     <string name="just_so_you_know">ただ、知っておいてほしいのは...</string>
+    <string name="ask_for_g_plus_permissions">Google は、理由の如何を問わず、お客様の連絡先にアクセスしない場合でも、お客様の Google アカウントを使用するために、お客様の連絡先にアクセスする許可を求める必要があります。この権限を拒否する場合は、ユーザー名とパスワードを使用してサインアップまたはログインする必要があります。</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[ %1$sに新規登録]]></string>
     <string name="see_more_observations">観察記録をさらに表示</string>
     <string name="see_more_species">さらに種を表示</string>
@@ -696,10 +699,14 @@
     <string name="all_guides_all_caps">全ガイド</string>
     <string name="description_all_caps">説明</string>
     <string name="quantity_all_caps">QTY</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="other">%1$s 観察記録</item>
+    </plurals>
     <string name="agree_all_caps">同意</string>
     <string name="observations_all_caps">件の観察</string>
     <string name="species_all_caps">種</string>
     <string name="people_all_caps">ユーザ</string>
+    <string name="identifiers_all_caps">同定</string>
     <string name="identifications_all_caps">件の同定</string>
     <string name="news_all_caps">ニュース</string>
     <string name="got_it_all_caps">了解</string>
@@ -720,11 +727,21 @@
     <string name="community_id_at_species_level_or_lower">種レベルまたはそれ以下のコミュニティID</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">証拠に基づいてコミュニティIDを確定しますか、改善しますか？</string>
     <string name="no_as_good_as_it_can_be">いいえ、このままで適切です。</string>
+    <string name="evidence_related_to_single_subject">単一の主題に関連する証拠</string>
     <string name="seasonality">季節性</string>
     <string name="verifiable">検証可能</string>
     <string name="no_annotation">情報なし</string>
     <string name="donate_to_inaturalist">iNaturalistに寄付する</string>
+    <string name="prefers_scientific_name_first">学名を最初に表示</string>
+    <string name="prefers_scientific_name_first_description">一般名の前に学名を表示します。</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[カナダ：Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada および Parks Canada が iNaturalist Canada (inaturalist.ca) を運営。]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[コロンビア：Instituto Humboldt が Naturalista (colombia.inaturalist.org) を運営。]]></string>
+    <string name="network_credit_naturalista"><![CDATA[メキシコ：Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) が NaturaLista (NaturaLista.mx) を運営。]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[フィンランド：iNaturalistフィンランド（<a href="https://inaturalist.laji.fi/"> inaturalist.laji.fi </a>）をサポートするフィンランド自然史博物館（LUOMUS）]]></string>
+    <string name="mark_all_as_viewed">すべて既読にする</string>
+    <string name="content_hidden">非表示のコンテンツ</string>
+    <string name="show_hidden_content">非表示のコンテンツを表示</string>
+    <string name="content_hidden_because">非表示コンテンツ：@ %1$s が %2$s に実施。理由： \'%3$s\'</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">サポートへのお問い合わせ</a>]]></string>
     <string name="content">コンテンツ</string>
     <string name="has_photos">写真あり</string>
@@ -741,10 +758,13 @@
     <string name="alert_unsupported_audio_type">申し訳ありませんが、このソースからサウンドを読み込む際に問題が発生しました</string>
     <string name="invalid_audio_extension">サウンドの読み込みエラー: 拡張子が WAV/MP3/AMR のサウンドファイルのみ読み込めます</string>
     <string name="importing_sounds">サウンドを読み込み中…</string>
+    <string name="observation_sound">観察音</string>
     <string name="deleted_sounds_from_cache_error">アップロードする前にアプリのキャッシュをクリアしてサウンドを削除してしまったようです。 ギャラリーから観察記録にサウンドを追加する必要があります。今後はアプリのキャッシュをクリアする前に、すべてのサウンドがアップロードされていることを確認してください。</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f 秒</string>
     <string name="clear_all_debug_logs">すべてのデバッグログを消去</string>
+    <string name="clears_up_storage_room_on_your_phone">携帯電話の保存スペースを空にする</string>
+    <string name="number_of_days_to_store_logs">ログの保存日数</string>
     <string name="send_debug_logs_from_start_date">開始日からのデバッグログを送信</string>
     <string name="send_debug_logs_by_email">デバッグログを電子メールで送信（指定の開始日から）</string>
     <string name="debug_settings">デバッグ設定</string>
@@ -788,17 +808,33 @@
     <string name="seconds_value">秒</string>
     <string name="shop_the_inat_store">iNatストアで購入</string>
     <string name="delete_your_account">アカウントを削除</string>
+    <string name="delete_account_message"><![CDATA[アカウントを削除すると、以下が削除されます:<br/><br/><ul><li> あなたのすべての観察記録（これには、あなたの観察記録に対して他の人が行った同定作業も含まれます）。</li><li> あなたが他の人の観察記録に追加したすべての同定（これにより、それらの観察記録のデータ品質に影響を与える可能性があります）。</li><li> あなたが追加したすべてのコメント。</li></ul><br/>さらに、この操作は元に戻すことはできません。後で気が変わっても、これらのコンテンツを取り戻すことはできません。<br/><br/>このサービスからの通知が多すぎる場合は、<a href="https://www.inaturalist.org/users/edit">ウェブサイトの設定を編集</a>して特定の通知を停止するか、当社からのメール受信を停止することを検討してください。特定の人物との間に問題がある場合は、アカウントを削除する代わりに<a href="https://www.inaturalist.org/users/edit">ミュート</a>することも検討してください。<br/><br/>それでもアカウントを削除したい場合は、以下のフォームに<b>「%1$s」</b>と入力し、ボタンをクリックしてアカウントとすべてのデータを削除してください。]]></string>
     <string name="your_account_has_been_deleted">アカウントが削除されました</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">アカウントを削除するにはフォームに \'%1$s\' を入力する必要があります</string>
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">ユーザ名を入力</string>
+    <string name="error_deleting_account">アカウントの削除中にエラーが発生しました - インターネット接続を確認してください</string>
     <string name="verify_your_password">パスワードを確認</string>
     <string name="third_party_data_sharing">サードパーティとのデータ共有</string>
     <string name="disable_third_party_data_sharing">サードパーティとのデータ共有を無効にする</string>
     <string name="do_not_collect_third_party_data">サードパーティのサービスを使用して安定性や利用状況のデータを収集しない</string>
     <string name="enabled">有効</string>
     <string name="disabled">無効</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[当社は、ソフトウェアの安定性を監視し、バグや問題を診断するために、さまざまなサードパーティ サービスを使用しています。これらの第三者には次のものが含まれます。<br/><ul><li>Google (<a href="https://analytics.google.com/">Googleアナリティクス</a>, <a href="https://firebase.google.com/products/crashlytics/"> Firebase Crashlytics </a>)</li><li><a href="https://newrelic.com/"> New Relic </a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[当社がこれらの第三者と共有する情報には、次のものが含まれます。<br/><ul><li> IPアドレス(都市レベルの解像度で位置情報を導き出し、さまざまなWebサイトやサービスでお客様を追跡するために使用できます。 <a href="https://support.google.com/analytics/answer/2763052">IP匿名化</a> Google アナリティクスと <a href="https://firebase.google.com/support/privacy"> Firebase Crashlytics </a> 私たちの知る限り、IPアドレスは記録されていません)</li><li>ブラウザーの詳細 (メーカー、モデル、バージョンなど)</li><li>クラッシュの原因となったコード行など、クラッシュの詳細</li><li>携帯電話のメーカーやモデルなどのデバイスの詳細</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>これらのサードパーティのサービスは、当社に多大な価値を提供します</b> 比較的少ないスタッフでiNaturalistの安定性と使いやすさを維持しています。モバイルデバイスでは、ソフトウェアが制御されていないデバイスで実行されているため、発生している問題について洞察を得る方法はほとんどありません。これらのサービスが提供するデータでそのような問題が発生するまで、そのような問題が発生していることに気づかない場合があります。 <b>この情報を共有することで、私たちはあなたとiNaturalistコミュニティ全体にサービスを提供することができます。</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[このオプションは、これらの企業に明示的に送信する分析データとクラッシュデータにのみ適用されることに注意してください。すべてのiNaturalistサーバーはMicrosoftによって提供およびホストされ、すべてのiNaturalist画像はAmazonによってホストされ、ほとんどすべてのiNaturalistマップはGoogleによって提供されているため、iNaturalistで観測を見るたびに、これらの企業が提供するサービスに接続し、少なくともIPアドレスを公開しています(iPhoneアプリではAppleのマップを使用しています)。iNaturalistは、これらの企業が提供するサービスなしではおそらく存在しなかったでしょうし、iNatの使用中に共有するデータの量と種類を制限することはできますが、データの流れを完全に止めることはできません。]]></string>
+    <string name="common_names_place"><![CDATA[一般名の場所: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">タップすると、特定の場所の一般名が優先されます。</string>
+    <string name="search_places">場所を検索</string>
     <string name="restart_app">Appを再起動</string>
     <string name="disable_third_party_sharing_restart">サードパーティのデータ共有を即座に無効にするには、Appを再起動しなければなりません。</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="other">この %1$d 件の観察記録を削除してもよろしいですか？</item>
+    </plurals>
+    <string name="future_observed_on_date_error">あなたの観察記録は %1$sで作成され投稿されましたが、それより後の観察日を設定しようとしています： %2$s</string>
+    <string name="no_more_photos_allowed">観察記録には %1$d 枚の写真しかありません。さらに追加するには写真の一部を削除する必要があります。</string>
+    <string name="warning_multiple_photos">この観測記録に異なる種類の生物の写真を追加する場合、または異なる場所や時間の同じ種類の生物の写真を追加する場合は、それらの写真を削除して、個別の観察記録として追加する必要があります。1つの観察記録は、 %1$d 枚の写真のみ保持可能です。</string>
     <string name="choosing_specific_language_warning">アカウントに特定の言語を選択するには、インターネット接続が必要です</string>
     <string name="running_in_background_notfication">バックグラウンドで実行するため、中断することなく実行できます</string>
     <string name="opt_out_of_community_taxon">コミュニティ分類群からオプトアウトする</string>
@@ -809,6 +845,7 @@
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
     <string name="to_access_your_location">位置情報にアクセスするには、このAppに位置情報へのアクセス権を付与する必要があります。</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">禁止</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">複数選択モードで観察記録を選択するためのチェックボックス</string>
@@ -906,6 +943,7 @@
     <!-- Accessibility text for the faves tab on the observation detail view -->
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="no_identifications_yet">まだ同定されていません</string>
     <string name="sort_by">並び替え</string>
     <string-array name="explore_order_by_items">
         <item>登録日</item>
