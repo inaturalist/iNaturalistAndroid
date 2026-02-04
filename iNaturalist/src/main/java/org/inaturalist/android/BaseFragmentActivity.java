@@ -178,12 +178,12 @@ public class BaseFragmentActivity extends AppCompatActivity {
             ((ImageView)findViewById(R.id.menu_help_icon)).setAlpha(0.54f);
         }
 
-        buildSideMenu();
-        
         if (app == null) { app = (INaturalistApp) getApplicationContext(); }
         if (mHelper == null) { mHelper = new ActivityHelper(this);}
-        
- 
+
+        buildSideMenu();
+
+
         // See if we need to display the tutorial (only for the first time using the app)
         SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         boolean firstTime = preferences.getBoolean("first_time", true);
@@ -533,7 +533,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         });
 
 
-        findViewById(R.id.menu_edit_profile).setVisibility(app.loggedIn() ? View.VISIBLE : View.GONE);
+        findViewById(R.id.menu_edit_profile).setVisibility(app == null || app.loggedIn() ? View.VISIBLE : View.GONE);
 
         findViewById(R.id.menu_settings).setOnClickListener(new View.OnClickListener() {
             @Override
