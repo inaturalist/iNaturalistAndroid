@@ -532,6 +532,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
             }
         });
 
+
+        findViewById(R.id.menu_edit_profile).setVisibility(app.loggedIn() ? View.VISIBLE : View.GONE);
+
         findViewById(R.id.menu_settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
