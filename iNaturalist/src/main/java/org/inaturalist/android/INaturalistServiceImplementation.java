@@ -4432,7 +4432,7 @@ public class INaturalistServiceImplementation {
                     orderBy == null ? "" : orderBy,
                     filters.toUrlQueryString());
         } else if (command.equals("species_counts")) {
-            url = String.format(Locale.ENGLISH, "%s/observations/%s?locale=%s&page=%d&per_page&spam=false&s",
+            url = String.format(Locale.ENGLISH, "%s/observations/%s?locale=%s&page=%d&per_page=%d&spam=false&%s",
                     API_HOST,
                     command,
                     mApp.getPrefLocale(),
