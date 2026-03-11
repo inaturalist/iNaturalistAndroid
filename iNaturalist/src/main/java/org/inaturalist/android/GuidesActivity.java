@@ -3,8 +3,6 @@ package org.inaturalist.android;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
