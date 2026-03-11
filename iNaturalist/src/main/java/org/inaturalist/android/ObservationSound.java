@@ -7,10 +7,6 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.util.Pair;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;

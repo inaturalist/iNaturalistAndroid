@@ -1,23 +1,16 @@
 package org.inaturalist.android;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.StringRes;
 
-import org.tinylog.Logger;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /** Utility methods related to observation/photo/sound license handling */
 public class LicenseUtils {

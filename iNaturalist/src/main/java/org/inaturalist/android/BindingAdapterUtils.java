@@ -1,14 +1,11 @@
 package org.inaturalist.android;
 
 import android.graphics.Rect;
-import android.util.Log;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
-
-import org.tinylog.Logger;
 
 public class BindingAdapterUtils {
     @BindingAdapter("inat_increaseTouch")

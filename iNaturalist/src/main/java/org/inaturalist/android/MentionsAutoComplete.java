@@ -11,7 +11,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.core.content.ContextCompat;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.TextWatcher;

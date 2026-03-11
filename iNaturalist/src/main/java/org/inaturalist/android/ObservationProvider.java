@@ -19,7 +19,6 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
-import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 
 public class ObservationProvider extends ContentProvider {

@@ -1,7 +1,6 @@
 package org.inaturalist.android;
 
 import android.content.Context;
-import android.os.Environment;
 
 import org.tinylog.Logger;
 import org.tinylog.configuration.Configuration;
