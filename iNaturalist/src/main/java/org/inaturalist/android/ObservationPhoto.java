@@ -8,7 +8,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tinylog.Logger;
 
 import android.content.ContentUris;
 import android.content.ContentValues;

@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tinylog.Logger;
 
 import static org.inaturalist.android.DefaultLicensesActivity.REQUEST_CODE_PAST_LICENSES;
 

@@ -13,8 +13,6 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.tinylog.Logger;
-
 public class PastLicensesFragment extends PreferenceFragmentCompat {
     private static final String TAG = "PastLicensesFragment";
 

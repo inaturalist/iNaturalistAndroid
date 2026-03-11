@@ -8,8 +8,6 @@ import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
 
-import org.tinylog.Logger;
-
 public class BindingAdapterUtils {
     @BindingAdapter("inat_increaseTouch")
     public static void increaseTouch(ImageView view, double value) {

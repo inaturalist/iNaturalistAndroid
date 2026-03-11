@@ -29,7 +29,6 @@ import com.squareup.picasso.Target;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tinylog.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
