@@ -3,7 +3,6 @@ package org.inaturalist.android;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 public abstract class BaseProjectsTab extends BaseTab {
 	private static final int PROJECT_REQUEST_CODE = 101;
