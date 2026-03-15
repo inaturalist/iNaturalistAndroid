@@ -109,8 +109,15 @@
     <string name="leave_project_confirmation">დარწმუნებული ხართ, რომ გინდათ ამ პროექტის მიტოვება?</string>
     <string name="discard_location_changes">ნამდვილად გსურთ ყველა შესანახი ცვლილებების გაუქმება?</string>
     <string name="edit_location">ადგილმდებარეობის შეცვლა</string>
+    <string name="edit_locality_notes">ადგილის ჩანაწერების რედაქტირება</string>
     <string name="get_current_location">მიმდინარე ადგილმდებარეობის მითითება</string>
+    <string name="pull_to_refresh">ჩამოწიეთ განსაახლებლად...</string>
+    <string name="release_to_refresh">აუშვით განსაახლებლად...</string>
     <string name="refreshing">მიმდინარეობს განახლება...</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">%1$d დაკვირვების სინქრონიზაცია</item>
+        <item quantity="other">%1$d დაკვირვების სინქრონიზაცია</item>
+    </plurals>
     <string name="sync_observations">დაკვირვებების სინქრონიზაცია</string>
     <string name="lets_get_started">დავიწყოთ!</string>
     <string name="view_nearby_observations">შორიახლო დაკვირვებების ნახვა</string>
@@ -197,7 +204,9 @@
     <!-- Title of the view used to sign up for a new account -->
     <string name="sign_up_title">რეგისტრაცია</string>
     <string name="min_6_chars">მინიმუმ 6 სიმბოლო</string>
+    <string name="use_my_license"><![CDATA[დიახ, ვაძლევ უფლებას ჩემს მასალებზე, რათა მეცნიერებმა გამოიყენონ ჩემი მონაცემები (რეკომენდებულია). <b>გაიგეთ მეტი</b>]]></string>
     <string name="content_licensing">მასალის ლიცენზია</string>
+    <string name="content_licensing_description">მონიშნეთ ეს უჯრა, თუ გსურთ თქვენს ფოტოებს მიანიჭოთ Creative Commons Attribution-NonCommercial ლიცენზია. მოგვიანებით შეძლებთ მის შეცვლას ან წაშლას, თუმცა მკვლევრებთან გასაზიარებლად ეს საუკეთესო ვარიანტია.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">მომხმარებლის სახელი, ან ელფოსტა</string>
     <string name="forgot">დაგავიწყდათ?</string>
@@ -209,12 +218,14 @@
     <string name="login_signup">შესვლა / რეგისტრაცია</string>
     <string name="please_sign_in_via_settings_for_guides">შესული უნდა იყოთ, რომ ნახოთ თქვენი მეგზურები.</string>
     <string name="please_sign_in_for_updates">შესული უნდა იყოთ, რომ ნახოთ თქვენი განახლებები.</string>
+    <string name="by_using_inat_terms"><![CDATA[iNaturalist-ის გამოყენებით თქვენ ეთანხმებით <b><a href="https://www.inaturalist.org/pages/terms">მომსახურების პირობებსა</a></b> და <b><a href="https://www.inaturalist.org/pages/privacy">კონფიდენციალურობის პოლიტიკას</a></b>]]></string>
     <string name="activity">აქტივობა</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">ფოტოს გადაღება</string>
     <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">სურათის არჩევა</string>
     <string name="first">1-ლი</string>
+    <string name="make_first">გახადე პირველი</string>
     <string name="notes">ჩანიშვნები</string>
     <string name="is_captive">დატყვევებულია, ან კულტივირებული</string>
     <string name="location_visibility">ადგილმდებარეობის ხილვადობა</string>
@@ -227,13 +238,18 @@
     <string name="no_thanks">არა, მადლობა</string>
     <string name="turn_on">ჩართვა</string>
     <string name="introducing_auto_sync">ავტო-სინქრონიზაციის გაცნობა!</string>
+    <string name="turn_on_auto_sync">ჩართეთ ავტოსინქრონიზაცია პარამეტრებში და თქვენი დაკვირვებები ავტომატურად აიტვირთება iNaturalist-ზე.</string>
     <string name="automatic_upload">ავტომატური ატვირთვა (ავტო-სინქრონიზაცია)</string>
     <string name="waiting_to_upload">ველოდებით ატვირთვას...</string>
     <string name="uploading">იტვირთება...</string>
+    <string name="failed_to_add_to_project">პროექტში \'%1$s\' დამატება ვერ მოხერხდა: %2$s</string>
     <string name="needs_your_attention">თქვენი ყურადღება სჭირდება...</string>
     <string name="observation">დაკვირვება</string>
     <string name="share">გაზიარება</string>
+    <string name="unable_to_acquire_location">ადგილმდებარეობის დადგენა ვერ მოხერხდა</string>
+    <string name="casual_grade">სამოყვარულო დონე</string>
     <string name="needs_id">ID სჭირდება</string>
+    <string name="research_grade">სამეცნიერო დონე</string>
     <string name="data_quality">მონაცემთა ხარისხი</string>
     <string name="casual_grade_add_location"><![CDATA[ დაამატეთ <b>ადგილმდებარეობა</b>, რათა ეს დაკვირვება გადავიდეს „საჭიროებს იდენტიფიკაციას“ სტატუსზე. ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ დაამატეთ <b>თარიღი</b>, რათა ეს დაკვირვება გადავიდეს „საჭიროებს იდენტიფიკაციას“ სტატუსზე. ]]></string>
@@ -248,13 +264,22 @@
     <string name="id_title">%1$s-ის ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">წაშლა</string>
+    <string name="delete_id">იდენტიფიკაციის გაუქმება</string>
     <string name="delete_comment">კომენტარის წაშლა</string>
+    <string name="delete_id_message">დარწმუნებული ხართ, რომ გსურთ ამ იდენტიფიკაციის გაუქმება?</string>
     <string name="delete_comment_message">ნამდვილად გსურთ ამ კომენტარის წაშლა?</string>
     <string name="suggest_id">ID-ის შეთავაზება</string>
     <string name="update_comment">კომენტარის განახლება</string>
+    <string name="fave_this_observation">ამ დაკვირვების მოწონება</string>
+    <string name="faved">მოწონებული</string>
+    <string name="be_the_first_to_fave_this_obs">იყავით პირველი, ვინც ამ დაკვირვებას მოიწონებს...</string>
+    <string name="leave_a_comment">დატოვეთ კომენტარი ან შესთავაზეთ იდენტიფიკაცია...</string>
     <string name="location_coords">განედი: %1$s გრძედი: %2$s სიზუსტე %3$s</string>
     <string name="location_coords_no_acc">განედი: %1$s გრძედი: %2$s</string>
     <string name="location">ადგილმდებარეობა</string>
+    <string name="login_in_to_add_comments_ids">შედით ან დარეგისტრირდით, რათა დატოვოთ კომენტარი ან შესთავაზოთ იდენტიფიკაცია...</string>
+    <string name="login_in_to_fav">შედით ან დარეგისტრირდით, რათა ნახოთ მოწონებები ან მოიწონოთ ეს დაკვირვება...</string>
+    <string name="sync_obs_to_see_favs">დაასინქრონეთ ეს დაკვირვება, რათა ნახოთ მოწონებები...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="about_this_species">ამ სახეობის შესახებ</string>
@@ -302,6 +327,7 @@
     <string name="syncing_paused">შეჩერებული</string>
     <string name="upload">ატვირთვა</string>
     <string name="search_observations">დაკვირვებების ძებნა...</string>
+    <string name="withdraw">გაუქმება</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="your_identification">თქვენი ID: %1$s</string>
     <string name="upload_complete">ატვირთვა დასრულდა!</string>
@@ -323,12 +349,14 @@
     <string name="fungi">სოკოები</string>
     <string name="birds">ფრინველები</string>
     <string name="arachnids">ობობასნაირნი</string>
+    <string name="observe">დააკვირდით</string>
     <string name="nearby_missions">შორიახლო მისიები</string>
     <string name="expanding_your_search_area">ძებნის არეალის გაფართოება...</string>
     <string name="introducing_missions">მისიების გაცნობა!</string>
     <string name="ok_got_it">კაი, გასაგებია!</string>
     <string name="no_news_yet">სიახლე არ არის. ჯერ!</string>
     <string name="my_content">ჩემი კონტენტი</string>
+    <string name="following">გამოწერილი</string>
     <string name="no_updates_yet">განახლება ჯერ არ არის. ხაზზე იყავით!</string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> დააკომენტარა: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <!--
@@ -374,6 +402,7 @@
     <string name="research_grade_initials">RG</string>
     <string name="no_taxon">უკაცრავად, ტაქსონი არ მოიძებნა</string>
     <string name="sorry_no_location">ბოდიში, ადგილმდებარეობა არ მოიძებნა</string>
+    <string name="undefined">განუსაზღვრელი</string>
     <string name="town">ქალაქი</string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">რეგიონი</string>
@@ -390,6 +419,7 @@
     <string name="zone">ზონა</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="continent">კონტინენტი</string>
     <string name="historical_town">ისტორიული ქალაქი</string>
     <string name="territory">ტერიტორია</string>
     <string name="district">უბანი</string>
@@ -418,6 +448,7 @@
     <string name="project">პროექტი</string>
     <string name="user">მომხ.</string>
     <string name="search_users">მომხმარებლების ძებნა...</string>
+    <string name="quality_grade">ხარისხის დონე</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
     <string name="date_observed">დაკვირვების თარიღი</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
@@ -458,6 +489,7 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="credits_title">ავტორები</string>
     <string name="see_more_observations">მეტი დაკვირვებების ნახვა</string>
     <string name="see_more_species">მეტი სახეობების ნახვა</string>
     <string name="description">აღწერა</string>
@@ -470,6 +502,7 @@
     <string name="project_identifiers">იდენთიფიკატორები</string>
     <string name="got_it">გასაგებია!</string>
     <string name="view_all">ყველას ნახვა</string>
+    <string name="observers">დამკვირვებლები</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
     <string name="value">მონაცემი</string>
@@ -488,10 +521,13 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">ფოთლები</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">ყვავილები</string>
     <!-- Adjective, having fruit or seeds -->
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">ყვავილის კვირტები</string>
     <!-- Observation presents no evidence of flowering phenology -->
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">ზრდასრული</string>
@@ -516,6 +552,7 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
     <!-- "Evidence of Presence" value when for bird feathers -->
+    <string name="annotation_value_feather">ბუმბული</string>
     <!-- "Evidence of Presence" value when for fecal remains -->
     <string name="annotation_value_scat">ექსკრემენტი</string>
     <!-- "Evidence of Presence" value for impressions in the ground or snow -->
@@ -526,7 +563,9 @@
     <string name="annotation_value_molt">განგური</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">გალი</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">თმა</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
     <!-- "Leaves" value when for leaf buds that are opening -->
     <!-- "Leaves" value when for green leaves -->
@@ -628,6 +667,7 @@
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
     <string name="ucrop_label_free">თავისუფალი</string>
     <!-- Verb phrase, button label to edit an observation photo -->
+    <string name="ucrop_label_edit_photo">ფოტოს რედაქტირება</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
     <string name="hours">საათი</string>
     <string name="minutes">წუთი</string>
@@ -677,11 +717,15 @@
     <string name="messages">შეტყობინებები</string>
     <string name="all_messages">ყველა შეტყობინება</string>
     <string name="search_messages">შეტყობინებებში ძებნა</string>
+    <string name="body">სხეული</string>
     <string name="sorry">ბოდიში</string>
     <string name="mute">დადუმება</string>
     <string name="spam">სპამი</string>
     <string name="other">სხვა</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
+    <string name="rank_kingdom">სამეფო</string>
+    <string name="rank_phylum">ტიპი</string>
+    <string name="rank_superclass">ზეკლასი</string>
     <string name="rank_class">კლასი</string>
     <string name="rank_infraclass">ინფრაკლასი</string>
     <string name="rank_order">რიგი</string>
@@ -690,10 +734,13 @@
     <string name="rank_family">ოჯახი</string>
     <string name="rank_tribe">ტრიბა</string>
     <string name="rank_genus">გვარი</string>
+    <string name="rank_section">სექცია</string>
+    <string name="rank_complex">კომპლექსი</string>
     <!-- Singular -->
     <string name="rank_species">სახეობა</string>
     <string name="rank_hybrid">ჰიბრიდი</string>
     <!-- Singular -->
+    <string name="rank_variety">სახესხვაობა</string>
     <string name="rank_form">ფორმა</string>
     <string name="rank_infrahybrid">ინფრაჰიბრიდი</string>
     <string name="rank_leaves">ფოთლები</string>
@@ -707,6 +754,8 @@
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="taxon">ტაქსონი:</string>
+    <string name="place">ადგილი:</string>
     <string name="pretty_sure_kingdom">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ სამეფოშია:</string>
     <string name="pretty_sure_subkingdom">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვესამეფოშია:</string>
     <string name="pretty_sure_phylum">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ტიპშია:</string>
@@ -761,8 +810,16 @@
     <string name="thumbnail_photo_for_suggested_taxon">შემოთავაზებული ტაქსონის მინიატურული ფოტო</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">მოწონებულები</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string-array name="explore_order_by_items">
+        <item>Date Added</item>
+        <item>Date Observed</item>
+        <item>Date Updated</item>
+        <!--<item>Faves</item>-->
+        <item>შემთხვევითი</item>
+    </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
     <!-- Label for an observation search filter to exclude your own observations -->
@@ -773,6 +830,7 @@
     <!-- Label for a button to copy the coordinates of an observation -->
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
     <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
@@ -807,6 +865,7 @@
     <string name="about_licenses">ლიცენზიების შესახებ</string>
     <string name="view_license">ლიცენზიის ნახვა</string>
     <!-- License Names -->
+    <string name="license_name_no_license">ყველა უფლება დაცულია</string>
     <!-- License Descriptions -->
     <string name="license_description_cc0">ეს ლიცენზია გადასცემს თქვენს ნამუშევარს საზოგადოებრივ დომენში, ასე რომ სხვებს შეუძლიათ დააკოპირონ, შეცვალონ, გაავრცელონ და შეასრულონ თქვენი ნამუშევარი, თუნდაც კომერციული მიზნებისთვის, ყოველივე ეს თქვენი ნებართვის თხოვნის ან თქვენი ავტორობის მითითების გარეშე. ეს არის შემოთავაზებულ ლიცენზიებს შორის ყველაზე ხელსაყრელი. რეკომენდებულია ლიცენზირებული მასალების მაქსიმალური გავრცელებისა და გამოყენებისთვის.</string>
     <string name="license_description_cc_by">ეს ლიცენზია სხვებს აძლევს უფლებას გაავრცელონ, გადააკეთონ, შეცვალონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე, თუნდაც კომერციულად, სანამ ისინი მიუთითებენ თქვენს ავტორობას ორიგინალური ქმნილებისთვის.</string>
