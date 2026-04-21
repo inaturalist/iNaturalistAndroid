@@ -6173,8 +6173,6 @@ public class INaturalistServiceImplementation {
         contactUrl("http://api.inaturalist.org");
         contactUrl("https://www.inaturalist.org/ping");
         contactUrl("http://www.inaturalist.org/ping");
-        contactUrl("https://www.naturalista.mx/ping");
-        contactUrl("http://www.naturalista.mx/ping");
         contactUrl("https://www.google.com");
         contactUrl("http://www.example.com");
     }
