@@ -1669,7 +1669,11 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 public void onMapClick(LatLng latLng) {
                     Intent intent = new Intent(getActivity(), LocationDetailsActivity.class);
                     intent.putExtra(LocationDetailsActivity.OBSERVATION, mObservation);
-                    intent.putExtra(LocationDetailsActivity.OBSERVATION_JSON, mObsJson);
+                    try {
+                        JSONObject minimalJson = ObservationUtils.getMinimalObservation(new JSONObject(mObsJson));
+                        intent.putExtra(LocationDetailsActivity.OBSERVATION_JSON, minimalJson.toString());
+                    } catch (JSONException e) {
+                    }
                     intent.putExtra(LocationDetailsActivity.READ_ONLY, true);
                     startActivity(intent);
                 }
