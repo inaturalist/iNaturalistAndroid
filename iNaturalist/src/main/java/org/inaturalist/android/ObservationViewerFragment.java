@@ -3237,6 +3237,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         }
 
         mTaxonJson = taxon.toString();
+        mTaxon = taxon;
 
         Logger.tag(TAG).debug("downloadCommunityTaxon 2 - " + taxon.optInt("id"));
 
@@ -3248,6 +3249,17 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.optInt("id"));
         serviceIntent.putExtra(INaturalistService.ANCESTORS, new SerializableJSONArray(taxon.optJSONArray("ancestor_ids")));
         INaturalistService.callService(getActivity(), serviceIntent);
+
+        if (mObservation != null && mReadOnly) {
+            // Refresh the coummunity taxon in the UI after download is complete
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (getActivity() == null) return;
+                    loadObservationIntoUI();
+                }
+            });
+        }
     }
 
     private void reloadPhotos() {
