@@ -928,6 +928,7 @@
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">yyyy年M月d日 a hh:mm</string>
+    <string name="switch_to_list_view">リスト表示に切り替え</string>
     <string name="remove_project_filter">プロジェクトフィルターを削除</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>

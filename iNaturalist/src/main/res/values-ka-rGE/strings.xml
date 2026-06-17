@@ -298,6 +298,7 @@
     <string name="couldnt_load_project_details">პროექტის დეტალების ჩატვირთვა ვერ მოხერხდა: %1$s</string>
     <string name="no_people_found">ხალხი ვერ მოიძებნა</string>
     <string name="rank">რანგი</string>
+    <string name="identifications">იდენტიფიკაციები</string>
     <string name="no_news_found">სიახლე არ არის</string>
     <string name="news">სიახლეები</string>
     <string name="article">სტატია</string>
@@ -380,7 +381,7 @@
     <string name="ok_got_it">კარგი, გასაგებია!</string>
     <string name="could_not_download_observations">უახლესი დაკვირვებების ჩამოტვირთვა ვერ მოხერხდა — კავშირის პრობლემებია. სცადეთ მოგვიანებით.</string>
     <string name="no_news_yet">სიახლეები ჯერ არ არის. ადევნეთ თვალი!</string>
-    <string name="my_content">ჩემი მასალები</string>
+    <string name="my_content">ჩემი მასალა</string>
     <string name="following">გამოწერილი</string>
     <string name="no_updates_yet">განახლებები ჯერ არ არის. ადევნეთ თვალი!</string>
     <string name="you_will_only_receive_updates_when_creating">(განახლებებს მხოლოდ მას შემდეგ მიიღებთ, რაც დაკვირვებებს შექმნით)</string>
@@ -432,7 +433,7 @@
     <string name="most_observed_options_matching_filters">ფილტრების შესაბამისი, ყველაზე მეტი დაკვირვების მქონე ვარიანტები:</string>
     <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">საუკეთესო შეთავაზებები</string>
-    <string name="pretty_sure_rank">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ეკუთვნის ამ %1$s-ს:</string>
+    <string name="pretty_sure_rank">საკმაოდ დარწმუნებულები ვართ, რომ ის ეკუთვნის ამ %1$s-ს:</string>
     <string name="what_did_you_see">რა დაინახეთ?</string>
     <string name="suggest_species">სახეობების შეთავაზება</string>
     <string name="suggest_species_description">სახეობების შეთავაზება ფოტოებთან ვიზუალური მსგავსების საფუძველზე.</string>
@@ -561,7 +562,7 @@
     <string name="leave_comment">დატოვეთ კომენტარი...</string>
     <string name="swipe">გასმა</string>
     <string name="swipe_indicator">›</string>
-    <string name="potential_disagreement">პოტენციური უთანხმოება</string>
+    <string name="potential_disagreement">პოტენციური არდათანხმება</string>
     <string name="do_you_think_this_could_be"><![CDATA[საკმარისია თუ არა მოწოდებული მტკიცებულება იმის დასადასტურებლად, რომ ეს არის <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[არ ვიცი, მაგრამ დარწმუნებული ვარ, რომ ეს არის <b>%1$s</b>.]]></string>
@@ -579,46 +580,65 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="inat_credits2"><![CDATA[iNaturalist არსებობს თითოეული იმ ადამიანის წყალობით, ვინც მონაწილეობს ჩვენს თემში. ადამიანები, რომლებიც ქმნიან პროგრამულ უზრუნველყოფას, აპროექტებენ ინტერფეისებს, ინარჩუნებენ ჩვენს ინფრასტრუქტურას, მხარს უჭერენ თემს და ხელს უწყობენ თანამშრომლობას, არიან: იარონ ბუდოვსკი, ამანდა ბულინგტონი, ტონი ივანე, იოჰანეს კლაინი, პატრიკ ლირი, სკოტ ლოარი, აბჰას მისრარაჯი, სილვენ მორინი, კერი სელცერი, ალექს შეპარდი, ენჯი ტა და კენ-იჩი უედა.<br/><br/>CalTech-მა და Cornell Tech-მა ხელი შეუწყვეს კომპიუტერული ხედვის სისტემის შექმნას, რომელიც ფოტოებიდან იდენტიფიკაციებს გვთავაზობს. ჩვენ მადლობას ვუხდით გრანტ ვან ჰორნს, სერჟ ბელონგის და პიეტრო პერონას კომპიუტერული ხედვის კვლევის წინსვლისთვის. დამატებითი ინფორმაციის ნახვა შეგიძლიათ აქ: <a href="https://www.visipedia.org">visipedia.org</a>. განსაკუთრებული მადლობა NVIDIA-ს დამატებითი დახმარებისთვის.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[საერთაშორისო iNaturalist-ის ქსელი მხარს უჭერს ლოკალიზებულ, სრულად ინტეგრირებულ, iNaturalist-ზე დაფუძნებულ ვებსაიტებს შემდეგ ქვეყნებში, ასოცირებული პარტნიორი ორგანიზაციების დახმარების წყალობით.]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist-ი ასევე უდიდეს მადლობას უხდის ღია კოდის მქონე პროგრამული უზრუნველყოფის დეველოპერებს, რომლებმაც უზრუნველყვეს იმ პროგრამული უზრუნველყოფის დიდი ნაწილი, რომელსაც ყოველდღიურად ვიყენებთ. იხილეთ <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> ღია კოდის მქონე პროგრამულ უზრუნველყოფაში შეტანილი წვლილისთვის.<br/> ჩვენ მადლიერი ვართ crowdin.com თემის მოხალისეების მიერ გაწეული თარგმანის დახმარებისთვის, განსაკუთრებით ედუარდო მარტინესის, ლინ ჩენ-ტაოს, KestrelLam-ის, cgalindo-ს, vilseskog-ის, NCAA-ს, ldacosta-ს, radana-ს, მიკოლა პუხალსკის, danieleseglie-ს და katunchik-ის მიმართ. <br/>IUCN II კატეგორიის ადგილები, რომლებიც მოწოდებულია IUCN-ისა და UNEP-WCMC-ის (2015), The World Database on Protected Areas (WDPA) [ონლაინ], [11/2014], კემბრიჯი, დიდი ბრიტანეთი: UNEP-WCMC. ხელმისაწვდომია აქ: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">ავტორები</string>
-    <string name="see_more_observations">მეტი დაკვირვებების ნახვა</string>
-    <string name="see_more_species">მეტი სახეობების ნახვა</string>
+    <string name="password_changed">პაროლი, რომელსაც აპი იყენებს, აღარ მუშაობს — შეცვალეთ პაროლი ვებსაიტზე? გთხოვთ, შეიყვანოთ ახალი პაროლი აქ</string>
+    <string name="just_so_you_know">უბრალოდ, რომ იცოდეთ..</string>
+    <string name="ask_for_g_plus_permissions">Google გვთხოვს, ვითხოვოთ ნებართვა თქვენს კონტაქტებზე წვდომისთვის, რათა გამოვიყენოთ თქვენი Google ანგარიში, თუმცა ჩვენ არავითარი წვდომა არ გვაქვს თქვენს კონტაქტებზე. თუ ამ ნებართვას უარყოფთ, დაგჭირდებათ რეგისტრაცია ან სისტემაში შესვლა მომხმარებლის სახელით და პაროლით.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[ახალი ხართ %1$s? <b>დარეგისტრირდით ახლავე!</b>]]></string>
+    <string name="see_more_observations">მეტი დაკვირვების ნახვა</string>
+    <string name="see_more_species">მეტი სახეობის ნახვა</string>
+    <string name="see_more_identifications">მეტი იდენტიფიკაციის ნახვა</string>
+    <string name="collection_and_umbrella_projects">საკოლექციო და ქოლგა პროექტები</string>
     <string name="description">აღწერა</string>
     <string name="quantity">რაოდ.</string>
     <string name="agree2">ვეთანხმები</string>
     <string name="project_observations">დაკვირვებები</string>
-    <string name="project_species">სახეობა</string>
+    <string name="project_species">სახეობები</string>
     <string name="project_people">ადამიანები</string>
     <!-- People who added identifications to observations in a project -->
-    <string name="project_identifiers">იდენთიფიკატორები</string>
+    <string name="project_identifiers">ამომცნობები</string>
     <string name="got_it">გასაგებია!</string>
     <string name="view_all">ყველას ნახვა</string>
     <string name="observers">დამკვირვებლები</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
+    <string name="attribute">ატრიბუტი</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">მონაცემი</string>
+    <string name="value">მნიშვნელობა</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
     <string name="disagree">არ ვეთანხმები</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">ანოტაცია</string>
+    <string name="annotations">ანოტაციები</string>
     <!-- Used when filtering observations with annotations -->
+    <string name="with_annotation">ანოტაციით</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
+    <string name="annotation_name">ანოტაციის სახელი</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">არცერთი</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">ყვავილები და ნაყოფი</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
+    <string name="annotation_name_life_stage">სიცოცხლის ეტაპი</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">სქესი</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">ცოცხალი ან მკვდარი</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">ყოფნის მტკიცებულება</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
     <string name="annotation_name_leaves">ფოთლები</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">დამკვიდრებული</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowers">ყვავილები</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">ნაყოფი ან თესლი</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_buds">ყვავილის კვირტები</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">ყვავილების და ნაყოფის გარეშე</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">ზრდასრული</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -628,19 +648,22 @@
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
     <string name="annotation_value_nymph">ნიმფა</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">მატლი</string>
+    <string name="annotation_value_larva">ლარვა</string>
     <string name="annotation_value_egg">კვერცხი</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">ახალგაზრდა</string>
+    <string name="annotation_value_juvenile">მოზარდი</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_female">მდედრობითი</string>
-    <string name="annotation_value_male">მამრ.</string>
+    <string name="annotation_value_subimago">სუბიმაგო</string>
+    <string name="annotation_value_female">მდედრი</string>
+    <string name="annotation_value_male">მამრი</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
     <string name="annotation_value_alive">ცოცხალი</string>
     <!-- Adjective, dead or shows signs of imminent death -->
     <string name="annotation_value_dead">მკვდარი</string>
     <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">ვერ განისაზღვრა</string>
     <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">ორგანიზმი</string>
     <!-- "Evidence of Presence" value when for bird feathers -->
     <string name="annotation_value_feather">ბუმბული</string>
     <!-- "Evidence of Presence" value when for fecal remains -->
@@ -652,41 +675,70 @@
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">განგური</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">კონსტრუქცია</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
     <string name="annotation_value_gall">გალი</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
     <string name="annotation_value_hair">თმა</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">ფოთლის ნაღმი</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">ახლადაშლილი ფოთლის კვირტები</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">მწვანე ფოთლები</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">ფერადი ფოთლები</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">ცოცხალი ფოთლების გარეშე</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">არ არის დამკვიდრებული</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">შეერთებული</string>
+    <string name="joined_projects_all_caps">ᲬᲔᲕᲠᲘ</string>
     <string name="nearby_projects_all_caps">ᲐᲮᲚᲝᲛᲓᲔᲑᲐᲠᲔ</string>
+    <string name="featured_projects_all_caps">ᲠᲩᲔᲣᲚᲘ</string>
     <!-- Text for a button or label that allows someone to join a project -->
-    <string name="join_all_caps">შეერთება</string>
-    <string name="my_guides_all_caps">თქვენი</string>
+    <string name="join_all_caps">ᲒᲐᲬᲔᲕᲠᲘᲐᲜᲔᲑᲐ</string>
+    <string name="my_guides_all_caps">ᲗᲥᲕᲔᲜᲘ</string>
     <string name="nearby_guides_all_caps">შორიახლოს</string>
-    <string name="all_guides_all_caps">ყველა</string>
-    <string name="description_all_caps">აღწერა</string>
-    <string name="quantity_all_caps">რაოდ.</string>
-    <string name="agree_all_caps">ვეთანხმები</string>
-    <string name="observations_all_caps">დაკვირვებები</string>
-    <string name="species_all_caps">სახეობა</string>
-    <string name="people_all_caps">ადამიანები</string>
-    <string name="news_all_caps">სიახლეები</string>
-    <string name="got_it_all_caps">გასაგებია!</string>
-    <string name="view_all_all_caps">ყველას ნახვა</string>
+    <string name="all_guides_all_caps">ᲧᲕᲔᲚᲐ</string>
+    <string name="description_all_caps">ᲐᲦᲬᲔᲠᲐ</string>
+    <string name="quantity_all_caps">ᲠᲐᲝᲓ.</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s ᲓᲐᲙᲕᲘᲠᲕᲔᲑᲐ</item>
+        <item quantity="other">%1$s ᲓᲐᲙᲕᲘᲠᲕᲔᲑᲐ</item>
+    </plurals>
+    <string name="agree_all_caps">ᲕᲔᲗᲐᲜᲮᲛᲔᲑᲘ</string>
+    <string name="observations_all_caps">ᲓᲐᲙᲕᲘᲠᲕᲔᲑᲔᲑᲘ</string>
+    <string name="species_all_caps">ᲡᲐᲮᲔᲝᲑᲐ</string>
+    <string name="people_all_caps">ᲐᲓᲐᲛᲘᲐᲜᲔᲑᲘ</string>
+    <string name="identifiers_all_caps">ᲐᲛᲝᲛᲪᲜᲝᲑᲔᲑᲘ</string>
+    <string name="identifications_all_caps">ᲘᲓᲔᲜᲢᲘᲤᲘᲙᲐᲪᲘᲔᲑᲘ</string>
+    <string name="news_all_caps">ᲡᲘᲐᲮᲚᲔ</string>
+    <string name="got_it_all_caps">ᲒᲐᲡᲐᲒᲔᲑᲘᲐ!</string>
+    <string name="view_all_all_caps">ᲧᲕᲔᲚᲐᲡ ᲜᲐᲮᲕᲐ</string>
+    <string name="observers_all_caps">ᲓᲐᲛᲙᲕᲘᲠᲕᲔᲑᲚᲔᲑᲘ</string>
     <string name="observations_regular">დაკვირვებები</string>
+    <string name="data_quality_assessment">მონაცემთა ხარისხის შეფასება</string>
+    <string name="research_grade_qualification">სამეცნიერო დონის კვალიფიკაცია</string>
+    <string name="date_specified">თარიღი მითითებულია</string>
     <string name="location_specified">ადგილმდებარეობა მითითებულია</string>
+    <string name="has_photos_or_sounds">აქვს ფოტოები ან ხმები</string>
+    <string name="has_id_supported_by_two_or_more">აქვს ორის ან მეტის მიერ მხარდაჭერილი ID</string>
     <string name="date_is_accurate">თარიღი ზუსტია</string>
     <string name="location_is_accurate">ადგილმდებარეობა ზუსტია</string>
-    <string name="no_annotation">ანოტაცია არ აქვს</string>
-    <string name="donate_to_inaturalist">შემოწირულობა iNaturalist-ისთვის</string>
-    <string name="prefers_scientific_name_first">პირველად სამეცნიერო სახელების ჩვენება</string>
-    <string name="prefers_scientific_name_first_description">სამეცნიერო სახელების ჩვენება ჩვეულებრივი სახელების წინ.</string>
+    <string name="organism_is_wild">ორგანიზმი ველურია</string>
+    <string name="evidence_of_organism">ორგანიზმის მტკიცებულება</string>
+    <string name="recent_evidence_of_an_organism">ორგანიზმის ბოლოდროინდელი მტკიცებულება</string>
+    <string name="community_id_at_species_level_or_lower">თემის ID სახეობის დონეზე ან უფრო დაბლა</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">მტკიცებულებებზე დაყრდნობით, შეიძლება თუ არა თემის ID-ის კვლავ დადასტურება ან გაუმჯობესება?</string>
+    <string name="no_as_good_as_it_can_be">არა, უკეთესი ვერ იქნება</string>
+    <string name="evidence_related_to_single_subject">ერთ სუბიექტთან დაკავშირებული მტკიცებულება</string>
+    <string name="seasonality">სეზონურობა</string>
+    <string name="verifiable">შემოწმებადი</string>
+    <string name="no_annotation">ანოტაციის გარეშე</string>
+    <string name="donate_to_inaturalist">შემოსწირეთ iNaturalist-ს</string>
+    <string name="prefers_scientific_name_first">ჯერ სამეცნიერო სახელების ჩვენება</string>
+    <string name="prefers_scientific_name_first_description">სამეცნიერო სახელების ჩვენება გავრცელებული სახელების წინ.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[კანადა: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada და Parks Canada, რომლებიც მართავენ iNaturalist Canada-ს (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[კოლუმბია: Instituto Humboldt, რომელიც მართავს Naturalista-ს (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[მექსიკა: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO), რომელიც მართავს NaturaLista-ს (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
@@ -708,24 +760,25 @@
     <string name="network_credit_naturalistauy"><![CDATA[ურუგვაი: JULANA და Biodiversidata, რომლებიც მხარს უჭერენ Naturalista Uruguay-ს (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="network_credit_inaturalisttw"><![CDATA[ტაივანი: National Chiayi University და Taiwan Forestry Research Institute, რომლებიც მხარს უჭერენ iNaturalist Taiwan-ს (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">ყველას ნახულად მონიშვნა</string>
-    <string name="content_hidden">კონტენტი დაფარულია</string>
-    <string name="show_hidden_content">დაფარული კონტენტის ჩვენება</string>
-    <string name="content_hidden_because">კონტენტი დაფარულია @%1$s-ის მიერ %2$s-ზე, მიზეზი: „%3$s“</string>
+    <string name="content_hidden">მასალა დაფარულია</string>
+    <string name="show_hidden_content">დაფარული მასალის ჩვენება</string>
+    <string name="content_hidden_because">მასალა დაფარულია @%1$s-ის მიერ %2$s-ზე, მიზეზი: „%3$s“</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">დაუკავშირდით მხარდაჭერას</a>]]></string>
-    <string name="content">კონტენტი</string>
+    <string name="content">მასალა</string>
     <string name="has_photos">აქვს ფოტოები</string>
     <string name="has_sounds">აქვს ხმები</string>
-    <string name="could_not_play_sound">ხმის დაკვრა ვერ მოხერხდა - სავარაუდოდ ქსელის პრობლემაა</string>
+    <string name="could_not_play_sound">ხმის დაკვრა ვერ მოხერხდა — სავარაუდოდ ქსელის პრობლემაა</string>
     <string name="cant_play_soundcloud"><![CDATA[Soundcloud-ის ხმების მოსასმენად იხილეთ <a href="%1$s">ვებსაიტი</a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">ხმის ჩაწერა</string>
-    <string name="couldnt_retrieve_sound">ნაგულისხმევი ჩამწერიდან ხმის მიღება ვერ მოხერხდა - სცადეთ ხმის იმპორტირება</string>
+    <string name="couldnt_retrieve_sound">ნაგულისხმევი ჩამწერიდან ხმის მიღება ვერ მოხერხდა — სცადეთ ხმის იმპორტირება</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">ხმის არჩევა</string>
     <string name="multi_select_sound_description">რამდენიმე ხმის იმპორტირება შესაძლებელია ერთ ხმაზე ხანგრძლივი დაჭერით</string>
     <string name="alert_unsupported_audio_type">უკაცრავად, ამ წყაროდან ხმის ჩატვირთვისას პრობლემა წარმოიშვა</string>
-    <string name="invalid_audio_extension">ხმის(ების) იმპორტირების შეცდომა: შესაძლებელია მხოლოდ WAV/MP3/AMR გაფართოების ხმის ფაილების იმპორტი</string>
-    <string name="importing_sounds">მიმდინარეობს ხმის(ების) იმპორტი...</string>
+    <string name="invalid_audio_extension">ხმ(ებ)ის იმპორტირების შეცდომა: შესაძლებელია მხოლოდ WAV/MP3/AMR გაფართოების ხმის ფაილების იმპორტი</string>
+    <string name="importing_sounds">მიმდინარეობს ხმ(ებ)ის იმპორტი...</string>
     <string name="observation_sound">დაკვირვების ხმა</string>
     <string name="deleted_sounds_from_cache_error">როგორც ჩანს, ატვირთვამდე წაშალეთ ხმა აპლიკაციის ქეშის გასუფთავებით. საჭიროა ხმის ხელახლა დამატება თქვენს დაკვირვებაში გალერეიდან. მომავალში, გთხოვთ, დარწმუნდეთ, რომ ყველა ხმა ატვირთული გაქვთ აპლიკაციის ქეშის გასუფთავებამდე.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
@@ -736,43 +789,55 @@
     <string name="send_debug_logs_from_start_date">დიაგნოსტიკური ჟურნალების გაგზავნა დაწყების თარიღიდან</string>
     <string name="send_debug_logs_by_email">დიაგნოსტიკური ჟურნალების გაგზავნა ელფოსტით (მითითებული დაწყების თარიღიდან)</string>
     <string name="debug_settings">დიაგნოსტიკის პარამეტრები</string>
-    <string name="are_you_sure_you_want_to_delete_logs">დარწმუნებული ხართ, რომ გსურთ ყველა დიაგნოსტიკური ჟურნალის წაშლა? დააჭირეთ \'დიახ\' მხოლოდ იმ შემთხვევაში, თუ გსურთ თქვენს ტელეფონში ადგილის გათავისუფლება</string>
+    <string name="are_you_sure_you_want_to_delete_logs">დარწმუნებული ხართ, რომ გსურთ ყველა დიაგნოსტიკური ჟურნალის წაშლა? დააჭირეთ „დიახ“ მხოლოდ იმ შემთხვევაში, თუ გსურთ თქვენს ტელეფონში ადგილის გათავისუფლება</string>
     <string name="no_log_files_found">ამ თარიღების დიაპაზონისთვის ჟურნალის ფაილები ვერ მოიძებნა - სცადოთ უფრო ადრინდელი თარიღი?</string>
     <string name="choose_pinned_location">აირჩიეთ მიმაგრებული ადგილმდებარეობა</string>
     <string name="pin_current_location">მიმდინარე ადგილმდებარეობის მიმაგრება</string>
     <string name="location_pinned_successfully">მიმდინარე ადგილმდებარეობა წარმატებით მიემაგრა</string>
     <string name="delete_this_pinned_location">წაიშალოს ეს მიმაგრებული ადგილმდებარეობა?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
+    <string name="duplicate">დუბლირება</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_photo">ფოტოს დუბლირება ვერ მოხერხდა!</string>
+    <string name="couldnt_edit_photo">ფოტოს რედაქტირება ვერ მოხერხდა!</string>
     <!-- Verb, as in "Rotate this photo" -->
+    <string name="ucrop_rotate">შეტრიალება</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
     <string name="ucrop_scale">მასშტაბირება</string>
     <!-- Verb, as in "Crop this photo" -->
     <string name="ucrop_crop">მოჭრა</string>
     <!-- Label for adjusting the brightness of an image -->
+    <string name="ucrop_brightness">სიკაშკაშე</string>
     <!-- Label for adjusting the contrast of an image -->
+    <string name="ucrop_contrast">კონტრასტი</string>
     <!-- Label for adjusting the saturation of an image -->
+    <string name="ucrop_saturation">სატურაცია</string>
     <!-- Label for adjusting the sharpness of an image -->
+    <string name="ucrop_sharpness">სიმკვეთრე</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
+    <string name="ucrop_label_original">ორიგინალი</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
     <string name="ucrop_label_free">თავისუფალი</string>
     <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">ფოტოს რედაქტირება</string>
+    <string name="service_temporarily_unavailable">სერვისი დროებით მიუწვდომელია.</string>
+    <string name="please_try_again_in_a_few_hours">გთხოვთ, სცადოთ რამდენიმე საათში.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="hours">საათი</string>
-    <string name="minutes">წუთი</string>
-    <string name="seconds_value">წამი</string>
-    <string name="shop_the_inat_store">iNat მაღაზია</string>
+    <string name="please_try_again_in_x">გთხოვთ, სცადოთ ხელახლა %1$d %2$s.</string>
+    <string name="hours">საათში</string>
+    <string name="minutes">წუთში</string>
+    <string name="seconds_value">წამში</string>
+    <string name="shop_the_inat_store">iNat-ის მაღაზია</string>
     <string name="delete_your_account">თქვენი ანგარიშის წაშლა</string>
-    <string name="delete_account_message"><![CDATA[თქვენი ანგარიშის წაშლით თქვენ წაშლით:<br/><br/><ul><li> თქვენს ყველა დაკვირვებას, მათ შორის ყველა იმ ადამიანის ნამუშევარს, ვინც დაგეხმარათ იდენტიფიკაციაში.</li><li> ყველა იდენტიფიკაციას, რომელიც დაამატეთ სხვა ადამიანების დაკვირვებებს, რაც პოტენციურად იმოქმედებს ამ დაკვირვებების მონაცემთა ხარისხზე.</li><li> თქვენ მიერ დამატებულ ყველა კომენტარს.</li></ul><br/>გარდა ამისა, ამ ქმედების გაუქმება შეუძლებელია.<br/><br/>თუ მოგვიანებით გადაიფიქრებთ, ამ კონტენტს ვეღარ დაიბრუნებთ.<br/><br/>თუ ეს სერვისი ძალიან ბევრ შეტყობინებას გიგზავნით, განიხილეთ <a href="https://www.inaturalist.org/users/edit">თქვენი პარამეტრების რედაქტირება ვებსაიტზე</a>, რათა უარი თქვათ გარკვეულ შეტყობინებებზე ან შეწყვიტოთ ჩვენგან ელფოსტის მიღება. თუ კონკრეტულ ადამიანთან პრობლემები გაქვთ, განიხილეთ მათი <a href="https://www.inaturalist.org/users/edit">დადუმება</a> თქვენი ანგარიშის წაშლის ნაცვლად.<br/><br/>თუ კვლავ დარწმუნებული ხართ, რომ გსურთ თქვენი ანგარიშის წაშლა, შეიყვანეთ <b>„%1$s“</b> ქვემოთ მოცემულ ფორმაში და დააწკაპუნეთ ღილაკზე თქვენი ანგარიშისა და ყველა თქვენი მონაცემის წასაშლელად.]]></string>
+    <string name="delete_account_message"><![CDATA[თქვენი ანგარიშის წაშლით თქვენ წაშლით:<br/><br/><ul><li> თქვენს ყველა დაკვირვებას, მათ შორის ყველა იმ ადამიანის ნამუშევარს, ვინც დაგეხმარათ იდენტიფიკაციაში.</li><li> ყველა იდენტიფიკაციას, რომელიც დაამატეთ სხვა ადამიანების დაკვირვებებს, რაც პოტენციურად იმოქმედებს ამ დაკვირვებების მონაცემთა ხარისხზე.</li><li> თქვენ მიერ დამატებულ ყველა კომენტარს.</li></ul><br/>გარდა ამისა, ამ ქმედების გაუქმება შეუძლებელია.<br/><br/>თუ მოგვიანებით გადაიფიქრებთ, ამ მასალას ვეღარ დაიბრუნებთ.<br/><br/>თუ ეს სერვისი ძალიან ბევრ შეტყობინებას გიგზავნით, განიხილეთ <a href="https://www.inaturalist.org/users/edit">თქვენი პარამეტრების რედაქტირება ვებსაიტზე</a>, რათა უარი თქვათ გარკვეულ შეტყობინებებზე ან შეწყვიტოთ ჩვენგან ელფოსტის მიღება. თუ კონკრეტულ ადამიანთან პრობლემები გაქვთ, განიხილეთ მათი <a href="https://www.inaturalist.org/users/edit">დადუმება</a> თქვენი ანგარიშის წაშლის ნაცვლად.<br/><br/>თუ კვლავ დარწმუნებული ხართ, რომ გსურთ თქვენი ანგარიშის წაშლა, შეიყვანეთ <b>„%1$s“</b> ქვემოთ მოცემულ ფორმაში და დააწკაპუნეთ ღილაკზე თქვენი ანგარიშისა და ყველა თქვენი მონაცემის წასაშლელად.]]></string>
     <string name="your_account_has_been_deleted">თქვენი ანგარიში წაშლილია</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">თქვენი ანგარიშის წასაშლელად ფორმაში უნდა შეიყვანოთ \'%1$s\'</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">თქვენი ანგარიშის წასაშლელად ფორმაში უნდა შეიყვანოთ „%1$s“</string>
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">ჩაწერეთ თქვენი მომხმარებლის სახელი</string>
-    <string name="error_deleting_account">თქვენი ანგარიშის წაშლისას მოხდა შეცდომა - გთხოვთ, შეამოწმოთ თქვენი ინტერნეტ კავშირი</string>
+    <string name="error_deleting_account">თქვენი ანგარიშის წაშლისას მოხდა შეცდომა — გთხოვთ, შეამოწმოთ თქვენი ინტერნეტ კავშირი</string>
     <string name="verify_your_password">პაროლის დამოწმება</string>
-    <string name="third_party_data_sharing">მონაცემების გაზიარება მესამე მხარეებთან</string>
-    <string name="disable_third_party_data_sharing">მონაცემების მესამე მხარეებთან გაზიარების გამორთვა</string>
+    <string name="third_party_data_sharing">მესამე მხარისთვის მონაცემების გაზიარება</string>
+    <string name="disable_third_party_data_sharing">მესამე მხარისთვის მონაცემების გაზიარების გამორთვა</string>
     <string name="do_not_collect_third_party_data">არ შეგროვდეს სტაბილურობისა და გამოყენების მონაცემები მესამე მხარის სერვისების გამოყენებით</string>
     <string name="enabled">ჩართულია</string>
     <string name="disabled">გამორთულია</string>
@@ -780,117 +845,200 @@
     <string name="third_party_data_sharing_notes2"><![CDATA[ინფორმაცია, რომელსაც ამ მესამე მხარეებს ვუზიარებთ, მოიცავს შემდეგს:<ul><li> IP მისამართებს (რომლებიც შეიძლება გამოყენებული იყოს ქალაქის დონეზე ადგილმდებარეობის დასადგენად და სხვადასხვა ვებსაიტსა თუ სერვისზე თქვენზე თვალყურის სადევნებლად; გაითვალისწინეთ, რომ ჩვენ ჩართული გვაქვს <a href="https://support.google.com/analytics/answer/2763052">IP ანონიმიზაცია</a> Google Analytics-ში და, ჩვენი ინფორმაციით, <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> არ ინახავს IP მისამართებს)</li><li> ბრაუზერის დეტალებს, როგორიცაა მწარმოებელი, მოდელი და ვერსია</li><li> პროგრამის გათიშვის (crash) დეტალებს, მაგალითად, კოდის ზუსტად რომელმა ხაზმა გამოიწვია გათიშვა</li><li> მოწყობილობის დეტალებს, როგორიცაა მობილური ტელეფონის მწარმოებელი და მოდელი</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>მესამე მხარის ეს სერვისები უაღრესად მნიშვნელოვანია ჩვენთვის,</b> რათა ჩვენი მცირერიცხოვანი გუნდით შევინარჩუნოთ iNaturalist-ის სტაბილურობა და გამოყენებადობა. მობილურ მოწყობილობებზე თითქმის არ არსებობს სხვა გზა, რომლითაც წარმოქმნილი პრობლემების შესახებ ინფორმაციის მიღებას შევძლებთ, რადგან პროგრამული უზრუნველყოფა მუშაობს მოწყობილობებზე, რომლებსაც ჩვენ არ ვაკონტროლებთ. ზოგჯერ ასეთი პრობლემების არსებობის შესახებ არც კი ვიცით, სანამ მათ ამ სერვისების მიერ მოწოდებულ მონაცემებში არ აღმოვაჩენთ. <b>ამ ინფორმაციის გაზიარებით, თქვენ გვეხმარებით უკეთ მოგემსახუროთ თქვენ და iNaturalist-ის მთლიან თემს.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[გაითვალისწინეთ, რომ ეს პარამეტრი ვრცელდება მხოლოდ ანალიტიკისა და პროგრამის გათიშვის (crash) მონაცემებზე, რომლებსაც ჩვენ უშუალოდ ვუგზავნით ამ კომპანიებს. iNaturalist-ის ყველა სერვერი უზრუნველყოფილი და განთავსებულია Microsoft-ის მიერ, iNaturalist-ის ყველა სურათი განთავსებულია Amazon-ზე, ხოლო თითქმის ყველა რუკას iNaturalist-ისთვის Google უზრუნველყოფს. ეს ნიშნავს, რომ ყოველ ჯერზე, როდესაც iNaturalist-ზე დაკვირვებას ათვალიერებთ, თქვენ უკავშირდებით ამ კომპანიების სერვისებს და, სულ მცირე, უმჟღავნებთ მათ თქვენს IP მისამართს (iPhone-ის აპლიკაციაში ვიყენებთ Apple-ის რუკებს). iNaturalist, სავარაუდოდ, არც იარსებებდა ამ კომპანიების მიერ მოწოდებული სერვისების გარეშე. მიუხედავად იმისა, რომ ჩვენ შეგვიძლია შევზღუდოთ იმ მონაცემების რაოდენობა და ტიპი, რომლებსაც მათ უზიარებთ iNat-ის გამოყენებისას, ჩვენ არ შეგვიძლია მონაცემთა ნაკადის სრულად შეჩერება.]]></string>
-    <string name="common_names_place"><![CDATA[საერთო სახელების ადგილი: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">დააწკაპუნეთ კონკრეტული ადგილიდან საერთო სახელების პრიორიტეტიზაციისთვის.</string>
+    <string name="common_names_place"><![CDATA[გავრცელებული სახელების ადგილი: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">შეეხეთ, რათა პრიორიტეტი მიანიჭოთ კონკრეტულ ადგილას გავრცელებულ სახელებს.</string>
     <string name="search_places">ადგილების ძიება</string>
     <string name="restart_app">აპლიკაციის გადატვირთვა</string>
-    <string name="disable_third_party_sharing_restart">მესამე მხარესთან მონაცემების გაზიარების დაუყოვნებლივ გამორთვისთვის, აპლიკაცია უნდა გადაიტვირთოს.</string>
+    <string name="disable_third_party_sharing_restart">მესამე მხარისთვის მონაცემების გაზიარების დაუყოვნებლივ გამოსართავად, აპლიკაცია უნდა გადაიტვირთოს.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">დარწმუნებული ხართ, რომ გსურთ წაშალოთ ეს %1$d დაკვირვება?</item>
-        <item quantity="other">დარწმუნებული ხართ, რომ გსურთ წაშალოთ ეს %1$d დაკვირვება?</item>
+        <item quantity="one">დარწმუნებული ხართ, რომ გსურთ %1$d დაკვირვების წაშლა?</item>
+        <item quantity="other">დარწმუნებული ხართ, რომ გსურთ %1$d დაკვირვების წაშლა?</item>
     </plurals>
-    <string name="future_observed_on_date_error">თქვენი დაკვირვება შეიქმნა (და გაიგზავნა) %1$s-ზე, მაგრამ თქვენ ცდილობთ დააყენოთ დაკვირვების თარიღი, რომელიც ამაზე გვიანია: %2$s</string>
-    <string name="no_more_photos_allowed">დაკვირვებებს შეიძლება ჰქონდეს მხოლოდ %1$d ფოტო. მეტის დასამატებლად საჭიროა ზოგიერთის წაშლა.</string>
-    <string name="warning_multiple_photos">თუ ამ დაკვირვებას ამატებთ სხვადასხვა სახის ორგანიზმის ფოტოებს, ან იგივე სახეობისას სხვადასხვა ადგილას ან დროს, თქვენ უნდა წაშალოთ ეს ფოტოები და დაამატოთ ისინი ცალკე დაკვირვებებად. დაკვირვებას შეიძლება ჰქონდეს მხოლოდ %1$d ფოტო.</string>
-    <string name="choosing_specific_language_warning">თქვენი ანგარიშისთვის კონკრეტული ენის არჩევას სჭირდება ინტერნეტ კავშირი</string>
-    <string name="running_in_background_notfication">მუშაობს ფონურ რეჟიმში, რათა შეფერხების გარეშე ვიმუშაოთ</string>
-    <string name="opt_out_of_community_taxon">საზოგადოების ტაქსონისგან უარის თქმა</string>
-    <string name="opt_in_to_community_taxon">საზოგადოების ტაქსონზე თანხმობა</string>
-    <string name="opt_out_message">საზოგადოების ტაქსონისგან უარის თქმა აიძულებს ამ დაკვირვებას, რომ დაკავშირებული იყოს თქვენი მიმდინარე იდენტიფიკაციის ტაქსონთან და არა იმ ტაქსონთან, რომელიც მიღებულია ამ დაკვირვებისთვის დამატებული ყველა იდენტიფიკაციიდან. თუ საკმარისი იდენტიფიკატორი არ დაგეთანხმებათ, თქვენი დაკვირვება გახდება ჩვეულებრივი (Casual). თქვენ უნდა თქვათ უარი მხოლოდ იმ შემთხვევაში, თუ დარწმუნებული ხართ, რომ თქვენი იდენტიფიკაცია სწორია და სხვა იდენტიფიკაციები არასწორია.</string>
+    <string name="future_observed_on_date_error">თქვენი დაკვირვება შეიქმნა (და გაიგზავნა) %1$s-ზე, მაგრამ თქვენ ცდილობთ მიუთითოთ უფრო გვიანდელი თარიღი: %2$s</string>
+    <string name="no_more_photos_allowed">თითო დაკვირვებას შეიძლება დაერთოს მხოლოდ %1$d ფოტო. მეტის დასამატებლად, ზოგიერთი მათგანი უნდა წაშალოთ.</string>
+    <string name="warning_multiple_photos">თუ ამ დაკვირვებაში ამატებთ სხვადასხვა სახის ორგანიზმის ფოტოებს, ან ერთი და იმავე სახეობისას სხვადასხვა ადგილას თუ დროს, უნდა წაშალოთ ეს ფოტოები და დაამატოთ ისინი ცალკეულ დაკვირვებებად. თითო დაკვირვებას შეიძლება დაერთოს მხოლოდ %1$d ფოტო.</string>
+    <string name="choosing_specific_language_warning">თქვენი ანგარიშისთვის კონკრეტული ენის ასარჩევად საჭიროა ინტერნეტთან კავშირი</string>
+    <string name="running_in_background_notfication">მუშაობს ფონურ რეჟიმში, რათა მუშაობა გაგრძელდეს შეუფერხებლად</string>
+    <string name="opt_out_of_community_taxon">თემის ტაქსონზე უარის თქმა</string>
+    <string name="opt_in_to_community_taxon">თემის ტაქსონზე დათანხმება</string>
+    <string name="opt_out_message">თემის ტაქსონზე უარის თქმა აიძულებს ამ დაკვირვებას დაუკავშირდეს თქვენი ამჟამინდელი იდენტიფიკაციის ტაქსონს და არა იმ ტაქსონს, რომელიც მომდინარეობს ამ დაკვირვებაზე დამატებული ყველა იდენტიფიკაციიდან. თუ საკმარისი რაოდენობის ამომცნობი არ დაგეთანხმებათ, თქვენი დაკვირვება სამოყვარულო გახდება. უარი უნდა თქვათ მხოლოდ იმ შემთხვევაში, თუ დარწმუნებული ხართ, რომ თქვენი იდენტიფიკაცია სწორია, ხოლო სხვა იდენტიფიკაციები არასწორი.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">საჭიროა ნებართვა</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">თქვენს ადგილმდებარეობაზე წვდომისთვის, თქვენ უნდა მიანიჭოთ ადგილმდებარეობაზე წვდომის ნებართვა ამ აპს.</string>
+    <string name="to_access_your_location">ადგილმდებარეობაზე წვდომისთვის, ამ აპლიკაციას შესაბამისი ნებართვა უნდა მიანიჭოთ.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">აკრძალულია</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">აპლიკაცია, საიდანაც აზიარებთ, ქმნის დაკვირვებისთვის შეუფერებელ ფოტოებს. მიზეზი შეიძლება იყოს ის, რომ ისინი არ წარმოადგენენ სხვა ორგანიზმთან თქვენი გამოცდილების მტკიცებულებას, შეიცავენ შეუფერებელ ბრენდინგს ან კომერციულ მასალას, ან სხვაგვარად არღვევენ ჩვენი მომსახურების პირობებს.</string>
     <!-- Description of a UI element for screen readers -->
+    <string name="list_observation_checkbox_description">დაკვირვების მოსანიშნი უჯრა მრავალჯერადი არჩევის რეჟიმში</string>
     <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_iconic_pic_description">დაკვირვების ტაქსონის მცირე ზომის ფოტო</string>
     <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_obs_pic_description">დაკვირვების მცირე ზომის ფოტო</string>
     <string name="messages">შეტყობინებები</string>
     <string name="all_messages">ყველა შეტყობინება</string>
     <string name="search_messages">შეტყობინებებში ძებნა</string>
-    <string name="body">სხეული</string>
+    <string name="no_messages">ამჟამად შეტყობინებები არ გაქვთ. შეგიძლია ახალი შეტყობინება მწვანე ღილაკით გააგზავნო ან სხვებს პროფილის გვერდიდან გაუგზავნო შეტყობინება.</string>
+    <string name="no_messages_found">შეტყობინებები ვერ მოიძებნა.</string>
+    <string name="send_a_message">შეტყობინების გაგზავნა</string>
+    <string name="sending_message">შეტყობინება იგზავნება...</string>
+    <string name="could_not_send_message">შეტყობინება ვერ გაიგზავნა: %1$s</string>
+    <string name="subject">თემა</string>
+    <string name="body">ტექსტი</string>
+    <string name="type_your_message_here">აკრიფეთ თქვენი შეტყობინება აქ</string>
+    <string name="new_message_to">ახალი შეტყობინება %1$s-სთვის</string>
+    <string name="who_would_you_like_to_send_a_message_to">ვის გსურთ გაუგზავნოთ შეტყობინება?</string>
+    <string name="new_message">ახალი შეტყობინება</string>
+    <string name="search_for_inaturalist_users">მოძებნეთ iNaturalist-ის მომხმარებლები</string>
+    <string name="please_sign_in_for_messages">თქვენი შეტყობინებების სანახავად სისტემაში უნდა შეხვიდეთ.</string>
     <string name="sorry">ბოდიში</string>
+    <string name="you_must_have_three_observations">ამის გასაკეთებლად უნდა გქონდეთ სამი შემოწმებადი დაკვირვება ან სხვებისთვის გაკეთებული სამი იდენტიფიკაცია.</string>
+    <string name="mute_this_user">ამ მომხმარებლის დადუმება</string>
+    <string name="unmute_this_user">ამ მომხმარებლისთვის დადუმების მოხსნა</string>
+    <string name="flag_this_conversation">ამ საუბრის გასაჩივრება</string>
+    <string name="mute_this_user_question">გსურთ ამ მომხმარებლის დადუმება?</string>
+    <string name="you_will_no_longer_receive_messages">თქვენ აღარ მიიღებთ შეტყობინებებს ამ მომხმარებლის აქტივობებზე, მათ შორის: პირად წერილებს, კომენტარებს, იდენტიფიკაციებსა და ხსენებებს.</string>
     <string name="mute">დადუმება</string>
+    <string name="muting_user">მომხმარებლის დადუმება...</string>
+    <string name="unmuting_user">დადუმების მოხსნა...</string>
+    <string name="failed_muting_user">მომხმარებლის დადუმება ვერ მოხერხდა!</string>
+    <string name="failed_unmuting_user">მომხმარებლისთვის დადუმების მოხსნა ვერ მოხერხდა!</string>
+    <string name="flag_conversation">საუბრის გასაჩივრება</string>
     <string name="spam">სპამი</string>
+    <string name="commercial_solicitation">კომერციული შეთავაზებები, არამომუშავე ბმულები და ა.შ.</string>
+    <string name="offensive_inappropriate">შეურაცხმყოფელი/შეუსაბამო</string>
+    <string name="misleading_or_illegal_content">შეცდომაში შემყვანი ან არალეგალური მასალა, რასისტული ან ეთნიკური შეურაცხყოფა და ა.შ. „შესაფერისი“ მასალის ჩვენეული განმარტებისთვის იხილეთ ხშირად დასმული კითხვები (FAQ).</string>
     <string name="other">სხვა</string>
+    <string name="some_other_reason">სხვა მიზეზი, რომლის განმარტებაც შეგიძლიათ.</string>
+    <string name="continue_text">გაგრძელება</string>
+    <string name="why_are_you_flagging_this_item">რატომ ასაჩივრებთ ამ მასალას?</string>
+    <string name="thank_you_for_submitting_the_flag">გმადლობთ გასაჩივრებისთვის!</string>
+    <string name="flagging_conversation">საუბრის გასაჩივრება...</string>
+    <string name="failed_flagging_conversation">საუბრის გასაჩივრება ვერ მოხერხდა!</string>
+    <string name="no_subject">თემის გარეშე</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
+    <string name="rank_state_of_matter">მატერიის მდგომარეობა</string>
     <string name="rank_kingdom">სამეფო</string>
+    <string name="rank_subkingdom">ქვესამეფო</string>
     <string name="rank_phylum">ტიპი</string>
+    <string name="rank_subphylum">ქვეტიპი</string>
     <string name="rank_superclass">ზეკლასი</string>
     <string name="rank_class">კლასი</string>
+    <string name="rank_subclass">ქვეკლასი</string>
     <string name="rank_infraclass">ინფრაკლასი</string>
+    <string name="rank_superorder">ზერიგი</string>
     <string name="rank_order">რიგი</string>
+    <string name="rank_suborder">ქვერიგი</string>
     <string name="rank_infraorder">ინფრარიგი</string>
+    <string name="rank_subterclass">სუბტერკლასი</string>
     <string name="rank_parvorder">პარვრიგი</string>
+    <string name="rank_zoosection">ზოოსექცია</string>
+    <string name="rank_zoosubsection">ზოოქვესექცია</string>
+    <string name="rank_superfamily">ზეოჯახი</string>
+    <string name="rank_epifamily">ეპიოჯახი</string>
     <string name="rank_family">ოჯახი</string>
+    <string name="rank_subfamily">ქვეოჯახი</string>
+    <string name="rank_supertribe">ზეტრიბა</string>
     <string name="rank_tribe">ტრიბა</string>
+    <string name="rank_subtribe">ქვეტრიბა</string>
     <string name="rank_genus">გვარი</string>
+    <string name="rank_genushybrid">ჰიბრიდული გვარი</string>
+    <string name="rank_subgenus">ქვეგვარი</string>
     <string name="rank_section">სექცია</string>
+    <string name="rank_subsection">ქვესექცია</string>
     <string name="rank_complex">კომპლექსი</string>
     <!-- Singular -->
     <string name="rank_species">სახეობა</string>
     <string name="rank_hybrid">ჰიბრიდი</string>
     <!-- Singular -->
+    <string name="rank_subspecies">ქვესახეობა</string>
     <string name="rank_variety">სახესხვაობა</string>
     <string name="rank_form">ფორმა</string>
     <string name="rank_infrahybrid">ინფრაჰიბრიდი</string>
     <string name="rank_leaves">ფოთლები</string>
     <string name="location_lat_lng">ადგილმდებარეობა: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[ჩემი ანგარიშის სამართავად iNaturalist-ს ვაძლევ უფლებას შეინახოს და დაამუშავოს შეზღუდული სახის პერსონალური ინფორმაცია ჩემს შესახებ. <b>გაიგე მეტი</b>]]></string>
+    <string name="about_personal_information">პერსონალური ინფორმაციის შესახებ</string>
     <string name="personal_information_notes"><![CDATA[ჩვენ ვინახავთ პერსონალურ ინფორმაციას (მაგალითად, მომხმარებლის სახელებსა და ელფოსტის მისამართებს), რათა ვმართოთ ანგარიშები ამ საიტზე. კონფიდენციალურობის კანონმდებლობის დასაცავად, აუცილებელია მონიშნოთ ეს უჯრა, რითაც დაადასტურებთ, რომ ეთანხმებით პერსონალური ინფორმაციის ამგვარ გამოყენებას. დამატებითი დეტალებისთვის იმის შესახებ, თუ რა ინფორმაციას ვაგროვებთ და როგორ ვიყენებთ მას, გთხოვთ, იხილოთ ჩვენი <a href="https://www.inaturalist.org/privacy">კონფიდენციალურობის პოლიტიკა</a> და <a href="https://www.inaturalist.org/terms">მომსახურების პირობები</a>.]]></string>
     <string name="i_agree_to_tos_and_privacy"><![CDATA[ვეთანხმები <a href="https://www.inaturalist.org/terms">მომსახურების პირობებსა</a> და <a href="https://www.inaturalist.org/privacy">კონფიდენციალურობის პოლიტიკას</a> და გავეცანი <a href="https://www.inaturalist.org/pages/community+guidelines">თემის წესებს</a>.]]></string>
+    <string name="privacy_policy">კონფიდენციალურობის პოლიტიკა</string>
+    <string name="terms_of_service">მომსახურების პირობები</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
+    <string name="deleted_user">წაშლილი მომხმარებელი</string>
     <!-- Short date formatting template for dates in the current year. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">dd/MM/yy</string>
     <!-- Short time formatting template for 24-hour locales. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM, yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_obscured">MMM \'\'yy</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d MMMM, yyyy HH:mm</string>
+    <string name="show_common_names">გავრცელებული სახელების ჩვენება</string>
+    <string name="show_common_names_description">გამორთეთ, თუ გსურთ მხოლოდ სამეცნიერო სახელების ნახვა.</string>
+    <string name="email_must_look_like_email_address">ელფოსტა უნდა გამოიყურებოდეს როგორც ელფოსტის მისამართი</string>
+    <string name="username_must_begin_with">მომხმარებლის სახელი უნდა იწყებოდეს ასოთი, არ უნდა შეიცავდეს ინტერვალებს და შეიცავდეს მხოლოდ ასოებს, ციფრებს, ტირეებსა და ქვედა ტირეებს</string>
+    <string name="password_too_short">პაროლი უნდა შეიცავდეს მინიმუმ ექვს სიმბოლოს</string>
+    <string name="switch_to_grid_view">გადართვა ბადისებრ ხედზე</string>
+    <string name="switch_to_list_view">გადართვა სიის ხედზე</string>
+    <string name="remove_project_filter">პროექტის ფილტრის წაშლა</string>
+    <string name="remove_observer_filter">დამკვირვებლის ფილტრის წაშლა</string>
+    <string name="filter_observations_by_an_exact_date">დაკვირვებების გაფილტვრა ზუსტი თარიღის მიხედვით</string>
+    <string name="filter_observations_by_a_date_range">დაკვირვებების გაფილტვრა თარიღების დიაპაზონის მიხედვით</string>
+    <string name="filter_observations_by_months">დაკვირვებების გაფილტვრა თვეების მიხედვით</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
     <string name="include_suggestions_not_seen_nearby">შეთავაზებების ჩვენება, რომლებიც სიახლოვეს არ დაფიქსირებულა</string>
     <string name="only_view_nearby_suggestions">მხოლოდ ახლომდებარე შეთავაზებების ნახვა</string>
     <string name="suggestions_source">შეთავაზებების წყარო</string>
+    <string name="research_grade_observations">სამეცნიერო დონის დაკვირვებები</string>
     <string name="visually_similar_description">iNaturalist მოგაწვდით შეთავაზებებს იმის მიხედვით, თუ ვიზუალურად რამდენად ჰგავს თქვენი სურათები ამ ადგილმდებარეობის მახლობლად დაფიქსირებულ სახეობებს წელიწადის ამ დროს.</string>
     <string name="research_grade_observations_description">ვიზუალურად მსგავსი შეთავაზებების ნაცვლად, iNaturalist შემოგთავაზებთ სახეობებს, რომლებიც კონკრეტულ ადგილას და კონკრეტულ ტაქსონომიურ ჯგუფშია დაფიქსირებული.</string>
     <string name="taxon">ტაქსონი:</string>
     <string name="place">ადგილი:</string>
-    <string name="pretty_sure_kingdom">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ სამეფოშია:</string>
-    <string name="pretty_sure_subkingdom">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვესამეფოშია:</string>
-    <string name="pretty_sure_phylum">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ტიპშია:</string>
-    <string name="pretty_sure_subphylum">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვესტიპშია:</string>
-    <string name="pretty_sure_superclass">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზეკლასშია:</string>
-    <string name="pretty_sure_class">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ კლასშია:</string>
-    <string name="pretty_sure_subclass">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვეკლასშია:</string>
-    <string name="pretty_sure_infraclass">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ინფრაკლასშია:</string>
-    <string name="pretty_sure_superorder">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზერიგშია:</string>
-    <string name="pretty_sure_order">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ რიგშია:</string>
-    <string name="pretty_sure_suborder">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვერიგშია:</string>
-    <string name="pretty_sure_infraorder">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ინფრარიგშია:</string>
-    <string name="pretty_sure_subterclass">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ სუბტერკლასშია:</string>
-    <string name="pretty_sure_parvorder">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ პარვრიგშია:</string>
-    <string name="pretty_sure_zoosection">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზოოსექციაშია:</string>
-    <string name="pretty_sure_zoosubsection">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზოოქვესექციაშია:</string>
-    <string name="pretty_sure_superfamily">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზეოჯახშია:</string>
-    <string name="pretty_sure_epifamily">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ეპიოჯახშია:</string>
-    <string name="pretty_sure_family">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ოჯახშია:</string>
-    <string name="pretty_sure_subfamily">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვეოჯახშია:</string>
-    <string name="pretty_sure_supertribe">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ზერტომშია:</string>
-    <string name="pretty_sure_tribe">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ტომშია:</string>
-    <string name="pretty_sure_subtribe">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვეტომშია:</string>
-    <string name="pretty_sure_genus">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ გვარშია:</string>
-    <string name="pretty_sure_genushybrid">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ გვარჰიბრიდშია:</string>
-    <string name="pretty_sure_subgenus">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვეგვარშია:</string>
-    <string name="pretty_sure_section">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ სექციაშია:</string>
-    <string name="pretty_sure_subsection">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვესექციაშია:</string>
-    <string name="pretty_sure_complex">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ კომპლექსშია:</string>
+    <string name="pretty_sure_kingdom">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ სამეფოშია:</string>
+    <string name="pretty_sure_subkingdom">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ქვესამეფოშია:</string>
+    <string name="pretty_sure_phylum">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ტიპშია:</string>
+    <string name="pretty_sure_subphylum">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ქვესტიპშია:</string>
+    <string name="pretty_sure_superclass">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ზეკლასშია:</string>
+    <string name="pretty_sure_class">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ კლასშია:</string>
+    <string name="pretty_sure_subclass">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ქვეკლასშია:</string>
+    <string name="pretty_sure_infraclass">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ინფრაკლასშია:</string>
+    <string name="pretty_sure_superorder">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ზერიგშია:</string>
+    <string name="pretty_sure_order">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ რიგშია:</string>
+    <string name="pretty_sure_suborder">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ქვერიგშია:</string>
+    <string name="pretty_sure_infraorder">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ინფრარიგშია:</string>
+    <string name="pretty_sure_subterclass">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ სუბტერკლასშია:</string>
+    <string name="pretty_sure_parvorder">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ პარვრიგშია:</string>
+    <string name="pretty_sure_zoosection">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ზოოსექციაშია:</string>
+    <string name="pretty_sure_zoosubsection">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ზოოქვესექციაშია:</string>
+    <string name="pretty_sure_superfamily">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ზეოჯახშია:</string>
+    <string name="pretty_sure_epifamily">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ეპიოჯახშია:</string>
+    <string name="pretty_sure_family">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ოჯახშია:</string>
+    <string name="pretty_sure_subfamily">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ქვეოჯახშია:</string>
+    <string name="pretty_sure_supertribe">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ზერტომშია:</string>
+    <string name="pretty_sure_tribe">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ტომშია:</string>
+    <string name="pretty_sure_subtribe">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ქვეტომშია:</string>
+    <string name="pretty_sure_genus">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ გვარშია:</string>
+    <string name="pretty_sure_genushybrid">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ გვარჰიბრიდშია:</string>
+    <string name="pretty_sure_subgenus">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ქვეგვარშია:</string>
+    <string name="pretty_sure_section">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ სექციაშია:</string>
+    <string name="pretty_sure_subsection">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ქვესექციაშია:</string>
+    <string name="pretty_sure_complex">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ კომპლექსშია:</string>
     <!-- Singular -->
+    <string name="pretty_sure_species">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ სახეობაშია:</string>
+    <string name="pretty_sure_hybrid">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ჰიბრიდშია:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ქვესახეობაშია:</string>
-    <string name="pretty_sure_variety">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ნაირსახეობაშია:</string>
-    <string name="pretty_sure_form">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ფორმაშია:</string>
-    <string name="pretty_sure_infrahybrid">ჩვენ საკმაოდ დარწმუნებული ვართ, რომ ის ამ ინფრაჰიბრიდშია:</string>
+    <string name="pretty_sure_subspecies">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ქვესახეობაშია:</string>
+    <string name="pretty_sure_variety">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ნაირსახეობაშია:</string>
+    <string name="pretty_sure_form">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ფორმაშია:</string>
+    <string name="pretty_sure_infrahybrid">საკმაოდ დარწმუნებულები ვართ, რომ ის ამ ინფრაჰიბრიდშია:</string>
     <string name="remove_date_observed">დაკვირვების თარიღისა და დროის წაშლა</string>
     <string name="remove_time_observed">დაკვირვების დროის წაშლა</string>
     <string name="remove_location">ადგილმდებარეობის წაშლა</string>
@@ -905,30 +1053,50 @@
     <string name="view_observations">დაკვირვებების ნახვა</string>
     <string name="choose_this_option">აირჩიეთ ეს ვარიანტი</string>
     <string name="compare_observation_with_this_option">დაკვირვების შედარება ამ ვარიანტთან</string>
-    <string name="go_back">უკან</string>
+    <string name="go_back">დაბრუნება</string>
     <string name="change_the_source_of_the_suggestions">შეთავაზებების წყაროს შეცვლა</string>
     <string name="thumbnail_photo_for_suggested_taxon">შემოთავაზებული ტაქსონის მინიატურული ფოტო</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">კომენტარები და იდენტიფიკაციები</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
     <string name="faves">მოწონებულები</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">წინა ვარიანტი</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">შემდეგი ვარიანტი</string>
+    <string name="no_observations_yet2">ჯერ არ არის დაკვირვებები.</string>
+    <string name="no_species_yet">ჯერ არ არის სახეობები.</string>
+    <string name="no_identifications_yet">ჯერ არ არის იდენტიფიკაციები.</string>
+    <string name="sort_by">დალაგება მიხედვით</string>
     <string-array name="explore_order_by_items">
-        <item>Date Added</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
+        <item>დამატების თარიღი</item>
+        <item>დაკვირვების თარიღი</item>
+        <item>განახლების თარიღი</item>
         <!--<item>Faves</item>-->
         <item>შემთხვევითი</item>
     </string-array>
+    <string-array name="explore_order_items">
+        <item>დაღმავალი</item>
+        <item>აღმავალი</item>
+    </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">დახარისხებულია: %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">ჩემი დაკვირვებების დამალვა</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">ამ დაკვირვების გამოწერა</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">ამ დაკვირვებისთვის გამოწერის გაუქმება</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">ამ დაკვირვების გამოწერა ვერ მოხერხდა</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">ამ დაკვირვების გამოწერის გაუქმება ვერ მოხერხდა</string>
     <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">კოორდინატების კოპირება</string>
+    <string name="coordinates_copied_to_clipboard">კოორდინატები კოპირებულია ბუფერში</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">მეტამონაცემები</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
@@ -947,16 +1115,16 @@
     <string name="change_observation_licenses">დაკვირვების ლიცენზიების შეცვლა</string>
     <string name="change_photo_licenses">ფოტოს ლიცენზიების შეცვლა</string>
     <string name="change_sound_licenses">ხმის ლიცენზიების შეცვლა</string>
-    <string name="change_licenses_for_observations_confirmation"><![CDATA[შეიცვალოს <b>%1$d</b> არსებული დაკვირვების ლიცენზია <b>%2$s</b>-ით?]]></string>
-    <string name="change_licenses_for_photos_confirmation"><![CDATA[შეიცვალოს არსებული ფოტოების ლიცენზია <b>%1$s</b>-ით?]]></string>
-    <string name="change_licenses_for_sounds_confirmation"><![CDATA[შეიცვალოს არსებული ხმების ლიცენზია <b>%1$s</b>-ით?]]></string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[შევცვალოთ <b>%1$d</b> არსებული დაკვირვების ლიცენზია <b>%2$s</b>-ით?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[შევცვალოთ არსებული ფოტოების ლიცენზია <b>%1$s</b>-ით?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[შევცვალოთ არსებული ხმების ლიცენზია <b>%1$s</b>-ით?]]></string>
     <string name="observation_licenses_updated">დაკვირვების ლიცენზიები განახლდა</string>
     <string name="photo_licenses_updated">ფოტოს ლიცენზიები განახლდა</string>
     <string name="sound_licenses_updated">ხმის ლიცენზიები განახლდა</string>
     <string name="existing_observation_licenses_have_been_updated">ყველა არსებული დაკვირვების ლიცენზია შეიცვალა %1$s-ით.</string>
     <string name="existing_photo_licenses_have_been_updated">ყველა არსებული ფოტოს ლიცენზია შეიცვალა %1$s-ით.</string>
     <string name="existing_sound_licenses_have_been_updated">ყველა არსებული ხმის ლიცენზია შეიცვალა %1$s-ით.</string>
-    <string name="default_licenses_description"><![CDATA[თქვენი კონტენტის ლიცენზირება ნებისმიერს აძლევს კანონიერ უფლებას გამოიყენოს იგი თქვენი ნებართვის გარეშე, თუ ისინი დაიცავენ ლიცენზიის პირობებს. გარდა ამისა, iNat რთავს თქვენს Creative Commons-ლიცენზირებულ კონტენტს რეგულარულად განახლებად არქივებში, რომლებიც იქმნება შერჩეული პარტნიორი ორგანიზაციებისთვის, რომლებიც დაინტერესებულნი არიან ჩვენი მონაცემებით. მაგალითად, ჩვენ ვრთავთ საავტორო უფლებების გარეშე (CC0), ატრიბუციის (CC BY) და ატრიბუცია-არაკომერციული (CC BY-NC) ჩანაწერებს არქივში, რომელსაც ვქმნით <a href="https://www.gbif.org/">გლობალური ბიომრავალფეროვნების საინფორმაციო ფონდისთვის (GBIF)</a>, საერთაშორისო, მთავრობათაშორისი ორგანიზაციისთვის, რომელიც აგროვებს და ავრცელებს ბიომრავალფეროვნების ინფორმაციას მთელი მსოფლიოდან.]]></string>
+    <string name="default_licenses_description"><![CDATA[თქვენი მასალის ლიცენზირება ნებისმიერს აძლევს კანონიერ უფლებას, გამოიყენოს იგი თქვენი ნებართვის გარეშე, თუ ისინი იცავენ ლიცენზიის პირობებს. გარდა ამისა, iNat რეგულარულად განახლებად არქივებში რთავს თქვენს Creative Commons-ის ლიცენზიით დაცულ მასალას იმ პარტნიორი ორგანიზაციებისთვის, რომლებიც დაინტერესებულნი არიან ჩვენი მონაცემებით. მაგალითად, ჩვენ ვრთავთ საავტორო უფლებების არმქონე (CC0), ატრიბუციის (CC BY) და ატრიბუცია-არაკომერციული (CC BY-NC) ჩანაწერებს არქივში, რომელსაც ვქმნით <a href="https://www.gbif.org/">გლობალური ბიომრავალფეროვნების საინფორმაციო ფონდისთვის (GBIF)</a>. ეს არის საერთაშორისო, მთავრობათაშორისი ორგანიზაცია, რომელიც აგროვებს და ავრცელებს ინფორმაციას ბიომრავალფეროვნების შესახებ მთელი მსოფლიოდან.]]></string>
     <string name="photo_license">ფოტოს ლიცენზია</string>
     <string name="sound_license">ხმის ლიცენზია</string>
     <string name="edit_photo_license">ფოტოს ლიცენზიის რედაქტირება</string>
@@ -965,21 +1133,30 @@
     <string name="about_licenses">ლიცენზიების შესახებ</string>
     <string name="view_license">ლიცენზიის ნახვა</string>
     <!-- License Names -->
+    <string name="license_name_cc0">საყოველთაო კუთვნილება</string>
+    <string name="license_name_cc_by">ატრიბუცია</string>
+    <string name="license_name_cc_by_nc">ატრიბუცია-არაკომერციული</string>
+    <string name="license_name_cc_by_nc_sa">ატრიბუცია-არაკომერციული-მსგავსი პირობებით</string>
+    <string name="license_name_cc_by_nc_nd">ატრიბუცია-არაკომერციული-გადამუშავების გარეშე</string>
+    <string name="license_name_cc_by_nd">ატრიბუცია-გადამუშავების გარეშე</string>
+    <string name="license_name_cc_by_sa">ატრიბუცია-მსგავსი პირობებით</string>
     <string name="license_name_no_license">ყველა უფლება დაცულია</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">ეს ლიცენზია გადასცემს თქვენს ნამუშევარს საზოგადოებრივ დომენში, ასე რომ სხვებს შეუძლიათ დააკოპირონ, შეცვალონ, გაავრცელონ და შეასრულონ თქვენი ნამუშევარი, თუნდაც კომერციული მიზნებისთვის, ყოველივე ეს თქვენი ნებართვის თხოვნის ან თქვენი ავტორობის მითითების გარეშე. ეს არის შემოთავაზებულ ლიცენზიებს შორის ყველაზე ხელსაყრელი. რეკომენდებულია ლიცენზირებული მასალების მაქსიმალური გავრცელებისა და გამოყენებისთვის.</string>
-    <string name="license_description_cc_by">ეს ლიცენზია სხვებს აძლევს უფლებას გაავრცელონ, გადააკეთონ, შეცვალონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე, თუნდაც კომერციულად, სანამ ისინი მიუთითებენ თქვენს ავტორობას ორიგინალური ქმნილებისთვის.</string>
-    <string name="license_description_cc_by_nc">ეს ლიცენზია სხვებს აძლევს უფლებას გადააკეთონ, შეცვალონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე არაკომერციულად, და მიუხედავად იმისა, რომ მათმა ახალმა ნამუშევრებმაც უნდა მიუთითონ თქვენი ავტორობა და იყვნენ არაკომერციული, მათ არ მოეთხოვებათ თავიანთი წარმოებული ნამუშევრების ლიცენზირება იმავე პირობებით.</string>
-    <string name="license_description_cc_by_nc_sa">ეს ლიცენზია სხვებს აძლევს უფლებას გადააკეთონ, შეცვალონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე არაკომერციულად, სანამ ისინი მიუთითებენ თქვენს ავტორობას და მოახდენენ თავიანთი ახალი ქმნილებების ლიცენზირებას იდენტური პირობებით.</string>
-    <string name="license_description_cc_by_nc_nd">ეს ლიცენზია ექვს მთავარ ლიცენზიას შორის ყველაზე შემზღუდველია, ის სხვებს მხოლოდ თქვენი ნამუშევრების ჩამოტვირთვისა და სხვებისთვის გაზიარების უფლებას აძლევს, სანამ ისინი მიუთითებენ თქვენს ავტორობას, მაგრამ მათ არ შეუძლიათ მათი რაიმე სახით შეცვლა ან კომერციულად გამოყენება.</string>
-    <string name="license_description_cc_by_nd">ეს ლიცენზია უშვებს ხელახლა გავრცელებას, კომერციულს და არაკომერციულს, სანამ ის გადაეცემა უცვლელად და მთლიანად, თქვენი ავტორობის მითითებით.</string>
-    <string name="license_description_cc_by_sa">ეს ლიცენზია სხვებს აძლევს უფლებას გადააკეთონ, მოარგონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე, თუნდაც კომერციული მიზნებისთვის, სანამ ისინი მიუთითებენ თქვენს ავტორობას და მოახდენენ თავიანთი ახალი ქმნილებების ლიცენზირებას იდენტური პირობებით. ეს ლიცენზია ხშირად შედარებულია „ქოფილეფთ“ თავისუფალი და ღია კოდის პროგრამული უზრუნველყოფის ლიცენზიებთან. თქვენს ნამუშევარზე დაფუძნებული ყველა ახალი ნამუშევარი ატარებს იგივე ლიცენზიას, ასე რომ ნებისმიერი წარმოებული ნამუშევარი ასევე დაუშვებს კომერციულ გამოყენებას. ეს არის ლიცენზია, რომელსაც იყენებს ვიკიპედია, და რეკომენდებულია მასალებისთვის, რომლებიც სარგებელს მიიღებენ ვიკიპედიიდან და მსგავსად ლიცენზირებული პროექტებიდან კონტენტის ჩართვით.</string>
-    <string name="license_description_no_license">თქვენ ინარჩუნებთ სრულ საავტორო უფლებას თქვენს კონტენტზე, გარდა იმ უფლებებისა, რომლებიც მინიჭებული აქვს iNaturalist-ს ჩვენს მომსახურების პირობებში.</string>
+    <string name="license_description_cc0">ეს ლიცენზია გადასცემს თქვენს ნამუშევარს საყოველთაო კუთვნილებაში, ასე რომ სხვებს შეუძლიათ დააკოპირონ, შეცვალონ, გაავრცელონ და გამოიყენონ თქვენი ნამუშევარი, თუნდაც კომერციული მიზნებისთვის, ყოველივე ეს თქვენი ნებართვის თხოვნის ან თქვენი ავტორობის მითითების გარეშე. ეს არის შემოთავაზებულ ლიცენზიებს შორის ყველაზე ხელსაყრელი. რეკომენდებულია ლიცენზირებული მასალების მაქსიმალური გავრცელებისა და გამოყენებისთვის.</string>
+    <string name="license_description_cc_by">ეს ლიცენზია სხვებს აძლევს უფლებას გაავრცელონ, გადააკეთონ, შეცვალონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე, თუნდაც კომერციულად, იმ პირობით, რომ ისინი მიუთითებენ თქვენს ავტორობას ორიგინალურ ქმნილებაზე.</string>
+    <string name="license_description_cc_by_nc">ეს ლიცენზია სხვებს აძლევს უფლებას გადააკეთონ, შეცვალონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე არაკომერციულად, და მიუხედავად იმისა, რომ მათი ახალი ნამუშევრებიც უნდა იყოს არაკომერციული და მიუთითებდეს თქვენს ავტორობას, მათ არ მოეთხოვებათ თავიანთი წარმოებული ნამუშევრების ლიცენზირება იმავე პირობებით.</string>
+    <string name="license_description_cc_by_nc_sa">ეს ლიცენზია სხვებს აძლევს უფლებას გადააკეთონ, შეცვალონ და დააფუძნონ ახალი ნამუშევრები თქვენსაზე არაკომერციულად, იმ პირობით, რომ ისინი მიუთითებენ თქვენს ავტორობას და მოახდენენ თავიანთი ახალი ქმნილებების ლიცენზირებას იდენტური პირობებით.</string>
+    <string name="license_description_cc_by_nc_nd">ეს ლიცენზია ექვს მთავარ ლიცენზიას შორის ყველაზე შემზღუდველია, ის სხვებს მხოლოდ თქვენი ნამუშევრების ჩამოტვირთვისა და სხვებისთვის გაზიარების უფლებას აძლევს, იმ პირობით, რომ ისინი მიუთითებენ თქვენს ავტორობას, მაგრამ მათ არ შეუძლიათ მათი რაიმე სახით შეცვლა ან კომერციულად გამოყენება.</string>
+    <string name="license_description_cc_by_nd">ეს ლიცენზია უშვებს ხელახლა გავრცელებას, კომერციულს და არაკომერციულს, იმ პირობით, რომ ის გადაეცემა უცვლელად და მთლიანად, თქვენი ავტორობის მითითებით.</string>
+    <string name="license_description_cc_by_sa">ეს ლიცენზია სხვებს აძლევს თქვენი ნამუშევრის გადამუშავების, ადაპტირებისა და მასზე დაყრდნობით ახლის შექმნის უფლებას კომერციული მიზნებისთვისაც კი, იმ პირობით, თუ ისინი მიგითითებენ როგორც ავტორს და ახალ ქმნილებებს იდენტური პირობებით გაალიცენზირებენ. ამ ლიცენზიას ხშირად ადარებენ „copyleft“ ტიპის, უფასო და ღია კოდის მქონე პროგრამული უზრუნველყოფის ლიცენზიებს. თქვენს ნამუშევარზე დაფუძნებულ ყველა ახალ ნამუშევარს ექნება იგივე ლიცენზია, შესაბამისად, ნებისმიერი წარმოებული ნამუშევრის კომერციული მიზნით გამოყენება ნებადართული იქნება. ამ ლიცენზიას იყენებს ვიკიპედია და რეკომენდებულია იმ მასალებისთვის, რომლებისთვისაც სასარგებლო იქნებოდა ვიკიპედიიდან ან მსგავსად ლიცენზირებული პროექტებიდან მასალის ჩართვა.</string>
+    <string name="license_description_no_license">თქვენ ინარჩუნებთ სრულ საავტორო უფლებას თქვენს მასალაზე, გარდა იმ უფლებებისა, რომლებიც მინიჭებული აქვს iNaturalist-ს ჩვენი მომსახურების პირობების მიხედვით.</string>
     <string name="invalid_photo">ფოტოს ფორმატი მხარდაჭერილი არ არის</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">შეთავაზებები ეფუძნება iNaturalist-ის თემის მიერ მოწოდებულ დაკვირვებებსა და იდენტიფიკაციებს, მათ შორის %1$s, %2$s, %3$s და მრავალი სხვისას.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">დაკვირვების ნაგულისხმევი ქმედება</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">ვარიანტების ჩვენება</string>
     <!-- Placeholder text for an observation field value -->
     <string name="field_value">ველის მნიშვნელობა</string>
     <string name="expand_annotation_to_agree_or_disagree">ანოტაციის გაშლა დასათანხმებლად ან უარსაყოფად</string>
@@ -996,7 +1173,7 @@
     <string name="go_to_my_location">ჩემს მიმდინარე ადგილმდებარეობაზე გადასვლა</string>
     <string name="change_geoprivacy">გეოკონფიდენციალურობის შეცვლა</string>
     <string name="active_filters">აქტიური ფილტრები</string>
-    <string name="message_is_flagged">შეტყობინება მონიშნულია</string>
+    <string name="message_is_flagged">შეტყობინება გასაჩივრებულია</string>
     <string name="user_is_muted">მომხმარებელი დადუმებულია</string>
     <string name="cancel_multiple_obs_selection">რამდენიმე დაკვირვების მონიშვნის გაუქმება</string>
     <string name="delete_observations">დაკვირვებების წაშლა</string>
@@ -1007,26 +1184,43 @@
     <string name="unknown_location">უცნობი ადგილმდებარეობა</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <string name="close">დახურვა</string>
+    <string name="set_date2">თარიღის დაყენება</string>
+    <string name="project_selected">პროექტი არჩეულია</string>
+    <string name="project_unselected">პროექტი არჩეული არაა</string>
+    <string name="show_my_observations">ჩემი დაკვირვებების ჩვენება</string>
+    <string name="play_pause_sound">ხმის დაკვრა ან დაპაუზება</string>
     <string name="view_image">სურათის ნახვა</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">შეფასებას გადის</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">დათანხმება, რომ შეფასებას გადის</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">შეფასებას არ გადის</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">არ დათანხმება, რომ შეფასებას გადის</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">%1$d მონიშნული დაკვირვების წაშლა</item>
+        <item quantity="other">%1$d მონიშნული დაკვირვების წაშლა</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">%1$d მონიშნული დაკვირვების სინქრონიზაცია</item>
+        <item quantity="other">%1$d მონიშნული დაკვირვების სინქრონიზაცია</item>
+    </plurals>
     <string name="add_media_evidence">მედია მტკიცებულების დამატება</string>
     <string name="remove_identification">იდენტიფიკაციის წაშლა</string>
     <string name="issue_with_updating_photos">ამ დაკვირვებაში ფოტოების განახლებისას იყო პრობლემა, რომელიც ახლახან გამოსწორდა. გთხოვთ, გამოხვიდეთ სისტემიდან და ხელახლა შეხვიდეთ ამ პრობლემის მოსაგვარებლად.</string>
     <string name="app_version_copied_to_clipboard">აპლიკაციის ვერსია დაკოპირებულია ბუფერში</string>
     <string name="authentication_failed">ავთენტიფიკაცია ვერ მოხერხდა</string>
-    <string name="please_try_again_soon">გთხოვთ, მალე ისევ სცადოთ.</string>
+    <string name="please_try_again_soon">გთხოვთ, ცოტა ხანში კვლავ სცადოთ.</string>
     <string name="verify_your_email">თქვენი ელფოსტის მისამართის დადასტურება</string>
     <string name="after_you_change_your_password">პაროლის შეცვლის შემდეგ, თქვენ გამოხვალთ სისტემიდან და ხელახლა მოგიწევთ შესვლა ახალი პაროლით. თქვენ ასევე გამოხვალთ iNaturalist-ის მობილური აპლიკაციებიდან და ნებისმიერი სხვა აპლიკაციიდან ან ვებსაიტიდან, რომლებიც თქვენი სახელით აქვეყნებენ iNaturalist-ზე, ამიტომ დარწმუნდით, რომ ატვირთული გაქვთ ყველა მომლოდინე დაკვირვება, სანამ ამას გააკეთებთ. ნებისმიერი დაკვირვება, რომელიც ატვირთული არ არის, დაიკარგება.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
-    <string name="couldnt_upload_file_too_large">ფაილის ატვირთვა ვერ მოხერხდა - 20მბ-ზე დიდია</string>
+    <string name="couldnt_upload_file_too_large">ფაილის ატვირთვა ვერ მოხერხდა — 20მბ-ზე დიდია</string>
     <string name="you_have_been_signed_out_please_sign_in_again">თქვენ გამოხვედით სისტემიდან. გთხოვთ, ხელახლა შეხვიდეთ.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">განცხადების დახურვა</string>
     <string name="import_photos_from">ფოტოების იმპორტი აქედან...</string>
-    <string name="cannot_find_default_camera">ფოტოების გადასაღებად ნაგულისხმევი კამერა ვერ მოიძებნა - გთხოვთ, დაუკავშირდეთ მხარდაჭერას</string>
+    <string name="cannot_find_default_camera">ფოტოების გადასაღებად ნაგულისხმევი კამერა ვერ მოიძებნა — გთხოვთ, დაუკავშირდეთ მხარდაჭერის სამსახურს</string>
     <string name="please_click_link_to_confirm_email">გთხოვთ, დააწკაპუნოთ ბმულზე თქვენს ელფოსტაში, რათა დაადასტუროთ თქვენი ელფოსტა iNaturalist-ზე.</string>
     <string name="click_to_resend_confirmation_email">დააწკაპუნეთ აქ დამადასტურებელი ელფოსტის ხელახლა გასაგზავნად.</string>
 </resources>
