@@ -1669,7 +1669,11 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 public void onMapClick(LatLng latLng) {
                     Intent intent = new Intent(getActivity(), LocationDetailsActivity.class);
                     intent.putExtra(LocationDetailsActivity.OBSERVATION, mObservation);
-                    intent.putExtra(LocationDetailsActivity.OBSERVATION_JSON, mObsJson);
+                    try {
+                        JSONObject minimalJson = ObservationUtils.getMinimalObservation(new JSONObject(mObsJson));
+                        intent.putExtra(LocationDetailsActivity.OBSERVATION_JSON, minimalJson.toString());
+                    } catch (JSONException e) {
+                    }
                     intent.putExtra(LocationDetailsActivity.READ_ONLY, true);
                     startActivity(intent);
                 }
@@ -3233,6 +3237,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         }
 
         mTaxonJson = taxon.toString();
+        mTaxon = taxon;
 
         Logger.tag(TAG).debug("downloadCommunityTaxon 2 - " + taxon.optInt("id"));
 
@@ -3244,6 +3249,17 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.optInt("id"));
         serviceIntent.putExtra(INaturalistService.ANCESTORS, new SerializableJSONArray(taxon.optJSONArray("ancestor_ids")));
         INaturalistService.callService(getActivity(), serviceIntent);
+
+        if (mObservation != null && mReadOnly) {
+            // Refresh the coummunity taxon in the UI after download is complete
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (getActivity() == null) return;
+                    loadObservationIntoUI();
+                }
+            });
+        }
     }
 
     private void reloadPhotos() {

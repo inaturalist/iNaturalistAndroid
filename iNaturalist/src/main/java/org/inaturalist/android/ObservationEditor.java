@@ -1816,7 +1816,12 @@ public class ObservationEditor extends Fragment {
             }
         }
 
+        // Stop listening for location updates while paused (e.g. user navigated to a
+        // subscreen), but remember that we were still refining the location so onResume/initUi
+        // can restart the updates - otherwise location refinement halts prematurely.
+        boolean wasGettingLocation = mGettingLocation;
         stopGetLocation();
+        mGettingLocation = wasGettingLocation;
         uiToProjectFieldValues();
         if (getActivity().isFinishing()) {
         	if (!mDeleted) {
@@ -1903,9 +1908,23 @@ public class ObservationEditor extends Fragment {
         if (!mChoseNewPhoto && !mChoseNewSound) {
             if (mGettingLocation) {
                 mLocationProgressView.setVisibility(View.VISIBLE);
-                mFindingCurrentLocation.setVisibility(View.VISIBLE);
-                mLocationRefreshButton.setVisibility(View.GONE);
                 mLocationIcon.setVisibility(View.GONE);
+
+                boolean hasExistingLocation =
+                        ((mObservation.latitude != null) && (mObservation.longitude != null))
+                        || ((mObservation.private_latitude != null) && (mObservation.private_longitude != null))
+                        || (mCurrentLocation != null);
+
+                if (hasExistingLocation) {
+                    // We already have a location (e.g. found before navigating to a subscreen) -
+                    // keep showing it while we refine in the background, matching handleNewLocation.
+                    mFindingCurrentLocation.setVisibility(View.GONE);
+                    mLocationRefreshButton.setVisibility(View.VISIBLE);
+                } else {
+                    // No location yet - show the "finding current location" indicator.
+                    mFindingCurrentLocation.setVisibility(View.VISIBLE);
+                    mLocationRefreshButton.setVisibility(View.GONE);
+                }
 
                 getLocation();
             }
@@ -2459,9 +2478,22 @@ public class ObservationEditor extends Fragment {
         }
 
         mLocationProgressView.setVisibility(View.VISIBLE);
-        mFindingCurrentLocation.setVisibility(View.VISIBLE);
-        mLocationRefreshButton.setVisibility(View.GONE);
         mLocationIcon.setVisibility(View.GONE);
+
+        boolean hasExistingLocation =
+                ((mObservation.latitude != null) && (mObservation.longitude != null))
+                || ((mObservation.private_latitude != null) && (mObservation.private_longitude != null))
+                || (mCurrentLocation != null);
+
+        if (hasExistingLocation) {
+            // We already have a location - keep showing it while we refine in the background.
+            mFindingCurrentLocation.setVisibility(View.GONE);
+            mLocationRefreshButton.setVisibility(View.VISIBLE);
+        } else {
+            // No location yet - show the "finding current location" indicator.
+            mFindingCurrentLocation.setVisibility(View.VISIBLE);
+            mLocationRefreshButton.setVisibility(View.GONE);
+        }
 
         mGettingLocation = true;
 
