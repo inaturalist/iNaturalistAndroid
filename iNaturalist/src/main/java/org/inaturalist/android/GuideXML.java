@@ -1,7 +1,6 @@
 package org.inaturalist.android;
 
 import android.content.Context;
-import android.util.Log;
 import android.util.Pair;
 
 import org.apache.commons.lang3.StringUtils;

@@ -1,11 +1,8 @@
 package org.inaturalist.android;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +26,6 @@ import com.evernote.android.state.State;
 
 import com.livefront.bridge.Bridge;
 import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.UCropFragment;
 
 import android.app.Activity;
 import android.content.ContentUris;
@@ -42,9 +38,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.LayoutParams;

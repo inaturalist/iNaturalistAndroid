@@ -7,6 +7,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
+
 import com.google.android.gms.maps.LocationSource;
 
 public class CustomLocationProvider implements LocationSource, LocationListener {

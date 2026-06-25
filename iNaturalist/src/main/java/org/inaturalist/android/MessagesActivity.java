@@ -14,8 +14,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,16 +29,12 @@ import com.evernote.android.state.State;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.livefront.bridge.Bridge;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 public class MessagesActivity extends BaseFragmentActivity implements MessageAdapter.MessageClickListener {

@@ -24,8 +24,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
-import android.util.Log;
-
 
 public class BetterJSONObject implements Serializable {
     public final static String TAG = "BetterJSONObject";

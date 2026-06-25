@@ -1,7 +1,5 @@
 package org.inaturalist.android;
 
-import android.graphics.drawable.Drawable;
-
 import androidx.annotation.DrawableRes;
 
 /** Represents a single license (e.g. CC-By-NC-SA) - loaded from license_types.xml by LicenseUtils class */

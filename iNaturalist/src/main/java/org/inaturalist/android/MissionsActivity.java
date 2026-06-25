@@ -10,7 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.core.content.ContextCompat;
+
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;

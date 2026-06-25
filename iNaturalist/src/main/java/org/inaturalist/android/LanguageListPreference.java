@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatCheckedTextView;
 import androidx.preference.ListPreference;
+
 import java.util.Arrays;
 
 /** Custom list preference for language selection - will disable all entries but the first one

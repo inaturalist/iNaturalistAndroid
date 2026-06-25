@@ -33,9 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 class PhotosViewPagerAdapter extends PagerAdapter {
     private static final String TAG = "PhotosViewPagerAdapter";
