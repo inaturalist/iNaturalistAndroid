@@ -245,7 +245,8 @@
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">చెందిన</string>
-    <string name="featured_projects_all_caps">ప్రత్యేకంగాఉంటాయి</string>
+    <string name="featured_projects_all_caps">
+ప్రత్యేకంగాఉంటాయి</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">చేరండి</string>
     <string name="species_all_caps">జాతులు</string>

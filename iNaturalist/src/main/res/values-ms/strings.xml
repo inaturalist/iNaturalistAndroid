@@ -3,7 +3,8 @@
     <string name="email_address">Alamat E-mel</string>
     <string name="species_guess_hint">Nama Spesis</string>
     <string name="ok">OK</string>
-    <string name="cancel">Batal</string>
+    <string name="cancel">Batal
+</string>
     <string name="loading">Memuatkan...</string>
     <string name="street">Jalan</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->

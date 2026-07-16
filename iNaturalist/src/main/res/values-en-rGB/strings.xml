@@ -1,175 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">ఇమెయిల్ చిరునామా</string>
-    <string name="delete_observation">వీక్షణను తీసివేయండి</string>
-    <string name="observation_deleted">వీక్షణను తీసివేయబడింది</string>
-    <string name="species_guess_hint">జాతుల పేరు</string>
-    <string name="ok">ఓకే</string>
-    <string name="cancel">రద్దుచేయండి</string>
-    <string name="loading">సన్నద్ధంచేస్తోంది...</string>
-    <string name="street">రహదారి</string>
+    <string name="email_address">Email address</string>
+    <string name="delete_observation">Delete observation</string>
+    <string name="observation_deleted">Observation deleted</string>
+    <string name="species_guess_hint">Species name</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="loading">Loading...</string>
+    <string name="street">Street</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">ఉపగ్రహ</string>
-    <string name="couldnt_load_nearby_observations">సమీపంలోని వీక్షణలను పూరించలేకపోయింది : %1$s</string>
-    <string name="signing_in">సైన్ ఇన్  చేస్తున్నా...</string>
-    <string name="go_to_settings">కలయికలకు వెళ్లండి</string>
-    <string name="set_date">తేదీ</string>
-    <string name="set_time">సమయం</string>
+    <string name="satellite">Satellite</string>
+    <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
+    <string name="username_invalid">Username or password was invalid, please sign in again.</string>
+    <string name="signing_in">Signing in...</string>
+    <string name="signed_in">Signed in!</string>
+    <string name="please_sign_in">Please sign in</string>
+    <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
+    <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
+    <string name="go_to_settings">Go to Settings</string>
+    <string name="photo_not_specified">Photo not specified</string>
+    <string name="set_date">Date</string>
+    <string name="set_time">Time</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">అయ్యో, ఏదో తప్పు జరిగింది:%1$s</string>
-    <string name="edit">సవరించు</string>
-    <string name="oh_no">అయ్యో లేదు! %1$s</string>
-    <string name="observations">నా వీక్షణలు</string>
-    <string name="map">భూపట</string>
-    <string name="settings">కలయికలు</string>
-    <string name="projects">ప్రొజెక్షన్లు</string>
-    <string name="delete_photo">చిత్రాన్ని తీసివేయండి</string>
-    <string name="my_location">నా స్థాన</string>
-    <string name="nearby_observations">సమీపంలోని వీక్షణలు</string>
-    <string name="add">జోడించు</string>
-    <string name="view_on_inat">iNaturalist.org లో చూడండి</string>
-    <string name="reload">రీఫిల్ చేయండి</string>
-    <string name="view_in_browser">బ్రౌజర్‌లో వీక్షించండి</string>
-    <string name="add_observation">వీక్షణలను జోడించండి</string>
-    <string name="take_picture">చిత్రాన్ని తీసుకోండి</string>
-    <string name="save">సేవ్</string>
-    <string name="no_observations_yet">ఇంకా వీక్షణలు లేవు!</string>
-    <string name="or">లేదా</string>
-    <string name="signed_out">సిఘ్నౌట్ అవుతాయి</string>
-    <string name="username">వినియోగదారు పేరు</string>
-    <string name="password">గుప్తా పదము</string>
-    <string name="unknown">అపరిచిత</string>
-    <string name="unknown_species">అపరిచిత జాతుల</string>
-    <string name="edit_observation">వీక్షణను సవరించండి</string>
-    <string name="yes">అవును</string>
-    <string name="no">లేదు</string>
+    <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
+    <string name="edit">Edit</string>
+    <string name="oh_no">Oh no! %1$s</string>
+    <string name="observations">My Observations</string>
+    <string name="map">Map</string>
+    <string name="settings">Settings</string>
+    <string name="projects">Projects</string>
+    <string name="delete_photo">Delete photo</string>
+    <string name="my_location">My Location</string>
+    <string name="nearby_observations">Nearby Observations</string>
+    <string name="add">Add</string>
+    <string name="view_on_inat">View on iNaturalist.org</string>
+    <string name="reload">Reload</string>
+    <string name="view_in_browser">View in browser</string>
+    <string name="add_observation">Add observation</string>
+    <string name="take_picture">Take picture</string>
+    <string name="save">Save</string>
+    <string name="no_observations_yet">No observations yet!</string>
+    <string name="or">or</string>
+    <string name="signed_out">Sign out</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="unknown">Unknown</string>
+    <string name="unknown_species">Unknown species</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">సమ్మతించు?</string>
-    <string name="enter_taxon_name">జాతుల పేరు</string>
-    <string name="joined_projects">చేర్చబడ్డాయి</string>
-    <string name="nearby_projects">సమీపంలో</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
-    <string name="featured_projects">ప్రత్యేకమైనవి</string>
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="join">చేరండి</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
-    <string name="search_projects">ప్రాజెక్ట్‌లను కనుగొనండి..</string>
-    <string name="search_guides">మాన్యువల్‌లను కనుగొనండి...</string>
-    <string name="save_observation">వీక్షణను సేవ్ చేయండి</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">గురించి</string>
-    <string name="about_guide_all_caps">గురించి</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">పరిచయ</string>
-    <string name="about_project_all_caps">గురించి</string>
-    <string name="about_this_app">పరిచయ</string>
-    <string name="about_taxon_short">గురించి</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">భూమి గోప్యత</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">భూమి గోప్యత %1$s</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="guides">మాన్యువల్లు</string>
-    <string name="nearby_guides">సమీపంలో</string>
-    <string name="all_guides">అన్ని</string>
-    <string name="search_taxa">జాతులను కనుగొనండి...</string>
-    <string name="use_device_language_settings">పరికర భాష కలయికలను ఉపయోగించండి</string>
-    <string name="choose_location">స్థానాన్ని ఎంచుకోండి</string>
-    <string name="done">సుభిక్షంగా ఉంది</string>
-    <string name="edit_location">స్థానాన్ని సవరించండి</string>
-    <string name="edit_locality_notes">స్థాన గమనికలను సవరించండి</string>
-    <string name="sync_observations">వీక్షణలు సింక్ చేయండి</string>
-    <string name="view_nearby_observations">సమీప వీక్షణలను వీక్షించండి</string>
+    <string name="nearby_guides">Nearby</string>
+    <string name="all_guides">All</string>
+    <string name="no_taxa">No taxa found for this guide!</string>
+    <string name="search_taxa">Search taxa...</string>
+    <string name="no_internet_guides">Guides require an Internet connection</string>
+    <string name="no_internet_projects">Projects require an Internet connection</string>
+    <string name="locale_gl">Galician</string>
+    <string name="locale_eu">Basque</string>
+    <string name="use_device_language_settings">Use device language settings</string>
+    <string name="choose_location">Choose Location</string>
+    <string name="done">Done</string>
+    <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
+    <string name="contact_support">Contact Support</string>
+    <string name="leave_project">Leave Project</string>
+    <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
+    <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
+    <string name="edit_location">Edit Location</string>
+    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="get_current_location">Get current location</string>
+    <string name="pull_to_refresh">Pull to refresh...</string>
+    <string name="release_to_refresh">Release to refresh...</string>
+    <string name="refreshing">Refreshing...</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sync %1$d observation</item>
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
+    <string name="sync_observations">Sync Observations</string>
+    <string name="lets_get_started">Let\'s get started!</string>
+    <string name="view_nearby_observations">View Nearby Observations</string>
+    <string name="skip_for_now">Skip for Now</string>
+    <string-array name="tutorial_titles">
+        <item></item>
+        <item>Observe</item>
+        <item>Share</item>
+        <item>Learn</item>
+        <item>Contribute</item>
+    </string-array>
+    <string-array name="tutorial_descriptions">
+        <item>Explore and Connect with Nature</item>
+        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
+        <item>Share your observation with the iNaturalist community.</item>
+        <item>Check back for comments and identifications on your observation!</item>
+        <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
+    </string-array>
     <string-array name="geoprivacy_items">
         <item>Open</item>
-        <item>అస్పష్టంగా</item>
+        <item>Obscured</item>
         <item>Private</item>
     </string-array>
+    <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
+    <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">అన్వేషించు</string>
-    <string name="search">వెతకండి</string>
-    <string name="details">వివరాలు</string>
+    <string name="explore">Explore</string>
+    <string name="restricted_to_current_map_area">Restricted to current map area</string>
+    <string name="search">Search</string>
+    <string name="details">Details</string>
+    <string name="observation_photos">Observation Photos</string>
+    <string name="no_observations_found">No observations found</string>
+    <string name="license_none">None, all rights reserved</string>
+    <string name="sources_and_attribution">Sources and Attribution</string>
+    <string name="photos"><![CDATA[<b>Photos:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
-    <string name="editor">సంపాదకుడు</string>
-    <string name="downloading">డౌన్‌లోడ్ చేస్తోంది...</string>
-    <string name="downloaded">డౌన్‌లోడ్ చేయబడింది</string>
-    <string name="send_email">ఇమెయిల్ పంపండి</string>
-    <string name="email">ఇమెయిల్</string>
-    <string name="log_in">లాగిన్ అవుతాయి</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <!-- Title of the view used to sign up for a new account -->
     <!-- Try to keep this about the length of the English text -->
-    <string name="username_or_email">వినియోగదారు పేరు లేదా ఇమెయిల్</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <!-- Label for a button to import an existing photo for an observation -->
-    <string name="upload_photo">చిత్రాన్ని ఎంచుకోండి</string>
-    <string name="notes">గమనికలు</string>
-    <string name="is_captive">ఇది బందీ లేదా పెంపుడు జంతువు</string>
-    <string name="location_visibility">స్థాన దృశ్యమానత</string>
-    <string name="set_location">స్థాన</string>
-    <string name="research_grade">పరిశోధన గ్రేడ్</string>
-    <string name="comment_title">%1$s • %2$s</string>
-    <string name="delete">తొలగించు</string>
-    <string name="delete_comment">అభిప్రాయ తొలగించు</string>
-    <string name="location">స్థాన</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <!--  Label for a button to add an observation without a photo or a sound  -->
-    <string name="view_on_wikipedia">వికీపీడియా వ్యాసాలు</string>
-    <string name="no_location">స్థాన లేదు</string>
-    <string name="name">పేరు</string>
-    <string name="view_profile">పరిచయం  వీక్షించండి</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="language">భాష</string>
-    <string name="search_observations">వీక్షణలు కనుగొనండి...</string>
     <!-- Dialog title for when you are updating the description of an identification -->
-    <string name="birds">పక్షులు</string>
-    <string name="ok_got_it">సరే, నాకు అది అర్థమైంది</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="view_suggestions">చిట్కాలను వీక్షించండి</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">అగ్ర చిట్కాలు</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">RG</string>
-    <string name="taxon_search_hint">ఉదా. పక్షులు, మోనార్క్</string>
-    <string name="location_search_hint">ఉదా. పట్టణం, రాష్ట్రం, ఉద్యానవనం, దేశం...</string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
-    <string name="state">రాష్ట్రము</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
-    <string name="miscellaneous">ఇతరు</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
-    <string name="historical_state">చారిత్రక రాష్ట్రం</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
-    <string name="historical_county">చారిత్రక దేశం</string>
-    <string name="estate">ఎస్టేట్</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <!-- Indonesian sub-sub-national place type -->
-    <string name="regency">రీజెంట్ పాలన</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">ఏదైనా</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">కు</string>
-    <string name="months">నెలల</string>
-    <string name="choose_months">నెల(లు)ను ఎంచుకోండి.</string>
-    <string name="map_area">భూపట ప్రాంత</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">భూపట ప్రాంతాన్ని వెతకండి</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
@@ -183,27 +170,19 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="just_so_you_know">మీకు తెలుసా, అలాగే...</string>
-    <string name="project_species">జాతులు</string>
     <!-- People who added identifications to observations in a project -->
-    <string name="got_it">అర్థమైంది</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">విలువ</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">అంగీకరించలేదు</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
     <!-- Used when filtering observations with annotations -->
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
     <!-- Annotation value for when no annotation has been chosen -->
     <!-- Phenological state of flowers on a plant -->
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">జీవ దశ</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">లింగం</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
-    <string name="annotation_name_evidence_of_presence">ఉనికిని రుజువు</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
     <!-- Adjective, having open flowers -->
@@ -211,29 +190,21 @@
     <!-- Adjective, having unopened flowers -->
     <!-- Observation presents no evidence of flowering phenology -->
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">వయోజనురాలు</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
     <!-- Noun for the arthropod life stage between egg and adult -->
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">యువకుడు</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <!-- Adjective, alive and shows no signs of imminent death -->
     <!-- Adjective, dead or shows signs of imminent death -->
     <!-- Value for when the value of the attribute cannot be determined -->
     <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">జీవి</string>
     <!-- "Evidence of Presence" value when for bird feathers -->
-    <string name="annotation_value_feather">ఈక</string>
     <!-- "Evidence of Presence" value when for fecal remains -->
-    <string name="annotation_value_scat">మలం</string>
     <!-- "Evidence of Presence" value for impressions in the ground or snow -->
-    <string name="annotation_value_track">పాదముద్ర</string>
     <!-- "Evidence of Presence" value when for bones -->
-    <string name="annotation_value_bone">ఎముక</string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
-    <string name="annotation_value_molt">వదిలించుకొను</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
@@ -244,26 +215,12 @@
     <!-- "Leaves" value when there are no living leaves -->
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">చెందిన</string>
-    <string name="featured_projects_all_caps">
-ప్రత్యేకంగాఉంటాయి</string>
     <!-- Text for a button or label that allows someone to join a project -->
-    <string name="join_all_caps">చేరండి</string>
-    <string name="species_all_caps">జాతులు</string>
-    <string name="got_it_all_caps">అర్థమైంది</string>
-    <string name="view_all_all_caps">అన్నీ చూడండి</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
-    <string name="record_sound">ధ్వని ముద్రణ</string>
     <!-- Label for a button to import an existing sound for an observation -->
-    <string name="upload_sound">ధ్వనులు ఎంచుకోండి</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="send_debug_logs_by_email">ఇమెయిల్ ద్వారా డీబగ్ లాగ్‌లను పంపండి (షెడ్యూల్ చేసిన ప్రారంభ తేదీ నుండి)</string>
-    <string name="debug_settings">డీబగ్ కలయికలు</string>
-    <string name="choose_pinned_location">పిన్ చేయబడిన స్థానాలు ఎంచుకోండి</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
-    <string name="duplicate">కాపీ</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_photo">ఫోటోలను కాపీ చేయడం సాధ్యపడలేదు!</string>
     <!-- Verb, as in "Rotate this photo" -->
     <!-- Verb, as in "Scale (resize) this photo" -->
     <!-- Verb, as in "Crop this photo" -->
@@ -273,7 +230,6 @@
     <!-- Label for adjusting the sharpness of an image -->
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">ఉచితం</string>
     <!-- Verb phrase, button label to edit an observation photo -->
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
     <!-- Second person hint text asking the user to enter their username -->
@@ -284,13 +240,9 @@
     <!-- Description of a UI element for screen readers -->
     <!-- Description of a UI element for screen readers -->
     <!-- Description of a UI element for screen readers -->
-    <string name="sorry">క్షమిం</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <!-- Singular -->
-    <string name="rank_species">జాతి</string>
-    <string name="rank_hybrid">సంకరతళి</string>
     <!-- Singular -->
-    <string name="rank_subspecies">ఉపజాతులు</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <!-- Short date formatting template for dates in the current year. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Short date formatting template for any date. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -299,22 +251,7 @@
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="email_must_look_like_email_address">ఇమెయిల్ తప్పనిసరిగా ఇమెయిల్ చిరునామా వలె కనిపిస్తుంది</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
-    <string name="only_view_nearby_suggestions">సమీపంలోని చిట్కాలు మాత్రమే వీక్షించండి</string>
-    <string name="pretty_sure_kingdom">ఇది ఈ సామ్రాజ్యంలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_subkingdom">ఇది ఈ ఉపసామ్రాజ్యంలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_phylum">ఇది ఈ వంశంలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_subphylum">ఇది ఈ ఉపవంశంలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_superclass">ఇది ఈ ఎగువ తరగతిలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_class">ఇది ఈ తరగతిలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_subclass">ఇది ఈ ఉపతరగతిలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_infraclass">ఇది ఈ మీ తరగతిలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_superorder">ఇది ఈ ఔన్నగణలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_order">ఇది ఈ గణలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_suborder">ఇది ఈ ఉపగణలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_infraorder">ఇది ఈ మీ గణలో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
-    <string name="pretty_sure_genus">ఇది ఈ కులములో ఉందని మాకు ఖచ్చితంగా తెలుసు:</string>
     <!-- Singular -->
     <!-- Singular -->
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
@@ -322,14 +259,6 @@
     <!-- Accessibility text for the faves tab on the observation detail view -->
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
-    <string name="no_observations_yet2">వీక్షణలు ఏవీ కనుగొనబడలేదు</string>
-    <string-array name="explore_order_by_items">
-        <item>జోడించారు తేదీ</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
-        <!--<item>Faves</item>-->
-        <item>Random</item>
-    </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
     <!-- Label for an observation search filter to exclude your own observations -->
@@ -348,7 +277,6 @@
     <!-- Preference to control what tapping on the action button does on My Observations -->
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <!-- Placeholder text for an observation field value -->
-    <string name="change_geoprivacy">స్థాన గోప్యతను మార్చండి</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->

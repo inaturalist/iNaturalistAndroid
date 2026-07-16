@@ -744,7 +744,8 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar Son</string>
-    <string name="couldnt_retrieve_sound">Non se puideron recuperar sons da gravadora predeterminada - No canto, tenta importar os sons</string>
+    <string name="couldnt_retrieve_sound">Non se puideron recuperar sons da gravadora predeterminada - No canto, tenta importar os sons
+</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Escoller Son</string>
     <string name="multi_select_sound_description">Importar múltiples sons presionando un momento nunha soa foto</string>

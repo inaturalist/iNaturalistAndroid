@@ -421,7 +421,8 @@
     <string name="conservation_status_near_threatened">Блізкі да пагрозлівага</string>
     <string name="conservation_status_vulnerable">Уразлівы</string>
     <string name="conservation_status_endangered">Пад пагрозай знікнення</string>
-    <string name="conservation_status_critically_endangered">На мяжы знікнення</string>
+    <string name="conservation_status_critically_endangered">
+На мяжы знікнення</string>
     <string name="conservation_status_extinct_in_the_wild">Зніклы у дзікай прыродзе</string>
     <string name="conservation_status_extinct">Вымерлы</string>
     <string name="map_of_observations">Мапа назіранняў</string>
