@@ -506,7 +506,8 @@
     <string name="village_block">หมู่บ้านจัดสรร</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <string name="sum">ผลรวม</string>
-    <string name="shire">มณฑล</string>
+    <string name="shire">มณฑล
+</string>
     <string name="prefecture_city">จังหวัดเมือง</string>
     <!-- Indonesian sub-sub-national place type -->
     <string name="regency">เขต (รีเจนซี่)</string>

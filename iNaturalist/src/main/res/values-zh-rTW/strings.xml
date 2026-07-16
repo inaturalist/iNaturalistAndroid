@@ -836,7 +836,8 @@
     <string name="do_not_collect_third_party_data">不要使用第三方服務來收集穩定性和使用資料分析</string>
     <string name="enabled">已啟用</string>
     <string name="disabled">已停用</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[我們使用不同的第三方服務來監測我們軟體的穩定性與診斷臭蟲和問題。這些第三方服務包含：<br/><ul><li>Google<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[我們使用不同的第三方服務來監測我們軟體的穩定性與診斷臭蟲和問題。這些第三方服務包含：<br/><ul><li>Google<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>
+]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[我們分享給這些第三方服務的資訊包含：<br/><ul><li>IP 位址 (可使用位置解析至城市等級。而且追蹤您在不同網站與服務間；注意：我們在 Google Analytics 中使用<a href="https://support.google.com/analytics/answer/2763052">IP 匿名化</a>與<a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a>，就我們的認知而言不會記錄 IP 位址)</li><li>瀏覽器細節，像是製造商、型號和版本</li><li>當機資訊，像是哪一行的程式碼導致當掉</li><li>裝置細節，像是手機的製造商和型號</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>這些第三方服務提供給我們龐大的價值</b>讓相對小型的工作團隊能維持 iNaturalist 的穩定性和可用性。在行動裝置上，由於該軟體在我們無法控制的裝置上運行，因此幾乎沒有其他方法可深入了解所發生的問題。有時候我們甚至沒有察覺到這類的問題發生，直到我們在這些服務中所提供的資料中看到問題。<b>透過分享此資訊，您正在協助我們為您還有整個 iNaturalist 社群服務。</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[請注意，此選項僅適用於我們明確傳送給這些公司的分析和當機資訊。 所有 iNaturalist 伺服器均由微軟公司提供和託管，iNaturalist 上全部的照片均由 Amazon 託管，而幾乎所有iNaturalist 的地圖均由 Google 提供，這意味著，每次查看 iNaturalist 的觀察紀錄時，您都將連接到這些公司所提供的服務， 至少要向他們公開您的 IP 位址 (在iPhone app 中，我們使用 Apple 的地圖)。 若沒有這些公司提供的服務，iNaturalist 可能不會存在，儘管我們可以限制使用 iNat 時與他們共享的資料量和種類，但我們無法完全停止相關的資料流。]]></string>

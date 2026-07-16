@@ -321,7 +321,9 @@
     <string name="withdraw">Rút</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Cập nhật mô tả nhận dạng</string>
-    <string name="onboarding_species_name">Đặt tên cho những gì bạn đã thấy nếu bạn có thể, ngay cả khi đó chỉ là \"côn trùng\" hoặc \"chim\" hoặc chỉ để trống. Những người khác có thể giúp bạn xác định nó!</string>
+    <string name="onboarding_species_name">Đặt tên cho những gì bạn đã thấy nếu bạn có thể, ngay cả khi đó chỉ là \"côn trùng\" hoặc \"chim\" hoặc chỉ để trống. Những người khác có thể giúp bạn xác định nó!
+
+</string>
     <string name="upload_complete">Tải lên thành công!</string>
     <string name="onboarding_upload_description">Quay lại sau để xem danh tính và nhận xét về (các) quan sát của bạn.</string>
     <string name="importing_photos">Đang nhập ảnh...</string>
@@ -472,7 +474,9 @@
     <string name="shire">Huyện</string>
     <string name="prefecture_city">Thành phố tỉnh</string>
     <!-- Indonesian sub-sub-national place type -->
-    <string name="local_authority">Chính quyền địa phương</string>
+    <string name="local_authority">Chính quyền địa phương
+
+</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="apply_filters">Áp dụng bộ lọc</string>
@@ -530,7 +534,9 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits_networks_pre"><![CDATA[Mạng iNaturalist quốc tế hỗ trợ các trang web dựa trên iNaturalist ở địa phương được hợp nhất đầy đủ, ở các quốc gia sau, nhờ sự hỗ trợ của các tổ chức đối tác liên kết.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Mạng iNaturalist quốc tế hỗ trợ các trang web dựa trên iNaturalist ở địa phương được hợp nhất đầy đủ, ở các quốc gia sau, nhờ sự hỗ trợ của các tổ chức đối tác liên kết.
+
+]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist cũng chân thành cảm ơn các nhà phát triển mã nguồn mở đã cung cấp rất nhiều phần mềm cho chúng tôi để sử dụng hàng ngày. Xem <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>để biết thêm các đóng góp nguồn mở.<br/>Chúng tôi rất biết ơn sự hỗ trợ  trong dịch thuật của các tình nguyện viên trong cộng đồng crowdin.com, đặc biệt là Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>Các địa điểm thuộc loại II của IUCN do IUCN và UNEP-WCMC cung cấp (2015), Cơ sở Dữ liệu Thế giới về các khu bảo tồn (WDPA)[On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Thông tin có tại: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Những người đóng góp</string>
     <string name="password_changed">Mật khẩu sử dụng không còn hoạt động - bạn đã thay đổi mật khẩu của mình trên trang web? Vui lòng nhập mật khẩu mới ở đây</string>
@@ -694,8 +700,12 @@
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f giây</string>
     <string name="clear_all_debug_logs">Xóa tất cả nhật ký gỡ lỗi</string>
-    <string name="clears_up_storage_room_on_your_phone">Xóa dung lượng lưu trữ trên điện thoại của bạn</string>
-    <string name="number_of_days_to_store_logs">Số ngày để lưu trữ nhật ký</string>
+    <string name="clears_up_storage_room_on_your_phone">Xóa dung lượng lưu trữ trên điện thoại của bạn
+
+</string>
+    <string name="number_of_days_to_store_logs">Số ngày để lưu trữ nhật ký
+
+</string>
     <string name="send_debug_logs_from_start_date">Gửi nhật ký gỡ lỗi từ ngày được bắt đầu</string>
     <string name="send_debug_logs_by_email">Gửi nhật ký gỡ lỗi qua email (từ ngày bắt đầu cụ thể)</string>
     <string name="debug_settings">Cài đặt gỡ lỗi</string>
@@ -892,7 +902,8 @@ Các bên thứ ba này bao gồm: <br/><ul><li>Google (<a href="https://analyti
     <string name="are_you_sure_you_want_to_remove_location">Bạn có chắc muốn xóa bỏ địa điểm?</string>
     <string name="share_location">Chia sẻ địa điểm</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">Không thể tạo bản sao âm thanh!</string>
+    <string name="couldnt_duplicate_sound">Không thể tạo bản sao âm thanh!
+</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <!-- Accessibility text for the faves tab on the observation detail view -->
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
