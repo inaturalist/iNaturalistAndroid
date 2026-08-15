@@ -322,7 +322,7 @@
     <string name="not_logged_in">ログインしていません</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">ログインまたは新規登録</string>
-    <string name="auto_upload_description">新しい観察記録を自動アップロードして、観察記録の編集</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">新しい観察記録を自動アップロードして、観察記録の編集</string>
     <string name="language">言語</string>
     <string name="version">バージョン</string>
     <string name="inat_network">iNaturalistネットワーク</string>

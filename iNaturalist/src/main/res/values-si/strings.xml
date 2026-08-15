@@ -312,7 +312,7 @@
     <string name="log_out">ඉවත් වෙන්න</string>
     <string name="not_logged_in">ඇතුල් වී නොමැත</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="auto_upload_description">නව නිරීක්ෂණයන් සහ නිරීක්ෂණ සඳහා සංස්කරණයන් ස්වයංක්‍රීයව උඩුගත කරන්න</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">නව නිරීක්ෂණයන් සහ නිරීක්ෂණ සඳහා සංස්කරණයන් ස්වයංක්‍රීයව උඩුගත කරන්න</string>
     <string name="language">භාෂාව</string>
     <string name="version">අනුවාදය</string>
     <string name="inat_network">iNaturalist ජාලය</string>

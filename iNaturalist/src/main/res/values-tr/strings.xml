@@ -85,7 +85,8 @@
     <string name="about_this_app">Hakkında</string>
     <string name="about_taxon_short">Hakkında</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Coğrafi gizlilik</string>
+    <string name="geoprivacy">Coğrafi gizlilik
+</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Coğrafi Gizlilik: %1$s</string>
     <string name="delete_confirmation">Bu gözlemi silmek istediğinden emin misin?</string>
@@ -324,7 +325,7 @@
     <string name="not_logged_in">Giriş yapılmadı</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Oturum Aç veya Kaydol</string>
-    <string name="auto_upload_description">Yeni gözlemleri ve gözlem düzenlemerini otomatik yükle</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Yeni gözlemleri ve gözlem düzenlemerini otomatik yükle</string>
     <string name="language">Dil</string>
     <string name="version">Sürüm</string>
     <string name="inat_network">iNaturalist Ağı</string>

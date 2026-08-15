@@ -303,7 +303,7 @@
     <string name="not_logged_in">ಲಾಗಿನ್‌ ಆಗಿಲ್ಲ</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">ಲಾಗಿನ್ ಆಗಿ ಅಥವಾ ನೋಂದಾಯಿಸಿ</string>
-    <string name="auto_upload_description">ಹೊಸ ವೀಕ್ಷಣೆಗಳನ್ನು ಸ್ವಯಂ-ಅಪ್ಲೋಡ್ ಮಾಡಿ ಮತ್ತು ಮೆಕ್ಸಿಕೋನಲ್ಲಿ ಸಂಪಾದಿಸಿ</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">ಹೊಸ ವೀಕ್ಷಣೆಗಳನ್ನು ಸ್ವಯಂ-ಅಪ್ಲೋಡ್ ಮಾಡಿ ಮತ್ತು ಮೆಕ್ಸಿಕೋನಲ್ಲಿ ಸಂಪಾದಿಸಿ</string>
     <string name="language">ಭಾಷೆ</string>
     <string name="version">ಆವೃತ್ತಿ</string>
     <string name="inat_network">iNaturalist ಜಾಲ</string>
@@ -698,8 +698,10 @@
     <string name="network_credit_inaturalistil"><![CDATA[ಇಸ್ರೇಲ್: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[ಫಿನ್ಲೆಂಡ್: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[ಚಿಲಿ: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[ಗ್ರೀಸ್: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[ಲಕ್ಸಂಬರ್ಗ್: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[ಗ್ರೀಸ್: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)
+]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[ಲಕ್ಸಂಬರ್ಗ್: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)
+]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[ಯುನೈಟೆಡ್ ಕಿಂಗ್ಡಂ: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistcr"><![CDATA[ಕೊಸ್ಟರಿಕಾ: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[ಗ್ವಾಟೆಮಾಲಾ:Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>

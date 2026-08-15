@@ -321,7 +321,7 @@
     <string name="not_logged_in">Nem vagy bejelentkezve</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Bejelentkezés vagy regisztráció</string>
-    <string name="auto_upload_description">Új megfigyelések és meglévők módosításainak automatikus feltöltése </string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Új megfigyelések és meglévők módosításainak automatikus feltöltése </string>
     <string name="language">Nyelv</string>
     <string name="version">Verzió</string>
     <string name="inat_network">iNaturalist Network</string>
