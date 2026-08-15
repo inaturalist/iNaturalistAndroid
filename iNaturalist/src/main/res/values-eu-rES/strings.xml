@@ -103,7 +103,10 @@
     <string name="use_device_language_settings">Terminaleko hizkuntza aukerak erabili itzazu</string>
     <string name="choose_location">Aukeratu kokapena</string>
     <string name="done">Eginda</string>
-    <string name="please_sign_in_via_settings">Saioa hasita izan behar duzu parte hartu duzun proiektuak ikusteko.</string>
+    <string name="please_sign_in_via_settings">
+Saioa hasita izan behar duzu parte hartu duzun proiektuak ikusteko.
+
+</string>
     <string name="contact_support">Laguntzarekin kontaktatu</string>
     <string name="leave_project">Proiektutik irten</string>
     <string name="leave_project_confirmation">Ziur zaude proiektu honetatik irten nahi duzula?</string>
@@ -142,7 +145,9 @@
         <item>Private</item>
     </string-array>
     <string name="alert_sign_out">Ziur zaude kontua ezabatu nahi duzula? Behahketa guztiak ezabatuko dira gailu honetan. Ez du eraginik izango iNaturalisten egindako behaketetan.</string>
-    <string name="alert_unsupported_media_type">Barkatu, baina iturri honetatik argazkia kargatzeko arazo bat dago.</string>
+    <string name="alert_unsupported_media_type">
+
+Barkatu, baina iturri honetatik argazkia kargatzeko arazo bat dago.</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Esploratu</string>
     <string name="restricted_to_current_map_area">Oraingo mapa-eremura mugatuta</string>
@@ -239,7 +244,8 @@
     <string name="turn_on">Aktibatu</string>
     <string name="introducing_auto_sync">Sinkronizazio automatikoa aurezten!</string>
     <string name="turn_on_auto_sync">Piztu Auto-Sync ezarpenetan eta zure behaketak automatikoki igoko dira iNaturalistera.</string>
-    <string name="automatic_upload">Igoera automatikoa (Auto-Sync)</string>
+    <string name="automatic_upload">
+Igoera automatikoa (Auto-Sync)</string>
     <string name="waiting_to_upload">Igotzeko zain...</string>
     <string name="uploading">Igotzen...</string>
     <string name="failed_to_add_to_project">Huts egin du proiektura gehitzerakoan \'%1$s\': %2$s</string>
@@ -324,11 +330,12 @@
     <string name="not_logged_in">Ez da saioa hasi</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Saioa hasi edo izena eman</string>
-    <string name="auto_upload_description"> Automatikoki igo behaketa berriak eta aldaketak behaketetara</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited"> Automatikoki igo behaketa berriak eta aldaketak behaketetara</string>
     <string name="language">Hizkuntza</string>
     <string name="version">Bertsioa</string>
     <string name="inat_network">iNaturalisteko sarea</string>
-    <string name="inat_network_description">iNaturalista Sarea iNaturalist komunitatea kokatzeko esparrua da. Sareko guneek tokiko erakundeen babesa dute, iNaturalistarekin akordio bat sinatu baitute tokiko erabilera sustatzeko eta tokiko biodibertsitateari mesede egiteko.</string>
+    <string name="inat_network_description">iNaturalista Sarea iNaturalist komunitatea kokatzeko esparrua da. Sareko guneek tokiko erakundeen babesa dute, iNaturalistarekin akordio bat sinatu baitute tokiko erabilera sustatzeko eta tokiko biodibertsitateari mesede egiteko.
+</string>
     <string name="more_info">Informazio gehiago</string>
     <string name="select_network">Hautatu sareko afiliazioa</string>
     <string name="help">Laguntza</string>
@@ -389,7 +396,9 @@
     <string name="user_activity_id"><![CDATA[<b>%1$s</b>-(e)k IDa proposatu du: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b>-(e)k komentatu du: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_mention"><![CDATA[<b>%1$s</b>-(e)k aipatu zaitu: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="deleted_photos_from_cache_error">Badirudi, kargatu aurretik, argazki bat ezabatu duzula aplikazioaren cache memoria ezabatzean. Argazkia berriro erantsi beharko diozu zure behaketari zure galeriatik. Etorkizunean, ziurtatu zure argazki guztiak kargatu izana aplikazioaren cache memoria ezabatu aurretik.</string>
+    <string name="deleted_photos_from_cache_error">Badirudi, kargatu aurretik, argazki bat ezabatu duzula aplikazioaren cache memoria ezabatzean. Argazkia berriro erantsi beharko diozu zure behaketari zure galeriatik. Etorkizunean, ziurtatu zure argazki guztiak kargatu izana aplikazioaren cache memoria ezabatu aurretik.
+
+</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
@@ -569,7 +578,8 @@
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Ez, baina <b>%1$s</b>-eko kidea da.]]></string>
     <string name="submit">Bidali</string>
     <string name="change_password">Aldatu pasahitza</string>
-    <string name="search_projects_youve_joined">Bat egin duzun proiektuak bilatu...</string>
+    <string name="search_projects_youve_joined">Bat egin duzun proiektuak bilatu...
+</string>
     <string name="must_be_connected_to_load_more_obs">Behaketa gehiago kargatzeko internetera konektatuta egon behar duzu</string>
     <string name="inat_about_title_new">iNaturalist Estatu Batuetan (EIN 92-1296468) egoitza duen irabazi-asmorik gabeko 501(c)(3) erakunde independentea da.</string>
     <!--
@@ -584,7 +594,8 @@
     <string name="credits_title">Kredituak</string>
     <string name="password_changed">Aplikazioak erabiltzen duen pasahitzak ez du funtzionatzen - webgunetik aldatu al duzu? Mesedez, sartu hemen berria.</string>
     <string name="just_so_you_know">Beraz, badakizu...</string>
-    <string name="ask_for_g_plus_permissions">Googlek zure kontaktuetarako sarbidea eskatzen digu, zure Google kontua erabili ahal izateko, nahiz eta gu ez garen zure kontaktuetara inoiz sartuko, arrazoia edozein delarik ere. Baimen hori ukatzen baduzu, erregistratu edo saioa hasi beharko duzu erabiltzaile-izen eta pasahitz batekin.</string>
+    <string name="ask_for_g_plus_permissions">Googlek zure kontaktuetarako sarbidea eskatzen digu, zure Google kontua erabili ahal izateko, nahiz eta gu ez garen zure kontaktuetara inoiz sartuko, arrazoia edozein delarik ere. Baimen hori ukatzen baduzu, erregistratu edo saioa hasi beharko duzu erabiltzaile-izen eta pasahitz batekin.
+</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[Berria %1$s? <b>Eman izena orain!</b>]]></string>
     <string name="see_more_observations">Behaketa gehiago ikusi</string>
     <string name="see_more_species">Espezie gehiago ikusi</string>
@@ -727,7 +738,8 @@
     <string name="community_id_at_species_level_or_lower">Komunitateak espezie maila edo baxuagoan identifikatua</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Frogetan oinarrituta, oraindik ere baieztatu edo hobetu al daiteke Komunitatearen IDa?</string>
     <string name="no_as_good_as_it_can_be">Ez, ezin da hobetu</string>
-    <string name="evidence_related_to_single_subject">Gai bakarrari lotutako frogak</string>
+    <string name="evidence_related_to_single_subject">Gai bakarrari lotutako frogak
+</string>
     <string name="seasonality">Urtarokotasuna</string>
     <string name="verifiable">Egiaztagarria</string>
     <string name="no_annotation">Oharrik ez</string>
@@ -775,7 +787,9 @@
     <string name="invalid_audio_extension">Errore bat gertatu da soinuak inportatzean: WAV/MP3/AMR luzapenak dituzten soinu-fitxategiak bakarrik inporta ditzakezu</string>
     <string name="importing_sounds">Soinua(k) inportatzen ari gara...</string>
     <string name="observation_sound">Soinu behaketa</string>
-    <string name="deleted_sounds_from_cache_error">Badirudi, kargatu aurretik, argazki bat ezabatu duzula aplikazioaren cache memoria ezabatzean. Soinua berriro erantsi beharko diozu zure behaketari zure galeriatik. Etorkizunean, ziurtatu zure soinu guztiak kargatu izana aplikazioaren cache memoria ezabatu aurretik.</string>
+    <string name="deleted_sounds_from_cache_error">Badirudi, kargatu aurretik, argazki bat ezabatu duzula aplikazioaren cache memoria ezabatzean. Soinua berriro erantsi beharko diozu zure behaketari zure galeriatik. Etorkizunean, ziurtatu zure soinu guztiak kargatu izana aplikazioaren cache memoria ezabatu aurretik.
+
+</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f segundo</string>
     <string name="clear_all_debug_logs">Garbitu arazketa-erregistro guztiak</string>
@@ -832,7 +846,8 @@
     <string name="do_not_collect_third_party_data">Ez bildu egonkortasun- eta erabilera-datuak hirugarrenen zerbitzuak erabiliz</string>
     <string name="enabled">Gaitua</string>
     <string name="disabled">Desgaitua</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[Egonkortasuna monitorizatzeko eta gure softwarearen akatsak eta arazoak diagnostikatzeko hirugarrenen hainbat zerbitzu erabiltzen ditugu. Hirugarren horien artean daude: <br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Egonkortasuna monitorizatzeko eta gure softwarearen akatsak eta arazoak diagnostikatzeko hirugarrenen hainbat zerbitzu erabiltzen ditugu. Hirugarren horien artean daude: <br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>
+]]></string>
     <string name="common_names_place"><![CDATA[Leku-izen arruntak: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Sakatu leku-izen arruntak lehenestekeko</string>
     <string name="search_places">Lekuak bilatu</string>
@@ -848,7 +863,8 @@
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Baimena behar da</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">Zure kokapena atzitzeko, aplikazio honi kokapenerako sarbidea emateko baimena eman behar diozu.</string>
+    <string name="to_access_your_location">Zure kokapena atzitzeko, aplikazio honi kokapenerako sarbidea emateko baimena eman behar diozu.
+</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">Debekatuta</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
@@ -953,7 +969,8 @@
     <string name="show_common_names">Izen arruntak erakutsi</string>
     <string name="show_common_names_description">Izen zientifikoak bakarrik ikusi nahi badituzu, desgaitu.</string>
     <string name="email_must_look_like_email_address">Helbide elektronikoa izan behar du.</string>
-    <string name="username_must_begin_with">Erabiltzaile-izenak letra batekin hasi behar du, ez du tarterik izan behar, eta letrak, zenbakiak, marrak eta azpimarrak bakarrik erabili behar ditu.</string>
+    <string name="username_must_begin_with">
+Erabiltzaile-izenak letra batekin hasi behar du, ez du tarterik izan behar, eta letrak, zenbakiak, marrak eta azpimarrak bakarrik erabili behar ditu.</string>
     <string name="password_too_short">Pasahitzak sei karaktere izan behar ditu gutxienez</string>
     <string name="switch_to_grid_view">Sareta ikuspegira aldatu</string>
     <string name="switch_to_list_view">Zerrenda ikuspegira aldatu</string>
@@ -1102,10 +1119,12 @@
     <string name="license_name_cc_by_nc_nd">Aitortu-EzKomertziala-LanEratorririkGabe</string>
     <string name="license_name_cc_by_nd">Aitortu-LanEratorririkGabe</string>
     <string name="license_name_cc_by_sa">Aitortu-BerdinPartekatu</string>
-    <string name="license_name_no_license">Eskubide guztiak gordeak</string>
+    <string name="license_name_no_license">Eskubide guztiak gordeak
+</string>
     <!-- License Descriptions -->
     <string name="license_description_cc_by">Lizentzia honi esker, beste batzuek zure lana banatu, nahastu, aldatu eta garatu dezakete, baita komertzialki ere, baldin eta jatorrizko sorkuntzagatik aitortza ematen badizute.</string>
-    <string name="license_description_cc_by_nd">Lizentzia honek birbanatzea ahalbidetzen du, komertziala eta ez komertziala, betiere aldaketarik gabe eta osorik birbanatzen bada, eta zuri egindako aitortzarekin.</string>
+    <string name="license_description_cc_by_nd">Lizentzia honek birbanatzea ahalbidetzen du, komertziala eta ez komertziala, betiere aldaketarik gabe eta osorik birbanatzen bada, eta zuri egindako aitortzarekin.
+</string>
     <string name="license_description_no_license">Zure edukiaren gaineko egile-eskubide osoaren jabe zara, iNaturalistari gure Zerbitzu Baldintzetan emandako eskubideez gain.</string>
     <string name="invalid_photo">Argazki-formatua ez da onartzen.</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
@@ -1175,7 +1194,10 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Iragarkia itxi</string>
     <string name="import_photos_from">Argazkiak inportatu hemendik...</string>
-    <string name="cannot_find_default_camera">Ezin da argazkiak ateratzeko kamera lehenetsirik aurkitu - mesedez, laguntza zerbitzuarekin harremanetan jarri </string>
-    <string name="please_click_link_to_confirm_email">Mesedez, egin klik zure posta elektronikoaren estekan zure mezu elektronikoa iNaturalisten baieztatzeko.</string>
+    <string name="cannot_find_default_camera">Ezin da argazkiak ateratzeko kamera lehenetsirik aurkitu - mesedez, laguntza zerbitzuarekin harremanetan jarri 
+</string>
+    <string name="please_click_link_to_confirm_email">Mesedez, egin klik zure posta elektronikoaren estekan zure mezu elektronikoa iNaturalisten baieztatzeko.
+
+</string>
     <string name="click_to_resend_confirmation_email">Egin klik hemen berrespen-mezu elektronikoa berriro bidaltzeko.</string>
 </resources>

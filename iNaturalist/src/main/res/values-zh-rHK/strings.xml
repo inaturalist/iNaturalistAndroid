@@ -317,7 +317,7 @@
     <string name="not_logged_in">尚未登入</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">登入 / 註冊</string>
-    <string name="auto_upload_description">自動上傳新的觀察和編輯過的觀察記錄</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">自動上傳新的觀察和編輯過的觀察記錄</string>
     <string name="language">語言</string>
     <string name="version">版本</string>
     <string name="inat_network">iNaturalist 網路</string>

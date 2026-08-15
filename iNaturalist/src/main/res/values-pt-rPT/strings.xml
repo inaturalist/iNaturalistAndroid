@@ -114,6 +114,10 @@
     <string name="pull_to_refresh">Deslizar para atualizar...</string>
     <string name="release_to_refresh">Soltar para atualizar...</string>
     <string name="refreshing">A atualizar...</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sincronizar %1$d observação</item>
+        <item quantity="other">Sincronizar %1$d observações</item>
+    </plurals>
     <string name="sync_observations">Sincronizar Observações</string>
     <string name="lets_get_started">Vamos começar!</string>
     <string name="view_nearby_observations">Ver as Observações nas Proximidades</string>
@@ -316,7 +320,7 @@
     <string name="not_logged_in">Sem sessão iniciada</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Inicie sessão ou Registe-se</string>
-    <string name="auto_upload_description">Carrega automaticamente novas observações e edita as observações existentes</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Carrega automaticamente novas observações e edita as observações existentes</string>
     <string name="language">Idioma</string>
     <string name="version">Versão</string>
     <string name="inat_network">Rede iNaturalist</string>

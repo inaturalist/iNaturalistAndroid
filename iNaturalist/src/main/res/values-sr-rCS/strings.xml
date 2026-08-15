@@ -318,7 +318,7 @@
     <string name="not_logged_in">Nisi ulogovan/na</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Uloguj se / Registruj se</string>
-    <string name="auto_upload_description">Automatski otpremi nove opservacije i ažuriranja opservacija</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Automatski otpremi nove opservacije i ažuriranja opservacija</string>
     <string name="language">Jezik</string>
     <string name="version">Verzija</string>
     <string name="inat_network">iNaturalist mreža</string>

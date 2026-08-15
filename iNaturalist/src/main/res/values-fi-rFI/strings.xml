@@ -329,7 +329,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="not_logged_in">Ei kirjautuneena sisään</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Kirjaudu tai rekisteröidy</string>
-    <string name="auto_upload_description">Tallenna uudet havainnot ja muokkaukset havaintoihin automaattisesti</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Tallenna uudet havainnot ja muokkaukset havaintoihin automaattisesti</string>
     <string name="language">Kieli</string>
     <string name="version">Versio</string>
     <string name="inat_network">iNaturalist -verkosto</string>
@@ -755,7 +755,8 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="network_credit_naturewatchnz"><![CDATA[Uusi-Seelanti: New Zealand Biodiversity Recording Network ylläpitää portaalia iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>).]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugali: Associação Biodiversidade Para Todos ylläpitää portaalia Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente ylläpitää portaalia iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina ylläpitää portaalia ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina ylläpitää portaalia ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)
+]]></string>
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia ylläpitää portaalia iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) ylläpitää portaalia iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa ylläpitää portaalia iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>

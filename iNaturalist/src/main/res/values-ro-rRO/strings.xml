@@ -326,7 +326,7 @@
     <string name="not_logged_in">Nu ești autentificat</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Autentificare / Înregistrare</string>
-    <string name="auto_upload_description">Auto încarcă noi observații și editările la observații</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Auto încarcă noi observații și editările la observații</string>
     <string name="language">Limbă</string>
     <string name="version">Versiune</string>
     <string name="inat_network">Rețea iNaturalist</string>

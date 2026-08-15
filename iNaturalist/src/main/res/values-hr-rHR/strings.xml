@@ -326,7 +326,7 @@
     <string name="not_logged_in">Niste prijavljeni</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Prijava ili registracija</string>
-    <string name="auto_upload_description">Automatski učitaj nova opažanja i uređivanja</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Automatski učitaj nova opažanja i uređivanja</string>
     <string name="language">Jezik</string>
     <string name="version">Verzija</string>
     <string name="inat_network">iNaturalist Mreža</string>
@@ -356,7 +356,9 @@
     <string name="recommended_for_you">Preporučeno za tebe</string>
     <string name="missions">Misije</string>
     <string name="browse_by_category">Traži po kategoriji</string>
-    <string name="couldnt_load_recommended_missions">Ne mogu se učitati preporučene misije: %1$s</string>
+    <string name="couldnt_load_recommended_missions">Ne mogu se učitati preporučene misije: %1$s
+
+</string>
     <string name="plants">Biljke</string>
     <string name="mammals">Sisavci</string>
     <string name="insects">Kukci</string>
@@ -733,7 +735,8 @@
     <string name="network_credit_naturalista"><![CDATA[Meksiko: Nacionalna komisija za poznavanje i korištenje biološke raznolikosti (CONABIO) upravlja NaturaLista (NaturaLista.mx)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Novi Zeland: Mreža za zabilježavanje biološke raznolikosti Novog Zelanda upravlja iNaturalistom NZ — Mātaki Taiao (inaturalist.nz)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos djeluje na Biodiversity4All (Biodiversity4All.org)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministarstvo okoliša upravlja iNaturalistPa (panama.inaturalist.org)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministarstvo okoliša upravlja iNaturalistPa (panama.inaturalist.org)
+]]></string>
     <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina podržava ArgentiNat (www.argentinat.org)]]></string>
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australija: Atlas života Australije podržava iNaturalist Australiju (inaturalist.ala.org.au/)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) podržava iNaturalist Ecuador (ecuador.inaturalist.org)]]></string>
@@ -761,10 +764,12 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Snimanje zvuka</string>
-    <string name="couldnt_retrieve_sound">Nije moguće dohvatiti zvuk sa zadanog snimača - umjesto toga pokušajte uvesti zvuk</string>
+    <string name="couldnt_retrieve_sound">Nije moguće dohvatiti zvuk sa zadanog snimača - umjesto toga pokušajte uvesti zvuk
+</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Odaberi zvuk</string>
-    <string name="multi_select_sound_description">Uvezite više zvukova dugim pritiskom na jedan zvuk</string>
+    <string name="multi_select_sound_description">Uvezite više zvukova dugim pritiskom na jedan zvuk
+</string>
     <string name="alert_unsupported_audio_type">Nažalost, došlo je do problema prilikom učitavanja zvuka iz ovog izvora</string>
     <string name="invalid_audio_extension">Pogreška pri uvozu zvukova: Moguće je uvoziti samo zvučne datoteke s ekstenzijama WAV/MP3/AMR</string>
     <string name="importing_sounds">Uvoz zvukova...</string>
@@ -1210,13 +1215,17 @@ svijeta.]]></string>
     <string name="disagree_assessment_passes">Procjena neslaganja prolazi</string>
     <plurals name="delete_x_selected_observations">
         <item quantity="one">Izbriši %1$d odabrano opažanje</item>
-        <item quantity="few">Izbriši %1$d odabrana opažanja</item>
-        <item quantity="other">Izbriši %1$d odabrana opažanja</item>
+        <item quantity="few">Izbriši %1$d odabrana opažanja
+</item>
+        <item quantity="other">Izbriši %1$d odabrana opažanja
+</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
         <item quantity="one">Sinkroniziraj %1$d odabrano opažanje</item>
-        <item quantity="few">Sinkroniziraj %1$d odabrana opažanja</item>
-        <item quantity="other">Sinkroniziraj %1$d odabrana opažanja</item>
+        <item quantity="few">Sinkroniziraj %1$d odabrana opažanja
+</item>
+        <item quantity="other">Sinkroniziraj %1$d odabrana opažanja
+</item>
     </plurals>
     <string name="add_media_evidence">Dodaj multimedijski dokaz</string>
     <string name="remove_identification">Izbriši identifikaciju</string>

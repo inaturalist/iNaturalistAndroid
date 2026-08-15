@@ -324,7 +324,7 @@
     <string name="not_logged_in">Ikke logget ind</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Log ind eller Tilmeld</string>
-    <string name="auto_upload_description">Auto-upload nye observationer og/eller redigeringer til observationer</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Auto-upload nye observationer og/eller redigeringer til observationer</string>
     <string name="language">Sprog</string>
     <string name="version">Version</string>
     <string name="inat_network">iNaturalist Network</string>
@@ -1010,25 +1010,38 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="pretty_sure_subkingdom">Vi er ret sikre på, at den er i dette underrige:</string>
     <string name="pretty_sure_phylum">Vi er ret sikre på, at den er i denne slægt:</string>
     <string name="pretty_sure_subphylum">Vi er ret sikre på, at den er i denne underslægt:</string>
-    <string name="pretty_sure_superclass">Vi er ret sikre på, at den er i denne superklasse:</string>
+    <string name="pretty_sure_superclass">Vi er ret sikre på, at den er i denne superklasse:
+</string>
     <string name="pretty_sure_class">Vi er ret sikre på, at den er i denne klasse:</string>
-    <string name="pretty_sure_subclass">Vi er ret sikre på, at den er i denne underklasse:</string>
+    <string name="pretty_sure_subclass">Vi er ret sikre på, at den er i denne underklasse:
+</string>
     <string name="pretty_sure_infraclass">Vi er ret sikre på, at den er i denne infraklasse:</string>
-    <string name="pretty_sure_superorder">Vi er ret sikre på, at den er i denne superorden:</string>
+    <string name="pretty_sure_superorder">Vi er ret sikre på, at den er i denne superorden:
+</string>
     <string name="pretty_sure_order">Vi er ret sikre på, at den er i denne orden:</string>
-    <string name="pretty_sure_suborder">Vi er ret sikre på, at den er i denne underorden:</string>
-    <string name="pretty_sure_infraorder">Vi er ret sikre på, at den er i denne infraorden:</string>
-    <string name="pretty_sure_subterclass">Vi er ret sikre på, at den er i denne subterklasse:</string>
-    <string name="pretty_sure_parvorder">Vi er ret sikre på, at den er i denne parvorden:</string>
+    <string name="pretty_sure_suborder">Vi er ret sikre på, at den er i denne underorden:
+</string>
+    <string name="pretty_sure_infraorder">Vi er ret sikre på, at den er i denne infraorden:
+</string>
+    <string name="pretty_sure_subterclass">Vi er ret sikre på, at den er i denne subterklasse:
+</string>
+    <string name="pretty_sure_parvorder">Vi er ret sikre på, at den er i denne parvorden:
+</string>
     <string name="pretty_sure_zoosection">Vi er ret sikre på, at den er i denne zoosektion:</string>
     <string name="pretty_sure_zoosubsection">Vi er ret sikre på, at den er i denne zooundersektion:</string>
-    <string name="pretty_sure_superfamily">Vi er ret sikre på, at den er i denne superfamilie:</string>
-    <string name="pretty_sure_epifamily">Vi er ret sikre på, at den er i denne epifamilie:</string>
-    <string name="pretty_sure_family">Vi er ret sikre på, at den er i denne familie:</string>
-    <string name="pretty_sure_subfamily">Vi er ret sikre på, at den er i denne underfamilie:</string>
-    <string name="pretty_sure_supertribe">Vi er ret sikre på, at den er i denne superstamme:</string>
+    <string name="pretty_sure_superfamily">Vi er ret sikre på, at den er i denne superfamilie:
+</string>
+    <string name="pretty_sure_epifamily">Vi er ret sikre på, at den er i denne epifamilie:
+</string>
+    <string name="pretty_sure_family">Vi er ret sikre på, at den er i denne familie:
+</string>
+    <string name="pretty_sure_subfamily">Vi er ret sikre på, at den er i denne underfamilie:
+</string>
+    <string name="pretty_sure_supertribe">Vi er ret sikre på, at den er i denne superstamme:
+</string>
     <string name="pretty_sure_tribe">Vi er ret sikre på, at den er i denne stamme:</string>
-    <string name="pretty_sure_subtribe">Vi er ret sikre på, at den er i denne understamme:</string>
+    <string name="pretty_sure_subtribe">Vi er ret sikre på, at den er i denne understamme:
+</string>
     <string name="pretty_sure_genus">Vi er ret sikre på, at den er i denne slægt:</string>
     <string name="pretty_sure_genushybrid">Vi er ret sikre på, at den er i denne slægtshybrid:</string>
     <string name="pretty_sure_subgenus">Vi er ret sikre på, at den er i denne underslægt:</string>
@@ -1040,7 +1053,8 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="pretty_sure_hybrid">Vi er ret sikre på, at den er i denne hybrid:</string>
     <!-- Singular -->
     <string name="pretty_sure_subspecies">Vi er ret sikre på, at den er i denne underart:</string>
-    <string name="pretty_sure_variety">Vi er ret sikre på, at den er i denne afart:</string>
+    <string name="pretty_sure_variety">Vi er ret sikre på, at den er i denne afart:
+</string>
     <string name="pretty_sure_form">Vi er ret sikre på, at den er i denne form:</string>
     <string name="pretty_sure_infrahybrid">Vi er ret sikre på, at den er i denne infrahybrid:</string>
     <string name="remove_date_observed">Fjern observationsdato og -tidspunkt</string>

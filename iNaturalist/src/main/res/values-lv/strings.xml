@@ -324,7 +324,7 @@ globālā iNaturalist tīkla.</string>
     <string name="not_logged_in">Neesi pieslēdzies</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Pieslēgties vai reģistrēties</string>
-    <string name="auto_upload_description">Aktivizēt novērojumu un labojumu automātiskās augšupielādes funkciju.</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Aktivizēt novērojumu un labojumu automātiskās augšupielādes funkciju.</string>
     <string name="language">Valoda</string>
     <string name="version">Versija</string>
     <string name="inat_network">iNaturalist tīkls</string>

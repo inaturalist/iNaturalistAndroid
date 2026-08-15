@@ -32,14 +32,14 @@
     <string name="delete_photo">حذف صور</string>
     <string name="my_location">مكاني</string>
     <string name="nearby_observations">ارصاد قريبه</string>
-    <string name="add">إضافة</string>
+    <string name="add">	إضافة</string>
     <string name="view_on_inat">إذهب إلى- iNat</string>
     <string name="reload">تحديث</string>
     <string name="view_in_browser">اظهر بالشبكه</string>
     <string name="add_observation">اضافة ارصاد</string>
     <string name="take_picture">التقاط صورة</string>
     <string name="save">حفظ</string>
-    <string name="no_observations_yet">لا يوجد حتى الآن ارصاد!</string>
+    <string name="no_observations_yet">	لا يوجد حتى الآن ارصاد!</string>
     <string name="or">أو</string>
     <string name="signed_out">تسجيل الخروج/י</string>
     <string name="username">اسم مستخدم</string>
@@ -111,7 +111,7 @@
     <string name="edit_location">تحرير الموقع</string>
     <string name="edit_locality_notes">تعديل الملاحظات حسب الموقع</string>
     <string name="get_current_location">وفقا للموقع الحالي</string>
-    <string name="pull_to_refresh">سحب لتحديث…</string>
+    <string name="pull_to_refresh">	سحب لتحديث…</string>
     <string name="release_to_refresh">ترك لتحديث…</string>
     <string name="refreshing">تحديث</string>
     <string name="sync_observations">نشر ارصاد</string>
@@ -305,7 +305,7 @@
     <string name="log_out">تسجيل خروج</string>
     <string name="not_logged_in">لم يتم تسجيل الدخول</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="auto_upload_description">رفع تلقائي للملاحظات والتعديلات الجديدة إلى الملحوظات</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">رفع تلقائي للملاحظات والتعديلات الجديدة إلى الملحوظات</string>
     <string name="language">اللّغة</string>
     <string name="version">الإصدار</string>
     <string name="inat_network">شبكة iNaturalist</string>

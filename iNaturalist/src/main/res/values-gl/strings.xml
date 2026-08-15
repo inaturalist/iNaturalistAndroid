@@ -321,7 +321,7 @@
     <string name="not_logged_in">Non iniciaches sesión</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Iniciar Sesión ou Rexistrarse</string>
-    <string name="auto_upload_description">Cargar automáticamente observacións novas e edicións das observacións</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Cargar automáticamente observacións novas e edicións das observacións</string>
     <string name="language">Idioma</string>
     <string name="version">Versión</string>
     <string name="inat_network">Rede iNaturalist</string>
@@ -744,7 +744,8 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar Son</string>
-    <string name="couldnt_retrieve_sound">Non se puideron recuperar sons da gravadora predeterminada - No canto, tenta importar os sons</string>
+    <string name="couldnt_retrieve_sound">Non se puideron recuperar sons da gravadora predeterminada - No canto, tenta importar os sons
+</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Escoller Son</string>
     <string name="multi_select_sound_description">Importar múltiples sons presionando un momento nunha soa foto</string>

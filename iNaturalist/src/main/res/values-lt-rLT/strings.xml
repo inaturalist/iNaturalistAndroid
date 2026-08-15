@@ -325,7 +325,7 @@
     <string name="not_logged_in">Esate neprisijungę</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Prisijungti arba registruotis</string>
-    <string name="auto_upload_description">Automatiškai užkrauti naujus stebėjimus ir stebėjimo redagavimus</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Automatiškai užkrauti naujus stebėjimus ir stebėjimo redagavimus</string>
     <string name="language">Kalba</string>
     <string name="version">Versija</string>
     <string name="inat_network">iNaturalist tinklas</string>
