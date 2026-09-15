@@ -155,7 +155,8 @@
     <string name="photos"><![CDATA[<b>Photos :</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>Texte :</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
-    <string name="alert_message_use_inaturalist">Le principal réseau iNaturalist. En cliquant sur « oui » mettra votre application dans le cadre du réseau de iNaturalist mondiale.</string>
+    <string name="alert_message_use_inaturalist">Le principal réseau iNaturalist. En cliquant sur « oui » mettra votre application dans le cadre du réseau de iNaturalist mondiale.
+</string>
     <string name="alert_message_use_naturalista">NaturaLista est membre du réseau iNaturalist au Mexique. Les institutions locales soutenant NaturaLista auront accès à votre adresse courriel et accès aux véritables coordonnées pour les observations masquées au public ou privées. Veuillez ne pas modifier votre affiliation expérimentalement si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation?</string>
     <string name="alert_message_use_naturewatchnz">iNaturalist NZ est membre du réseau iNaturalist en Nouvelle-Zélande. Les institutions locales soutenant iNaturalist NZ auront accès à votre adresse courriel et accès aux véritables coordonnées pour les observations masquées au public ou privées. Veuillez ne pas modifier votre affiliation expérimentalement si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada est membre du réseau iNaturalist au Canada. Les institutions locales qui soutiennent iNaturalist Canada auront accès à votre adresse courriel et accès aux coordonnées réelles pour les observations masquées au public ou privées. Veuillez ne pas modifier votre affiliation expérimentalement si vous avez plus de 1000 observations. Souhaitez-vous modifier votre affiliation?</string>
@@ -324,7 +325,7 @@
     <string name="not_logged_in">Vous n\'êtes pas connecté(e)</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Identifiez-vous ou inscrivez-vous</string>
-    <string name="auto_upload_description">Téléversement automatique de nouvelles observations et modifications aux observations</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Téléversement automatique de nouvelles observations et modifications aux observations</string>
     <string name="language">Langage</string>
     <string name="version">Version</string>
     <string name="inat_network">Réseau iNaturalist</string>
@@ -769,7 +770,8 @@
     <string name="has_sounds">A des sons</string>
     <string name="could_not_play_sound">Impossible de jouer le son – probablement un problème de réseau</string>
     <string name="cant_play_soundcloud"><![CDATA[Pour écouter les sons de Soundcloud, consultez le <a href="%1$s">site web</a>.]]></string>
-    <string name="soundcloud">SoundCloud</string>
+    <string name="soundcloud">SoundCloud
+</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Enregistrer un son</string>
     <string name="couldnt_retrieve_sound">Impossible de récupérer le son de l\'enregistreur par défaut – essayez plutôt d\'importer le son</string>
@@ -957,7 +959,8 @@
     <string name="rank_form">Forme</string>
     <string name="rank_infrahybrid">Sous-hybride</string>
     <string name="rank_leaves">Feuilles</string>
-    <string name="location_lat_lng">Géolocalisation : %1$f, %2$f</string>
+    <string name="location_lat_lng">Géolocalisation : %1$f, %2$f
+</string>
     <string name="i_consent_process_personal_info"><![CDATA[J’accepte d’autoriser iNaturalist à stocker et traiter un nombre limité de mes informations
 personnelles, afin de gérer mon compte. <b>En savoir plus</b>]]></string>
     <string name="about_personal_information">À propos des données personnelles</string>
@@ -982,7 +985,8 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_obscured">MMM \'\'yy</string>
+    <string name="date_obscured">MMM \'\'yy
+</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d MMMM yyyy, H \'h\' m</string>
     <string name="show_common_names">Afficher les noms communs</string>

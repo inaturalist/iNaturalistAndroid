@@ -117,7 +117,6 @@
     <plurals name="sync_x_observations">
         <item quantity="one">סינכרון תצפית %1$d</item>
         <item quantity="two">סינכרון %1$d תצפיות</item>
-        <item quantity="many">סינכרון %1$d תצפיות</item>
         <item quantity="other">סינכרון %1$d תצפיות</item>
     </plurals>
     <string name="sync_observations">סנכרון תצפיות</string>
@@ -261,7 +260,6 @@
     <plurals name="included_in_projects">
         <item quantity="one">כלול ב-%1$d פרויקט</item>
         <item quantity="two">כלול ב-%1$d פרויקטים</item>
-        <item quantity="many">כלול ב-%1$d פרויקטים</item>
         <item quantity="other">כלול ב-%1$d פרויקטים</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ פרטיות מיקום (Geoprivacy) היא הגדרה של תצפית הקובעת את אופן תצוגת הקואורדינטות המרחביות (קו רוחב וקו אורך). האפשרויות הן:<br/><b>פתוח</b> - קואורדינטות גלויות אלא אם הטקסון בסיכון. <br/><b>מוסתר</b> - קואורדינטות ציבוריות המוצגות כנקודה אקראית בתוך שטח של 0.2 על 0.2 מעלות שבתוכו נמצאות הקואורדינטות האמיתיות. שטח זה הינו בערך 22 על 22 ק"מ של אי-וודאות אשר הולך וקטן לכיוון הקטבים. הקואורדינטות האמיתיות גלויות רק לך ולאוצרי הפרויקט אליו הוספת את התצפית. <br/><b>פרטי</b> - הקואורדינטות מוסתרות לחלוטין ממפות ציבוריות, הקואורדינטות האמיתיות גלויות רק לך ולאוצרי הפרויקט אליו הוספת את התצפית. <br/><br/>Note that האוצרות והאוצרים של פרויקטים תמיד יראו את המיקומים, ללא קשר להגדרת הפרטיות, לכן במידה של דאגה על גישה למיקומים, יש לוודא היטב שיש לך אמון באוצרות.ים של הפרויקט. ]]></string>
@@ -328,7 +326,7 @@
     <string name="not_logged_in">לא מחובר.ת</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">התחברות או הרשמה</string>
-    <string name="auto_upload_description">העלאה אוטומטית של תצפיות חדשות ועדכוני תצפיות</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">העלאה אוטומטית של תצפיות חדשות ועדכוני תצפיות</string>
     <string name="language">שפה</string>
     <string name="version">גרסה</string>
     <string name="inat_network">רשת iNaturalist</string>
@@ -402,14 +400,12 @@
     <plurals name="new_activities">
         <item quantity="one">%1s חדש</item>
         <item quantity="two">%1s חדשים</item>
-        <item quantity="many">%1s חדשים</item>
         <item quantity="other">%1s חדשים</item>
     </plurals>
     <string name="no_results_found">לא נמצאו תוצאות...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="one">מסנכרן %1$d מתוך %2$d תצפית...</item>
         <item quantity="two">מסנכרן %1$d מתוך %2$d תצפיות...</item>
-        <item quantity="many">מסנכרן %1$d מתוך %2$d תצפיות...</item>
         <item quantity="other">מסנכרן %1$d מתוך %2$d תצפיות...</item>
     </plurals>
     <string name="deleting_observations">מחיקת תצפיות...</string>
@@ -714,7 +710,6 @@
     <plurals name="observation_count_all_caps">
         <item quantity="one">%1$s תצפית</item>
         <item quantity="two">%1$s תצפיות</item>
-        <item quantity="many">%1$s תצפיות</item>
         <item quantity="other">%1$s תצפיות</item>
     </plurals>
     <string name="agree_all_caps">מאשר.ת</string>
@@ -863,7 +858,6 @@
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="one">האם ברצונך למחוק את %1$d התצפית הזו?</item>
         <item quantity="two">האם ברצונך למחוק את %1$d התצפיות הללו?</item>
-        <item quantity="many">האם ברצונך למחוק את %1$d התצפיות הללו?</item>
         <item quantity="other">האם ברצונך למחוק את %1$d התצפיות הללו?</item>
     </plurals>
     <string name="future_observed_on_date_error">התצפית שלך נוצרה (והוגשה) בתאריך %1$s, אבל אם ברצונך לקבוע תאריך צפייה שמאוחר מזה: %2$s</string>
@@ -991,7 +985,8 @@
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_obscured">MMM \'\'yy</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma
+</string>
     <string name="show_common_names">הצגת שמות עממיים</string>
     <string name="show_common_names_description">יש לבטל אם ברצונך להציג רק שמות מדעיים</string>
     <string name="email_must_look_like_email_address">חייב להיראות כמו כתובת אימייל</string>
@@ -1213,13 +1208,11 @@
     <plurals name="delete_x_selected_observations">
         <item quantity="one">מחיקת %1$d תצפית נבחרת</item>
         <item quantity="two">מחיקת %1$d תצפיות נבחרות</item>
-        <item quantity="many">מחיקת %1$d תצפיות נבחרות</item>
         <item quantity="other">מחיקת %1$d תצפיות נבחרות</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
         <item quantity="one">סנכרון %1$d תצפית נבחרת </item>
         <item quantity="two">סנכרון %1$d תצפיות נבחרות</item>
-        <item quantity="many">סנכרון %1$d תצפית נבחרת</item>
         <item quantity="other">סנכרון %1$d תצפית נבחרת</item>
     </plurals>
     <string name="add_media_evidence">הוספת ראיות בצורת מדיה</string>

@@ -319,7 +319,7 @@
     <string name="not_logged_in">Не сте влезли</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Вход / Регистрация</string>
-    <string name="auto_upload_description">Качвай автоматично нови наблюдения и редакции на наблюдения</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Качвай автоматично нови наблюдения и редакции на наблюдения</string>
     <string name="language">Език</string>
     <string name="version">Версия</string>
     <string name="inat_network">Мрежа на iNaturalist</string>

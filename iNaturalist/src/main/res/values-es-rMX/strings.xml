@@ -324,7 +324,7 @@
     <string name="not_logged_in">No has iniciado sesión</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Iniciar sesión o registrarse</string>
-    <string name="auto_upload_description">Carga automática de nuevas observaciones y sus modificaciones</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Carga automática de nuevas observaciones y sus modificaciones</string>
     <string name="language">Idioma</string>
     <string name="version">Versión</string>
     <string name="inat_network">Red de iNaturalist</string>

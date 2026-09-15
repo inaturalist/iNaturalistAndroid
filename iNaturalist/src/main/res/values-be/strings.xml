@@ -326,7 +326,7 @@
     <string name="not_logged_in">Вы не ўвайшлі ў сістэму</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Уваход / Рэгістрацыя</string>
-    <string name="auto_upload_description">Аўтаматычна запампоўваць новыя назіранні і змены ў назіраннях</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Аўтаматычна запампоўваць новыя назіранні і змены ў назіраннях</string>
     <string name="language">Мова</string>
     <string name="version">Версія</string>
     <string name="inat_network">Сетка iNaturalist</string>
@@ -421,7 +421,8 @@
     <string name="conservation_status_near_threatened">Блізкі да пагрозлівага</string>
     <string name="conservation_status_vulnerable">Уразлівы</string>
     <string name="conservation_status_endangered">Пад пагрозай знікнення</string>
-    <string name="conservation_status_critically_endangered">На мяжы знікнення</string>
+    <string name="conservation_status_critically_endangered">
+На мяжы знікнення</string>
     <string name="conservation_status_extinct_in_the_wild">Зніклы у дзікай прыродзе</string>
     <string name="conservation_status_extinct">Вымерлы</string>
     <string name="map_of_observations">Мапа назіранняў</string>

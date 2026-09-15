@@ -304,7 +304,7 @@
     <string name="not_logged_in">Не сте најавени</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Најавете се или пријавете се</string>
-    <string name="auto_upload_description">Автоматско прикачување на новите набљудувања и уредувањата на набљудувањата</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Автоматско прикачување на новите набљудувања и уредувањата на набљудувањата</string>
     <string name="language">Јазик</string>
     <string name="version">Верзија</string>
     <string name="inat_network">Мрежата на иНатуралист</string>

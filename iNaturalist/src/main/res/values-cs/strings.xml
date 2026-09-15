@@ -328,7 +328,7 @@
     <string name="not_logged_in">Nejste přihlášeni</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Přihlásit se nebo zaregistrovat</string>
-    <string name="auto_upload_description">Automatické nahrání nových pozorování a úprav pozorování</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Automatické nahrání nových pozorování a úprav pozorování</string>
     <string name="language">Jazyk</string>
     <string name="version">Verze</string>
     <string name="inat_network">síť iNaturalist</string>
@@ -790,7 +790,9 @@
     <string name="invalid_audio_extension">Chyba při importu zvuku: Lze importovat pouze zvukové soubory s příponami WAV / MP3 / AMR</string>
     <string name="importing_sounds">Importování zvuku(ů)...</string>
     <string name="observation_sound">Zvuk pozorování</string>
-    <string name="deleted_sounds_from_cache_error">Vypadá to, že jste odstranili zvuk vyčištěním mezipaměti aplikace před nahráním. Zvuk budete muset přidat zpět do svého pozorování z galerie. Před vymazáním mezipaměti aplikace se v budoucnu ujistěte, že jste nahráli všechny zvuky.</string>
+    <string name="deleted_sounds_from_cache_error">Vypadá to, že jste odstranili zvuk vyčištěním mezipaměti aplikace před nahráním. Zvuk budete muset přidat zpět do svého pozorování z galerie. Před vymazáním mezipaměti aplikace se v budoucnu ujistěte, že jste nahráli všechny zvuky.
+
+</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f sekunda</string>
     <string name="clear_all_debug_logs">Vymazat všechny protokoly ladění</string>
