@@ -329,7 +329,7 @@
     <string name="not_logged_in">Вы не вошли в систему</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Вход / Регистрация</string>
-    <string name="auto_upload_description">Автозагрузка новых наблюдений и редактирования существующих наблюдений</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Автозагрузка новых наблюдений и редактирования существующих наблюдений</string>
     <string name="language">Язык</string>
     <string name="version">Версия</string>
     <string name="inat_network">сеть iNaturalist</string>

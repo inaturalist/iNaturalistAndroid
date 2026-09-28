@@ -324,7 +324,7 @@
     <string name="not_logged_in">Ej inloggad</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Logga in eller Registrera dig</string>
-    <string name="auto_upload_description">Ladda automatiskt upp nya fynd och ändringar av fynd</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Ladda automatiskt upp nya fynd och ändringar av fynd</string>
     <string name="language">Språk</string>
     <string name="version">Version</string>
     <string name="inat_network">iNaturalist-nätverket</string>

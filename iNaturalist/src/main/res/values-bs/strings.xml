@@ -241,7 +241,7 @@
     <string name="log_out">Odjava</string>
     <string name="not_logged_in">Niste prijavljeni</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="auto_upload_description">Automatski učitaj nove opservacije i uređivanja opservacija</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Automatski učitaj nove opservacije i uređivanja opservacija</string>
     <string name="language">Jezik</string>
     <string name="version">Verzija</string>
     <string name="inat_network">iNaturalist Mreža</string>

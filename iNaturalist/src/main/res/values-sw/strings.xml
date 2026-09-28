@@ -319,7 +319,7 @@
     <string name="not_logged_in">Hujaingia</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Ingia au Jisajili</string>
-    <string name="auto_upload_description">Pakia kiotomatiki uchunguzi na uhariri mpya kwenye uchunguzi</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Pakia kiotomatiki uchunguzi na uhariri mpya kwenye uchunguzi</string>
     <string name="language">Lugha</string>
     <string name="version">Toleo</string>
     <string name="inat_network">Mtandao wa iNaturalist</string>

@@ -518,7 +518,8 @@
     <string name="sorry">क्षमस्व</string>
     <string name="you_must_have_three_observations">असे करण्यासाठी आपल्याकडे तीन सत्यापित निरीक्षणे किंवा तीन निरीक्षण ओळख केलेली असणे आवश्यक आहे.</string>
     <string name="flag_conversation">संभाषण निदर्शनात आणा</string>
-    <string name="offensive_inappropriate">आक्षेपार्ह / अनुचित</string>
+    <string name="offensive_inappropriate">
+आक्षेपार्ह / अनुचित</string>
     <string name="other">इतर</string>
     <string name="some_other_reason">अन्य काही कारण जे आपण स्पष्ट करू शकता</string>
     <string name="why_are_you_flagging_this_item">आपण हि गोष्ट का निदर्शनात आणत आहात?</string>

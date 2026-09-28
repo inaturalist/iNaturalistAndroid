@@ -287,7 +287,7 @@
     <string name="log_out">Ausloggen</string>
     <string name="not_logged_in">Net ageloggt</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="auto_upload_description">Nei Observatiounen a Verännerunge vun Observatiounen automatesch eroplueden</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Nei Observatiounen a Verännerunge vun Observatiounen automatesch eroplueden</string>
     <string name="language">Sprooch</string>
     <string name="version">Versioun</string>
     <string name="inat_network">iNaturalist Netzwierk</string>
@@ -654,7 +654,8 @@
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) ënnerstëtzt iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Lëtzebuerg: Nationalmusée fir Naturgeschicht (MnhnL) ënnerstëtzt iNaturalist Luxembourg  (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) ënnerstëtzt Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) ënnerstëtzt iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) ënnerstëtzt iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)
+]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Schweden: SLU Swedish Species Information Centre ënnerstëtzt iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA an Biodiversidata ënnerstëtzen Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">All als gekuckt markéieren</string>
@@ -667,7 +668,8 @@
     <string name="has_sounds">Huet Téin</string>
     <string name="could_not_play_sound">Den Sound kann net gespillt sinn - méiglecherweis en Netzwierksprobleem</string>
     <string name="cant_play_soundcloud"><![CDATA[Fir Soundcloud Téin ze lauschteren, kuckt de <a href="%1$s">Website</a>.]]></string>
-    <string name="soundcloud">SoundCloud</string>
+    <string name="soundcloud">SoundCloud
+</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Geräisch ophuelen</string>
     <string name="couldnt_retrieve_sound">Konnt keen Sound vum standard Recorder kreien - probéiert den Sound z\'importéieren</string>

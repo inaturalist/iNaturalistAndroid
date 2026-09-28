@@ -51,7 +51,7 @@
     <string name="yes">Ναι</string>
     <string name="no">Όχι</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">Συμφωνώ</string>
+    <string name="agree">Συμφωνείς;</string>
     <string name="no_comments">Δεν υπάρχουν σχόλια/ταυτοποιήσεις ακόμα</string>
     <string name="add_comment">Προσθήκη σχολίου</string>
     <string name="add_id">Προσθήκη προσδιορισμού</string>
@@ -131,7 +131,7 @@
     </string-array>
     <string-array name="tutorial_descriptions">
         <item>Εξερευνήστε και Συνδεθείτε με τη Φύση</item>
-        <item>Βγείτε έξω! Βρείτε κάτι άγριο και τραβήξτε μια καθαρή φωτογραφία πλήρους κάδρου.</item>
+        <item>Βγες έξω! Βρες κάτι άγριο και βγάλ\'το μια καθαρή, κοντινή φωτογραφία.</item>
         <item>Μοιραστείτε τις παρατηρήσεις σας με την κοινότητα του iNaturalist.</item>
         <item>Επιστρέψτε αργότερα για σχόλια και προσδιορισμούς στις παρατηρήσεις σας!</item>
         <item><![CDATA[<b>Επιστημονικά Βαθμονομημένες</b> παρατηρήσεις μοιράζονται με επιστήμονες για την καλύτερη κατανόηση και προστασία της φύσης.]]></item>
@@ -149,7 +149,7 @@
     <string name="search">Αναζήτηση</string>
     <string name="details">Λεπτομέρειες</string>
     <string name="observation_photos">Φωτογραφίες παρατήρησης</string>
-    <string name="no_observations_found">Δεν υπάρχουν παρατηρήσεις ακόμα</string>
+    <string name="no_observations_found">Δε βρέθηκαν παρατηρήσεις.</string>
     <string name="license_none">Με την επιφύλαξη παντός δικαιώματος</string>
     <string name="sources_and_attribution">Πηγές και Απόδοση</string>
     <string name="photos"><![CDATA[<b>Φωτογραφίες:</b> %1$s]]></string>
@@ -285,7 +285,7 @@
     <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">Κανένα πολυμέσο</string>
     <string name="about_this_species">Πληροφορίες για το είδος</string>
-    <string name="view_on_wikipedia">Αρθρο στη Βικιπαίδεια</string>
+    <string name="view_on_wikipedia">Άρθρο στη Βικιπαίδεια</string>
     <string name="photo"><![CDATA[Φωτογραφία: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Φωτογραφία: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Εντοπισμός τρέχουσας τοποθεσίας...</string>
@@ -308,14 +308,14 @@
     <string name="no_location">Χωρίς τοποθεσία</string>
     <string name="add_to_projects">Προσθήκη σε πρότζεκτ</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Είστε σίγουροι ότι θέλετε να αποθηκεύσετε την παρατήρηση χωρίς συντεταγμένες;</string>
-    <string name="users_identification">%1$s Η αναγνώρισή του: %2$s</string>
+    <string name="users_identification">Αναγνώριση από %1$s: %2$s</string>
     <string name="edit_profile">Επεξεργασία προφίλ</string>
     <string name="remove_photo">Κατάργηση φωτογραφίας</string>
     <string name="name">Όνομα</string>
     <string name="tell_us_about_yourself">Πείτε μας για τον εαυτό σας...</string>
     <string name="view_profile">Προβολή του προφίλ</string>
     <string name="are_you_sure_you_want_to_remove_photo">Είστε βέβαιοι ότι θέλετε να διαγράψετε τη φωτογραφία σας;</string>
-    <string name="updating_profile">Αποθήκευση προφίλ...</string>
+    <string name="updating_profile">Ενημέρωση προφίλ...</string>
     <string name="there_was_a_problem_updating_profile">Παρουσιάστηκε πρόβλημα κατά την ενημέρωση του προφίλ σας!</string>
     <string name="there_was_a_problem_updating_profile_params">Παρουσιάστηκε πρόβλημα κατά την ενημέρωση του προφίλ σας: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
@@ -324,7 +324,7 @@
     <string name="not_logged_in">Δεν είσαι συνδεδεμένος/η</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Είσοδος ή Εγγραφή</string>
-    <string name="auto_upload_description">Αυτόματη αποστολή νέων παρατηρήσεων και επεξεργασία των παρατηρήσεων</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Αυτόματη αποστολή νέων παρατηρήσεων και επεξεργασία των παρατηρήσεων</string>
     <string name="language">Γλώσσα</string>
     <string name="version">Έκδοση</string>
     <string name="inat_network">Δίκτυο iNaturalist</string>
@@ -373,7 +373,7 @@
     <string name="have_been_seen_here">Έχει Παρατηρηθεί Εδώ</string>
     <string name="observe">Παρατηρήστε</string>
     <string name="nearby_missions">Αποστολές σε Κοντινή Απόσταση</string>
-    <string name="searching_your_area">Αναζητώντας στην περιοχή σου...</string>
+    <string name="searching_your_area">Αναζήτηση στην περιοχή σου...</string>
     <string name="expanding_your_search_area">Διεύρυνση της περιοχής αναζήτησης...</string>
     <string name="introducing_missions">Εισαγωγή Αποστολών!</string>
     <string name="missions_onboarding_description">Οι αποστολές είναι συστάσεις σε πραγματικό χρόνο για το τι πρέπει να ψάξετε γύρω σας. Με αυτόν τον τρόπο μπορείτε να ανακαλύψετε είδη νέα για εσάς! (Απαιτείται συνδεσιμότητα)</string>
@@ -438,7 +438,9 @@
     <string name="suggest_species_description">Πρόταση ειδών βάσει της οπτικής ομοιότητας με τις φωτογραφίες.</string>
     <string name="visually_similar">Οπτικά Παρόμοια</string>
     <string name="visually_similar_seen_nearby">Οπτικά Παρόμοια/Εθεάθη σε Κοντινή Απόσταση</string>
+    <string name="visually_similar_expected_nearby">Οπτικά παρόμοιο / αναμενόμενο στην περιοχή</string>
     <string name="seen_nearby">Εθεάθη σε κοντινή απόσταση</string>
+    <string name="expected_nearby">Αναμενόμενο στην περιοχή</string>
     <string name="enlarge">Μεγέθυνση</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Προβολή νεογνών</string>
@@ -528,7 +530,7 @@
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
     <string name="date_observed">Ημερομηνία παρατήρησης</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">Όλα</string>
+    <string name="any">Οποιoδήποτε</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">έως</string>
     <string name="exact_date">Ακριβής ημερομηνία</string>
@@ -613,6 +615,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Κανένα</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Λουλούδια και καρποί</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Στάδιο βιολογικού κύκλου</string>
     <!-- Noun, describes sex of the organism -->
@@ -622,11 +625,16 @@
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Ενδείξεις παρουσίας</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Φύλλα</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Εγκαθιδρυμένο</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Λουλούδια</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Καρποί ή σπόροι</string>
     <!-- Adjective, having unopened flowers -->
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Χωρίς λουλούδια ή καρπούς</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Ενήλικος</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -654,22 +662,30 @@
     <!-- "Evidence of Presence" value when for bird feathers -->
     <string name="annotation_value_feather">Φτερό</string>
     <!-- "Evidence of Presence" value when for fecal remains -->
+    <string name="annotation_value_scat">Κόπρανα</string>
     <!-- "Evidence of Presence" value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Αποτύπωμα</string>
     <!-- "Evidence of Presence" value when for bones -->
     <string name="annotation_value_bone">Κόκκαλο</string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Κατασκεύασμα</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Τρίχες</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
     <!-- "Leaves" value when for leaf buds that are opening -->
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Πράσινα φύλλα</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Χρωματιστά φύλλα</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Χωρίς ζωντανά φύλλα</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ΕΓΓΕΓΡΑΜΕΝΟΣ</string>
     <string name="nearby_projects_all_caps">ΣΕ ΚΟΝΤΙΝΗ ΑΠΟΣΤΑΣΗ</string>
+    <string name="featured_projects_all_caps">ΕΠΙΛΕΓΜΕΝΑ</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">ΕΓΓΡΑΦΗ</string>
     <string name="my_guides_all_caps">ΔΙΚΗ ΣΑΣ</string>
@@ -762,7 +778,7 @@
     <string name="send_debug_logs_from_start_date">Αποστολή Αρχείων Αποσφαλμάτωσης Από Την Ημερομηνία Έναρξης</string>
     <string name="send_debug_logs_by_email">Αποστολή αρχείων αποσφαλμάτωσης με email (από την καθορισμένη ημερομηνία έναρξης)</string>
     <string name="debug_settings">Ρυθμίσεις Αποσφαλμάτωσης</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Είστε σίγουροι ότι θέλετε να διαγράψετε τα αρχεία αποσφαλμάτωσης; Πατήστε \'Ναι\' μόνο εάν θέλετε να καθαρίσετε το χώρο αποθήκευσης του τηλεφώνου σας</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Θέλεις σίγουρα να διαγράψεις όλα τα αρχεία αποσφαλμάτωσης; Πάτα \'Ναι\' μόνο εάν θέλεις να ελευθερώσεις χώρο αποθήκευσης στη συσκευή σου</string>
     <string name="no_log_files_found">Δεν βρέθηκαν αρχεία καταγραφής για αυτό το εύρος ημερομηνιών - Προσπαθήστε προγενέστερη ημερομηνία;</string>
     <string name="choose_pinned_location">Επιλογή Καρφιτσωμένης Τοποθεσίας</string>
     <string name="pin_current_location">Καρφιτσώστε την Tρέχουσα Tοποθεσία</string>
@@ -800,7 +816,7 @@
     <string name="hours">ώρες</string>
     <string name="minutes">λεπτά</string>
     <string name="seconds_value">δευτερόλεπτα</string>
-    <string name="shop_the_inat_store">Αγοράστε από το iNat Kατάστημα</string>
+    <string name="shop_the_inat_store">Αγορές από το κατάστημα iNat </string>
     <string name="delete_your_account">Διαγραφή Του Λογαριασμού σας</string>
     <string name="delete_account_message"><![CDATA[Με τη διαγραφή του λογαριασμού σας θα καταργήσετε:<br/><br/><ul><li> Όλες τις παρατηρήσεις σας, συμπεριλαμβανομένου του έργου όλων των ανθρώπων που σας βοήθησαν με τις αναγνωρίσεις.</li><li> Όλες οι αναγνωρίσεις που προσθέσατε στις παρατηρήσεις άλλων ανθρώπων, οι οποίες ενδέχεται να επηρεάσουν την ποιότητα των δεδομένων αυτών των παρατηρήσεων.</li><li> Όλα τα σχόλια που έχετε προσθέσει.</li></ul><br/>Επιπλέον, αυτή η ενέργεια δεν μπορεί να ανακληθεί. Αν αλλάξετε γνώμη αργότερα, δεν παίρνετε πίσω αυτό το περιεχόμενο.<br/><br/>Εάν η υπηρεσία αυτή δημιουργεί πάρα πολλές ειδοποιήσεις, σκεφτείτε <a href="https://www.inaturalist.org/users/edit">την επεξεργασία των ρυθμίσεών σας στον ιστότοπο</a> για να εξαιρεθείτε από ορισμένες ειδοποιήσεις ή να σταματήσετε να λαμβάνετε μηνύματα ηλεκτρονικού ταχυδρομείου από εμάς. Εάν αντιμετωπίζετε προβλήματα με ένα συγκεκριμένο άτομο, σκεφτείτε <a href="https://www.inaturalist.org/users/edit">τη σίγαση τους</a> αντί να διαγράψετε το λογαριασμό σας.<br/><br/>Εάν είστε ακόμα βέβαιοι ότι θέλετε να διαγράψετε το λογαριασμό σας, εισαγάγετε<b>\"%1$s\"</b> στην παρακάτω φόρμα και κάντε κλικ στο κουμπί για να διαγράψετε το λογαριασμό σας και όλα τα δεδομένα σας.]]></string>
     <string name="your_account_has_been_deleted">Ο λογαριασμός σας έχει διαγραφεί</string>
@@ -809,7 +825,7 @@
     <string name="type_your_username">Πληκτρολογήστε το όνομα χρήστη</string>
     <string name="error_deleting_account">Παρουσιάστηκε σφάλμα κατά τη διαγραφή του λογαριασμού σας - ελέγξτε τη σύνδεση στο Internet</string>
     <string name="verify_your_password">Eπαληθεύστε Tον Kωδικό σας</string>
-    <string name="third_party_data_sharing">Κοινή Χρήση Δεδομένων Τρίτων</string>
+    <string name="third_party_data_sharing">Διαμοιρασμός δεδομένων με τρίτους</string>
     <string name="disable_third_party_data_sharing">Απενεργοποίηση Κοινής Χρήσης Δεδομένων Τρίτων</string>
     <string name="do_not_collect_third_party_data">Μη συλλέγετε δεδομένα σταθερότητας και χρήσης χρησιμοποιώντας υπηρεσίες τρίτων</string>
     <string name="enabled">Ενεργοποιημένο</string>
@@ -866,6 +882,7 @@
     <string name="search_for_inaturalist_users">Αναζήτηση για χρήστες iNaturalist</string>
     <string name="please_sign_in_for_messages">Πρέπει να συνδεθείτε για να δείτε τα μηνύματά σας.</string>
     <string name="sorry">Λυπούμαστε</string>
+    <string name="you_must_have_three_observations">Πρέπει να πραγματοποιήσεις τρεις επαληθεύσιμες παρατηρήσεις ή τρεις αναγνωρίσεις για άλλους χρήστες, για να μπορέσεις να κάνεις αυτό.</string>
     <string name="mute_this_user">Σίγαση χρήστη</string>
     <string name="unmute_this_user">Αποσίγαση χρήστη</string>
     <string name="flag_this_conversation">Αναφορά συζήτησης</string>
@@ -880,6 +897,7 @@
     <string name="spam">Ανεπιθύμητο</string>
     <string name="commercial_solicitation">Εμπορική παράκληση, συνδέσεις που δεν οδηγούν πουθενά, κτλ.</string>
     <string name="offensive_inappropriate">Προσβλητικό/Ακατάλληλο</string>
+    <string name="misleading_or_illegal_content">Παραπλανητικό ή παράνομο περιεχόμενο, ρατσιστικοί ή φυλετικοί χαρακτηρισμοί, κλπ. Μπορείς να βρεις περισσότερα για το πως ορίζουμε το \"κατάλληλο\" στις συχνές ερωτήσεις.</string>
     <string name="other">Άλλο</string>
     <string name="some_other_reason">Κάποια άλλη αιτία που μπορείτε να εξηγήσετε.</string>
     <string name="continue_text">Συνέχεια</string>
@@ -911,6 +929,10 @@
     <string name="rank_infrahybrid">Υφυβρύδιο</string>
     <string name="rank_leaves">Φύλλα</string>
     <string name="location_lat_lng">Τοποθεσία: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Συναινώ και επιτρέπω στο iNaturalist να αποθηκεύει και να επεξεργάζεται περιορισμένα είδη προσωπικών μου δεδομένων για να διαχειρίζεται τον λογαριασμό μου. <b>Μάθε περισσότερα</b>]]></string>
+    <string name="about_personal_information">Σχετικά με τα προσωπικά δεδομένα</string>
+    <string name="personal_information_notes"><![CDATA[Αποθηκεύουμε προσωπικά δεδομένα όπως το όνομα χρήστη και τη διεύθυνση ηλεκτρονικού ταχυδρομείου για να διαχειριζόμαστε τους λογαριασμούς σε αυτό τον ιστότοπο. Για λόγους συμμόρφωσης με την κείμενη νομοθεσία περί προστασίας προσωπικών δεδομένων, πρέπει να επιλέξετε αυτό το κουτί για να δώσετε τη συγκατάθεσή σας για αυτή τη χρήση των προσωπικών σας δεδομένων. Για να μάθετε περισσότερα σχετικά με τις πληροφορίες που συλλέγουμε και πως τις χρησιμοποιούμε, παρακαλώ δείτε τη <a href="https://www.inaturalist.org/privacy">Πολιτική Απορρήτου</a> μας και τους <a href="https://www.inaturalist.org/terms">Όρους Χρήσης</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Συμφωνώ με τους <a href="https://www.inaturalist.org/terms">Όρους Χρήσης</a> και την <a href="https://www.inaturalist.org/privacy">Πολιτική Απορρήτου</a>, και έχω εξετάσει τις <a href="https://www.inaturalist.org/pages/community+guidelines">Οδηγίες κοινότητας</a>.]]></string>
     <string name="privacy_policy">Πολιτική Απορρήτου</string>
     <string name="terms_of_service">Όροι Χρήσης</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
@@ -926,21 +948,61 @@
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">MMM d, yyyy</string>
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_obscured">MMM \'\'yy</string>
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="show_common_names">Εμφάνιση κοινών ονομασιών</string>
+    <string name="show_common_names_description">Απενεργοποιήστε το αν επιθυμείτε να βλέπετε μόνο τις επιστημονικές ονομασίες.</string>
+    <string name="email_must_look_like_email_address">Η διεύθυνση ηλεκτρονικού ταχυδρομείου πρέπει να έχει τη μορφή τέτοιας διεύθυνσης</string>
+    <string name="username_must_begin_with">Το όνομα χρήστη πρέπει να ξεκινά με γράμμα, να μην περιέχει κενά και να χρησιμοποιεί μόνο λατινικούς χαρακτήρες, αριθμούς, παύλες και κάτω παύλες</string>
+    <string name="password_too_short">Ο κωδικός πρέπει να έχει τουλάχιστον έξι χαρακτήρες</string>
+    <string name="switch_to_grid_view">Αλλαγή σε προβολή πλέγματος</string>
+    <string name="switch_to_list_view">Αλλαγή σε προβολή λίστας</string>
+    <string name="filter_observations_by_an_exact_date">Φιλτράρισμα παρατηρήσεων με βάση συγκεκριμένη ημερομηνία</string>
+    <string name="filter_observations_by_a_date_range">Φιλτράρισμα παρατηρήσεων με βάση εύρος ημερομηνιών</string>
+    <string name="filter_observations_by_months">Φιλτράρισμα παρατηρήσεων ανά μήνες</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="include_suggestions_not_seen_nearby">Συμπερίληψη προτάσεων που δεν έχουν παρατηρηθεί κοντά</string>
+    <string name="only_view_nearby_suggestions">Εμφάνιση μόνο κοντινών προτάσεων</string>
+    <string name="suggestions_source">Πηγή Προτάσεων</string>
+    <string name="research_grade_observations">Παρατηρήσεις Ερευνητικού Επιπέδου</string>
+    <string name="visually_similar_description">Το iNaturalist θα παρέχει προτάσεις με βάση το πόσο οπτικά παρόμοιες είναι οι εικόνες με εικόνες ειδών που έχουν παρατηρηθεί κοντά σε αυτή την τοποθεσία και αυτή την εποχή του έτους.</string>
+    <string name="research_grade_observations_description">Αντί για οπτικά παρόμοιες προτάσεις, το iNaturalist θα προτείνει είδη που έχουν παρατηρηθεί σε ένα συγκεκριμένο τόπο και σε μια συγκεκριμένη ταξινομική ομάδα.</string>
     <string name="taxon">Ταξινομική μονάδα:</string>
     <string name="place">Τοποθεσία:</string>
     <string name="pretty_sure_kingdom">Είμαστε αρκετά σίγουροι ότι ανήκει στο βασίλειο:</string>
     <string name="pretty_sure_subkingdom">Είμαστε αρκετά σίγουροι ότι ανήκει στο υποβασίλειο:</string>
+    <string name="pretty_sure_phylum">Είμαστε αρκετά βέβαιοι πως ανήκει σε αυτό το φύλο:</string>
+    <string name="pretty_sure_subphylum">Είμαστε αρκετά βέβαιοι πως ανήκει σε αυτό το υποφύλο:</string>
     <!-- Singular -->
+    <string name="pretty_sure_species">Είμαστε αρκετά βέβαιοι πως ανήκει σε αυτό το είδος:</string>
+    <string name="pretty_sure_hybrid">Είμαστε αρκετά βέβαιοι πως ανήκει σε αυτό το υβρίδιο:</string>
     <!-- Singular -->
+    <string name="pretty_sure_subspecies">Είμαστε αρκετά βέβαιοι πως ανήκει σε αυτό το υποείδος:</string>
+    <string name="remove_date_observed">Αφαίρεση ημερομηνίας &amp; ώρας παρατήρησης</string>
+    <string name="remove_time_observed">Αφαίρεση ώρας παρατήρησης</string>
+    <string name="remove_location">Αφαίρεση τοποθεσίας</string>
+    <string name="are_you_sure_you_want_to_remove_date">Είστε σίγουροι πως θέλετε να αφαιρέσετε την ημερομηνία &amp; ώρα της παρατήρησης;</string>
+    <string name="are_you_sure_you_want_to_remove_time">Είστε σίγουροι πως θέλετε να αφαιρέσετε την ώρα της παρατήρησης;</string>
+    <string name="are_you_sure_you_want_to_remove_location">Είστε σίγουροι πως θέλετε να αφαιρέσετε την τοποθεσία;</string>
+    <string name="share_location">Διαμοιρασμός τοποθεσίας</string>
+    <string name="share_hidden_location">Εμφάνιση κρυμμένης τοποθεσίας</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="view_observations">Προβολή παρατηρήσεων</string>
+    <string name="go_back">Επιστροφή</string>
+    <string name="change_the_source_of_the_suggestions">Αλλαγή πηγής των προτάσεων</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Σχόλια και αναγνωρίσεις</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Αγαπημένα</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Προηγούμενη επιλογή</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Επόμενη επιλογή</string>
+    <string name="no_observations_yet2">Καμία παρατήρηση ακόμα.</string>
+    <string name="no_species_yet">Κανένα είδος ακόμα.</string>
+    <string name="no_identifications_yet">Καμία αναγνώριση ακόμα.</string>
     <string name="sort_by">Ταξινόμηση κατά</string>
     <string-array name="explore_order_by_items">
         <item>Ημερομηνία προσθήκης</item>
@@ -955,6 +1017,7 @@
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Ταξινόμηση ανά %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
     <string name="hide_my_observations">Απόκρυψη των παρατηρήσεων μου</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
@@ -972,23 +1035,91 @@
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Προεπιλεγμένες άδειες</string>
+    <string name="default_observation_license">Προεπιλεγμένη άδεια παρατήρησης</string>
+    <string name="default_photo_license">Προεπιλεγμένη άδεια φωτογραφίας</string>
+    <string name="default_sound_license">Προεπιλεγμένη άδεια ήχου</string>
+    <string name="change_existing_licenses">Αλλαγή υφιστάμενων αδειών</string>
+    <string name="change_licenses_for_existing_observations">Αλλαγή αδειών για υφιστάμενες παρατηρήσεις, φωτογραφίες και ήχους</string>
+    <string name="change_licenses_for_all_existing_observations">Αλλαγή αδειών για όλες τις υφιστάμενες παρατηρήσεις</string>
+    <string name="change_licenses_for_all_existing_photos">Αλλαγή αδειών για όλες τις υφιστάμενες φωτογραφίες</string>
+    <string name="change_licenses_for_all_existing_sounds">Αλλαγή αδειών για όλους τους υφιστάμενους ήχους</string>
+    <string name="change_observation_licenses">Αλλαγή αδειών παρατήρησης</string>
+    <string name="change_photo_licenses">Αλλαγή αδειών φωτογραφίας</string>
+    <string name="change_sound_licenses">Αλλαγή αδειών ήχων</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Αλλαγή των αδειών για <b>%1$d</b> υφιστάμενες παρατηρήσεις σε <b>%2$s</b>;]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Αλλαγή των αδειών για τις υφιστάμενες φωτογραφίες σε <b>%1$s</b>;]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Αλλαγή των αδειών για τους υφιστάμενους ήχους σε <b>%1$s</b>;]]></string>
+    <string name="observation_licenses_updated">Οι άδειες παρατήρησης ανανεώθηκαν</string>
+    <string name="photo_licenses_updated">Οι άδειες φωτογραφιών ανανεώθηκαν</string>
+    <string name="sound_licenses_updated">Οι άδειες ήχων ανανεώθηκαν</string>
+    <string name="existing_observation_licenses_have_been_updated">Όλες οι άδειες των υφιστάμενων παρατηρήσεων άλλαξαν σε %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Όλες οι άδειες των υφιστάμενων φωτογραφιών άλλαξαν σε %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Όλες οι άδειες των υφιστάμενων ήχων άλλαξαν σε %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Η αδειοδότηση του υλικού σας δίνει σε τρίτους το νόμιμο δικαίωμα να το χρησιμοποιήσουν χωρίς να ζητούν την άδειά σας, εφόσον συμμορφώνονται με τους όρους της άδειας. Επίσης, το iNat περιλαμβάνει το υλικό σας με που αδειοδοτείται με άδεια Creative Commons σε αρχεία που ενημερώνονται τακτικά, που παράγονται για επιλεγμένους συνεργαζόμενους φορείς που ενδιαφέρονται για τα δεδομένα μας. Για παράδειγμα, συμπεριλαμβάνουμε καταχωρήσεις με άδεια No Copyright (CC0), Αναφορά (CC BY), και Αναφορά - Μη-Εμπορική Χρήση (CC BY-NC) στο αρχείο που δημιουργούμε για την <a href="http://www.gbif.org/">Παγκόσμια Υπηρεσία  Πληροφοριών για τη Βιοποικιλότητα</a> (GBIF), που είναι ένας διεθνής, διακυβερνητικός οργανισμός που συγκεντρώνει και διανέμει πληροφορίες για τη βιοποικιλότητα από όλο τον κόσμο.]]></string>
+    <string name="photo_license">Άδεια φωτογραφίας</string>
+    <string name="sound_license">Άδεια ήχου</string>
+    <string name="edit_photo_license">Επεξεργασία άδειας φωτογραφίας</string>
+    <string name="observation_license">Άδεια παρατήρησης</string>
+    <string name="edit_observation_license">Επεξεργασία άδειας παρατήρησης</string>
+    <string name="about_licenses">Σχετικά με τις άδειες</string>
     <string name="view_license">Προβολή άδειας</string>
     <!-- License Names -->
+    <string name="license_name_cc0">Κοινό Κτήμα</string>
+    <string name="license_name_cc_by">Αναφορά</string>
+    <string name="license_name_cc_by_nc">Αναφορά-Μη Εμπορική Χρήση</string>
+    <string name="license_name_cc_by_nc_sa">Αναφορά-Μη Εμπορική Χρήση-Παρόμοια Διανομή</string>
+    <string name="license_name_cc_by_nc_nd">Αναφορά-Μη Εμπορική Χρήση-Όχι Παράγωγα Έργα</string>
+    <string name="license_name_cc_by_nd">Αναφορά-Όχι Παράγωγα Έργα</string>
+    <string name="license_name_cc_by_sa">Αναφορά-Παρόμοια Διανομή</string>
+    <string name="license_name_no_license">Με επιφύλαξη παντός δικαιώματος</string>
     <!-- License Descriptions -->
+    <string name="license_description_cc0">Αυτή η άδεια θέτει το έργο σας στο κοινό κτήμα, ώστε τρίτοι να μπορούν να το αντιγράψουν, να το τροποποιήσουν, να το διανείμουν και να το παρουσιάσουν, ακόμη και για εμπορικούς σκοπούς, χωρίς να ζητήσουν άδεια ή να σας αναφέρουν ως δημιουργό. Πρόκειται για την πιο ευέλικτη από τις διαθέσιμες άδειες. Συνιστάται για τη μέγιστη δυνατή διάδοση και χρήση του αδειοδοτημένου υλικού. </string>
+    <string name="license_description_cc_by">Αυτή η άδεια επιτρέπει σε τρίτους να διανέμουν, να αναδιαμορφώνουν, να τροποποιούν και να αξιοποιούν το έργο σας, ακόμη και για εμπορικούς σκοπούς, υπό την προϋπόθεση ότι θα σας αναφέρουν ως δημιουργό του αρχικού έργου.</string>
+    <string name="license_description_cc_by_nc">Αυτή άδεια επιτρέπει σε τρίτους να αναδιαμορφώνουν, να τροποποιούν και να αξιοποιούν το έργο σας για μη εμπορικούς σκοπούς, και παρόλο που τα νέα έργα τους πρέπει επίσης να αναφέρουν το όνομά σας και να είναι μη εμπορικά, δεν υποχρεούνται να παραχωρήσουν άδεια χρήσης για τα παράγωγα έργα τους με τους ίδιους όρους.</string>
+    <string name="license_description_cc_by_nc_sa">Αυτή η άδεια επιτρέπει σε τρίτους να αναδιαμορφώνουν, να τροποποιούν και να αξιοποιούν το έργο σας για μη εμπορικούς σκοπούς, υπό την προϋπόθεση ότι θα σας αναφέρουν ως δημιουργό και θα παραχωρήσουν άδεια για τα νέα τους δημιουργήματα υπό τους ίδιους όρους.</string>
+    <string name="license_description_cc_by_nc_nd">Αυτή η άδεια είναι η πιο περιοριστική από τις έξι κύριες άδειες, καθώς επιτρέπει σε τρίτους να κατεβάζουν τα έργα σας και να τα μοιράζονται με άλλους μόνο υπό την προϋπόθεση ότι θα σας αναφέρουν ως δημιουργό, αλλά δεν τους επιτρέπει να τα τροποποιήσουν με κανέναν τρόπο ούτε να τα χρησιμοποιήσουν για εμπορικούς σκοπούς.</string>
+    <string name="license_description_cc_by_nd">Αυτή η άδεια επιτρέπει την αναδιανομή, τόσο για εμπορικούς όσο και για μη εμπορικούς σκοπούς, υπό την προϋπόθεση ότι το υλικό διανέμεται χωρίς αλλαγές και στο σύνολό του, με αναφορά στην πηγή.</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Οι προτάσεις βασίζονται σε παρατηρήσεις και αναγνωρίσεις από την κοινότητα του iNaturalist, όπως οι %1$s, %2$s, %3$s και πολλούς άλλους και άλλες.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Εμφάνιση επιλογών</string>
     <!-- Placeholder text for an observation field value -->
+    <string name="change_user_profile_photo">Αλλαγή φωτογραφίας προφίλ χρήστη</string>
+    <string name="expand_list">Επέκταση λίστας</string>
+    <string name="change_map_layers">Αλλαγή υποβάθρων χάρτη (μορφολογικό - δορυφορικό)</string>
+    <string name="view_observations_on_map">Προβολή παρατηρήσεων στο χάρτη</string>
+    <string name="view_observations_on_grid">Προβολή παρατηρήσεων σε πλέγμα</string>
+    <string name="clear_text">Εκκαθάριση κειμένου</string>
+    <string name="observation_has_sounds">Η παρατήρηση έχει ήχους</string>
+    <string name="go_to_my_location">Μετάβαση στην τρέχουσα τοποθεσία μου</string>
+    <string name="change_geoprivacy">Αλλαγή γεωαπορρήτου</string>
+    <string name="active_filters">Ενεργά φίλτρα</string>
+    <string name="user_is_muted">Ο χρήστης είναι σε σίγαση</string>
+    <string name="delete_observations">Διαγραφή παρατηρήσεων</string>
+    <string name="comment_count">Αριθμός σχολίων</string>
+    <string name="id_count">Σύνολο αναγνωρίσεων</string>
     <string name="unknown_location">Άγνωστη τοποθεσία</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <string name="close">Κλείσιμο</string>
     <string name="set_date2">Ορισμός ημερομηνίας</string>
+    <string name="show_my_observations">Εμφάνιση των παρατηρήσεών μου</string>
     <string name="view_image">Προβολή εικόνας</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="remove_identification">Αφαίρεση αναγνώρισης</string>
+    <string name="authentication_failed">Ο έλεγχος ταυτότητας απέτυχε</string>
+    <string name="please_try_again_soon">Παρακαλώ δοκιμάστε ξανά αργότερα.</string>
+    <string name="verify_your_email">Επαληθεύστε την διεύθυνση ηλεκτρονικού ταχυδρομείου σας</string>
+    <string name="after_you_change_your_password">Μετά την αλλαγή του κωδικού πρόσβασής σας, θα αποσυνδεθείτε και θα πρέπει να συνδεθείτε ξανά με τον νέο σας κωδικό. Θα αποσυνδεθείτε επίσης από τις εφαρμογές iNaturalist σε κινητά και από οποιαδήποτε άλλη εφαρμογή ή ιστοσελίδα που δημοσιεύει στο iNaturalist για λογαριασμό σας, οπότε επιβεβαιώστε πως έχετε ήδη ανεβάσει τυχόν εκκρεμείς παρατηρήσεις προτού το κάνετε αυτό. Τυχόν παρατηρήσεις που δεν έχουν ανέβει θα χαθούν.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">Αδυναμία μεταφόρτωσης αρχείου - μεγαλύτερο από 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Έχετε αποσυνδεθεί. Παρακαλώ συνδεθείτε ξανά.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Κλείσιμο ανακοίνωσης</string>
+    <string name="import_photos_from">Εισαγωγή φωτογραφιών από…</string>
+    <string name="click_to_resend_confirmation_email">Κάντε κλικ εδώ για να σταλεί ξανά ένα μήνυμα επιβεβαίωσης ηλεκτρονικού ταχυδρομείου</string>
 </resources>

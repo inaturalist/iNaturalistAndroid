@@ -1,61 +1,577 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="email_address">Էլ. փոստի հասցե</string>
+    <string name="delete_observation">Ջնջել դիտարկումը</string>
+    <string name="observation_deleted">Դիտարկումը ջնջված է</string>
+    <string name="species_guess_hint">Տեսակի անուն</string>
+    <string name="ok">Լավ</string>
+    <string name="cancel">Չեղարկել</string>
+    <string name="loading">Բեռնվում է...</string>
+    <string name="street">Փողոց</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
+    <string name="satellite">Արբանյակ</string>
+    <string name="couldnt_load_nearby_observations">Չհաջողվեց բեռնել մոտակա դիտարկումները․ %1$s</string>
+    <string name="username_invalid">Օգտագործողի անունը կամ գաղտնաբառը սխալ էր, խնդրում ենք կրկին մուտք գործել։</string>
+    <string name="signing_in">Մուտք է գործում...</string>
+    <string name="signed_in">Մո՜ւտք գործեց։</string>
+    <string name="please_sign_in">Խնդրում ենք մուտք գործել</string>
+    <string name="please_sign_in_description">Խնդրում ենք մուտք գործել ձեր iNaturalist հաշիվը կամ գրանցվել նորի համար։</string>
+    <string name="please_enable_location_services">Խնդրում ենք միացնել տեղորոշման ծառայությունները՝ ձեր ընթացիկ տեղանքը գտնելու համար...</string>
+    <string name="go_to_settings">Գնացեք Կարգավորումներ</string>
+    <string name="photo_not_specified">Լուսանկարը նշված չէ</string>
+    <string name="set_date">Ամսաթիվ</string>
+    <string name="set_time">Ժամանակ</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
+    <string name="something_went_wrong">Ափսոս, ինչ-որ բան սխալ է եղել. %1$s</string>
+    <string name="edit">Խմբագրել</string>
+    <string name="oh_no">Օ՜, ոչ: %1$s</string>
+    <string name="observations">Իմ դիտարկումները</string>
+    <string name="map">Քարտեզ</string>
+    <string name="settings">Կարգավորումներ</string>
+    <string name="projects">Նախագծեր</string>
+    <string name="delete_photo">Ջնջել լուսանկար</string>
+    <string name="my_location">Իմ տեղանքը</string>
+    <string name="nearby_observations">Մոտակա դիտարկումներ</string>
+    <string name="add">Ավելացնել</string>
+    <string name="view_on_inat">Դիտել iNaturalist.org-ում</string>
+    <string name="reload">Վերբեռնել</string>
+    <string name="view_in_browser">Դիտել զննարկիչում</string>
+    <string name="add_observation">Ավելացնել դիտարկում</string>
+    <string name="take_picture">Լուսանկարել</string>
+    <string name="save">Պահպանել</string>
+    <string name="no_observations_yet">Դեռևս դիտարկումներ չկա՛ն:</string>
+    <string name="or">կամ</string>
+    <string name="signed_out">Ելք</string>
+    <string name="username">Օգտանուն</string>
+    <string name="password">Գաղտնաբառ</string>
+    <string name="unknown">Անհայտ</string>
+    <string name="unknown_species">Անհայտ տեսակ</string>
+    <string name="edit_observation">Խմբագրել դիտարկումը</string>
+    <string name="discard_changes">Վստա՞հ եք, որ ուզում եք չեղարկել չպահպանված փոփոխությունները․</string>
+    <string name="yes">Այո</string>
+    <string name="no">Ոչ</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
+    <string name="agree">Համաձա՞յն եք․</string>
+    <string name="no_comments">Դեռևս մեկնաբանություններ/նույնականացումներ չկան</string>
+    <string name="add_comment">Ավելացնել մեկնաբանություն</string>
+    <string name="add_id">Ավելացնել նույնականացում</string>
+    <string name="remarks">Նշումներ...</string>
+    <string name="enter_taxon_name">Տեսակի անուն</string>
+    <string name="no_projects">Նախագծեր չե՛ն գտնվել:</string>
+    <string name="no_guides">Ուղեցույցներ չե՛ն գտնվել:</string>
+    <string name="loading_projects">Նախագծերի բեռնում...</string>
+    <string name="joined_projects">Միացավ</string>
+    <string name="nearby_projects">Մոտակայքում</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
+    <string name="featured_projects">Առանձնացված</string>
     <!-- Verb, used as a label for actions like leaving a project -->
+    <string name="leave">Հեռանալ</string>
+    <string name="join">Միանալ</string>
+    <string name="no_check_list">Ստուգացուցակում թաքսոններ չկա՛ն:</string>
+    <string name="failed_to_add_obs_to_project">Չհաջողվեց «%1$s» դիտարկումը ավելացնել «%2$s» նախագծին. %3$s</string>
+    <string name="invalid_project_field">Խնդրում ենք «%1s» դաշտի համար մուտքագրել վավեր արժեք</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
+    <string name="select_projects">Ընտրել Միացած նախագծերից</string>
+    <string name="not_connected">Դուք պետք է միացված լինեք համացանցի՛ն՝ դա անելու համար:</string>
+    <string name="search_projects">Որոնել նախագծեր...</string>
+    <string name="search_guides">Որոնման ուղեցույցներ...</string>
+    <string name="save_observation">Պահպանել դիտարկումը</string>
     <!-- Header for a description an individual guide -->
+    <string name="about_guide">Մասին</string>
+    <string name="about_guide_all_caps">ՄԱՍԻՆ</string>
     <!-- Header for a description an individual project -->
+    <string name="about_project">Մասին</string>
+    <string name="about_project_all_caps">ՄԱՍԻՆ</string>
+    <string name="about_this_app">Մասին</string>
+    <string name="about_taxon_short">Մասին</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
+    <string name="geoprivacy">Տեղադրության գաղտնիություն</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
+    <string name="geoprivacy_with_value">Տեղադրության գաղտնիություն․ %1$s</string>
+    <string name="delete_confirmation">Վստա՞հ եք, որ ուզում եք ջնջել այս դիտարկումը․</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
+    <string name="guides">Ուղեցույցներ</string>
+    <string name="my_guides">Ձերը</string>
+    <string name="nearby_guides">Մոտակայքում</string>
+    <string name="all_guides">Բոլորը</string>
+    <string name="no_taxa">Այս ուղեցույցի համար թաքսոններ չեն գտնվել:</string>
+    <string name="search_taxa">Որոնել թաքսոններ...</string>
+    <string name="no_internet_guides">Ուղեցույցները պահանջում են համացանցի կապ</string>
+    <string name="no_internet_projects">Նախագծերը պահանջում են համացանցի կապ</string>
+    <string name="locale_gl">Գալիսերեն</string>
+    <string name="locale_eu">Բասկերեն</string>
+    <string name="use_device_language_settings">Օգտագործեք սարքի լեզվի կարգավորումները</string>
+    <string name="choose_location">Ընտրեք տեղանքը</string>
+    <string name="done">Կատարված է</string>
+    <string name="please_sign_in_via_settings">Դուք պետք է մուտք գործեք՝ տեսնելու ձեր միացած նախագծերը։</string>
+    <string name="contact_support">Կապ հաստատեք Աջակցման հետ</string>
+    <string name="leave_project">Լքել նախագիծը</string>
+    <string name="leave_project_confirmation">Վստա՞հ եք, որ ուզում եք լքել այս նախագիծը․</string>
+    <string name="discard_location_changes">Վստա՞հ եք, որ ուզում եք չեղարկել չպահպանված փոփոխությունները․</string>
+    <string name="edit_location">Խմբագրել տեղանքը</string>
+    <string name="edit_locality_notes">Խմբագրել Տեղանքի նշումները</string>
+    <string name="get_current_location">Գտիր ընթացիկ տեղանքը</string>
+    <string name="pull_to_refresh">Քաշեք՝ թարմացնելու համար...</string>
+    <string name="release_to_refresh">Բաց թողեք՝ թարմացնելու համար...</string>
+    <string name="refreshing">Թարմացնում է...</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Համաժամեցնել %1$d դիտարկումը</item>
+        <item quantity="other">Համաժամեցնել %1$d դիտարկումները</item>
+    </plurals>
+    <string name="sync_observations">Համաժամեցնել դիտարկումները</string>
+    <string name="lets_get_started">Եկեք սկսե՜նք:</string>
+    <string name="view_nearby_observations">Դիտել մոտակա դիտարկումները</string>
+    <string name="skip_for_now">Հետաձգել հիմա</string>
+    <string-array name="tutorial_titles">
+        <item></item>
+        <item>Դիտարկել</item>
+        <item>Կիսել</item>
+        <item>Սովորել</item>
+        <item>Ներդրում անել</item>
+    </string-array>
+    <string-array name="tutorial_descriptions">
+        <item>Բացահայտեք և կապ հաստատեք բնության հետ</item>
+        <item>Դո՛ւրս գնացեք: Գտեք ինչ-որ վայրի բան և հստակ, ամբողջական կադրով լուսանկար արեք:</item>
+        <item>Կիսեք ձեր դիտարկում iNaturalist համայնքի հետ։</item>
+        <item>Ստուգե՜ք ձեր դիտարկմանը վերաբերող մեկնաբանությունները և նույնականացումները:</item>
+        <item><![CDATA[<b>Հետազոտական մակարդակի</b> դիտարկումները կիսում ենք գիտնականների հետ, ովքեր աշխատում են ավելի լավ հասկանալ և պաշտպանել բնությունը։]]></item>
+    </string-array>
+    <string-array name="geoprivacy_items">
+        <item>Բացել</item>
+        <item>Անհստակ</item>
+        <item>Մասնավոր</item>
+    </string-array>
+    <string name="alert_sign_out">Վստա՞հ եք, որ ուզում եք դուրս գալ․ սա կջնջի ձեր բոլոր դիտարկումները այս սարքում: Դա չի ազդի iNaturalist-ում ձեր վերբեռնած դիտարկումների վրա:</string>
+    <string name="alert_unsupported_media_type">Ներեցեք, բայց այս աղբյուրից լուսանկարը բեռնելու հետ կապված խնդիր առաջացավ</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
+    <string name="explore">Ուսումնասիրել</string>
+    <string name="restricted_to_current_map_area">Սահմանափակված է ընթացիկ քարտեզի տարածքով</string>
+    <string name="search">Որոնում</string>
+    <string name="details">Մանրամասներ</string>
+    <string name="observation_photos">Դիտարկման լուսանկարներ</string>
+    <string name="no_observations_found">Դիտարկումներ չեն գտնվել</string>
+    <string name="license_none">Չկա, բոլոր իրավունքները պաշտպանված են</string>
+    <string name="sources_and_attribution">Աղբյուրներ և վերագրումներ</string>
+    <string name="photos"><![CDATA[<b>Լուսանկարներ․</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>Տեքստ․</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
+    <string name="alert_message_use_inaturalist">iNaturalist-ի հիմնական ցանցը։ Սեղմելով «OK»՝ ձեր հավելվածը կդարձնեք գլոբալ iNaturalist ցանցի մաս։</string>
+    <string name="alert_message_use_naturalista">NaturaLista-ն iNaturalist ցանցի անդամ է Մեքսիկայում։ Տեղական հաստատությունների համար, որոնք աջակցում են NaturaLista-ին, հասանելի կլինեն ձեր էլ. հասցեն և իրական կոորդինատները այն դիտարկումների համար, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ-ը Նոր Զելանդիայում iNaturalist ցանցի անդամ է։ iNaturalist NZ-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada-ն iNaturalist ցանցի անդամ է Կանադայում։ iNaturalist Canada-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista-ն iNaturalist ցանցի անդամ է Կոլումբիայում։ Naturalista-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All-ը iNaturalist ցանցի անդամ է Պորտուգալիայում։ Biodiversity4All-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panama-ն iNaturalist ցանցի անդամ է Պանամայում։ iNaturalist Panama-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador-ը iNaturalist ցանցի անդամ է Էկվադորում։ iNaturalist Ecuador-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia-ն iNaturalist ցանցի անդամ է Ավստրալիայում։ iNaturalist Australia-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_argentinat">ArgentiNat-ը iNaturalist ցանցի անդամ է Արգենտինայում։ ArgentiNat-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel-ը iNaturalist ցանցի անդամ է Իսրայելում։ iNaturalist Israel-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland-ն iNaturalist ցանցի անդամ է Ֆինլանդիայում։ iNaturalist Finland-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile-ն iNaturalist ցանցի անդամ է Չիլիում։ iNaturalist Chile-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece-ը iNaturalist ցանցի անդամ է Հունաստանում։ iNaturalist Greece-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg-ը iNaturalist ցանցի անդամ է Լյուքսեմբուրգում: iNaturalist Luxembourg-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom-ը iNaturalist ցանցի անդամ է Միացյալ Թագավորությունում։ United Kingdom-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica-ն iNaturalist ցանցի անդամ է Կոստա Ռիկայում։ Naturalista Costa Rica-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala-ն iNaturalist ցանցի անդամ է Գվատեմալայում։ iNaturalist Guatemala-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden-ն iNaturalist ցանցի անդամ է Շվեդիայում։ iNaturalist Sweden-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay-ը iNaturalist ցանցի անդամ է Ուրուգվայում։ Naturalista Uruguay-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan-ը iNaturalist ցանցի անդամ է Թայվանում։ iNaturalist Taiwan-ին աջակցող տեղական հաստատությունների համար հասանելի կլինեն ձեր էլ. փոստի հասցեն և այն դիտարկումների իրական կոորդինատները, որոնք հանրային կերպով անհստակ կամ մասնավոր են։ Խնդրում ենք փորձնական չփոխել ձեր անդամակցությունը, եթե ունեք 1000-ից ավելի դիտարկում։ Ցանկանո՞ւմ եք փոխել ձեր անդամակցությունը․</string>
+    <string name="editor">Խմբագիր</string>
+    <string name="license">Լիցենզիա</string>
+    <string name="download_for_offline_use">Ներբեռնել անցանց օգտագործման համար</string>
+    <string name="download_not_available">Ներբեռնումը հասանելի չէ</string>
+    <string name="guide_editor_must_enable_this_feature">Խմբագիր ուղեցույցը պետք է միացնի այս հատկությունը։</string>
+    <string name="are_you_sure">Համոզվա՞ծ եք․</string>
+    <string name="download_guide_alert">Սա կներբեռնի %1$s տվյալներ, որպեսզի կարողանաք օգտագործել այս ուղեցույցը նույնիսկ երբ չունեք համացանցի հասանելիություն։</string>
+    <string name="failed_to_download_guide">Ուղեցույցը ներբեռնելը ձախողվեց</string>
+    <string name="internet_connection_seems_to_be_offline">Համացանցի կապը կարծես անջատված է։</string>
+    <string name="downloading">Ներբեռնում է...</string>
+    <string name="extracting">Արտահանում է...</string>
+    <string name="downloaded">Ներբեռնված</string>
+    <string name="delete_download">Ջնջել ներբեռնումը</string>
+    <string name="re_download">Վերաներբեռնել</string>
+    <string name="error">Սխալ</string>
+    <string name="could_not_retrieve_guide">Չհաջողվեց ստանալ ուղեցույցի մանրամասները․ հավանաբար ցանցի սխալ է։</string>
+    <string name="inat_support_email_subject">Օգնություն iNaturalist-ից (տարբերակ %1$s - %2$s, օգտատիրոջ ID - %3$s)</string>
+    <string name="send_email">Ուղարկել էլ․ փոստ...</string>
+    <string name="login_with">Մուտք գործել</string>
+    <string name="gplus">Գուգլով</string>
+    <string name="email">Էլ. փոստով</string>
+    <string name="skip">Բաց թողնել ›</string>
+    <string name="log_in">Մուտք գործել</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
+    <string name="sign_up">Գրանցվել</string>
     <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Գրանցվել</string>
+    <string name="min_6_chars">Առնվազն 6 նիշ</string>
+    <string name="use_my_license"><![CDATA[Այո, արտոնագրեք իմ բովանդակությունը, որպեսզի գիտնականները կարողանան օգտագործել իմ տվյալները (խորհուրդ է տրվում): <b>Իմացեք ավելին</b>]]></string>
+    <string name="content_licensing">Բովանդակության արտոնագրում</string>
+    <string name="content_licensing_description">Նշեք այս վանդակը, եթե ուզում եք կիրառել Creative Commons Attribution-NonCommercial արտոնագիրը ձեր լուսանկարների համար: Կարող եք ընտրել այլ արտոնագիր կամ հեռացնել այն ավելի ուշ, բայց սա լավագույն արտոնագիրն է հետազոտողների հետ կիսելու համար:</string>
     <!-- Try to keep this about the length of the English text -->
+    <string name="username_or_email">Օգտանուն կամ Էլ. փոստ</string>
+    <string name="forgot">Մոռացե՞լ եք․</string>
+    <string name="or_login_with">Կամ մուտք գործեք․</string>
+    <string name="registering">Գրանցում է...</string>
+    <string name="recommended_next_step">Առաջարկվող հաջորդ քայլը</string>
+    <string name="could_not_register_user">Չհաջողվեց գրանցել օգտատիրոջը</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
+    <string name="login_signup">Մուտք գործել / Գրանցվել</string>
+    <string name="please_sign_in_via_settings_for_guides">Դուք պետք է մուտք գործեք՝ ձեր ուղեցույցները դիտելու համար։</string>
+    <string name="please_sign_in_for_updates">Դուք պետք է մուտք գործեք՝ ձեր թարմացումները դիտելու համար։</string>
+    <string name="by_using_inat_terms"><![CDATA[Օգտագործելով iNaturalist-ը, դուք համաձայնում եք <b><a href="https://www.inaturalist.org/pages/terms">Օգտագործման պայմաններին</a></b> և <b><a href="https://www.inaturalist.org/pages/privacy">Գաղտնիության քաղաքականությանը</a></b>]]></string>
+    <string name="activity">Գործունեություն</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
+    <string name="camera">Լուսանկարել</string>
     <!-- Label for a button to import an existing photo for an observation -->
+    <string name="upload_photo">Պատկեր ընտրել</string>
+    <string name="first">Առաջին</string>
+    <string name="make_first">Դարձրու առաջինը</string>
+    <string name="notes">Նշումներ</string>
+    <string name="is_captive">Ազատության մեջ չէ կամ մշակովի է</string>
+    <string name="location_visibility">Տեղանքի տեսանելիություն</string>
+    <string name="set_location">Տեղանք</string>
+    <string name="coordinates_lat">Լայն․</string>
+    <string name="coordinates_lon">Երկ.</string>
+    <string name="coordinates_acc">Ճշգրտ.</string>
+    <string name="required">* Պարտադիր</string>
+    <string name="downloading_observations">Ներբեռնում է դիտարկումները...</string>
+    <string name="no_thanks">Ոչ, շնորհակալություն</string>
+    <string name="turn_on">Միացնել</string>
+    <string name="introducing_auto_sync">Ներկայացնո՜ւմ ենք Auto-Sync-ը:</string>
+    <string name="turn_on_auto_sync">Միացրեք Auto-Sync-ը Կարգավորումներում, և ձեր դիտարկումները ինքնաշխատ կվերբեռնվեն iNaturalist։</string>
+    <string name="automatic_upload">Ինքնաշխատ վերբեռնում (Auto Sync)</string>
+    <string name="waiting_to_upload">Սպասում է վերբեռնելուն...</string>
+    <string name="uploading">Վերբեռնում է․․․</string>
+    <string name="failed_to_add_to_project">Չհաջողվեց ավելացնել նախագիծ «%1$s»․ %2$s</string>
+    <string name="needs_your_attention">Անհրաժեշտ է ձեր ուշադրությունը...</string>
+    <string name="observation">Դիտարկում</string>
+    <string name="share">Կիսել</string>
+    <string name="unable_to_acquire_location">Հնարավոր չէ ստանալ տեղանքը</string>
+    <string name="casual_grade">Ոչ հետազոտական մակարդակ</string>
+    <string name="needs_id">Անհրաժեշտ է ID</string>
+    <string name="research_grade">Հետազոտական մակարդակ</string>
+    <string name="data_quality">Տվյալների որակ</string>
+    <string name="casual_grade_add_location"><![CDATA[ Ավելացրեք <b>տեղանք</b>՝ այս դիտարկումը «Անհրաժեշտ է ID» կարգավիճակի հասցնելու համար։ ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Ավելացրեք <b>ամսաթիվ</b>՝ այս դիտարկումը «Անհրաժեշտ է ID» կարգավիճակին հասցնելու համար։ ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Ավելացրեք <b>լուսանկար</b>՝ այս դիտարկումը «Անհրաժեշտ է ID» կարգավիճակի հասցնելու համար։ ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Դիտարկումը պատահական է, քանի որ <b>ազատության մեջ չէ/մշակովի է</b>։ ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Դիտարկումը կարիք ունի <b>ավելի շատ նույնականացումների</b> համայնքից, որպեսզի ստանա «Հետազոտական մակարդակ» կարգավիճակ։ ]]></string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Ներառված է %1$d նախագծում</item>
+        <item quantity="other">Ներառված է %1$d նախագծերում</item>
+    </plurals>
+    <string name="geoprivacy_explanation"><![CDATA[ Տեղանքի գաղտնիությունը մի կարգավորում է, որը կարող եք անել ձեր դիտարկումների վրա՝ վերահսկելու համար, թե ինչպես են տարածական կոորդինատները (լայնություն և երկայնություն) ցուցադրվում: Ահա տարբերակները․<br/><b>բաց</b>․  Բոլորը կարող են տեսնել կոորդինատները, եթե թաքսոնը վտանգված չէ:<br/><b>անհստակ</b>․ Հանրային կոորդինատները ցուցադրվում են որպես պատահական կետ 0.2x0.2 աստիճանի տարածքում, որը պարունակում է իրական կոորդինատները, ինչը մոտավորապես 22x22 կմ քառակուսի անորոշ տարածք է հասարակածում, որը նվազում է, երբ մոտենում եք բևեռներին: Իրական կոորդինատները տեսանելի են միայն ձեզ և այն նախագծերի հոգաբարձուներին, որոնց համար ավելացնում եք դիտարկումը․<br/><b>անձնական</b>․ Կոորդինատները ամբողջությամբ թաքցված են հանրային քարտեզներից, իրական կոորդինատները տեսանելի են միայն ձեզ և այն նախագծերի հոգաբարձուներին, որոնց համար ավելացնում եք դիտարկումը: <br/><br/>Նշեք, որ առանձին նախագծերի հոգաբարձուները միշտ կարող են տեսնել կոորդինատները՝ անկախ ձեր տեղանքի գաղտնիության կարգավորումից, ուստի եթե մտահոգված եք, թե ում են կոորդինատները հասանելի, պետք է համոզվեք, որ վստահում եք այն նախագծերի հոգաբարձուներին, որոնց մասնակցում եք:]]></string>
+    <string name="id_title">%1$s-ի ID • %2$s</string>
+    <string name="comment_title">%1$s•%2$s</string>
+    <string name="delete">Ջնջել</string>
+    <string name="delete_id">Հեռացնել նույնականացումը</string>
+    <string name="delete_comment">Ջնջել մեկնաբանությունը</string>
+    <string name="delete_id_message">Վստա՞հ եք, որ ուզում եք հեռացնել այս նույնականացումը․</string>
+    <string name="delete_comment_message">Վստա՞հ եք, որ ուզում եք ջնջել այս մեկնաբանությունը․</string>
+    <string name="suggest_id">Առաջարկել ID</string>
+    <string name="update_comment">Թարմացնել մեկնաբանությունը</string>
+    <string name="fave_this_observation">Ավելացրեք այս դիտարկումը նախընտրածների մեջ</string>
+    <string name="faved">Նախընտրած</string>
+    <string name="be_the_first_to_fave_this_obs">Եղեք առաջինը, ով կնախընտրի այս դիտարկումը...</string>
+    <string name="leave_a_comment">Թողեք մեկնաբանություն կամ առաջարկեք նույնականացում...</string>
+    <string name="location_coords">Լայն. %1$s Երկ. %2$s Ճշգրտ. %3$s</string>
+    <string name="location_coords_no_acc">Լայն․ %1$s Երկ․ %2$s</string>
+    <string name="location">Տեղանք</string>
+    <string name="login_in_to_add_comments_ids">Մուտք գործեք կամ գրանցվեք՝ մեկնաբանություն թողնելու կամ նույնականացում առաջարկելու համար...</string>
+    <string name="login_in_to_fav">Մուտք գործեք կամ գրանցվեք՝ տեսնելու նախընտրածները կամ նախընտրելու այս դիտարկումը...</string>
+    <string name="sync_obs_to_see_favs">Համաժամեցրեք այս դիտարկումը՝ նախընտրածները տեսնելու համար...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
+    <string name="sync_obs_to_add_comments_ids">Համաժամեցրեք այս դիտարկումը՝ մեկնաբանություն թողնելու կամ նույնականացում առաջարկելու համար...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
+    <string name="no_photo">Մեդիա չկա</string>
+    <string name="about_this_species">Այս տեսակի մասին</string>
+    <string name="view_on_wikipedia">Վիքիպեդիայի հոդված</string>
+    <string name="photo"><![CDATA[Լուսանկար․ <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo_attr"><![CDATA[Լուսանկար․ <b>%1$s</b>]]></string>
+    <string name="finding_current_location">Գտնում է ընթացիկ տեղանքը...</string>
+    <string name="flag_as_captive">Նշել որպես Ազատության մեջ չէ/Մշակովի է</string>
+    <string name="observation_flagged_as_captive">Դիտարկումը նշվել է որպես ազատության մեջ չէ/մշակովի է</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Վստա՞հ եք, որ ուզում եք այս դիտարկումը նշել որպես ազատության մեջ չէ/մշակովի է:</string>
+    <string name="do_you_agree_to_the_following">Համաձա՞յն եք հետևյալին․</string>
+    <string name="terms">Պայմաններ</string>
+    <string name="observation_rules">Դիտարկման կանոններ</string>
+    <string name="couldnt_load_project_details">Չհաջողվեց բեռնել նախագծի մանրամասները․ %1$s</string>
+    <string name="no_people_found">Մարդիկ չեն գտնվել</string>
+    <string name="rank">Վարկանիշ</string>
+    <string name="identifications">Նույնականացումներ</string>
+    <string name="no_news_found">Լուրեր չեն գտնվել</string>
+    <string name="news">Նորություններ</string>
+    <string name="article">Հոդված</string>
+    <string name="couldnt_load_project_news">Չհաջողվեց բեռնել նախագծի նորությունները․ %1$s</string>
+    <string name="couldnt_load_user_details">Չհաջողվեց բեռնել օգտատիրոջ տվյալները․ %1$s</string>
+    <string name="more_bio"><![CDATA[<b><font color="#ffffff">Ավելին »</font></b>]]></string>
+    <string name="no_location">Տեղանք չկա</string>
+    <string name="add_to_projects">Ավելացնել նախագծ(եր)ին</string>
+    <string name="are_you_sure_you_want_to_save_obs_without_coords">Վստա՞հ եք, որ ուզում եք պահպանել դիտարկումը՝ առանց որևէ կոորդինատի․</string>
+    <string name="users_identification">%1$s-ի ID-ն է․ %2$s</string>
+    <string name="edit_profile">Խմբագրել պրոֆիլը</string>
+    <string name="remove_photo">Հեռացնել լուսանկարը</string>
+    <string name="name">Անուն</string>
+    <string name="tell_us_about_yourself">Պատմեք մեզ ձեր մասին...</string>
+    <string name="view_profile">Դիտել պրոֆիլը</string>
+    <string name="are_you_sure_you_want_to_remove_photo">Վստա՞հ եք, որ ուզում եք հեռացնել ձեր լուսանկարը․</string>
+    <string name="updating_profile">Պրոֆիլի թարմացում...</string>
+    <string name="there_was_a_problem_updating_profile">Ձեր պրոֆիլը թարմացնելիս խնդի՛ր առաջացավ․</string>
+    <string name="there_was_a_problem_updating_profile_params">Ձեր պրոֆիլը թարմացնելիս խնդիր առաջացավ․ %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Ներկայումս մուտք է գործված որպես <b>%1$s</b>]]></string>
+    <string name="log_out">Ելք</string>
+    <string name="not_logged_in">Մուտք գործած չէ</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Մուտք գործել կամ գրանցվել</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Ինքնաշխատ վերբեռնել նոր դիտարկումները և դիտարկումների խմբագրումները</string>
+    <string name="language">Լեզու</string>
+    <string name="version">Տարբերակ</string>
+    <string name="inat_network">iNaturalist ցանց</string>
+    <string name="inat_network_description">iNaturalist ցանցը iNaturalist համայնքը տեղայնացնելու շրջանակ է։ Ցանցային կայքերին աջակցում են տեղական հաստատությունները, որոնք ստորագրել են համաձայնագիր iNaturalist-ի հետ՝ խթանելու տեղական օգտագործումը և նպաստելու տեղական կենսաբազմազանությանը։</string>
+    <string name="more_info">Լրացուցիչ տեղեկություններ</string>
+    <string name="select_network">Ընտրել ցանցային անդամակցություն</string>
+    <string name="help">Օգնություն</string>
+    <string name="stop">Դադարեցնել</string>
+    <string name="resume">Ռեզյումե</string>
+    <string name="cleaning_up">Մաքրում է...</string>
+    <string name="syncing">Համաժամեցում...</string>
+    <string name="syncing_observation_fields">Համաժամեցվում են դիտարկման դաշտերը...</string>
+    <string name="syncing_observations">Դիտարկումների համաժամեցում...</string>
+    <string name="syncing_paused">Դադար տալ</string>
+    <string name="upload">Վերբեռնել</string>
+    <string name="search_observations">Որոնել դիտարկումներ...</string>
+    <string name="withdraw">Հեռացնել</string>
     <!-- Dialog title for when you are updating the description of an identification -->
+    <string name="update_id_description">Թարմացնել նույնականացման նկարագրությունը</string>
+    <string name="your_identification">Ձեր ID-ն․ %1$s</string>
+    <string name="onboarding_species_name">Անվանեք այն, ինչ տեսաք, եթե կարող եք, նույնիսկ եթե դա պարզապես «միջատ» կամ «թռչուն» լինի, կամ պարզապես թողեք սա դատարկ։ Ուրիշնե՜ր կարող են օգնել ձեզ այն ճանաչելու։</string>
+    <string name="upload_complete">Վերբեռնումը ավարտվա՛ծ է:</string>
+    <string name="onboarding_upload_description">Շուտով ստուգեք ձեր դիտարկում(ներ)ի նույնականացումները և մեկնաբանությունները։</string>
+    <string name="importing_photos">Լուսանկար(ներ)ի ներմուծում...</string>
+    <string name="multi_select_description">Մի քանի լուսանկար ներմուծելու համար երկար սեղմեք մեկ լուսանկարի վրա</string>
+    <string name="preparing_photo">Լուսանկարը պատրաստվում է...</string>
+    <string name="recommended_for_you">Խորհուրդ է տրվում Ձեզ համար</string>
+    <string name="missions">Առաքելություններ</string>
+    <string name="browse_by_category">Թերթել ըստ դասակարգման</string>
+    <string name="couldnt_load_recommended_missions">Չհաջողվեց բեռնել առաջարկվող առաքելությունները․ %1$s</string>
+    <string name="plants">Բույսեր</string>
+    <string name="mammals">Կաթնասուններ</string>
+    <string name="insects">Միջատներ</string>
+    <string name="reptiles">Սողուններ</string>
+    <string name="animals">Կենդանիներ</string>
+    <string name="fish">Ձուկ</string>
+    <string name="mollusks">Կակղամորթներ</string>
+    <string name="protozoans">Միաբջիջներ</string>
+    <string name="chromista">Կելպ, դիատոմներ և մերձավոր տեսակներ</string>
+    <string name="amphibians">Երկկենցաղներ</string>
+    <string name="fungi">Սնկեր</string>
+    <string name="birds">Թռչուններ</string>
+    <string name="arachnids">Սարդակերպեր</string>
+    <string name="no_connectivity">Կապ չկա</string>
+    <string name="no_recommended_missions">Թվում է, թե այս տարածքում առաջարկներ չկան։ Փորձեք տեղափոխվել նոր տեղանք։</string>
+    <string name="what_to_look_for">Ինչ փնտրել</string>
+    <string name="have_been_seen_here">Տեսնվել են այստեղ</string>
+    <string name="observe">Դիտարկել</string>
+    <string name="nearby_missions">Մոտակա առաքելություններ</string>
+    <string name="searching_your_area">Որոնում ձեր տարածքում...</string>
+    <string name="expanding_your_search_area">Ընդլայնում ենք ձեր որոնման տարածքը...</string>
+    <string name="introducing_missions">Ներկայացնում ենք առաքելություննե՜րը</string>
+    <string name="missions_onboarding_description">Առաքելությունները իրական ժամանակում արվող առաջարկություններ են, թե ինչ փնտրել ձեր շուրջը։ Այս կերպ դուք կարող եք հայտնաբերել նոր տեսակնե՜ր ձեզ համար։ (Պահանջում է կապ)</string>
+    <string name="ok_got_it">Լավ, հասկացա՜ ձեզ։</string>
+    <string name="could_not_download_observations">Չհաջողվեց ներբեռնել վերջին դիտարկումները․ կապի խնդիրներ։ Ավելի ուշ կրկին փորձեք։</string>
+    <string name="no_news_yet">Դեռ նորություններ չկան։ Մնացե՜ք մեզ հետ։</string>
+    <string name="my_content">Իմ բովանդակությունը</string>
+    <string name="following">Հետևյալ</string>
+    <string name="no_updates_yet">Դեռ թարմացումներ չկան։ Մնացե՜ք մեզ հետ։</string>
+    <string name="you_will_only_receive_updates_when_creating">(Դուք կստանաք թարմացումներ միայն այն դեպքում, եթե ստեղծեք դիտարկումներ)</string>
+    <string name="you_will_only_receive_updates_when_following">(Դուք կստանաք թարմացումներ միայն այն դեպքում, եթե հետևեք դիտարկումներին)</string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> առաջարկեց ID․ %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_comment"><![CDATA[<b>%1$s</b> մեկնաբանեց. &ldquo․%2$s&rdquo․ <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> հիշատակեց ձեզ․ &ldquo․%2$s&rdquo․ <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="deleted_photos_from_cache_error">Կարծես թե դուք ջնջել եք լուսանկարը՝ հավելվածի քեշը մաքրելով մինչև վերբեռնումը։ Դուք պետք է լուսանկարը պատկերասրահից նորից ավելացնեք ձեր դիտարկմանը։ Ապագայում խնդրում ենք համոզվել, որ վերբեռնել եք ձեր բոլոր լուսանկարները նախքան հավելվածի քեշը մաքրելը։</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s նոր</item>
+        <item quantity="other">%1s նոր</item>
+    </plurals>
+    <string name="no_results_found">Արդյունքներ չեն գտնվել...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Համաժամեցվում է %1$d-ը %2$d դիտարկումներից...</item>
+        <item quantity="other">Համաժամեցվում է %1$d-ը %2$d դիտարկումներից...</item>
+    </plurals>
+    <string name="deleting_observations">Ջնջում է դիտարկումները...</string>
+    <string name="preparing">Պատրաստում է...</string>
+    <string name="add_edit_remark">Ավելացնել/Խմբագրել դիտողություն</string>
+    <string name="restore">Վերականգնել</string>
+    <string name="compare">Համեմատել</string>
+    <string name="select">Ընտրել</string>
+    <string name="source_wikipedia">(Աղբյուրը՝ Wikipedia)</string>
+    <string name="conservation_source"><![CDATA[<b>Աղբյուր.</b> <i>%1$s</i>]]></string>
+    <string name="conservation_status_least_concern">Ամենաքիչը մտահոգող</string>
+    <string name="conservation_status_near_threatened">Գրեթե վտանգված</string>
+    <string name="conservation_status_vulnerable">Խոցելի</string>
+    <string name="conservation_status_endangered">Վտանգված</string>
+    <string name="conservation_status_critically_endangered">Խիստ վտանգված</string>
+    <string name="conservation_status_extinct_in_the_wild">Անհետացած է վայրի բնությունից</string>
+    <string name="conservation_status_extinct">Անհետացած</string>
+    <string name="map_of_observations">Դիտարկումների քարտեզ</string>
+    <string name="taxonomy">Թաքսոնոմիա</string>
+    <string name="about_this_section">Այս բաժնի մասին</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
+    <string name="taxonomy_info">Սրանք այս հատուկ թաքսոնի նախնիների հղումներ են։ Դրանք դասավորված են ավելի կոպիտներից դեպի ավելի նուրբերը։ Օգտագործեք այս հղումները՝ Կյանքի Ծառով վեր ու վար շարժվելու համար։ Օրինակ, եթե չգիտեք, թե ինչ օրգանիզմ է, բայց գիտեք, թե որ խմբին է պատկանում, սեղմեք ցուցակի թաքսոնի վրա՝ դրա մասին ավելի շատ տեղեկություն տեսնելու համար։</string>
+    <string name="more_info_on_inat">Լրացուցիչ տեղեկություններ iNaturalist.org կայքի մասին</string>
+    <string name="view_suggestions">Դիտել առաջարկները</string>
+    <string name="species_search">Տեսակների որոնում</string>
+    <string name="were_not_confident_enough">Մենք բավականաչափ վստահ չենք խորհուրդ տալու համար, բայց ահա մեր լավագույն առաջարկները.</string>
+    <string name="were_not_confident_enough_no_suggestions">Մենք բավականաչափ վստահ չենք խորհուրդ տալու համար։</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
+    <string name="most_observed_options_matching_filters">Ամենաշատ դիտարկված տարբերակները՝ զտիչներին համապատասխանող․</string>
     <!-- Header for a list of suggested taxa -->
+    <string name="top_suggestions">Լավագույն առաջարկներ</string>
+    <string name="pretty_sure_rank">Մենք բավականին վստահ ենք, որ դա այս %1$s-ում է․</string>
+    <string name="what_did_you_see">Ի՞նչ տեսաք․</string>
+    <string name="suggest_species">Առաջարկել տեսակներ</string>
+    <string name="suggest_species_description">Առաջարկեք տեսակներ՝ հիմնվելով լուսանկարների տեսողական նմանության վրա։</string>
+    <string name="visually_similar">Տեսողականորեն նման</string>
+    <string name="visually_similar_seen_nearby">Տեսողականորեն նման / Մոտակայքում տեսնված</string>
+    <string name="visually_similar_expected_nearby">Տեսողականորեն նման / Մոտակայքում սպասվող </string>
+    <string name="seen_nearby">Մոտակայքում տեսնված</string>
+    <string name="expected_nearby">Մոտակայքում սպասվող</string>
+    <string name="enlarge">Խոշորացնել</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
+    <string name="view_children">Դիտել ենթակարգերը</string>
+    <string name="taxon_has_no_photos">Այս թաքսոնը չունի լուսանկարներ։</string>
+    <string name="terrain">Ռելիեֆ</string>
+    <string name="filters">Ֆիլտրեր</string>
+    <string name="exploring_all">Բացահայտել ամեն բան</string>
+    <string name="nearby">Մոտակայքում</string>
+    <string name="couldnt_load_results">Չհաջողվեց բեռնել արդյունքները․ %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
+    <string name="research_grade_initials">ՀՄ</string>
+    <string name="taxon_search_hint">օրինակ՝ թռչուններ, արքայաթիթեռ</string>
+    <string name="location_search_hint">օրինակ՝ քաղաք, նահանգ, պարկ, երկիր...</string>
+    <string name="no_taxon">Ներեցեք, թաքսոնը չի գտնվել</string>
+    <string name="please_select_taxon">Խնդրում ենք ցանկից ընտրել վավեր թաքսոն (կամ մաքրել թաքսոնի դաշտը):</string>
+    <string name="sorry_no_location">Ներեցեք, տեղանքը չի գտնվել</string>
+    <string name="location_not_found">Ձեր որոնած տեղանքը կամ վայրը մեր տվյալների բազայում չկա։ Խնդրում ենք վայրն ընտրել տեղանքի որոնման դաշտի ներքևի ընտրանքների ցանկից կամ մաքրել որոնման դաշտը։</string>
+    <string name="undefined">Չճշտված</string>
+    <string name="street_segment">Փողոցի հատված</string>
+    <string name="intersection">Հատման կետ</string>
+    <string name="town">Քաղաք</string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
+    <string name="state">Պետություն</string>
+    <string name="county">Վարչաշրջան</string>
+    <string name="local_administrative_area">Տեղական վարչական տարածք</string>
+    <string name="country">Երկիր</string>
+    <string name="island">Կղզի</string>
+    <string name="airport">Օդանավակայան</string>
+    <string name="drainage">Ջրահեռացում</string>
+    <string name="land_feature">Երկրաբանական առանձնահատկություն</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="miscellaneous">Խառը</string>
+    <string name="nationality">Ազգություն</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
+    <string name="supername">Գերանուն</string>
+    <string name="point_of_interest">Հետաքրքրության կետ</string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
+    <string name="region">Տարածաշրջան</string>
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
+    <string name="colloquial">Խոսակցական</string>
+    <string name="zone">Գոտի</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_state">Պատմական նահանգ</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_county">Պատմական վարչաշրջան</string>
+    <string name="continent">Մայրցամաք</string>
+    <string name="estate">Կալվածք</string>
+    <string name="historical_town">Պատմական քաղաք</string>
+    <string name="aggregate">Համախմբել</string>
+    <string name="open_space">Բաց տարածք</string>
+    <string name="territory">Տարածք</string>
+    <string name="district">Շրջան</string>
+    <string name="province">Գավառ</string>
+    <string name="municipality">Համայնքապետարան</string>
+    <string name="parish">Ծխական համայնք</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
+    <string name="department_segment">Գերատեսչական ենթաբաժին</string>
+    <string name="city_building">Քաղաքային շինություն</string>
+    <string name="commune">Համայնք</string>
+    <string name="governorate">Նահանգապետարան</string>
+    <string name="prefecture">Նահանգապետություն</string>
+    <string name="canton">Կանտոն</string>
+    <string name="republic">Հանրապետություն</string>
+    <string name="division">Բաժանում</string>
+    <string name="subdivision">Ենթաբաժանում</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
+    <string name="village_block">Գյուղի թաղամաս</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
+    <string name="sum">Գումար</string>
+    <string name="shire">Կոմսություն</string>
+    <string name="prefecture_city">Նահանգապետության քաղաք</string>
     <!-- Indonesian sub-sub-national place type -->
+    <string name="regency">Խնամակալություն</string>
+    <string name="constituency">Ընտրատարածք</string>
+    <string name="local_authority">Տեղական իշխանություն</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
+    <string name="poblacion">Բնակավայր</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
+    <string name="delegation">Պատվիրակություն</string>
+    <string name="apply_filters">Կիրառել զտիչներ</string>
+    <string name="remove_filters">Հեռացնել զտիչները</string>
+    <string name="reset">Վերակայել</string>
+    <string name="show_only_my_observations">Ցույց տալ միայն իմ դիտարկումները</string>
+    <string name="project">Նախագիծ</string>
+    <string name="user">Օգտագործող</string>
+    <string name="search_users">Որոնել օգտատերեր...</string>
+    <string name="quality_grade">Որակի մակարդակ</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Դիտարկման ամսաթվի</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
+    <string name="any">Ցանկացած</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
+    <string name="to">մինչ</string>
+    <string name="exact_date">ճշգրիտ ամսաթիվ</string>
+    <string name="start">Սկսել</string>
+    <string name="end">Ավարտել</string>
+    <string name="months">Ամիսներ</string>
+    <string name="choose_months">Ընտրեք ամիս(ներ)</string>
+    <string name="map_area">Քարտեզի տարածք</string>
+    <string name="global">Համաշխարհային</string>
     <!-- As in redo search in the current map area -->
+    <string name="search_map_area">Որոնել քարտեզի տարածքը</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
+    <string name="date_minute">%dր</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
+    <string name="date_hour">%dժ</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
+    <string name="date_day">%dօ</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
+    <string name="date_week">%dշ</string>
+    <string name="new_observation">Նոր դիտարկում</string>
+    <string name="inactive_taxon">Անգործուն թաքսոն</string>
+    <string name="no_identifications_found">Հետևեք նույնականացումներին, որոնք առաջարկում եք այստեղ այլ մարդկանց դիտարկումների համար:</string>
+    <string name="no_species_found">Սա այն տեսակների ցանկն է, որոնք դուք ամենաշատն եք դիտարկել։\n\nՁեր տեղեկության համար․ մոլորակի վրա մոտ 9 միլիոն տեսակ կա, այնպես որ դո՛ւրս եկեք և դիտարկե՛ք դրանք։</string>
+    <string name="make_an_observation">Դիտարկում կատարեք</string>
+    <string name="no_observations_found_new">Դիտարկումները առանձին օրգանիզմների հետ որոշակի ժամանակներում և տեղանքներում ձեր հանդիպումների գրառումներն են։</string>
+    <string name="discard_comment">Վստա՞հ եք, որ ուզում եք հեռացնել այս մեկնաբանությունը․</string>
+    <string name="leave_comment">Թողեք մեկնաբանություն...</string>
+    <string name="swipe">Սահեցնել</string>
+    <string name="swipe_indicator">›</string>
+    <string name="potential_disagreement">Հնարավոր անհամաձայնություն</string>
+    <string name="do_you_think_this_could_be"><![CDATA[Արդյո՞ք տրամադրված ապացույցները բավարար են հաստատելու, որ սա <b>%1$s</b> է:]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
+    <string name="i_dont_know_but"><![CDATA[Չգիտեմ, բայց վստահ եմ, որ սա <b>%1$s</b> է։]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Ոչ, բայց այն <b>%1$s</b>-ի անդամ է։]]></string>
+    <string name="submit">Ներկայացնել</string>
+    <string name="change_password">Գաղտնաբառի փոփոխություն</string>
+    <string name="search_projects_youve_joined">Որոնել ձեր միացած նախագծերը...</string>
+    <string name="must_be_connected_to_load_more_obs">Դուք պետք է միացած լինեք համացանցին՝ ավելի շատ դիտարկումներ բեռնելու համար</string>
+    <string name="inat_about_title_new">iNaturalist-ը անկախ 501(c)(3) ոչ առևտրային կազմակերպություն է, որը հիմնված է Միացյալ Նահանգներում (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -64,80 +580,392 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="inat_credits2"><![CDATA[iNaturalist-ը գոյություն ունի մեր համայնքի յուրաքանչյուր մասնակցի շնորհիվ։ Ծրագրային ապահովումը ստեղծող, միջերեսները ձևավորող, մեր ենթակառուցվածքը պահպանող, համայնքին աջակցող և համագործակցությունները խթանող մարդիկ են Յարոն Բուդովսկին, Ամանդա Բուլինգթոնը, Թոնի Իվանեն, Յոհաննես Քլայնը, Փաթրիկ Լիրին, Սքոթ Լոարին, Աբհաս Միսրարաջը, Սիլվեն Մորինը, Քերի Սելցերը, Ալեքս Շեփարդը, Էնջի Թան և Քեն-իչի Ուեդան։<br/><br/>CalTech-ը և Cornell Tech-ը օգնեցին մշակելու համակարգչային տեսողության համակարգը, որը լուսանկարներից առաջարկում է նույնականացումներ։ Շնորհակալություն ենք հայտնում Գրանտ Վան Հորնին, Սերժ Բելոնժիին և Պիետրո Պերոնային համակարգչային տեսողության հետազոտությունը զարգացնելու համար։ Լրացուցիչ տեղեկություններ կարող եք գտնել <a href="https://www.visipedia.org">visipedia.org</a> կայքում։ Հատուկ շնորհակալություն NVIDIA-ին լրացուցիչ աջակցության համար։]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Միջազգային iNaturalist ցանցը աջակցում է տեղայնացված, լիովին ինտեգրված, iNaturalist-ի վրա հիմնված կայքերին հետևյալ երկրներում՝ գործընկեր կազմակերպությունների աջակցության շնորհիվ։]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist-ը նաև խորապես երախտապարտ է բաց կոդով ծրագրավորողներին, ովքեր տրամադրել են այն ծրագրաշարը, որի վրա մենք ամեն օր հենվում ենք։ Տես <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> բաց կոդով ներդրումների համար։ <br/> Մենք երախտապարտ ենք crowdin.com համայնքի կամավորներին տրամադրած թարգմանական օգնության համար, հատկապես Էդուարդո Մարտինեսին, Լին Չենգ-Տաոյին, ԿեստրելԼամին, cgalindo-ին, vilseskog-ին, NCAA-ին, Իդակոստային, radana-ին, Միկոլա Պուխալսկիին, danieleseglie-ին և katunchik-ին։ <br/> IUCN II դասակարգի վայրերը տրամադրված են IUCN և UNEP-WCMC-ի (2015), Պաշտպանված տարածքների համաշխարհային տվյալների բազայի կողմից (WDPA)[On-line],[11/2014], Քեմբրիջ, Մեծ Բրիտանիա․ UNEP-WCMC. Հասանելի է այստեղ․ <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="credits_title">Վարկանիշներ</string>
+    <string name="password_changed">Հավելվածի օգտագործած գաղտնաբառը այլևս չի գործում․ արդյո՞ք փոխել եք ձեր գաղտնաբառը կայքում: Խնդրում ենք այստեղ մուտքագրել նորը</string>
+    <string name="just_so_you_know">Ի գիտություն...</string>
+    <string name="ask_for_g_plus_permissions">Google-ը պահանջում է մեզ թույլտվություն խնդրել ձեր կոնտակտներին հասանելի լինելու համար, որպեսզի օգտագործենք ձեր Google հաշիվը, թեև մենք որևէ պատճառով ձեր կոնտակտներին հասանելիություն չենք ունենում: Եթե մերժեք այս թույլտվությունը, անհրաժեշտ կլինի գրանցվել կամ մուտք գործել օգտանունով և գաղտնաբառով:</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Նո՞ր եք %1$s-ում․ <b>Գրանցվե՛ք հիմա</b>]]></string>
+    <string name="see_more_observations">Տեսնել ավելի շատ դիտարկումներ</string>
+    <string name="see_more_species">Տեսնել ավելի շատ տեսակներ</string>
+    <string name="see_more_identifications">Տեսնել ավելի շատ նույնացումներ</string>
+    <string name="collection_and_umbrella_projects">Հավաքածուների և Հովանոցային նախագծեր</string>
+    <string name="description">Նկարագրություն</string>
+    <string name="quantity">Քնկ</string>
+    <string name="agree2">Համաձայն եմ</string>
+    <string name="project_observations">Դիտարկումներ</string>
+    <string name="project_species">Տեսակներ</string>
+    <string name="project_people">Մարդիկ</string>
     <!-- People who added identifications to observations in a project -->
+    <string name="project_identifiers">Նույնացուցիչներ</string>
+    <string name="got_it">Հասկացա՛</string>
+    <string name="view_all">Դիտել բոլորը</string>
+    <string name="observers">Դիտորդներ</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
+    <string name="attribute">Հատկություն</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
+    <string name="value">Արժեք</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
+    <string name="disagree">Չհամաձայնել</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
+    <string name="annotations">Ծանոթագրություններ</string>
     <!-- Used when filtering observations with annotations -->
+    <string name="with_annotation">Ծանոթագրությամբ</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
+    <string name="annotation_name">Ծանոթագրության անվանում</string>
     <!-- Annotation value for when no annotation has been chosen -->
+    <string name="none">Չկա</string>
     <!-- Phenological state of flowers on a plant -->
+    <string name="annotation_name_flowers_and_fruits">Ծաղիկներ և մրգեր</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
+    <string name="annotation_name_life_stage">Կյանքի փուլ</string>
     <!-- Noun, describes sex of the organism -->
+    <string name="annotation_name_sex">Սեռ</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Կենդանի թե մեռած</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Ներկայության ապացույց</string>
     <!-- Attribute that describes the phenological state of the leaves on a plant -->
+    <string name="annotation_name_leaves">Տերևներ</string>
     <!-- Attribute that describes whether the observed organism is part of an established population or something more like a waif or escaped pet -->
+    <string name="annotation_name_established">Հիմնադրված</string>
     <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowers">Ծաղիկներ</string>
     <!-- Adjective, having fruit or seeds -->
+    <string name="annotation_value_fruits_or_seeds">Մրգեր կամ սերմեր</string>
     <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_buds">Ծաղկի բողբոջներ</string>
     <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_flowers_or_fruits">Ոչ ծաղիկներ կամ մրգեր</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
+    <string name="annotation_value_adult">Հասուն</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
+    <string name="annotation_value_teneral">Փափկամարմին</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
+    <string name="annotation_value_pupa">Հարսնյակ</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
+    <string name="annotation_value_nymph">Նիմֆա</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
+    <string name="annotation_value_larva">Թրթուր</string>
+    <string name="annotation_value_egg">Ձու</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
+    <string name="annotation_value_juvenile">Անչափահաս</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
+    <string name="annotation_value_subimago">Նախահասուն</string>
+    <string name="annotation_value_female">Իգական</string>
+    <string name="annotation_value_male">Արական</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Կենդանի</string>
     <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Մեռած</string>
     <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Չի կարող որոշվել</string>
     <!-- "Evidence of Presence" value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Օրգանիզմ</string>
     <!-- "Evidence of Presence" value when for bird feathers -->
+    <string name="annotation_value_feather">Փետուր</string>
     <!-- "Evidence of Presence" value when for fecal remains -->
+    <string name="annotation_value_scat">Կղանք</string>
     <!-- "Evidence of Presence" value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Հետք</string>
     <!-- "Evidence of Presence" value when for bones -->
+    <string name="annotation_value_bone">Ոսկոր</string>
     <!-- "Evidence of Presence" value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Մաշկա/փետրա/մազափոխ</string>
     <!-- "Evidence of Presence" value when for something created by an animal, made with or excavated from other materials -->
+    <string name="annotation_value_construction">Շինարարություն</string>
     <!-- "Evidence of Presence" value when for deformed plant tissue outgrowth caused by a parasitic organism -->
+    <string name="annotation_value_gall">Լեղի</string>
     <!-- "Evidence of Presence" value when for hair that is no longer attached to the organism from which it originated -->
+    <string name="annotation_value_hair">Մազեր</string>
     <!-- "Evidence of Presence" value when for evidence of feeding between the dermal layers of a leaf -->
+    <string name="annotation_value_leafmine">Տերևահանք</string>
     <!-- "Leaves" value when for leaf buds that are opening -->
+    <string name="annotation_value_breaking_leaf_buds">Տերևի կոտրվող բողբոջներ</string>
     <!-- "Leaves" value when for green leaves -->
+    <string name="annotation_value_green_leaves">Կանաչ տերևներ</string>
     <!-- "Leaves" value when for leaves with colors other than green, e.g. dying leaves in autumn -->
+    <string name="annotation_value_colored_leaves">Գունավոր տերևներ</string>
     <!-- "Leaves" value when there are no living leaves -->
+    <string name="annotation_value_no_live_leaves">Կենդանի տերևներ չկան</string>
     <!-- "Established" value when the organism is not established, e.g. an escaped pet. See https://www.inaturalist.org/blog/91460-piloting-an-establishment-annotation-with-amphibians-and-reptiles -->
+    <string name="annotation_value_not_established">Չհաստատված</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
+    <string name="joined_projects_all_caps">ՄԻԱՑԱՎ</string>
+    <string name="nearby_projects_all_caps">ՄՈՏԱԿԱՅՔՈՒՄ</string>
+    <string name="featured_projects_all_caps">ԱՌԱՆՁՆԱՑՎԱԾ</string>
     <!-- Text for a button or label that allows someone to join a project -->
+    <string name="join_all_caps">ՄԻԱՆԱԼ</string>
+    <string name="my_guides_all_caps">ՁԵՐԸ</string>
+    <string name="nearby_guides_all_caps">ՄՈՏԱԿԱՅՔՈՒՄ</string>
+    <string name="all_guides_all_caps">ԲՈԼՈՐԸ</string>
+    <string name="description_all_caps">ՆԿԱՐԱԳՐՈՒԹՅՈՒՆ</string>
+    <string name="quantity_all_caps">ՔՆԿ</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s ԴԻՏՈՒՄ</item>
+        <item quantity="other">%1$s ԴԻՏՈՒՄՆԵՐ</item>
+    </plurals>
+    <string name="agree_all_caps">ՀԱՄԱՁԱՅՆ ԵՄ</string>
+    <string name="observations_all_caps">ԴԻՏԱՐԿՈՒՄՆԵՐ</string>
+    <string name="species_all_caps">ՏԵՍԱԿՆԵՐ</string>
+    <string name="people_all_caps">ՄԱՐԴԻԿ</string>
+    <string name="identifiers_all_caps">ՆՈՒՅՆԱՑՈՒՑԻՉՆԵՐ</string>
+    <string name="identifications_all_caps">ՆՈՒՅՆԱԿԱՆԱՑՈՒՄՆԵՐ</string>
+    <string name="news_all_caps">ՆՈՐՈՒԹՅՈՒՆՆԵՐ</string>
+    <string name="got_it_all_caps">ՀԱՍԿԱՑԱ՛</string>
+    <string name="view_all_all_caps">ԴԻՏԵԼ ԲՈԼՈՐԸ</string>
+    <string name="observers_all_caps">ԴԻՏՈՐԴՆԵՐ</string>
+    <string name="observations_regular">Դիտարկումներ</string>
+    <string name="data_quality_assessment">Տվյալների որակի գնահատում</string>
+    <string name="research_grade_qualification">Հետազոտական մակարդակի որակավորում</string>
+    <string name="date_specified">Սահմանված ամսաթիվ</string>
+    <string name="location_specified">Տեղանք նշված է</string>
+    <string name="has_photos_or_sounds">Ունի լուսանկարներ կամ ձայներ</string>
+    <string name="has_id_supported_by_two_or_more">Ունի ID, որը աջակցվում է երկուսի կամ ավելիի կողմից</string>
+    <string name="date_is_accurate">Ամսաթիվը ճշգրիտ է</string>
+    <string name="location_is_accurate">Տեղանքը ճշգրիտ է</string>
+    <string name="organism_is_wild">Օրգանիզմը վայրի է</string>
+    <string name="evidence_of_organism">Օրգանիզմի ապացույց</string>
+    <string name="recent_evidence_of_an_organism">Օրգանիզմի վերջին ապացույցները</string>
+    <string name="community_id_at_species_level_or_lower">Համայնքի ID` տեսակների մակարդակում կամ ավելի ցածր</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Հիմնվելով ապացույցների վրա` կարո՞ղ է Համայնքի ID-ն դեռ հաստատվել կամ բարելավվել.</string>
+    <string name="no_as_good_as_it_can_be">Ոչ, դա հնարավորինս լավն է</string>
+    <string name="evidence_related_to_single_subject">Մեկ առարկայի հետ կապված ապացույցներ</string>
+    <string name="seasonality">Սեզոնայնություն</string>
+    <string name="verifiable">Հաստատելի</string>
+    <string name="no_annotation">Առանց նշումների</string>
+    <string name="donate_to_inaturalist">Նվիրաբերել iNaturalist-ին</string>
+    <string name="prefers_scientific_name_first">Առաջինը ցույց տալ գիտական անունները</string>
+    <string name="prefers_scientific_name_first_description">Ցույց տալ գիտական անունները սովորական անուններից առաջ։</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Կանադա․ Կանադական Վայրի Բնության Ֆեդերացիա, Օնտարիոյի Թագավորական Թանգարան, NatureServe Canada և Կանադայի Պարկերը ղեկավարում են iNaturalist Canada-ն (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Կոլումբիա․ Instituto Humboldt-ը ղեկավարում է Naturalista-ն (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Մեքսիկա․ Comisión nacional para el conocimiento y uso de la biodiversidad-ը (CONABIO) ղեկավարում է NaturaLista-ն (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Նոր Զելանդիա․ Նոր Զելանդիայի Կենսաբազմազանության Գրանցման Ցանցը ղեկավարում է iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Պորտուգալիա․ Associação Biodiversidade Para Todos-ը ղեկավարում է Biodiversity4All-ը (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Պանամա: Ministerio de Ambiente-ը ղեկավարում է iNaturalistPa-ն (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Արգենտինա․ Fundación Vida Silvestre Argentina-ն աջակցում է ArgentiNat-ին (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Ավստրալիա․ Atlas of Living Australia-ն աջակցում է iNaturalist Australia-ն (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Էկվադոր․ Instituto Nacional de Biodiversidad-ը (INABIO) աջակցում է iNaturalist Ecuador-ին (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Իսրայել. Հայֆայի համալսարանը աջակցում է iNaturalist Israel-ին (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Ֆինլանդիա. Ֆինլանդիայի Բնական պատմության թանգարանը (LUOMUS) աջակցում է iNaturalist Finland-ին (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Չիլի. Ministerio del Medio Ambiente-ը աջակցում է iNaturalist Chile-ին (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Հունաստան. iSea-ն աջակցում է iNaturalist Greece-ին (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Լյուքսեմբուրգ. Լյուքսեմբուրգի Բնության Պատմության Ազգային Թանգարանը (MnhnL) աջակցում է iNaturalist Luxembourg-ին (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Միացյալ Թագավորություն. Ազգային կենսաբազմազանության ցանցի հիմնադրամը աջակցում է iNaturalist United Kingdom-ին (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Կոստա Ռիկա․ Comisión Nacional para la Gestión de la Biodiversidad-ը (CONAGEBIO) աջակցում է Naturalista Costa Rica-ին (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Գվատեմալա․ Consejo Nacional de Áreas Protegidas-ը (CONAP) աջակցում է iNaturalist Guatemala-ին (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Շվեդիա․ Շվեդիայի SLU Swedish Species Information Centre-ը աջակցում է iNaturalist Sweden-ին (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Ուրուգվայ․ JULANA և Biodiversidata-ն աջակցում են Naturalista Uruguay-ին (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Թայվան: National Chiayi University and Taiwan Forestry Research Institute-ը աջակցում են iNaturalist Taiwan-ին (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="mark_all_as_viewed">Նշել բոլորը որպես դիտված</string>
+    <string name="content_hidden">Բովանդակությունը թաքցված է</string>
+    <string name="show_hidden_content">Ցույց տալ թաքցված բովանդակությունը</string>
+    <string name="content_hidden_because">Բովանդակությունը թաքցված է @%1$s-ի կողմից %2$s-ին, քանի որ․ «%3$s»</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Կապ հաստատել աջակցման ծառայության հետ</a>]]></string>
+    <string name="content">Բովանդակություն</string>
+    <string name="has_photos">Լուսանկարներ ունի</string>
+    <string name="has_sounds">Ձայներ ունի</string>
+    <string name="could_not_play_sound">Չհաջողվեց նվագարկել ձայնը․ հավանաբար ցանցի խնդիր է</string>
+    <string name="cant_play_soundcloud"><![CDATA[Լսելու համար Soundcloud ձայները, դիտեք <a href="%1$s">կայքը</a>։]]></string>
+    <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
+    <string name="record_sound">Ձայնագրել ձայն</string>
+    <string name="couldnt_retrieve_sound">Չհաջողվեց ձայնը լռելյայն ձայնագրիչից ստանալ․ փորձեք դրա փոխարեն ներմուծել ձայնը</string>
     <!-- Label for a button to import an existing sound for an observation -->
+    <string name="upload_sound">Ընտրել ձայն</string>
+    <string name="multi_select_sound_description">Երկար սեղմելով մեկ ձայնի վրա՝ ներմուծեք բազմաթիվ ձայներ</string>
+    <string name="alert_unsupported_audio_type">Ներեցեք, բայց այս աղբյուրից ձայնը բեռնելու հետ կապված խնդիր առաջացավ։</string>
+    <string name="invalid_audio_extension">Ձայն(եր)ի ներմուծման սխալ. կարող է ներմուծել միայն WAV/MP3/AMR ընդլայնումներով ձայնային ֆայլեր</string>
+    <string name="importing_sounds">Ձայն(ներ)ի ներմուծում...</string>
+    <string name="observation_sound">Դիտարկման ձայն</string>
+    <string name="deleted_sounds_from_cache_error">Կարծես թե դուք ջնջել եք ձայնը՝ հավելվածի քեշը մաքրելով մինչև վերբեռնումը։ Դուք պետք է ձայնը պատկերասրահից նորից ավելացնեք ձեր դիտարկմանը։ Ապագայում խնդրում ենք համոզվել, որ վերբեռնել եք ձեր բոլոր ձայները մինչև հավելվածի քեշը մաքրելը։</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f վրկ</string>
+    <string name="clear_all_debug_logs">Ջնջել բոլոր սխալների մատյանները</string>
+    <string name="clears_up_storage_room_on_your_phone">Մաքրում է հեռախոսի պահեստային տարածքը</string>
+    <string name="number_of_days_to_store_logs">Մատյանների պահպանման օրերի քանակը</string>
+    <string name="send_debug_logs_from_start_date">Ուղարկել սխալների ուղղման մատյանները մեկնարկի ամսաթվից</string>
+    <string name="send_debug_logs_by_email">Ուղարկել սխալների ուղղման մատյանները էլ. փոստով (նշված մեկնարկի ամսաթվից)</string>
+    <string name="debug_settings">Սխալների ուղղման կարգավորումներ</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Վստա՞հ եք, որ ուզում եք ջնջել բոլոր սխալների ուղղման մատյանները: Սեղմեք «Այո» միայն այն դեպքում, եթե ցանկանում եք ազատել հեռախոսի հիշողության տարածքը:</string>
+    <string name="no_log_files_found">Այդ ամսաթվային միջակայքի համար մատյան-ֆայլեր չեն գտնվել․ փորձե՞լ ավելի վաղ ամսաթվով․</string>
+    <string name="choose_pinned_location">Ընտրել ամրացված տեղանք</string>
+    <string name="pin_current_location">Ամրացնել ընթացիկ տեղանքը</string>
+    <string name="location_pinned_successfully">Ընթացիկ տեղանքը հաջողությամբ ամրացվեց</string>
+    <string name="delete_this_pinned_location">Ջնջե՞լ այս ամրացված տեղանքը․</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
+    <string name="duplicate">Կրկնօրինակել</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_photo">Չհաջողվե՛ց կրկնօրինակել լուսանկարը․</string>
+    <string name="couldnt_edit_photo">Չհաջողվե՛ց խմբագրել լուսանկարը․</string>
     <!-- Verb, as in "Rotate this photo" -->
+    <string name="ucrop_rotate">Պտտել</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
+    <string name="ucrop_scale">Մասշտաբ</string>
     <!-- Verb, as in "Crop this photo" -->
+    <string name="ucrop_crop">Կտրել</string>
     <!-- Label for adjusting the brightness of an image -->
+    <string name="ucrop_brightness">Պայծառություն</string>
     <!-- Label for adjusting the contrast of an image -->
+    <string name="ucrop_contrast">Հակադրություն</string>
     <!-- Label for adjusting the saturation of an image -->
+    <string name="ucrop_saturation">Հագեցվածություն</string>
     <!-- Label for adjusting the sharpness of an image -->
+    <string name="ucrop_sharpness">Սրություն</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
+    <string name="ucrop_label_original">Բնագիր</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">Ազատ</string>
     <!-- Verb phrase, button label to edit an observation photo -->
+    <string name="ucrop_label_edit_photo">Խմբագրել լուսանկարը</string>
+    <string name="service_temporarily_unavailable">Ծառայությունը ժամանակավորապես անհասանելի է։</string>
+    <string name="please_try_again_in_a_few_hours">Խնդրում եմ փորձեք մի քանի ժամից։</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Խնդրում ենք կրկին փորձել %1$d %2$s-ից։</string>
+    <string name="hours">ժամեր</string>
+    <string name="minutes">րոպեներ</string>
+    <string name="seconds_value">վայրկյաններ</string>
+    <string name="shop_the_inat_store">Գնեք iNat խանութից</string>
+    <string name="delete_your_account">Ջնջել ձեր հաշիվը</string>
+    <string name="delete_account_message"><![CDATA[Ձեր հաշիվը ջնջելով՝ դուք կհեռացնեք.:<br/><br/><ul><li>Ձեր բոլոր դիտարկումները՝ ներառյալ այն մարդկանց աշխատանքը, ովքեր օգնել են ձեզ նույնականացումներով։</li><li> Ձեր ավելացրած բոլոր նույնականացումները այլ մարդկանց դիտարկումների համար, ինչը կարող է ազդել այդ դիտարկումների տվյալների որակի վրա:</li><li> Ձեր ավելացրած բոլոր մեկնաբանությունները:</li></ul><br/>Բացի դրանից՝ այս գործողությունը չի կարող չեղարկվել: Եթե հետագայում փոխեք ձեր միտքը, չեք կարողանա վերականգնել այդ բովանդակությունը:<br/><br/>Եթե այս ծառայությունը չափազանց շատ ծանուցումներ է ուղարկում, մտածեք <a href="https://www.inaturalist.org/users/edit">կայքում ձեր կարգավորումները խմբագրելու մասին</a>՝ որոշ ծանուցումներից հրաժարվելու կամ մեր կողմից էլ․փոստ չստանալու: Եթե կոնկրետ անձի հետ խնդիր ունեք, մտածեք <a href="https://www.inaturalist.org/users/edit"> նրան լռեցնելու մասին</a>՝ ձեր հաշիվը ջնջելու փոխարեն:<br/><br/>Եթե դեռ համոզված եք, որ ուզում եք ջնջել ձեր հաշիվը, մուտքագրեք <b>\"%1$s\"</b>ներքևի ձևաթղթում և սեղմեք կոճակը՝ ձեր հաշիվը և ձեր բոլոր տվյալները ջնջելու համար:]]></string>
+    <string name="your_account_has_been_deleted">Ձեր հաշիվը ջնջվել է։</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Դուք պետք է մուտքագրեք «%1$s» ձևաթղթում՝ ձեր հաշիվը ջնջելու համար</string>
     <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">Մուտքագրեք ձեր օգտանունը</string>
+    <string name="error_deleting_account">Ձեր հաշիվը ջնջելիս սխալ տեղի ունեցավ․ խնդրում ենք ստուգել ձեր համացանցի կապը</string>
+    <string name="verify_your_password">Հաստատեք ձեր գաղտնաբառը</string>
+    <string name="third_party_data_sharing">Երրորդ կողմի տվյալների փոխանակում</string>
+    <string name="disable_third_party_data_sharing">Անջատել երրորդ կողմի տվյալների փոխանակումը</string>
+    <string name="do_not_collect_third_party_data">Մի՛ հավաքեք կայունության և օգտագործման տվյալներ՝ օգտագործելով երրորդ կողմի ծառայությունների միջոցով։</string>
+    <string name="enabled">Միացված է</string>
+    <string name="disabled">Անջատված է</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Մենք օգտագործում ենք տարբեր երրորդ կողմի ծառայություններ՝ մեր ծրագրային ապահովման կայունությունը վերահսկելու և սխալներն ու խնդիրները ախտորոշելու համար: Այս երրորդ կողմերը ներառում են՝<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Մենք կիսում ենք հետևյալ տեղեկությունները երրորդ կողմերի հետ․<br/><ul><li> IP հասցեներ (որոնք կարող են օգտագործվել քաղաքի մակարդակի ճշգրտությամբ տեղանքը որոշելու և տարբեր կայքերում և ծառայություններում ձեզ հետևելու համար․ նշենք, որ մենք միացրել ենք <a href="https://support.google.com/analytics/answer/2763052">IP անանունացումը</a> Google Analytics-ում, և <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics-ը</a> չի գրանցում IP հասցե, ինչքան որ գիտենք)</li><li>Զննարկչի մանրամասներ, ինչպիսիք են արտադրողը, մոդելը և տարբերակը</li><li>Խափանման մանրամասներ, ինչպիսիք են այն կոդի տողը, որը խափանում է առաջացրել</li><li>Սարքի մանրամասներ, ինչպիսիք են բջջային հեռախոսի արտադրողը և մոդելը</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Այս երրորդ կողմի ծառայությունները մեզ համար մեծ արժեք են ներկայացնում</b>՝ iNaturalist-ի կայունությունն ու օգտագործելիությունը պահպանելու համար մեր համեմատաբար փոքր անձնակազմով։ Բջջային սարքերում գրեթե այլ տարբերակ չկա, որով կարող ենք հասկանալ առաջացող խնդիրները, քանի որ ծրագրակազմը աշխատում է մեր կողմից չվերահսկվող սարքերում։ Երբեմն մենք նույնիսկ տեղյակ չենք լինում այդ խնդիրների մասին, մինչև դրանք չենք տեսնում այն տվյալներում, որոնք այս ծառայությունները տրամադրում են։ <b>Այս տեղեկատվությունը կիսելով՝ դուք օգնում եք մեզ ծառայել ձեզ և ամբողջ iNaturalist համայնքին։</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Նշենք, որ այս տարբերակը վերաբերում է միայն վերլուծությունների և խափանումների տվյալներին, որոնք մենք հատուկ ուղարկում ենք այս ընկերություններին: Բոլոր iNaturalist սերվերները տրամադրվում և հյուրընկալվում են Microsoft-ի կողմից, բոլոր iNaturalist պատկերները հյուրընկալվում են Amazon-ի կողմից, և գրեթե բոլոր iNaturalist քարտեզները մատուցվում են Google-ի կողմից, ինչը նշանակում է, որ ամեն անգամ, երբ դիտում եք նայում iNaturalist-ում, դուք միանում եք այս ընկերությունների կողմից տրամադրված ծառայություններին և առնվազն նրանց համար բացահայտում ձեր IP հասցեն (iPhone-ի հավելվածում մենք օգտագործում ենք Apple-ի քարտեզները): iNaturalist-ը հավանաբար գոյություն չէր ունենա՝ առանց այս ընկերությունների տրամադրած ծառայությունների, և մինչ մենք կարող ենք սահմանափակել այն տվյալների քանակը և տեսակները, որոնք դուք կիսում եք նրանց հետ iNat օգտագործելիս, չենք կարող ամբողջությամբ դադարեցնել տվյալների հոսքը:]]></string>
+    <string name="common_names_place"><![CDATA[Հայտնի անունների վայր․ <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Հպեք՝ որոշակի վայրից հայտնի անունները առաջնահերթ դարձնելու համար։</string>
+    <string name="search_places">Որոնել վայրեր</string>
+    <string name="restart_app">Վերագործարկել հավելվածը</string>
+    <string name="disable_third_party_sharing_restart">Որպեսզի անմիջապես անջատեք երրորդ կողմի տվյալների փոխանակումը, հավելվածը պետք է վերագործարկվի։</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Վստա՞հ եք, որ ուզում եք ջնջել այս %1$d դիտարկումը․</item>
+        <item quantity="other">Վստա՞հ եք, որ ուզում եք ջնջել այս %1$d դիտարկումները․</item>
+    </plurals>
+    <string name="future_observed_on_date_error">Ձեր դիտարկումը ստեղծվել է (և ներկայացվել) %1$s-ին, բայց դուք փորձում եք սահմանել դիտարկման ամսաթիվ, որը ավելի ուշ է, քան դա․ %2$s</string>
+    <string name="no_more_photos_allowed">Դիտարկումները կարող են ունենալ միայն %1$d լուսանկարներ։ Ավելի շատ ավելացնելու համար պետք է հեռացնեք որոշները։</string>
+    <string name="warning_multiple_photos">Եթե այս դիտարկմանը ավելացնում եք տարբեր տեսակ օրգանիզմների լուսանկարներ կամ նույն տեսակի տարբեր վայրերում կամ ժամանակներում, դուք պետք է հեռացնեք այդ լուսանկարները և ավելացնեք դրանք որպես առանձին դիտարկումներ։ Դիտարկումը կարող է ունենալ միայն %1$d լուսանկար։</string>
+    <string name="choosing_specific_language_warning">Հաշվի համար հատուկ լեզու ընտրելը պահանջում է համացանցի կապ</string>
+    <string name="running_in_background_notfication">Աշխատում է հետին պլանում, որպեսզի կարողանանք աշխատել առանց ընդհատումների</string>
+    <string name="opt_out_of_community_taxon">Հրաժարվել Համայնքի թաքսոնից</string>
+    <string name="opt_in_to_community_taxon">Ընտրել Համայնքի թաքսոնը</string>
+    <string name="opt_out_message">Համայնքի թաքսոնից հրաժարվելը ստիպում է այս դիտարկումը կապել ձեր ներկայիս նույնականացման թաքսոնի հետ, ոչ թե այս դիտարկմանը ավելացված բոլոր նույնականացումների հիման վրա ստացված թաքսոնի հետ: Եթե բավականաչափ նույնացուցիչներ համաձայն չեն ձեզ հետ, ձեր դիտարկումը կդառնա Պատահական: Դուք պետք է հրաժարվեք միայն այն դեպքում, եթե վստահ եք, որ ձեր նույնականացումը ճիշտ է, իսկ մյուսները՝ սխալ:</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Պահանջվում է թույլտվություն</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">Ձեր տեղանքը հասանելի դարձնելու համար դուք պետք է տեղորոշման թույլտվություն տրամադրեք այս հավելվածին։</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Արգելված է</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">Ձեր կիսած հավելվածը ստեղծում է լուսանկարներ, որոնք հարմար չեն դիտարկումների համար, քանի որ դրանք չեն ներկայացնում այլ օրգանիզմի հետ ձեր ունեցած փորձի ապացույցը, քանի որ դրանք ներառում են ոչ պատշաճ ապրանքանիշավորում կամ առևտրային բովանդակություն կամ որովհետև խախտում են մեր Ծառայությունների Պայմանները այլ ձևերով։</string>
     <!-- Description of a UI element for screen readers -->
+    <string name="list_observation_checkbox_description">Վանդակը դիտարկման ընտրության համար բազմակի ընտրության ռեժիմում</string>
     <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_iconic_pic_description">Դիտարկման թաքսոնի պատկերակ լուսանկար</string>
     <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_obs_pic_description">Դիտարկման պատկերակ լուսանկար</string>
+    <string name="messages">Հաղորդագրություններ</string>
+    <string name="all_messages">Բոլոր հաղորդագրությունները</string>
+    <string name="search_messages">Որոնել հաղորդագրություններ</string>
+    <string name="no_messages">Ներկայումս դուք չունեք հաղորդագրություններ։ Կարող եք ուղարկել նոր հաղորդագրություն կանաչ կոճակով կամ հաղորդագրություն ուղարկել նրանց պրոֆիլային էջից։</string>
+    <string name="no_messages_found">Հաղորդագրություններ չեն գտնվել։</string>
+    <string name="send_a_message">Ուղարկել հաղորդագրություն</string>
+    <string name="sending_message">Հաղորդագրությունը ուղարկվում է...</string>
+    <string name="could_not_send_message">Չհաջողվեց ուղարկել հաղորդագրությունը․ %1$s</string>
+    <string name="subject">Թեմա</string>
+    <string name="body">Տեքստ</string>
+    <string name="type_your_message_here">Գրեք ձեր հաղորդագրությունը այստեղ</string>
+    <string name="new_message_to">Նոր հաղորդագրություն %1$s-ին</string>
+    <string name="who_would_you_like_to_send_a_message_to">Ում կցանկանայիք հաղորդագրություն  ուղարկել </string>
+    <string name="new_message">Նոր հաղորդագրություն</string>
+    <string name="search_for_inaturalist_users">Որոնել iNaturalist օգտատերեր</string>
+    <string name="please_sign_in_for_messages">Դուք պետք է մուտք գործեք՝ ձեր հաղորդագրությունները դիտելու համար։</string>
+    <string name="sorry">Ներողություն</string>
+    <string name="you_must_have_three_observations">Դա անելու համար դուք պետք է ուրիշների համար ունենաք երեք հաստատելի դիտարկումներ կամ երեք նույնացումներ։</string>
+    <string name="mute_this_user">Լռեցնել այս օգտատիրոջը</string>
+    <string name="unmute_this_user">Միացնել այս օգտատիրոջը</string>
+    <string name="flag_this_conversation">Դրոշանշել այս զրույցը</string>
+    <string name="mute_this_user_question">Լռեցնե՞լ այս օգտատիրոջը․</string>
+    <string name="you_will_no_longer_receive_messages">Դուք այլևս ծանուցումներ չեք ստանա այս օգտատիրոջ գործունության մասին՝ ներառյալ հաղորդագրությունները, մեկնաբանությունները, նույնացումները և հիշատակումները:</string>
+    <string name="mute">Լռեցնել</string>
+    <string name="muting_user">Օգտատերը լռեցվում է...</string>
+    <string name="unmuting_user">Օգտատերը միացվում է...</string>
+    <string name="failed_muting_user">Օգտատիրոջ լռեցումը ձախողվե՛ց․</string>
+    <string name="failed_unmuting_user">Օգտատիրոջը միացնելը ձախողվե՛ց․</string>
+    <string name="flag_conversation">Դրոշանշել զրույցը</string>
+    <string name="spam">Փոստաղբ</string>
+    <string name="commercial_solicitation">Առևտրային առաջարկներ, անաշխատ հղումներ և այլն։</string>
+    <string name="offensive_inappropriate">Վիրավորական/Անպատշաճ</string>
+    <string name="misleading_or_illegal_content">Խաբուսիկ կամ անօրինական բովանդակություն, ռասայական կամ էթնիկական վիրավորանքներ և այլն։ Մեր՝ «համապատասխան» սահմանման մասին ավելին իմանալու համար տես ՀՏՀ։</string>
+    <string name="other">Այլ</string>
+    <string name="some_other_reason">Որևէ այլ պատճառ, որը կարող եք բացատրել։</string>
+    <string name="continue_text">Շարունակել</string>
+    <string name="why_are_you_flagging_this_item">Ինչո՞ւ եք դրոշանշում սա․</string>
+    <string name="thank_you_for_submitting_the_flag">Շնորհակալություն դրոշանշումը ներկայացնելու համար:</string>
+    <string name="flagging_conversation">Զրույցը դրոշանշվում է...</string>
+    <string name="failed_flagging_conversation">Զրույցի դրոշանշումը ձախողվե՛ց</string>
+    <string name="no_subject">Թեմա չկա</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
+    <string name="rank_state_of_matter">Նյութի վիճակ</string>
+    <string name="rank_kingdom">Թագավորություն</string>
+    <string name="rank_subkingdom">Ենթաթագավորություն</string>
+    <string name="rank_phylum">Տիպ</string>
+    <string name="rank_subphylum">Ենթատիպ</string>
+    <string name="rank_superclass">Գերակա դաս</string>
+    <string name="rank_class">Դաս</string>
+    <string name="rank_subclass">Ենթադաս</string>
+    <string name="rank_infraclass">Ինֆրադաս</string>
+    <string name="rank_superorder">Գերակարգ</string>
+    <string name="rank_order">Կարգ</string>
+    <string name="rank_suborder">Ենթակարգ</string>
+    <string name="rank_infraorder">Ինֆրակարգ</string>
+    <string name="rank_subterclass">Սուբտերդաս</string>
+    <string name="rank_parvorder">Պարվակարգ</string>
+    <string name="rank_zoosection">Կենդանաբաժին</string>
+    <string name="rank_zoosubsection">Կենդանաենթաբաժին</string>
+    <string name="rank_superfamily">Գերընտանիք</string>
+    <string name="rank_epifamily">Մակընտանիք</string>
+    <string name="rank_family">Ընտանիք</string>
+    <string name="rank_subfamily">Ենթաընտանիք</string>
+    <string name="rank_supertribe">Գերտոհմ</string>
+    <string name="rank_tribe">Տոհմ</string>
+    <string name="rank_subtribe">Ենթատոհմ</string>
+    <string name="rank_genus">Ցեղատեսակ</string>
+    <string name="rank_genushybrid">Հիբրիդ ցեղատեսակ</string>
+    <string name="rank_subgenus">Ենթացեղատեսակ</string>
+    <string name="rank_section">Բաժին</string>
+    <string name="rank_subsection">ենթաբաժին</string>
+    <string name="rank_complex">Համալիր</string>
     <!-- Singular -->
+    <string name="rank_species">Տեսակներ</string>
+    <string name="rank_hybrid">Հիբրիդ</string>
     <!-- Singular -->
+    <string name="rank_subspecies">Ենթատեսակներ</string>
+    <string name="rank_variety">Զանազանություն</string>
+    <string name="rank_form">Ձև</string>
+    <string name="rank_infrahybrid">Ինֆրահիբրիդ</string>
+    <string name="rank_leaves">Տերևներ</string>
+    <string name="location_lat_lng">Տեղանք․ %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Ես համաձայն եմ թույլ տալ iNaturalist-ին պահել և մշակել իմ մասին սահմանափակ տեսակ անձնական տվյալներ՝ իմ հաշիվը կառավարելու համար։ <b>Իմացեք ավելին</b>]]></string>
+    <string name="about_personal_information">Անձնական տեղեկատվության մասին</string>
+    <string name="personal_information_notes"><![CDATA[Մենք պահպանում ենք անձնական տվյալներ, ինչպիսիք են օգտանունները և էլ. փոստի հասցեները՝ այս կայքում հաշիվները կառավարելու համար, և գաղտնիության օրենքներին համապատասխանելու համար անհրաժեշտ է, որ դուք նշեք այս վանդակը՝ ցույց տալու, որ համաձայն եք անձնական տվյալների այս օգտագործմանը: Լրացուցիչ տեղեկությունների համար, թե ինչ տվյալներ ենք հավաքում և ինչպես ենք դրանք օգտագործում, խնդրում ենք տեսնել մեր <a href="https://www.inaturalist.org/privacy">Գաղտնիության քաղաքականությունը</a> և մեր <a href="https://www.inaturalist.org/terms">Ծառայության պայմանները</a>:]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Ես համաձայն եմ <a href="https://www.inaturalist.org/terms">Օգտագործման պայմաններին</a> և <a href="https://www.inaturalist.org/privacy">Գաղտնիության քաղաքականությանը</a> և վերանայել եմ <a href="https://www.inaturalist.org/pages/community+guidelines">Համայնքի ուղեցույցները</a>:]]></string>
+    <string name="privacy_policy">Գաղտնիության քաղաքականություն</string>
+    <string name="terms_of_service">Ծառայության պայմանները</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
+    <string name="deleted_user">Ջնջված օգտատեր</string>
     <!-- Short date formatting template for dates in the current year. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Short date formatting template for any date. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Short time formatting template for 24-hour locales. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -145,37 +973,247 @@
     <!-- Long date formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Obscured observations date formatting template (only month+year). Note that non-formatting letters should be surrounded by single quotes, and to include an actual single quote you need to double it, so "MMM ''yy" will render as "Oct '24", and "'Month:' MMM, ''yy" will render as "Month: Oct '24" Odd numbers of single quotes are not allowed. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <!-- Long date with time formatting template. You must use *some* of the date formatting letters, and non-formatting Roman letters from A-z must be surrounded by single quotes. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="show_common_names">Ցույց տալ հայտնի անուններ</string>
+    <string name="show_common_names_description">Անջատել, եթե ցանկանում եք միայն գիտական անունները դիտել։</string>
+    <string name="email_must_look_like_email_address">Էլ. փոստը պետք է նման լինի էլ. փոստի հասցեի</string>
+    <string name="username_must_begin_with">Օգտանունը պետք է սկսվի տառով, չպարունակի բացատներ և օգտագործի միայն տառեր, թվեր, գծիկներ և ընդգծումներ</string>
+    <string name="password_too_short">Գաղտնաբառը պետք է առնվազն վեց նիշ երկարություն ունենա</string>
+    <string name="switch_to_grid_view">Փոխել ցանցային տեսքի</string>
+    <string name="switch_to_list_view">Փոխել ցուցակի տեսքի</string>
+    <string name="remove_project_filter">Հեռացնել նախագծի զտիչը</string>
+    <string name="remove_observer_filter">Հեռացնել դիտորդի զտիչը</string>
+    <string name="filter_observations_by_an_exact_date">Դիտարկումները զտել ճշգրիտ ամսաթվով</string>
+    <string name="filter_observations_by_a_date_range">Դիտարկումները զտել ամսաթվի միջակայքով</string>
+    <string name="filter_observations_by_months">Զտել դիտարկումները ամիսներով</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
+    <string name="include_suggestions_not_seen_nearby">Ներառել առաջարկներ, որոնք մոտակայքում չեն երևում</string>
+    <string name="only_view_nearby_suggestions">Միայն դիտել մոտակայքի առաջարկները</string>
+    <string name="suggestions_source">Առաջարկների աղբյուր</string>
+    <string name="research_grade_observations">Հետազոտական մակարդակի դիտարկումներ</string>
+    <string name="visually_similar_description">iNaturalist-ը կտա առաջարկներ՝ հիմնվելով այն բանի վրա, թե որքան են պատկերները տեսողականորեն նման տվյալ տեղանքի մոտ տարվա այս ժամանակահատվածում դիտված տեսակների պատկերներին։</string>
+    <string name="research_grade_observations_description">iNaturalist-ը տեսողականորեն նման առաջարկների փոխարեն կառաջարկի տեսակներ, որոնք դիտարկվել են որոշակի վայրում և որոշակի թաքսոնոմիական խմբի շրջանակներում:</string>
+    <string name="taxon">Թաքսոն․</string>
+    <string name="place">Վայր․</string>
+    <string name="pretty_sure_kingdom">Մենք բավականին վստահ ենք, որ դա այս թագավորությունում է․</string>
+    <string name="pretty_sure_subkingdom">Մենք բավականին վստահ ենք, որ դա այս ենթաթագավորությունում է․</string>
+    <string name="pretty_sure_phylum">Մենք բավականին վստահ ենք, որ դա այս տիպում է․</string>
+    <string name="pretty_sure_subphylum">Մենք բավականին վստահ ենք, որ դա այս ենթատիպում է․</string>
+    <string name="pretty_sure_superclass">Մենք բավականին վստահ ենք, որ դա այս ենթադասում է:</string>
+    <string name="pretty_sure_class">Մենք բավականին վստահ ենք, որ դա այս դասում է:</string>
+    <string name="pretty_sure_subclass">Մենք բավականին վստահ ենք, որ դա այս ենթադասում է:</string>
+    <string name="pretty_sure_infraclass">Մենք բավականին վստահ ենք, որ դա այս ենթադասում է:</string>
+    <string name="pretty_sure_superorder">Մենք բավականին վստահ ենք, որ դա այս գերկարգում է:</string>
+    <string name="pretty_sure_order">Մենք բավականին վստահ ենք, որ դա այս կարգում է:</string>
+    <string name="pretty_sure_suborder">Մենք բավականին վստահ ենք, որ դա այս ենթակարգում է:</string>
+    <string name="pretty_sure_infraorder">Մենք բավականին վստահ ենք, որ դա այս ինֆրակարգում է:</string>
+    <string name="pretty_sure_subterclass">Մենք բավականին վստահ ենք, որ դա այս ենթադասում է․</string>
+    <string name="pretty_sure_parvorder">Մենք բավականին վստահ ենք, որ դա այս պարվակարգում է:</string>
+    <string name="pretty_sure_zoosection">Մենք բավականին վստահ ենք, որ դա այս կենդանաբաժնում է․</string>
+    <string name="pretty_sure_zoosubsection">Մենք բավականին վստահ ենք, որ դա այս ենթակենդանաբաժնում է․</string>
+    <string name="pretty_sure_superfamily">Մենք բավականին վստահ ենք, որ դա այս գերընտանիքում է․</string>
+    <string name="pretty_sure_epifamily">Մենք բավականին վստահ ենք, որ դա այս մակընտանիքում է:</string>
+    <string name="pretty_sure_family">Մենք բավականին վստահ ենք, որ դա այս ընտանիքում է․</string>
+    <string name="pretty_sure_subfamily">Մենք բավականին վստահ ենք, որ դա այս ենթաընտանիքում է․</string>
+    <string name="pretty_sure_supertribe">Մենք բավականին վստահ ենք, որ դա այս գերտոհմում է․</string>
+    <string name="pretty_sure_tribe">Մենք բավականին վստահ ենք, որ դա այս տոհմում է․</string>
+    <string name="pretty_sure_subtribe">Մենք բավականին վստահ ենք, որ դա այս ենթատոհմում է․</string>
+    <string name="pretty_sure_genus">Մենք բավականին վստահ ենք, որ դա այս ցեղատեսակում է․</string>
+    <string name="pretty_sure_genushybrid">Մենք բավականին վստահ ենք, որ դա այս հիբրիդ ցեղատեսակում է․</string>
+    <string name="pretty_sure_subgenus">Մենք բավականին վստահ ենք, որ դա այս ենթացեղատեսակում է․</string>
+    <string name="pretty_sure_section">Մենք բավականին վստահ ենք, որ դա այս բաժնում է․</string>
+    <string name="pretty_sure_subsection">Մենք բավականին վստահ ենք, որ դա այս ենթաբաժնում է․</string>
+    <string name="pretty_sure_complex">Մենք բավականին վստահ ենք, որ դա այս համալիրում է․</string>
     <!-- Singular -->
+    <string name="pretty_sure_species">Մենք բավականին վստահ ենք, որ դա այս տեսակում է․</string>
+    <string name="pretty_sure_hybrid">Մենք բավականին վստահ ենք, որ դա այս հիբրիդում է․</string>
     <!-- Singular -->
+    <string name="pretty_sure_subspecies">Մենք բավականին վստահ ենք, որ դա այս ենթատեսակում է․</string>
+    <string name="pretty_sure_variety">Մենք բավականին վստահ ենք, որ դա այս զանազանությունում է․</string>
+    <string name="pretty_sure_form">Մենք բավականին վստահ ենք, որ դա այս ձևում է․</string>
+    <string name="pretty_sure_infrahybrid">Մենք բավականին վստահ ենք, որ դա այս ինֆրահիբրիդում է․</string>
+    <string name="remove_date_observed">Հեռացնել ամսաթիվը&amp;amp, դիտման ժամանակը</string>
+    <string name="remove_time_observed">Հեռացնել դիտման ժամանակը</string>
+    <string name="remove_location">Հեռացնել տեղանքը</string>
+    <string name="are_you_sure_you_want_to_remove_date">Վստա՞հ եք, որ ուզում եք հեռացնել ամսաթիվը &amp;amp,դիտման ամսաթիվ ժամանակը․</string>
+    <string name="are_you_sure_you_want_to_remove_time">Վստա՞հ եք, որ ուզում եք հեռացնել դիտման ժամանակը․</string>
+    <string name="are_you_sure_you_want_to_remove_location">Վստա՞հ եք, որ ուզում եք հեռացնել տեղանքը․</string>
+    <string name="share_location">Կիսել տեղանքը</string>
+    <string name="share_hidden_location">Կիսել թաքնված տեղանքը</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_sound">Չհաջողվե՛ց կրկնօրինակել ձայնը․</string>
+    <string name="sound_format_not_supported">Այդ ձայնային կոդավորումը չի աջակցվում Android-ի կողմից։</string>
+    <string name="view_observations">Դիտել դիտարկումները</string>
+    <string name="choose_this_option">Ընտրեք այս տարբերակը․</string>
+    <string name="compare_observation_with_this_option">Համեմատեք դիտարկումը այս տարբերակի հետ</string>
+    <string name="go_back">Հետ գնալ</string>
+    <string name="change_the_source_of_the_suggestions">Փոխեք առաջարկությունների աղբյուրը</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Առաջարկվող թաքսոնի պատկերակ լուսանկար</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Մեկնաբանություններ և նույնացումներ</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Նախընտրածներ</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Նախորդ տարբերակ</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Հաջորդ տարբերակ</string>
+    <string name="no_observations_yet2">Դեռևս դիտարկումներ չկան։</string>
+    <string name="no_species_yet">Դեռևս տեսակներ չկան։</string>
+    <string name="no_identifications_yet">Դեռևս նույնականացումներ չկան։</string>
+    <string name="sort_by">Տեսակավորել ըստ</string>
+    <string-array name="explore_order_by_items">
+        <item>Ավելացման ամսաթվի</item>
+        <item>Դիտարկման ամսաթվի</item>
+        <item>Թարմացման ամսաթվի</item>
+        <!--<item>Faves</item>-->
+        <item>Պատահական</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Իջնող</item>
+        <item>Բարձրացող</item>
+    </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Դասավորված է ըստ %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Թաքցնել իմ դիտարկումները</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Հետևել այս դիտարկմանը</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Չհետևել այս դիտարկմանը</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Չհաջողվեց հետևել այս դիտարկմանը</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Չհաջողվեց չհետևել այս դիտարկումը</string>
     <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Պատճենել կոորդինատները</string>
+    <string name="coordinates_copied_to_clipboard">Կոորդինատները պատճենվել են սեղմատախտակին</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Մետատվյալներ</string>
     <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
+    <string name="default_licenses">Լռելյայն արտոնագրեր</string>
+    <string name="default_observation_license">Լռելյայն դիտարկման արտոնագիր</string>
+    <string name="default_photo_license">Լռելյայն լուսանկարի արտոնագիր</string>
+    <string name="default_sound_license">Լռելյայն ձայնային արտոնագիր</string>
+    <string name="change_existing_licenses">Փոխել առկա արտոնագրերը</string>
+    <string name="change_licenses_for_existing_observations">Փոխել առկա դիտարկումների, լուսանկարների և ձայների արտոնագրերը</string>
+    <string name="change_licenses_for_all_existing_observations">Փոխել բոլոր առկա դիտարկումների արտոնագրերը</string>
+    <string name="change_licenses_for_all_existing_photos">Փոխել բոլոր առկա լուսանկարների արտոնագրերը</string>
+    <string name="change_licenses_for_all_existing_sounds">Փոխել բոլոր առկա ձայների արտոնագրերը</string>
+    <string name="change_observation_licenses">Փոփոխել դիտարկման արտոնագրերը</string>
+    <string name="change_photo_licenses">Փոխել լուսանկարների արտոնագրերը</string>
+    <string name="change_sound_licenses">Փոխել ձայնային արտոնագրերը</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Փոխե՞լ <b>%1$d</b> առկա դիտարկումների արտոնագրերը <b>%2$s</b>-ի․]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Փոխե՞լ առկա լուսանկարների արտոնագրերը <b>%1$s</b>-ի․]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Փոխե՞լ առկա ձայների արտոնագրերը <b>%1$s</b>-ի․]]></string>
+    <string name="observation_licenses_updated">Դիտարկման արտոնագրերը թարմացվել են</string>
+    <string name="photo_licenses_updated">Լուսանկարների արտոնագրերը թարմացվել են</string>
+    <string name="sound_licenses_updated">Ձայնային արտոնագրերը թարմացվել են</string>
+    <string name="existing_observation_licenses_have_been_updated">Բոլոր առկա դիտարկման արտոնագրերը փոխվել են %1$s-ի։</string>
+    <string name="existing_photo_licenses_have_been_updated">Բոլոր առկա լուսանկարների արտոնագրերը փոխվել են %1$s-ի։</string>
+    <string name="existing_sound_licenses_have_been_updated">Բոլոր առկա ձայնային արտոնագրերը փոխվել են %1$s-ի։</string>
+    <string name="default_licenses_description"><![CDATA[Ձեր բովանդակության արտոնագրումը տալիս է ամեն մեկին օրինական իրավունք այն օգտագործելու՝ առանց ձեր թույլտվությունը հարցնելու, եթե նրանք հետևում են արտոնագրի պայմաններին։ Բացի դրանից՝ iNat-ը ներառում է ձեր Creative Commons արտոնագրված բովանդակությունը պարբերաբար թարմացվող արխիվներում, որոնք ստեղծվում են մեր տվյալներով հետաքրքրված ընտրված գործընկեր կազմակերպությունների համար։ Օրինակ՝ մենք ներառում ենք No Copyright (CC0), Attribution (CC BY) և Attribution-NonCommercial (CC BY-NC) գրառումները այն արխիվում, որը մենք ստեղծում ենք <a href="https://www.gbif.org/">Global Biodiversity Information Facility-ի (GBIF)</a> համար, որը միջազգային, միջկառավարական կազմակերպություն է, որը ամբողջ աշխարհից հավաքում և տարածում է կենսաբազմազանության տեղեկատվությունը։]]></string>
+    <string name="photo_license">Լուսանկարի արտոնագիր</string>
+    <string name="sound_license">Ձայնային արտոնագիր</string>
+    <string name="edit_photo_license">Խմբագրել լուսանկարի արտոնագիրը</string>
+    <string name="observation_license">Դիտարկման արտոնագիր</string>
+    <string name="edit_observation_license">Խմբագրել դիտարկման արտոնագիրը</string>
+    <string name="about_licenses">Արտոնագրերի մասին</string>
+    <string name="view_license">Դիտել արտոնագիրը</string>
     <!-- License Names -->
+    <string name="license_name_cc0">Հանրային սեփականություն</string>
+    <string name="license_name_cc_by">Վերագրում</string>
+    <string name="license_name_cc_by_nc">Վերագրում-Ոչ առևտրային</string>
+    <string name="license_name_cc_by_nc_sa">Վերագրում-Ոչ առևտրային-Նմանապես կիսել</string>
+    <string name="license_name_cc_by_nc_nd">Վերագրում-Ոչ առևտրային-Առանց ածանցյալների</string>
+    <string name="license_name_cc_by_nd">Վերագրում-Առանց ածանցյալների</string>
+    <string name="license_name_cc_by_sa">Վերագրում-Նմանապես կիսել</string>
+    <string name="license_name_no_license">Բոլոր իրավունքները պաշտպանված են</string>
     <!-- License Descriptions -->
+    <string name="license_description_cc0">Այս արտոնագիրը ձեր աշխատանքը հանրային սեփականություն է դարձնում, որպեսզի ուրիշները կարողանան պատճենել, փոփոխել, տարածել և կատարել ձեր աշխատանքը, նույնիսկ առևտրային նպատակներով՝ առանց թույլտվություն հարցնելու կամ ձեզ հղում անելու: Սա առաջարկվող արտոնագրերից ամենահարմարվողն է: Խորհուրդ է տրվում արտոնագրված նյութերի առավելագույն տարածման և օգտագործման համար:</string>
+    <string name="license_description_cc_by">Այս արտոնագիրը թույլ է տալիս ուրիշներին տարածել, վերամշակել, փոփոխել ձեր աշխատանքը ու դրանով ստեղծել նոր բան, նույնիսկ առևտրային նպատակներով, եթե միայն նշեն ձեր անունը որպես սկզբնական ստեղծողի։</string>
+    <string name="license_description_cc_by_nc">Այս արտոնագիրը թույլ է տալիս ուրիշներին վերամշակել, փոփոխել ձեր աշխատանքը ու դրանով ստեղծել նոր բան ոչ առևտրային նպատակներով, ու թեև նրանց նոր աշխատանքները նույնպես պետք է ձեզ հղում անեն և լինեն ոչ առևտրային, բայց նրանց համար պարտադիր չէ, որ իրենց ածանցյալ աշխատանքները արտոնագրեն նույն պայմաններով։</string>
+    <string name="license_description_cc_by_nc_sa">Այս արտոնագիրը թույլ է տալիս ուրիշներին վերամշակել, փոփոխել ձեր աշխատանքն ու դրանով ստեղծել նոր բան ոչ առևտրային նպատակներով, եթե նշեն ձեր հեղինակությունը և իրենց նոր ստեղծագործությունները արտոնագրեն նույն պայմաններով։</string>
+    <string name="license_description_cc_by_nc_nd">Այս արտոնագիրը վեց հիմնական արտոնագրերից ամենախիստն է և թույլ է տալիս միայն ներբեռնել ձեր աշխատանքները և կիսել դրանք ուրիշների հետ, եթե նշեն ձեր հեղինակությունը, բայց չեն կարող որևէ կերպ փոփոխել դրանք կամ օգտագործել առևտրային նպատակներով։</string>
+    <string name="license_description_cc_by_nd">Այս արտոնագիրը թույլ է տալիս վերաբաշխում՝ առևտրային և ոչ առևտրային, եթե փոխանցվում է անփոփոխ և ամբողջությամբ՝ ձեր հեղինակությունը նշելով։</string>
+    <string name="license_description_cc_by_sa">Այս արտոնագիրը թույլ է տալիս ուրիշներին վերամշակել, հարմարեցնել ձեր աշխատանքն ու դրանով ստեղծել նոր բան նույնիսկ առևտրային նպատակներով, բայց այն պայմանով, որ նշեն ձեր հեղինակությունը և իրենց նոր ստեղծագործությունները արտոնագրեն նույնական պայմաններով: Այս արտոնագիրը հաճախ համեմատվում է «հակառակ հեղինակային իրավունք» ազատ և բաց կոդով ծրագրային ապահովման արտոնագրերի հետ: Ձեր աշխատանքի հիման վրա ստեղծված բոլոր նոր աշխատանքները կունենան նույն արտոնագիրը, այնպես որ ամեն մի ածանցյալ նույնպես թույլ կտա առևտրային օգտագործում: Սա այն արտոնագիրն է, որը օգտագործվում է Վիքիպեդիայում և առաջարկվում այն նյութերի համար, որոնք օգուտ կքաղեն Վիքիպեդիայից և նման արտոնագրված նախագծերից բովանդակություն ներառելուց:</string>
+    <string name="license_description_no_license">Դուք պահպանում եք ձեր բովանդակության ամբողջական հեղինակային իրավունքը՝ բացի այն իրավունքներից, որոնք տրամադրվում են iNaturalist-ին մեր Ծառայությունների Պայմաններով։</string>
+    <string name="invalid_photo">Լուսանկարի ձևաչափը չի աջակցվում</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Առաջարկներ՝ հիմնված iNaturalist համայնքի ընձեռած դիտարկումների և նույնացումների վրա՝ ներառյալ %1$s, %2$s, %3$s և շատ ուրիշներ։</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Լռելյայն դիտարկման գործողություն</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Ցուցադրել ընտրանքները</string>
     <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Դաշտի արժեք</string>
+    <string name="expand_annotation_to_agree_or_disagree">Ընդլայնել ծանոթագրությունը առ համաձայնելը կամ չհամաձայնելը</string>
+    <string name="delete_attribute_value">Ջնջել վերագրման արժեքը</string>
+    <string name="open_menu_for_more_options">Բացեք ընտրացանկը՝ ավելի շատ ընտրանքների համար</string>
+    <string name="change_user_profile_photo">Փոխել օգտատիրոջ պրոֆիլի լուսանկարը</string>
+    <string name="expand_list">Ցանկը ընդլայնել</string>
+    <string name="change_map_layers">Փոխել քարտեզի շերտերը (ռելիեֆայինը ընդդեմ արբանյակայինի)</string>
+    <string name="redo_observation_search">Նորից անել դիտարկման որոնումը այս քարտեզի տարածքում</string>
+    <string name="view_observations_on_map">Դիտարկումները դիտել քարտեզի վրա</string>
+    <string name="view_observations_on_grid">Դիտարկումները դիտել ցանցի ձևով</string>
+    <string name="clear_text">Մաքուր տեքստ</string>
+    <string name="observation_has_sounds">Դիտարկումը ունի ձայներ</string>
+    <string name="go_to_my_location">Գնալ իմ ընթացիկ տեղանք</string>
+    <string name="change_geoprivacy">Փոխել տեղանքի գաղտնիությունը</string>
+    <string name="active_filters">Գործուն զտիչներ</string>
+    <string name="message_is_flagged">Հաղորդագրությունը դրոշանշված է</string>
+    <string name="user_is_muted">Օգտատերը լռեցված է</string>
+    <string name="cancel_multiple_obs_selection">Չեղարկել բազմակի դիտարկման ընտրությունը</string>
+    <string name="delete_observations">Ջնջել դիտարկումները</string>
+    <string name="comment_count">Մեկնաբանությունների քանակ</string>
+    <string name="id_count">Նույնականացման քանակ</string>
+    <string name="observation_selected">Դիտարկումն ընտրված է</string>
+    <string name="share_observation">Կիսել դիտարկումը</string>
+    <string name="unknown_location">Անհայտ տեղանք</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Փակել</string>
+    <string name="set_date2">Սահմանել ամսաթիվը</string>
+    <string name="project_selected">Նախագիծը ընտրված է</string>
+    <string name="project_unselected">Նախագիծը ընտրված չէ</string>
+    <string name="show_my_observations">Ցույց տալ իմ դիտարկումները</string>
+    <string name="play_pause_sound">Նվագարկել կամ դադարեցնել ձայնը</string>
+    <string name="view_image">Դիտել նկարը</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Գնահատման անցումներ</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Համաձայնել գնահատման անցումներին</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Գնահատում չի անցնում</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Չհամաձայնել գնահատման անցումներին</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Ջնջել %1$d ընտրված դիտարկումը</item>
+        <item quantity="other">Ջնջել %1$d ընտրված դիտարկումները</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Համաժամեցնել %1$d ընտրված դիտարկումը</item>
+        <item quantity="other">Համաժամեցնել %1$d ընտրված դիտարկումները</item>
+    </plurals>
+    <string name="add_media_evidence">Ավելացնել մեդիա ապացույց</string>
+    <string name="remove_identification">Հեռացնել նույնականացումը</string>
+    <string name="issue_with_updating_photos">Վերջերս լուծվել է այս դիտարկման լուսանկարների թարմացման խնդիրը։ Խնդրում ենք դուրս գալ և նորից մուտք գործել՝ այս խնդիրը լուծելու համար։</string>
+    <string name="app_version_copied_to_clipboard">Հավելվածի տարբերակը պատճենվել է սեղմատախտակին</string>
+    <string name="authentication_failed">Ինքնության հաստատումը ձախողվեց</string>
+    <string name="please_try_again_soon">Խնդրում ենք շուտով կրկին փորձել։</string>
+    <string name="verify_your_email">Հաստատեք ձեր էլ. փոստի հասցեն</string>
+    <string name="after_you_change_your_password">Երբ փոխեք ձեր գաղտնաբառը, դուրս կգաք և պետք կլինի, որ նորից մուտք գործեք ձեր նոր գաղտնաբառով։ Նաև դուրս կգաք iNaturalist բջջային հավելվածներից և ամեն մի այլ հավելվածից կամ կայքից, որոնք ձեր անունից հրապարակում են iNaturalist-ում, ուստի համոզվեք, որ վերբեռնել եք բոլոր սպասվող դիտարկումները, նախքան դա անելը։ Ամեն դիտարկում, որը չի վերբեռնվել, կկորչի։</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">Չհաջողվեց վերբեռնել ֆայլը․ չափը գերազանցում է 20ՄԲ-ը։</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Դուք դուրս եք եկել։ Խնդրում ենք կրկին մուտք գործել։</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Փակել հայտարարությունը</string>
+    <string name="import_photos_from">Ներմուծել լուսանկարներ...</string>
+    <string name="cannot_find_default_camera">Չհաջողվեց գտնել լռելյայն տեսախցիկ՝ լուսանկարներ անելու համար․ խնդրում ենք կապ հաստատել աջակցման ծառայության հետ</string>
+    <string name="please_click_link_to_confirm_email">Խնդրում ենք սեղմել ձեր էլ. փոստին ուղարկված հղումը՝ iNaturalist-ում ձեր էլ. փոստը հաստատելու համար։</string>
+    <string name="click_to_resend_confirmation_email">Սեղմեք այստեղ՝ հաստատման էլ. փոստը նորից ուղարկելու համար։</string>
 </resources>

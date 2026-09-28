@@ -324,7 +324,7 @@
     <string name="not_logged_in">No ha iniciado sesión</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Iniciar sesión o registrarse</string>
-    <string name="auto_upload_description">Cargar automáticamente las nuevas observaciones y sus modificaciones a observaciones</string>
+    <string name="auto_upload_description" comment="upload automatically when new observations are created or existing observations are edited">Cargar automáticamente las nuevas observaciones y sus modificaciones a observaciones</string>
     <string name="language">Idioma</string>
     <string name="version">Versión</string>
     <string name="inat_network">Red iNaturalist</string>
@@ -753,7 +753,8 @@
     <string name="network_credit_inaturalistcl"><![CDATA[Chile: el Ministerio de Medio Ambiente apoya a iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="network_credit_inaturalistgr"><![CDATA[Grecia: iSea apoya a iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburgo: el Luxembourg National Museum of Natural History (MnhnL) (Museo Nacional de Historia Natural de Luxemburgo) apoya a iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: la National Biodiversity Network Trust (Red Nacional de Biodiversidad) apoya a iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: la National Biodiversity Network Trust (Red Nacional de Biodiversidad) apoya a iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)
+]]></string>
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: la  Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) apoya a Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: el Consejo Nacional de Áreas Protegidas (CONAP) apoya a iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Suecia: el SLU Swedish Species Information Centre (Centro Sueco de Información sobre las Especies) apoya a iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
