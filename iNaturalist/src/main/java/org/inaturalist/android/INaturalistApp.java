@@ -236,6 +236,8 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
 
         MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, this);
 
+        EdgeToEdgeInsetsHandler.register(this);
+
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!getPrefersNoTracking());
 
         AnalyticsClient.initAnalyticsClient(this, getPrefersNoTracking());
