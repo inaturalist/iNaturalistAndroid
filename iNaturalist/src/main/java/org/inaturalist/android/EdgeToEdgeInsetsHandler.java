@@ -17,13 +17,18 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Starting with Android 16 (API 36), apps targeting SDK 36 can no longer opt out of edge-to-edge
  * (windowOptOutEdgeToEdgeEnforcement is ignored), so the status/navigation bars are drawn
  * on top of the app content. This restores the pre-edge-to-edge layout for all of our activities,
  * by padding the window's root view with the system bar insets (and the keyboard, for adjustResize),
- * and drawing a colored background behind the (now transparent) status bar.
+ * drawing a colored background behind the (now transparent) status bar, and making sure the content
+ * is laid out below the action bar (and not underneath it).
  */
 @RequiresApi(api = Build.VERSION_CODES.BAKLAVA)
 public class EdgeToEdgeInsetsHandler implements Application.ActivityLifecycleCallbacks {
@@ -47,10 +52,20 @@ public class EdgeToEdgeInsetsHandler implements Application.ActivityLifecycleCal
         // have been moved by BaseFragmentActivity.moveDrawerToTop into a DrawerLayout (that ignores padding)
         View paddedView = content;
         while ((paddedView.getParent() instanceof View) && (paddedView.getParent() != decorView) &&
-                (((View) paddedView.getParent()).getId() != R.id.drawer_content)) {
+                !(paddedView.getParent() instanceof DrawerLayout)) {
             paddedView = (View) paddedView.getParent();
         }
         final View target = paddedView;
+
+        // In that case, the drawers (side menus) sit next to the content and need to be padded as well
+        List<View> drawers = new ArrayList<>();
+        if (target.getParent() instanceof DrawerLayout) {
+            DrawerLayout drawerLayout = (DrawerLayout) target.getParent();
+            for (int i = 0; i < drawerLayout.getChildCount(); i++) {
+                View child = drawerLayout.getChildAt(i);
+                if (child != target) drawers.add(child);
+            }
+        }
 
         View statusBarBackground = new View(activity);
         statusBarBackground.setBackgroundColor(getStatusBarColor(activity));
@@ -71,6 +86,9 @@ public class EdgeToEdgeInsetsHandler implements Application.ActivityLifecycleCal
             int top = drawsUnderStatusBar ? 0 : bars.top;
 
             target.setPadding(bars.left, top, bars.right, bottom);
+            for (View drawer : drawers) {
+                drawer.setPadding(bars.left, top, bars.right, bars.bottom);
+            }
 
             ViewGroup.LayoutParams params = statusBarBackground.getLayoutParams();
             if (params.height != top) {
@@ -81,6 +99,17 @@ public class EdgeToEdgeInsetsHandler implements Application.ActivityLifecycleCal
             return WindowInsets.CONSUMED;
         });
         root.requestApplyInsets();
+
+        // AppCompat's action bar layout (ActionBarOverlayLayout) only offsets the content below the action bar
+        // if the decor fits system windows - which is never the case under edge-to-edge. Instead, it dispatches
+        // the action bar height as a window inset to the content view, expecting it to consume it.
+        // Since the system bar insets were already consumed above, that inset is just the action bar's height.
+        // (Activities without an action bar never get insets dispatched to their content, so they're unaffected)
+        content.setOnApplyWindowInsetsListener((view, windowInsets) -> {
+            Insets actionBar = windowInsets.getInsets(WindowInsets.Type.systemBars());
+            view.setPadding(actionBar.left, actionBar.top, actionBar.right, actionBar.bottom);
+            return WindowInsets.CONSUMED;
+        });
     }
 
     private static int getStatusBarColor(Activity activity) {

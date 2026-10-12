@@ -111,7 +111,6 @@ public class BaseFragmentActivity extends AppCompatActivity {
         decor.removeView(child);
         ViewGroup container = (ViewGroup) drawer.findViewById(R.id.drawer_content); // This is the container we defined just now.
         container.addView(child, 0);
-        drawer.findViewById(R.id.left_drawer).setPadding(0, getStatusBarHeight(), 0, 0);
 
         // Make the drawer replace the first child
         decor.addView(drawer);
@@ -124,6 +123,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
         ViewGroup sideMenu = ((ViewGroup)decor.findViewById(R.id.left_drawer));
 
         if (sideMenu == null) return;
+
+        // On Android 16+ (edge-to-edge), the side menu is padded with the actual system bar insets by EdgeToEdgeInsetsHandler
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) return;
 
         int navigationBarHeight = getNavigationBarHeight(this);
         sideMenu.setPadding(0, getStatusBarHeight(), 0, navigationBarHeight);
