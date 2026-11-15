@@ -732,7 +732,7 @@
     <string name="community_id_at_species_level_or_lower">Community-Taxon auf Art-Ebene oder darunter</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Kann die Community-ID anhand der vorhandenen Belege noch weiter verbessert werden?</string>
     <string name="no_as_good_as_it_can_be">Nein, es ist so gut wie es nur sein kann</string>
-    <string name="evidence_related_to_single_subject">Nachweise, die sich auf ein einziges Merkmal beziehen</string>
+    <string name="evidence_related_to_single_subject">Alle Nachweise beziehen sich auf den gleichen Organismus</string>
     <string name="seasonality">Jahreszeitliche Verteilung</string>
     <string name="verifiable">Verifizierbar</string>
     <string name="no_annotation">Keine Annotation</string>
